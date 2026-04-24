@@ -42,7 +42,7 @@ export default function DoencasPage() {
   ]
 
   return (
-    <div className="p-8 max-w-5xl mx-auto">
+    <div className="p-4 sm:p-6 md:p-8 max-w-5xl mx-auto">
       <div className="mb-6">
         <div className="flex items-center gap-2 mb-1">
           <BookOpen size={22} className="text-teal-400" />
@@ -62,9 +62,9 @@ export default function DoencasPage() {
         />
       </div>
 
-      <div className="flex gap-5">
+      <div className="flex flex-col lg:flex-row gap-5">
         {/* Lista */}
-        <div className="w-52 flex-shrink-0 space-y-1.5 max-h-[70vh] overflow-y-auto pr-1">
+        <div className="w-full lg:w-52 lg:flex-shrink-0 space-y-1.5 max-h-[36vh] lg:max-h-[70vh] overflow-y-auto pr-1">
           {filtered.map(d => {
             const active = selected.id === d.id
             return (

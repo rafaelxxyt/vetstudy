@@ -21,9 +21,9 @@ export default function App() {
   const PageComponent = PAGE_MAP[activePage]
 
   return (
-    <div className="flex h-screen bg-slate-950 overflow-hidden font-sans">
+    <div className="flex h-dvh flex-col md:h-screen md:flex-row bg-slate-950 overflow-hidden font-sans">
       <Sidebar activePage={activePage} onNavigate={setActivePage} />
-      <main className="flex-1 overflow-y-auto bg-slate-950">
+      <main className="min-w-0 flex-1 overflow-y-auto bg-slate-950 pb-20 md:pb-0">
         <AnimatePresence mode="wait">
           <motion.div
             key={activePage}

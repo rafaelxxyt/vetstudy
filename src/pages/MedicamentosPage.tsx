@@ -52,7 +52,7 @@ function SpeciesCalc({ sp }: { sp: SpeciesEntry }) {
 
   return (
     <div className="px-5 pb-5 pt-3 border-t border-slate-700/50 space-y-3">
-      <div className="grid grid-cols-4 gap-3 items-end">
+      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-3 items-end">
         {/* Via e Intervalo */}
         <div>
           <p className="text-[10px] text-slate-500 font-medium mb-1 uppercase tracking-wider">Via</p>
@@ -101,7 +101,7 @@ function SpeciesCalc({ sp }: { sp: SpeciesEntry }) {
         {result && (
           <motion.div
             initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}
-            className="bg-teal-500/10 border border-teal-500/25 rounded-xl p-3 grid grid-cols-2 gap-3"
+            className="bg-teal-500/10 border border-teal-500/25 rounded-xl p-3 grid grid-cols-1 sm:grid-cols-2 gap-3"
           >
             <div>
               <p className="text-[10px] text-slate-500 mb-0.5">Dose Total</p>
@@ -171,10 +171,10 @@ function DrugDetail({ drug }: { drug: Drug }) {
         </div>
 
         {/* Abas */}
-        <div className="flex gap-1.5">
+        <div className="flex flex-wrap gap-1.5">
           {TABS.map(({ key, label, icon: Icon }) => (
             <button key={key} onClick={() => setTab(key)}
-              className={`flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-semibold border transition-all ${
+              className={`flex items-center gap-1.5 px-3 sm:px-4 py-2 rounded-xl text-xs font-semibold border transition-all ${
                 tab === key
                   ? 'bg-teal-500/20 text-teal-300 border-teal-500/30'
                   : 'bg-slate-800 text-slate-500 border-slate-700/60 hover:text-slate-300 hover:border-slate-600'
@@ -324,7 +324,7 @@ export default function MedicamentosPage() {
   }
 
   return (
-    <div className="p-8 max-w-5xl mx-auto">
+    <div className="p-4 sm:p-6 md:p-8 max-w-5xl mx-auto">
       {/* Cabeçalho */}
       <div className="mb-6">
         <div className="flex items-center gap-2 mb-1">
@@ -348,9 +348,9 @@ export default function MedicamentosPage() {
         />
       </div>
 
-      <div className="flex gap-5">
+      <div className="flex flex-col lg:flex-row gap-5">
         {/* Lista lateral */}
-        <div className="w-52 flex-shrink-0 space-y-1 max-h-[75vh] overflow-y-auto pr-1 custom-scroll">
+        <div className="w-full lg:w-52 lg:flex-shrink-0 space-y-1 max-h-[36vh] lg:max-h-[75vh] overflow-y-auto pr-1 custom-scroll">
           {filtered.map(drug => {
             const active = selected.id === drug.id
             return (

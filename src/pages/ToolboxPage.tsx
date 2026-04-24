@@ -75,7 +75,7 @@ function DoseCalc() {
       <AvisoLegal />
 
       <div className="bg-slate-800/60 backdrop-blur-md rounded-2xl border border-slate-700/60 p-5 space-y-4">
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {[
             { label: 'Peso do Animal', value: weight, set: setWeight, ph: 'ex: 15', unit: 'kg' },
             { label: 'Dose Prescrita', value: dose,   set: setDose,   ph: 'ex: 25', unit: 'mg/kg' },
@@ -117,7 +117,7 @@ function DoseCalc() {
           <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}
             className="bg-teal-500/10 backdrop-blur-md border border-teal-500/25 rounded-2xl p-5">
             <p className="text-[10px] text-teal-400 font-bold uppercase tracking-widest mb-3">Resultado</p>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
                 <p className="text-xs text-slate-500 mb-1">Dose Total</p>
                 <p className="text-3xl font-black text-white">
@@ -182,7 +182,7 @@ function FluidCalc() {
           </div>
         </div>
 
-        <div className="grid grid-cols-3 gap-3">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
           {[
             { label: 'Peso', value: weight, set: setWeight, unit: 'kg', ph: '15' },
             { label: 'Desidratação', value: dehydPct, set: setDehydPct, unit: '%', ph: '5' },
@@ -217,7 +217,7 @@ function FluidCalc() {
           <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}
             className="bg-blue-500/10 backdrop-blur-md border border-blue-500/25 rounded-2xl p-5">
             <p className="text-[10px] text-blue-400 font-bold uppercase tracking-widest mb-3">Plano de Fluidos</p>
-            <div className="grid grid-cols-2 gap-3">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               {[
                 { label: 'Déficit Hídrico', value: result.deficit.toFixed(0), unit: 'mL',   color: 'text-white' },
                 { label: 'Manutenção',      value: result.manut.toFixed(0),   unit: 'mL',   color: 'text-white' },
@@ -258,7 +258,7 @@ function LabRef() {
         ))}
       </div>
 
-      <div className="flex gap-2 bg-slate-800/60 p-1 rounded-xl border border-slate-700/50 w-fit">
+      <div className="flex flex-wrap gap-2 bg-slate-800/60 p-1 rounded-xl border border-slate-700/50 w-fit max-w-full">
         {(['hematology', 'biochemistry'] as const).map(t => (
           <button key={t} onClick={() => setTab(t)}
             className={`px-4 py-1.5 rounded-lg text-xs font-bold transition-all ${
@@ -273,18 +273,20 @@ function LabRef() {
         <motion.div key={`${species}-${tab}`}
           initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}
           transition={{ duration: 0.15 }}
-          className="bg-slate-800/80 backdrop-blur-md rounded-2xl border border-slate-700/80 overflow-hidden">
-          <div className="grid grid-cols-4 px-5 py-2.5 bg-slate-700/50 text-[10px] font-black text-slate-500 uppercase tracking-wider border-b border-slate-700/60">
-            <span>Parâmetro</span><span className="text-center">Mín.</span><span className="text-center">Máx.</span><span className="text-center">Unidade</span>
-          </div>
-          {data[tab].map((row, i) => (
-            <div key={row.param} className={`grid grid-cols-4 px-5 py-3 text-sm ${i % 2 === 0 ? 'bg-slate-800' : 'bg-slate-800/40'} hover:bg-teal-500/5`}>
-              <span className="text-slate-300 font-semibold">{row.param}</span>
-              <span className="text-center text-teal-400 font-mono font-bold">{row.min}</span>
-              <span className="text-center text-teal-400 font-mono font-bold">{row.max}</span>
-              <span className="text-center text-slate-500 text-xs">{row.unit}</span>
+          className="overflow-x-auto">
+          <div className="min-w-[36rem] bg-slate-800/80 backdrop-blur-md rounded-2xl border border-slate-700/80 overflow-hidden">
+            <div className="grid grid-cols-4 px-5 py-2.5 bg-slate-700/50 text-[10px] font-black text-slate-500 uppercase tracking-wider border-b border-slate-700/60">
+              <span>Parâmetro</span><span className="text-center">Mín.</span><span className="text-center">Máx.</span><span className="text-center">Unidade</span>
             </div>
-          ))}
+            {data[tab].map((row, i) => (
+              <div key={row.param} className={`grid grid-cols-4 px-5 py-3 text-sm ${i % 2 === 0 ? 'bg-slate-800' : 'bg-slate-800/40'} hover:bg-teal-500/5`}>
+                <span className="text-slate-300 font-semibold">{row.param}</span>
+                <span className="text-center text-teal-400 font-mono font-bold">{row.min}</span>
+                <span className="text-center text-teal-400 font-mono font-bold">{row.max}</span>
+                <span className="text-center text-slate-500 text-xs">{row.unit}</span>
+              </div>
+            ))}
+          </div>
         </motion.div>
       </AnimatePresence>
 
@@ -300,7 +302,7 @@ export default function FerramentasPage() {
   const [active, setActive] = useState<Tool>('dose')
 
   return (
-    <div className="p-8 max-w-4xl mx-auto">
+    <div className="p-4 sm:p-6 md:p-8 max-w-4xl mx-auto">
       <div className="mb-6">
         <div className="flex items-center gap-2 mb-1">
           <Wrench size={22} className="text-teal-400" />
