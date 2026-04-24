@@ -1,0 +1,39 @@
+{
+  "disciplina": "Reprodução Animal",
+  "modulo": "Nome do Módulo",
+  "module": "Nome do Módulo",
+  "source": "Aula PDF / PPTX / resumo interno",
+  "topics": [
+    {
+      "name": "Nome do tópico",
+      "flashcards": [
+        {
+          "id": "fc_exemplo_0001",
+          "pergunta": "Por que este conceito é importante?",
+          "resposta": "Explique função, consequência ou impacto em 1-2 linhas.",
+          "tema": "Reprodução Animal",
+          "subtema": "Nome do tópico"
+        }
+      ],
+      "questions": [
+        {
+          "id": 9501,
+          "tipo": "multipla_escolha",
+          "banca": "VetStudy",
+          "tema": "Reprodução Animal",
+          "subtema": "Nome do tópico",
+          "dificuldade": "media",
+          "pergunta": "Enunciado objetivo com foco em raciocínio clínico ou fisiológico.",
+          "alternativas": {
+            "A": "Alternativa plausível 1.",
+            "B": "Alternativa plausível 2.",
+            "C": "Alternativa plausível 3.",
+            "D": "Alternativa plausível 4."
+          },
+          "correta": "A",
+          "explicacao": "Explique por que a alternativa correta está certa e o que torna as outras menos adequadas."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,566 @@
+{
+  "disciplina": "Reprodução Animal",
+  "modulo": "Ciclo Estral e Reprodução Animal",
+  "module": "Ciclo Estral e Reprodução Animal",
+  "source": "Aula PDF",
+  "topics": [
+    {
+      "name": "Fundamentos do ciclo reprodutivo",
+      "flashcards": [
+        {
+          "id": "fc_estral_0001",
+          "pergunta": "O que o ciclo estral faz no corpo da fêmea?",
+          "resposta": "Organiza cio, ovulação e preparo do útero. Isso permite prever o melhor momento para reprodução.",
+          "tema": "Ciclo Estral e Reprodução Animal",
+          "subtema": "Fundamentos do ciclo reprodutivo"
+        },
+        {
+          "id": "fc_estral_0002",
+          "pergunta": "Por que o ciclo estral é diferente do ciclo menstrual?",
+          "resposta": "No estral, a fêmea aceita monta só no estro. Isso concentra a reprodução perto da ovulação.",
+          "tema": "Ciclo Estral e Reprodução Animal",
+          "subtema": "Fundamentos do ciclo reprodutivo"
+        },
+        {
+          "id": "fc_estral_0003",
+          "pergunta": "O que mostra que a fêmea está em estro?",
+          "resposta": "Ela aceita monta por efeito do estrogênio. Esse sinal indica ovulação próxima.",
+          "tema": "Ciclo Estral e Reprodução Animal",
+          "subtema": "Fundamentos do ciclo reprodutivo"
+        },
+        {
+          "id": "fc_estral_0004",
+          "pergunta": "O que acontece se a fêmea entra em anestro?",
+          "resposta": "Ela para de ciclar e não mostra cio regular. Isso reduz as chances de cobertura ou IA no período.",
+          "tema": "Ciclo Estral e Reprodução Animal",
+          "subtema": "Fundamentos do ciclo reprodutivo"
+        },
+        {
+          "id": "fc_estral_0005",
+          "pergunta": "O que o corpo lúteo faz após a ovulação?",
+          "resposta": "Produz progesterona para preparar o útero. Sem ele, a gestação inicial não se sustenta bem.",
+          "tema": "Ciclo Estral e Reprodução Animal",
+          "subtema": "Fundamentos do ciclo reprodutivo"
+        },
+        {
+          "id": "fc_estral_0006",
+          "pergunta": "Por que detectar cio corretamente melhora a reprodução?",
+          "resposta": "Ajuda a inseminar perto da ovulação. Isso aumenta a chance de concepção e reduz perdas de manejo.",
+          "tema": "Ciclo Estral e Reprodução Animal",
+          "subtema": "Fundamentos do ciclo reprodutivo"
+        },
+        {
+          "id": "fc_estral_0007",
+          "pergunta": "O que muda no manejo de uma fêmea poliéstrica?",
+          "resposta": "Ela repete ciclos em sequência. Isso cria várias oportunidades de cobertura ou IA.",
+          "tema": "Ciclo Estral e Reprodução Animal",
+          "subtema": "Fundamentos do ciclo reprodutivo"
+        },
+        {
+          "id": "fc_estral_0008",
+          "pergunta": "Por que o eixo hipotálamo-hipófise-gonadal é importante?",
+          "resposta": "Ele coordena GnRH, FSH, LH e ovário. Sem esse comando, folículo, ovulação e corpo lúteo perdem ritmo.",
+          "tema": "Ciclo Estral e Reprodução Animal",
+          "subtema": "Fundamentos do ciclo reprodutivo"
+        }
+      ],
+      "questions": [
+        {
+          "id": 9001,
+          "tipo": "multipla_escolha",
+          "banca": "VetStudy",
+          "tema": "Ciclo Estral e Reprodução Animal",
+          "dificuldade": "media",
+          "pergunta": "Em relação ao ciclo estral das fêmeas domésticas, assinale a alternativa correta.",
+          "alternativas": {
+            "A": "A receptividade sexual ocorre principalmente durante o estro.",
+            "B": "A ovulação sempre ocorre no início do proestro.",
+            "C": "O corpo lúteo é predominante durante o estro.",
+            "D": "A progesterona induz o comportamento de cio."
+          },
+          "correta": "A",
+          "explicacao": "O estro é a fase de receptividade sexual. A progesterona predomina no diestro, enquanto o estrogênio está relacionado ao comportamento de cio."
+        },
+        {
+          "id": 9002,
+          "tipo": "multipla_escolha",
+          "banca": "VetStudy",
+          "tema": "Ciclo Estral e Reprodução Animal",
+          "dificuldade": "media",
+          "pergunta": "Uma vaca com ausência prolongada de cio após o parto pode estar em anestro pós-parto. Qual fator frequentemente contribui para esse quadro?",
+          "alternativas": {
+            "A": "Balanço energético negativo intenso.",
+            "B": "Excesso isolado de estrogênio folicular.",
+            "C": "Luteólise completa no final do estro.",
+            "D": "Pico de LH mantido por vários dias."
+          },
+          "correta": "A",
+          "explicacao": "O balanço energético negativo reduz sinais metabólicos permissivos, como IGF-1, comprometendo pulsos de GnRH/LH e o retorno da atividade ovariana."
+        },
+        {
+          "id": 9003,
+          "tipo": "multipla_escolha",
+          "banca": "VetStudy",
+          "tema": "Ciclo Estral e Reprodução Animal",
+          "dificuldade": "media",
+          "pergunta": "A formação do corpo lúteo ocorre após qual evento fisiológico?",
+          "alternativas": {
+            "A": "Luteólise uterina.",
+            "B": "Ovulação folicular.",
+            "C": "Regressão endometrial.",
+            "D": "Atresia do folículo primordial."
+          },
+          "correta": "B",
+          "explicacao": "O corpo lúteo se forma a partir das células remanescentes do folículo ovulado e passa a secretar progesterona."
+        },
+        {
+          "id": 9004,
+          "tipo": "multipla_escolha",
+          "banca": "VetStudy",
+          "tema": "Ciclo Estral e Reprodução Animal",
+          "dificuldade": "media",
+          "pergunta": "No manejo reprodutivo, a observação do estro é fundamental porque indica:",
+          "alternativas": {
+            "A": "Momento provável de maior fertilidade.",
+            "B": "Início obrigatório da gestação.",
+            "C": "Regressão completa dos folículos.",
+            "D": "Bloqueio da atividade ovariana."
+          },
+          "correta": "A",
+          "explicacao": "O estro indica receptividade sexual e proximidade da ovulação, sendo uma referência prática para cobertura ou inseminação."
+        },
+        {
+          "id": 9005,
+          "tipo": "multipla_escolha",
+          "banca": "VetStudy",
+          "tema": "Ciclo Estral e Reprodução Animal",
+          "dificuldade": "media",
+          "pergunta": "O termo poliéstrica anual é melhor aplicado à fêmea que:",
+          "alternativas": {
+            "A": "Cicla repetidamente durante todo o ano.",
+            "B": "Cicla apenas em fotoperíodo curto.",
+            "C": "Ovula somente uma vez na vida.",
+            "D": "Apresenta cio apenas no pós-parto."
+          },
+          "correta": "A",
+          "explicacao": "Fêmeas poliéstricas anuais, como vacas e porcas, apresentam ciclos ao longo do ano, sem estação reprodutiva restrita."
+        }
+      ]
+    },
+    {
+      "name": "Fases do ciclo estral",
+      "flashcards": [
+        {
+          "id": "fc_estral_0009",
+          "pergunta": "Por que lembrar a ordem das fases do ciclo estral?",
+          "resposta": "Proestro, estro, metaestro e diestro mostram a sequência do folículo ao corpo lúteo. Isso ajuda a prever o manejo.",
+          "tema": "Ciclo Estral e Reprodução Animal",
+          "subtema": "Fases do ciclo estral"
+        },
+        {
+          "id": "fc_estral_0010",
+          "pergunta": "O que o proestro prepara?",
+          "resposta": "Prepara o cio com crescimento folicular e aumento de estrogênio. É a fase que aproxima a fêmea da ovulação.",
+          "tema": "Ciclo Estral e Reprodução Animal",
+          "subtema": "Fases do ciclo estral"
+        },
+        {
+          "id": "fc_estral_0011",
+          "pergunta": "Por que o estro é a fase mais visível no campo?",
+          "resposta": "Porque a fêmea mostra cio e aceita monta. Isso indica que a ovulação está próxima.",
+          "tema": "Ciclo Estral e Reprodução Animal",
+          "subtema": "Fases do ciclo estral"
+        },
+        {
+          "id": "fc_estral_0012",
+          "pergunta": "O que acontece logo após o estro?",
+          "resposta": "Começa o metaestro, com formação do corpo lúteo. O ciclo muda de estrogênio para progesterona.",
+          "tema": "Ciclo Estral e Reprodução Animal",
+          "subtema": "Fases do ciclo estral"
+        },
+        {
+          "id": "fc_estral_0013",
+          "pergunta": "O que o diestro faz pela possível gestação?",
+          "resposta": "Mantém corpo lúteo e progesterona altos. Isso deixa o útero preparado e reduz novo cio.",
+          "tema": "Ciclo Estral e Reprodução Animal",
+          "subtema": "Fases do ciclo estral"
+        },
+        {
+          "id": "fc_estral_0014",
+          "pergunta": "Por que progesterona alta aponta para diestro?",
+          "resposta": "Porque o corpo lúteo está ativo nessa fase. A progesterona mantém o útero em modo gestação.",
+          "tema": "Ciclo Estral e Reprodução Animal",
+          "subtema": "Fases do ciclo estral"
+        },
+        {
+          "id": "fc_estral_0015",
+          "pergunta": "O que acontece se não houver reconhecimento da gestação?",
+          "resposta": "A PGF2α causa luteólise no fim do diestro. A progesterona cai e um novo ciclo pode começar.",
+          "tema": "Ciclo Estral e Reprodução Animal",
+          "subtema": "Fases do ciclo estral"
+        }
+      ],
+      "questions": [
+        {
+          "id": 9006,
+          "tipo": "multipla_escolha",
+          "banca": "VetStudy",
+          "tema": "Ciclo Estral e Reprodução Animal",
+          "dificuldade": "media",
+          "pergunta": "A sequência clássica das fases do ciclo estral é:",
+          "alternativas": {
+            "A": "Proestro, estro, metaestro e diestro.",
+            "B": "Estro, diestro, proestro e metaestro.",
+            "C": "Diestro, estro, metaestro e proestro.",
+            "D": "Metaestro, proestro, diestro e estro."
+          },
+          "correta": "A",
+          "explicacao": "A sequência didática clássica é proestro, estro, metaestro e diestro, com variações de duração conforme a espécie."
+        },
+        {
+          "id": 9007,
+          "tipo": "multipla_escolha",
+          "banca": "VetStudy",
+          "tema": "Ciclo Estral e Reprodução Animal",
+          "dificuldade": "media",
+          "pergunta": "Durante o proestro, qual alteração é mais esperada?",
+          "alternativas": {
+            "A": "Crescimento folicular e aumento de estrogênio.",
+            "B": "Máxima progesterona por corpo lúteo maduro.",
+            "C": "Luteólise completa imediatamente após ovulação.",
+            "D": "Ausência obrigatória de atividade ovariana."
+          },
+          "correta": "A",
+          "explicacao": "No proestro há desenvolvimento folicular e elevação progressiva do estrogênio, preparando a fêmea para o estro."
+        },
+        {
+          "id": 9008,
+          "tipo": "multipla_escolha",
+          "banca": "VetStudy",
+          "tema": "Ciclo Estral e Reprodução Animal",
+          "dificuldade": "media",
+          "pergunta": "O metaestro é corretamente descrito como o período em que ocorre:",
+          "alternativas": {
+            "A": "Formação inicial do corpo lúteo.",
+            "B": "Predomínio máximo do folículo primordial.",
+            "C": "Receptividade sexual mais intensa.",
+            "D": "Inibição definitiva da ovulação."
+          },
+          "correta": "A",
+          "explicacao": "Após o estro e a ovulação, inicia-se a luteinização das células foliculares e a formação do corpo lúteo."
+        },
+        {
+          "id": 9009,
+          "tipo": "multipla_escolha",
+          "banca": "VetStudy",
+          "tema": "Ciclo Estral e Reprodução Animal",
+          "dificuldade": "media",
+          "pergunta": "A fase de diestro tem como característica principal:",
+          "alternativas": {
+            "A": "Corpo lúteo funcional e progesterona alta.",
+            "B": "Ausência total de estruturas ovarianas.",
+            "C": "Pico estrogênico e aceitação de monta.",
+            "D": "Início da puberdade em todos os ciclos."
+          },
+          "correta": "A",
+          "explicacao": "O diestro é a fase luteal do ciclo, marcada por corpo lúteo funcional e alta progesterona."
+        },
+        {
+          "id": 9010,
+          "tipo": "multipla_escolha",
+          "banca": "VetStudy",
+          "tema": "Ciclo Estral e Reprodução Animal",
+          "dificuldade": "media",
+          "pergunta": "A luteólise fisiológica em fêmeas não gestantes está associada principalmente à ação de:",
+          "alternativas": {
+            "A": "Prostaglandina F2 alfa uterina.",
+            "B": "Prolactina adenohipofisária.",
+            "C": "Ocitocina fetal placentária.",
+            "D": "Melatonina hipotalâmica direta."
+          },
+          "correta": "A",
+          "explicacao": "A prostaglandina F2 alfa de origem uterina promove regressão do corpo lúteo, reduzindo progesterona e permitindo novo ciclo."
+        }
+      ]
+    },
+    {
+      "name": "Hormônios reprodutivos",
+      "flashcards": [
+        {
+          "id": "fc_estral_0016",
+          "pergunta": "O que o GnRH faz no ciclo reprodutivo?",
+          "resposta": "Avisa a hipófise para liberar FSH e LH. Esse sinal inicia o controle do ovário.",
+          "tema": "Ciclo Estral e Reprodução Animal",
+          "subtema": "Hormônios reprodutivos"
+        },
+        {
+          "id": "fc_estral_0017",
+          "pergunta": "O que o FSH faz nos folículos?",
+          "resposta": "Estimula crescimento e recrutamento folicular. Sem ele, o ovário não prepara bem o folículo dominante.",
+          "tema": "Ciclo Estral e Reprodução Animal",
+          "subtema": "Hormônios reprodutivos"
+        },
+        {
+          "id": "fc_estral_0018",
+          "pergunta": "O que o LH dispara no ciclo?",
+          "resposta": "Ajuda a maturar o folículo, provoca ovulação e inicia luteinização. Ele transforma preparo em ação.",
+          "tema": "Ciclo Estral e Reprodução Animal",
+          "subtema": "Hormônios reprodutivos"
+        },
+        {
+          "id": "fc_estral_0019",
+          "pergunta": "Por que estrogênio alto causa sinais de cio?",
+          "resposta": "Ele muda comportamento e trato reprodutivo. Assim a fêmea fica receptiva perto da ovulação.",
+          "tema": "Ciclo Estral e Reprodução Animal",
+          "subtema": "Hormônios reprodutivos"
+        },
+        {
+          "id": "fc_estral_0020",
+          "pergunta": "O que a progesterona faz após a ovulação?",
+          "resposta": "Prepara o útero e bloqueia novo cio. Isso protege a fase lútea e a gestação inicial.",
+          "tema": "Ciclo Estral e Reprodução Animal",
+          "subtema": "Hormônios reprodutivos"
+        },
+        {
+          "id": "fc_estral_0021",
+          "pergunta": "O que a PGF2α faz com o corpo lúteo?",
+          "resposta": "Causa luteólise e derruba progesterona. Isso reinicia o ciclo quando não há gestação.",
+          "tema": "Ciclo Estral e Reprodução Animal",
+          "subtema": "Hormônios reprodutivos"
+        },
+        {
+          "id": "fc_estral_0022",
+          "pergunta": "O que a queda de progesterona permite?",
+          "resposta": "Libera o eixo reprodutivo para novo crescimento folicular. Com isso, a fêmea pode voltar ao cio.",
+          "tema": "Ciclo Estral e Reprodução Animal",
+          "subtema": "Hormônios reprodutivos"
+        },
+        {
+          "id": "fc_estral_0023",
+          "pergunta": "Por que o GnRH precisa vir em pulsos?",
+          "resposta": "Os pulsos mantêm FSH e LH regulados. Se o ritmo falha, folículo e ovulação ficam prejudicados.",
+          "tema": "Ciclo Estral e Reprodução Animal",
+          "subtema": "Hormônios reprodutivos"
+        }
+      ],
+      "questions": [
+        {
+          "id": 9011,
+          "tipo": "multipla_escolha",
+          "banca": "VetStudy",
+          "tema": "Ciclo Estral e Reprodução Animal",
+          "dificuldade": "media",
+          "pergunta": "O GnRH atua primariamente estimulando a liberação hipofisária de:",
+          "alternativas": {
+            "A": "FSH e LH.",
+            "B": "PGF2 alfa e cortisol.",
+            "C": "Progesterona e relaxina.",
+            "D": "Estrogênio e melatonina."
+          },
+          "correta": "A",
+          "explicacao": "O GnRH hipotalâmico estimula a adeno-hipófise a secretar FSH e LH, hormônios centrais no controle ovariano."
+        },
+        {
+          "id": 9012,
+          "tipo": "multipla_escolha",
+          "banca": "VetStudy",
+          "tema": "Ciclo Estral e Reprodução Animal",
+          "dificuldade": "media",
+          "pergunta": "A função mais relacionada ao FSH no ciclo estral é:",
+          "alternativas": {
+            "A": "Estimular recrutamento e crescimento folicular.",
+            "B": "Causar luteólise direta do corpo lúteo.",
+            "C": "Manter progesterona em níveis máximos.",
+            "D": "Bloquear a função das células da granulosa."
+          },
+          "correta": "A",
+          "explicacao": "O FSH atua no desenvolvimento folicular, especialmente nas células da granulosa, favorecendo crescimento e seleção folicular."
+        },
+        {
+          "id": 9013,
+          "tipo": "multipla_escolha",
+          "banca": "VetStudy",
+          "tema": "Ciclo Estral e Reprodução Animal",
+          "dificuldade": "media",
+          "pergunta": "O pico pré-ovulatório de LH está associado principalmente a:",
+          "alternativas": {
+            "A": "Ovulação e luteinização folicular.",
+            "B": "Regressão imediata do endométrio.",
+            "C": "Inibição permanente da hipófise.",
+            "D": "Formação direta de folículos primordiais."
+          },
+          "correta": "A",
+          "explicacao": "O pico de LH desencadeia eventos de maturação final, ruptura folicular e posterior luteinização."
+        },
+        {
+          "id": 9014,
+          "tipo": "multipla_escolha",
+          "banca": "VetStudy",
+          "tema": "Ciclo Estral e Reprodução Animal",
+          "dificuldade": "media",
+          "pergunta": "O hormônio mais associado à manifestação comportamental do cio é:",
+          "alternativas": {
+            "A": "Estrogênio.",
+            "B": "Progesterona.",
+            "C": "Cortisol.",
+            "D": "Calcitonina."
+          },
+          "correta": "A",
+          "explicacao": "O estrogênio, produzido pelo folículo dominante, está diretamente relacionado aos sinais de cio e receptividade sexual."
+        },
+        {
+          "id": 9015,
+          "tipo": "multipla_escolha",
+          "banca": "VetStudy",
+          "tema": "Ciclo Estral e Reprodução Animal",
+          "dificuldade": "media",
+          "pergunta": "A progesterona elevada durante o diestro tem como efeito esperado:",
+          "alternativas": {
+            "A": "Preparar o útero e inibir novo cio.",
+            "B": "Induzir aceitação de monta imediata.",
+            "C": "Promover luteólise do corpo lúteo.",
+            "D": "Bloquear completamente o endométrio."
+          },
+          "correta": "A",
+          "explicacao": "A progesterona mantém o útero em estado secretório e reduz manifestações de cio por feedback negativo no eixo reprodutivo."
+        }
+      ]
+    },
+    {
+      "name": "Ciclo por espécie",
+      "flashcards": [
+        {
+          "id": "fc_estral_0024",
+          "pergunta": "Por que lembrar que a vaca cicla perto de 21 dias?",
+          "resposta": "Ajuda a prever retorno ao cio e avaliar falhas de prenhez. Variações pequenas podem ser fisiológicas.",
+          "tema": "Ciclo Estral e Reprodução Animal",
+          "subtema": "Ciclo por espécie"
+        },
+        {
+          "id": "fc_estral_0025",
+          "pergunta": "O que significa a porca voltar ao cio perto de 21 dias?",
+          "resposta": "Geralmente sugere que não emprenhou. Esse intervalo ajuda a revisar IA, sêmen e detecção de cio.",
+          "tema": "Ciclo Estral e Reprodução Animal",
+          "subtema": "Ciclo por espécie"
+        },
+        {
+          "id": "fc_estral_0026",
+          "pergunta": "O que diferencia o ciclo da égua no manejo?",
+          "resposta": "O ciclo fica perto de 21 dias, mas o estro costuma ser mais longo. Isso muda o acompanhamento da cobertura.",
+          "tema": "Ciclo Estral e Reprodução Animal",
+          "subtema": "Ciclo por espécie"
+        },
+        {
+          "id": "fc_estral_0027",
+          "pergunta": "Por que a ovelha é lembrada como ciclo de 17 dias?",
+          "resposta": "Esse intervalo orienta retorno ao cio na estação reprodutiva. Ajuda a planejar repasse e cobertura.",
+          "tema": "Ciclo Estral e Reprodução Animal",
+          "subtema": "Ciclo por espécie"
+        },
+        {
+          "id": "fc_estral_0028",
+          "pergunta": "Por que a égua cicla mais em dias longos?",
+          "resposta": "Mais luz reduz o freio da melatonina. Por isso a atividade reprodutiva aumenta na primavera e verão.",
+          "tema": "Ciclo Estral e Reprodução Animal",
+          "subtema": "Ciclo por espécie"
+        },
+        {
+          "id": "fc_estral_0029",
+          "pergunta": "Por que ovelhas e cabras ciclam mais em dias curtos?",
+          "resposta": "A maior duração de melatonina estimula a estação reprodutiva. Isso concentra cio no outono/inverno.",
+          "tema": "Ciclo Estral e Reprodução Animal",
+          "subtema": "Ciclo por espécie"
+        },
+        {
+          "id": "fc_estral_0030",
+          "pergunta": "O que torna a cadela diferente no ciclo reprodutivo?",
+          "resposta": "Ela costuma ter longo intervalo entre estros. Por isso o manejo não segue o ritmo curto de vacas ou porcas.",
+          "tema": "Ciclo Estral e Reprodução Animal",
+          "subtema": "Ciclo por espécie"
+        }
+      ],
+      "questions": [
+        {
+          "id": 9016,
+          "tipo": "multipla_escolha",
+          "banca": "VetStudy",
+          "tema": "Ciclo Estral e Reprodução Animal",
+          "dificuldade": "media",
+          "pergunta": "A duração média do ciclo estral em vacas é mais próxima de:",
+          "alternativas": {
+            "A": "21 dias.",
+            "B": "7 dias.",
+            "C": "45 dias.",
+            "D": "90 dias."
+          },
+          "correta": "A",
+          "explicacao": "O ciclo estral bovino tem média aproximada de 21 dias, embora haja variação fisiológica individual."
+        },
+        {
+          "id": 9017,
+          "tipo": "multipla_escolha",
+          "banca": "VetStudy",
+          "tema": "Ciclo Estral e Reprodução Animal",
+          "dificuldade": "media",
+          "pergunta": "A ovelha é classicamente considerada:",
+          "alternativas": {
+            "A": "Poliéstrica sazonal de dias curtos.",
+            "B": "Poliéstrica sazonal de dias longos.",
+            "C": "Monoéstrica anual obrigatória.",
+            "D": "Poliéstrica anual sem estação."
+          },
+          "correta": "A",
+          "explicacao": "Ovelhas ciclam preferencialmente em dias curtos, com estação reprodutiva no outono/inverno em muitas raças."
+        },
+        {
+          "id": 9018,
+          "tipo": "multipla_escolha",
+          "banca": "VetStudy",
+          "tema": "Ciclo Estral e Reprodução Animal",
+          "dificuldade": "media",
+          "pergunta": "A égua tende a apresentar maior atividade cíclica em qual condição ambiental?",
+          "alternativas": {
+            "A": "Dias longos, como primavera e verão.",
+            "B": "Dias curtos, como inverno rigoroso.",
+            "C": "Ausência total de luz ambiental.",
+            "D": "Jejum prolongado e anestro profundo."
+          },
+          "correta": "A",
+          "explicacao": "A égua é espécie de dias longos, com maior atividade reprodutiva na primavera e no verão."
+        },
+        {
+          "id": 9019,
+          "tipo": "multipla_escolha",
+          "banca": "VetStudy",
+          "tema": "Ciclo Estral e Reprodução Animal",
+          "dificuldade": "media",
+          "pergunta": "Em relação à porca, é correto afirmar que:",
+          "alternativas": {
+            "A": "Seu ciclo estral médio é próximo de 21 dias.",
+            "B": "É espécie estritamente de dias curtos.",
+            "C": "Apresenta ovulação apenas no anestro.",
+            "D": "Não manifesta sinais comportamentais de cio."
+          },
+          "correta": "A",
+          "explicacao": "A porca tem ciclo estral médio próximo de 21 dias e sinais comportamentais importantes para detecção do cio."
+        },
+        {
+          "id": 9020,
+          "tipo": "multipla_escolha",
+          "banca": "VetStudy",
+          "tema": "Ciclo Estral e Reprodução Animal",
+          "dificuldade": "media",
+          "pergunta": "A cadela difere de vacas e porcas porque geralmente apresenta:",
+          "alternativas": {
+            "A": "Longo intervalo entre estros.",
+            "B": "Ciclo estral médio de 17 dias.",
+            "C": "Ovulação somente após luteólise.",
+            "D": "Estro contínuo durante todo o ano."
+          },
+          "correta": "A",
+          "explicacao": "A cadela possui ciclo reprodutivo com longos intervalos entre estros, diferindo das espécies poliéstricas de produção."
+        }
+      ]
+    }
+  ]
+}

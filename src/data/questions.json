@@ -1,0 +1,550 @@
+{
+  "questoes": [
+    {
+      "id": 1,
+      "banca": "Faculdade",
+      "tema": "Reprodução Animal",
+      "subtema": "Ciclo Estral e Hormônios",
+      "dificuldade": "facil",
+      "tipo": "multipla_escolha",
+      "pergunta": "Qual hormônio é responsável pela INDUÇÃO do comportamento de cio (estro) nas fêmeas domésticas?",
+      "alternativas": { "A": "Progesterona", "B": "Estrogênio", "C": "Prolactina", "D": "Cortisol" },
+      "correta": "B",
+      "explicacao": "O estrogênio, produzido pelo folículo dominante em crescimento, induz o cio tornando a fêmea receptiva à monta."
+    },
+    {
+      "id": 2,
+      "banca": "Faculdade",
+      "tema": "Reprodução Animal",
+      "subtema": "Ciclo Estral e Hormônios",
+      "dificuldade": "facil",
+      "tipo": "multipla_escolha",
+      "pergunta": "Qual estrutura ovariana é a principal produtora de progesterona?",
+      "alternativas": { "A": "Folículo antral", "B": "Corpo lúteo (CL)", "C": "Folículo primordial", "D": "Teca interna" },
+      "correta": "B",
+      "explicacao": "O CL, formado após a ovulação, é a fonte primária de P4 essencial para gestação."
+    },
+    {
+      "id": 3,
+      "banca": "Vunesp",
+      "tema": "Reprodução Animal",
+      "subtema": "Ciclo Estral e Hormônios",
+      "dificuldade": "media",
+      "tipo": "multipla_escolha",
+      "pergunta": "Em que ordem cronológica ocorrem as fases do ciclo estral bovino?",
+      "alternativas": {
+        "A": "Estro → Proestro → Diestro → Metaestro",
+        "B": "Proestro → Estro → Metaestro → Diestro",
+        "C": "Diestro → Metaestro → Estro → Proestro",
+        "D": "Metaestro → Diestro → Proestro → Estro"
+      },
+      "correta": "B",
+      "explicacao": "Proestro (↑E2) → Estro (ovulação, pico LH) → Metaestro (CL jovem) → Diestro (P4 alta). ≈21 dias."
+    },
+    {
+      "id": 4,
+      "banca": "Faculdade",
+      "tema": "Reprodução Animal",
+      "subtema": "Ciclo Estral e Hormônios",
+      "dificuldade": "facil",
+      "tipo": "multipla_escolha",
+      "pergunta": "Vaca com muco cristalino \"em fio\" + aceite de monta → conduta correta?",
+      "alternativas": {
+        "A": "Aguardar diestro",
+        "B": "Aplicar PGF2α imediatamente",
+        "C": "Estro — inseminar em 12–16h",
+        "D": "Aplicar GnRH e aguardar"
+      },
+      "correta": "C",
+      "explicacao": "Muco cristalino + reflexo de imobilidade = ESTRO. Inseminar 12–16h após detecção."
+    },
+    {
+      "id": 5,
+      "banca": "FCC",
+      "tema": "Reprodução Animal",
+      "subtema": "Ciclo Estral e Hormônios",
+      "dificuldade": "media",
+      "tipo": "multipla_escolha",
+      "pergunta": "Qual a duração média do ciclo estral em vacas?",
+      "alternativas": { "A": "14 dias", "B": "17 dias", "C": "21 dias", "D": "28 dias" },
+      "correta": "C",
+      "explicacao": "Ciclo estral bovino ≈ 21 dias (18–24). Igual em porcas e éguas. Ovelhas: ≈17 dias."
+    },
+    {
+      "id": 6,
+      "banca": "Cebraspe",
+      "tema": "Reprodução Animal",
+      "subtema": "Ciclo Estral e Hormônios",
+      "dificuldade": "dificil",
+      "tipo": "multipla_escolha",
+      "pergunta": "A ovelha é classificada como qual tipo de animal quanto à sazonalidade reprodutiva?",
+      "alternativas": {
+        "A": "Poliestral anual",
+        "B": "Poliestral estacional de dias longos",
+        "C": "Poliestral estacional de dias curtos",
+        "D": "Monoestral"
+      },
+      "correta": "C",
+      "explicacao": "Ovelha = dias CURTOS (outono/inverno). Égua = dias LONGOS (primavera/verão). Mediador: melatonina."
+    },
+    {
+      "id": 7,
+      "banca": "Vunesp",
+      "tema": "Reprodução Animal",
+      "subtema": "Ciclo Estral e Hormônios",
+      "dificuldade": "media",
+      "tipo": "multipla_escolha",
+      "pergunta": "No protocolo Ovsynch (IATF), qual a função do GnRH aplicado no D0?",
+      "alternativas": {
+        "A": "Causar luteólise do CL existente",
+        "B": "Induzir ovulação do folículo dominante + nova onda folicular",
+        "C": "Estimular manifestação de cio",
+        "D": "Bloquear FSH hipofisário"
+      },
+      "correta": "B",
+      "explicacao": "GnRH D0 → pulso de LH → ovulação + nova onda folicular sincronizada. D7: PGF2α → D9: GnRH → D10: IATF."
+    },
+    {
+      "id": 8,
+      "banca": "FCC",
+      "tema": "Reprodução Animal",
+      "subtema": "Ciclo Estral e Hormônios",
+      "dificuldade": "media",
+      "tipo": "multipla_escolha",
+      "pergunta": "Qual o mecanismo de ação da PGF2α no ciclo estral?",
+      "alternativas": {
+        "A": "Estimula crescimento folicular via FSH",
+        "B": "Induz ovulação do folículo",
+        "C": "Promove luteólise (regressão do CL)",
+        "D": "Bloqueia receptores de LH na hipófise"
+      },
+      "correta": "C",
+      "explicacao": "PGF2α liga-se a receptores luteais → luteólise → ↓P4 → retorno ao estro em 3–5 dias."
+    },
+    {
+      "id": 9,
+      "banca": "Faculdade",
+      "tema": "Anatomia Reprodutiva",
+      "subtema": "Anatomia do Trato Reprodutor",
+      "dificuldade": "facil",
+      "tipo": "multipla_escolha",
+      "pergunta": "Qual característica anatômica da cérvix da PORCA define a técnica de IA suína?",
+      "alternativas": {
+        "A": "Anéis concêntricos simples",
+        "B": "Formato de roseta com pregas",
+        "C": "Formato espiral — pipeta trava por rotação",
+        "D": "Canal liso e reto"
+      },
+      "correta": "C",
+      "explicacao": "Cérvix espiral: a pipeta é girada (anti-horário) para travar, evitando refluxo do sêmen."
+    },
+    {
+      "id": 10,
+      "banca": "Cebraspe",
+      "tema": "Reprodução Animal",
+      "subtema": "Ciclo Estral e Hormônios",
+      "dificuldade": "dificil",
+      "tipo": "multipla_escolha",
+      "pergunta": "O progestágeno exógeno (CIDR), ao ser RETIRADO, provoca qual sequência fisiológica?",
+      "alternativas": {
+        "A": "Anestro imediato",
+        "B": "↑P4 → formação de CL",
+        "C": "↓P4 → pulso GnRH/LH → crescimento folicular → cio em 2–4 dias",
+        "D": "Luteólise do CL natural"
+      },
+      "correta": "C",
+      "explicacao": "Retirada do CIDR → queda brusca de P4 → remove feedback negativo → pulso de LH → cio em 2–4 dias."
+    },
+    {
+      "id": 11,
+      "banca": "Vunesp",
+      "tema": "Clínica de Ruminantes",
+      "subtema": "Clínica Bovina",
+      "dificuldade": "media",
+      "tipo": "multipla_escolha",
+      "pergunta": "Qual fator nutricional agrava o anestro pós-parto em vacas?",
+      "alternativas": {
+        "A": "Excesso de proteína bruta",
+        "B": "Balanço Energético Negativo (BEN)",
+        "C": "Hipervitaminose A",
+        "D": "Excesso de minerais"
+      },
+      "correta": "B",
+      "explicacao": "BEN → mobilização de reservas → ↓IGF-1 → suprime pulsos de GnRH → anestro prolongado."
+    },
+    {
+      "id": 12,
+      "banca": "FCC",
+      "tema": "Clínica de Pequenos",
+      "subtema": "Clínica de Pequenos Animais",
+      "dificuldade": "media",
+      "tipo": "multipla_escolha",
+      "pergunta": "Na citologia vaginal de cadela em ESTRO, qual o padrão ao microscópio?",
+      "alternativas": {
+        "A": "Neutrófilos e células parabasais >80%",
+        "B": "Células superficiais cornificadas anucleadas >80%",
+        "C": "Células intermediárias com núcleo evidente",
+        "D": "Eritrócitos e muco abundante"
+      },
+      "correta": "B",
+      "explicacao": "Estro: >80% células cornificadas anucleadas → pico de estrogênio, ovulação iminente."
+    },
+    {
+      "id": 13,
+      "banca": "Faculdade",
+      "tema": "Reprodução Animal",
+      "subtema": "Ciclo Estral e Hormônios",
+      "dificuldade": "facil",
+      "tipo": "multipla_escolha",
+      "pergunta": "Qual camada uterina executa contrações no parto e no estro?",
+      "alternativas": { "A": "Perimétrio", "B": "Miométrio", "C": "Endométrio", "D": "Serosa" },
+      "correta": "B",
+      "explicacao": "Miométrio (camada muscular) executa contrações uterinas — expulsão do feto e movimentação do sêmen no estro."
+    },
+    {
+      "id": 14,
+      "banca": "Cebraspe",
+      "tema": "Reprodução Animal",
+      "subtema": "Ciclo Estral e Hormônios",
+      "dificuldade": "dificil",
+      "tipo": "multipla_escolha",
+      "pergunta": "Na Transferência de Embriões (TE), o que é a fêmea \"doadora\"?",
+      "alternativas": {
+        "A": "Receptora do embrião",
+        "B": "Fêmea de elite superovulada para múltiplos embriões",
+        "C": "Fêmea que doa o CL",
+        "D": "Fêmea tratada com PGF2α"
+      },
+      "correta": "B",
+      "explicacao": "Doadora: fêmea de elite superovulada com FSH → múltiplos embriões coletados → transferidos para receptoras."
+    },
+    {
+      "id": 15,
+      "banca": "Outros",
+      "tema": "Farmacologia Veterinária",
+      "subtema": "Farmacologia Clínica",
+      "dificuldade": "facil",
+      "tipo": "multipla_escolha",
+      "pergunta": "Qual a dose de Dipirona para cães por via IM ou IV?",
+      "alternativas": { "A": "10 mg/kg", "B": "25 mg/kg", "C": "50 mg/kg", "D": "5 mg/kg" },
+      "correta": "B",
+      "explicacao": "Dipirona em cães: 25 mg/kg IV/IM/SC/VO a cada 8h. IV lenta em SF 0,9%."
+    },
+    {
+      "id": 16,
+      "banca": "Vunesp",
+      "tema": "Reprodução Animal",
+      "subtema": "Ciclo Estral e Hormônios",
+      "dificuldade": "media",
+      "tipo": "multipla_escolha",
+      "pergunta": "Qual é a duração média do ciclo estral em bovinos, dentro da variação fisiológica da espécie?",
+      "alternativas": {
+        "A": "10 a 16 dias, com média de 13 dias",
+        "B": "14 a 17 dias, com média de 16 dias",
+        "C": "18 a 24 dias, com média de 21 dias",
+        "D": "25 a 32 dias, com média de 28 dias"
+      },
+      "correta": "C",
+      "explicacao": "O ciclo estral bovino tem duração média de 21 dias, com variação de 18 a 24 dias. Ciclos de 2 ondas foliculares duram ≈20d e ciclos de 3 ondas duram ≈23d. Ciclos fora dessa faixa sugerem distúrbio reprodutivo."
+    },
+    {
+      "id": 17,
+      "banca": "Vunesp",
+      "tema": "Reprodução Animal",
+      "subtema": "Ciclo Estral e Hormônios",
+      "dificuldade": "media",
+      "tipo": "multipla_escolha",
+      "pergunta": "Em qual fase do ciclo estral bovino ocorre o pico pré-ovulatório de LH, responsável por desencadear a ovulação?",
+      "alternativas": {
+        "A": "Proestro, durante o crescimento inicial do folículo dominante",
+        "B": "Estro, quando o estradiol atinge sua concentração máxima",
+        "C": "Metaestro, durante a formação e luteinização do corpo lúteo",
+        "D": "Diestro, quando a progesterona começa a declinar por luteólise"
+      },
+      "correta": "B",
+      "explicacao": "O pico de LH ocorre no ESTRO, desencadeado pelo feedback positivo do estradiol sobre o eixo HHG. A ovulação segue 10–12h após o término do estro (24–32h após o início). No proestro o LH ainda está sob feedback negativo; no metaestro e diestro, a P4 suprime o eixo."
+    },
+    {
+      "id": 18,
+      "banca": "Vunesp",
+      "tema": "Reprodução Animal",
+      "subtema": "Ciclo Estral e Hormônios",
+      "dificuldade": "media",
+      "tipo": "multipla_escolha",
+      "pergunta": "Durante o diestro bovino, qual hormônio predomina e qual é seu efeito sobre o eixo hipotalâmico-hipofisário?",
+      "alternativas": {
+        "A": "Estradiol — exerce feedback positivo e estimula a liberação de LH",
+        "B": "Progesterona — exerce feedback negativo e suprime a pulsatilidade do GnRH",
+        "C": "FSH — promove o recrutamento folicular e inicia nova onda de crescimento",
+        "D": "Ocitocina — estimula a contratilidade uterina e acelera a luteólise endometrial"
+      },
+      "correta": "B",
+      "explicacao": "No diestro, o CL maduro secreta progesterona em alta concentração. A P4 exerce feedback NEGATIVO sobre o hipotálamo, reduzindo a frequência dos pulsos de GnRH e suprimindo o pico de LH, impedindo cio e nova ovulação."
+    },
+    {
+      "id": 19,
+      "banca": "Vunesp",
+      "tema": "Reprodução Animal",
+      "subtema": "Ciclo Estral e Hormônios",
+      "dificuldade": "media",
+      "tipo": "multipla_escolha",
+      "pergunta": "Em vacas não gestantes, qual é o principal mecanismo responsável pela luteólise ao final do diestro?",
+      "alternativas": {
+        "A": "Queda do LH hipofisário por feedback negativo prolongado da progesterona",
+        "B": "Secreção de PGF2α pelo endométrio, que atinge o CL via mecanismo de contracorrente",
+        "C": "Elevação do FSH que inibe a esteroidogênese nas células luteais grandes",
+        "D": "Pico de estradiol folicular que promove apoptose das células luteais pequenas"
+      },
+      "correta": "B",
+      "explicacao": "A luteólise em bovinos é mediada pela PGF2α endometrial (D16–18 do ciclo). A prostaglandina atinge o ovário via contracorrente veia uterina/artéria ovárica, liga-se a receptores luteais e desencadeia a regressão do CL com queda de P4 e retorno ao proestro."
+    },
+    {
+      "id": 20,
+      "banca": "Vunesp",
+      "tema": "Reprodução Animal",
+      "subtema": "Ciclo Estral e Hormônios",
+      "dificuldade": "media",
+      "tipo": "multipla_escolha",
+      "pergunta": "Quantas ondas foliculares ocorrem tipicamente durante um ciclo estral bovino de 21 dias?",
+      "alternativas": {
+        "A": "Uma única onda folicular, com o folículo crescendo do início ao final do ciclo",
+        "B": "Duas a três ondas, cada uma com recrutamento e seleção de folículo dominante",
+        "C": "Quatro a cinco ondas com intervalos regulares de 4 a 5 dias entre elas",
+        "D": "Seis ou mais ondas, com múltiplos folículos atingindo estágio ovulatório"
+      },
+      "correta": "B",
+      "explicacao": "Em bovinos ocorrem tipicamente 2 a 3 ondas foliculares por ciclo. Ciclos de 2 ondas duram ≈20d; os de 3 ondas, ≈23d. Em cada onda: recrutamento → seleção do folículo dominante → atresia dos subordinados. Somente o FD da última onda ovula."
+    },
+    {
+      "id": 21,
+      "banca": "Vunesp",
+      "tema": "Reprodução Animal",
+      "subtema": "Ciclo Estral e Hormônios",
+      "dificuldade": "media",
+      "tipo": "multipla_escolha",
+      "pergunta": "Na observação direta de bovinos, qual sinal clínico é considerado o mais confiável para confirmar que a fêmea está em estro?",
+      "alternativas": {
+        "A": "Muco vaginal claro e filante associado a discreta tumefação da vulva",
+        "B": "Reflexo de imobilidade durante a monta realizada por outra fêmea do rebanho",
+        "C": "Aumento da vocalização e comportamento de farejamento intenso do chão",
+        "D": "Queda transitória na produção de leite e hiperemia discreta da vulva"
+      },
+      "correta": "B",
+      "explicacao": "O reflexo de imobilidade (standing heat) é o sinal mais específico de estro: a fêmea permanece imóvel quando montada por outra vaca. Muco cristalino, inquietação e vulva edemaciada são sinais complementares, mas menos definitivos isoladamente."
+    },
+    {
+      "id": 22,
+      "banca": "Vunesp",
+      "tema": "Reprodução Animal",
+      "subtema": "Ciclo Estral e Hormônios",
+      "dificuldade": "media",
+      "tipo": "multipla_escolha",
+      "pergunta": "O estradiol do folículo dominante exerce inicialmente feedback negativo sobre o eixo reprodutivo. Ao atingir o limiar pré-ovulatório, esse efeito se modifica para:",
+      "alternativas": {
+        "A": "Feedback negativo contínuo, mantendo o LH em concentração basal até a luteólise",
+        "B": "Feedback positivo, estimulando o hipotálamo a liberar pulso maciço de GnRH e pico de LH",
+        "C": "Inibição seletiva do FSH hipofisário, sem modificar os níveis circulantes de LH",
+        "D": "Estimulação direta da ruptura folicular pelas células da granulosa, sem ação hipofisária"
+      },
+      "correta": "B",
+      "explicacao": "Ao atingir o limiar pré-ovulatório, o E2 inverte seu efeito para FEEDBACK POSITIVO sobre o hipotálamo → pulso maciço de GnRH → pico de LH → ovulação 10–12h após o término do estro."
+    },
+    {
+      "id": 23,
+      "banca": "Vunesp",
+      "tema": "Reprodução Animal",
+      "subtema": "Ciclo Estral e Hormônios",
+      "dificuldade": "media",
+      "tipo": "multipla_escolha",
+      "pergunta": "Qual estrutura ovariana produz estradiol durante o proestro e o estro em bovinos, e por qual mecanismo?",
+      "alternativas": {
+        "A": "Folículo dominante pré-ovulatório, pelas células da teca e da granulosa em conjunto",
+        "B": "Corpo lúteo em regressão, por aromatização da progesterona residual em estradiol",
+        "C": "Estroma ovariano, mediante ativação direta das células intersticiais pelo LH",
+        "D": "Folículos atrésicos subordinados, durante o processo de degeneração folicular"
+      },
+      "correta": "A",
+      "explicacao": "O estradiol é produzido no folículo dominante pelo modelo \"duas células/dois gonadotrofinas\": teca interna produz androstenediona (sob LH), transferida às células da granulosa, onde a aromatase (sob FSH) converte o andrógeno em estradiol-17β."
+    },
+    {
+      "id": 24,
+      "banca": "Vunesp",
+      "tema": "Reprodução Animal",
+      "subtema": "Ciclo Estral e Hormônios",
+      "dificuldade": "media",
+      "tipo": "multipla_escolha",
+      "pergunta": "Em bovinos, em que momento do ciclo ocorre a ovulação em relação ao estro?",
+      "alternativas": {
+        "A": "No início do estro, em até 2 horas após o pico pré-ovulatório de LH",
+        "B": "Entre 8 e 12 horas após o INÍCIO do estro, ainda durante a fase de cio",
+        "C": "Entre 10 e 12 horas após o TÉRMINO do estro, no início do metaestro",
+        "D": "Entre 36 e 48 horas após a detecção do cio, já no metaestro tardio"
+      },
+      "correta": "C",
+      "explicacao": "A ovulação ocorre 10–12h após o TÉRMINO do estro (ou 24–32h após seu INÍCIO). Por isso, a regra prática é inseminar 12–16h após a detecção do cio, garantindo presença do sêmen no trato no momento da ovulação."
+    },
+    {
+      "id": 25,
+      "banca": "Vunesp",
+      "tema": "Reprodução Animal",
+      "subtema": "Ciclo Estral e Hormônios",
+      "dificuldade": "media",
+      "tipo": "multipla_escolha",
+      "pergunta": "Em vacas de corte em aleitamento, qual é o principal mecanismo pelo qual a sucção do bezerro prolonga o anestro pós-parto?",
+      "alternativas": {
+        "A": "Estimulação da secreção de progesterona pelo corpo lúteo de lactação",
+        "B": "Inibição dos pulsos de GnRH hipotalâmico por vias neurossensoriais da sucção",
+        "C": "Elevação sustentada da prolactina que suprime diretamente o folículo dominante",
+        "D": "Redução do FSH circulante causada pelo estado catabólico da lactação intensa"
+      },
+      "correta": "B",
+      "explicacao": "O estímulo de sucção ativa vias neurossensoriais que inibem o gerador de pulsos de GnRH no hipotálamo (núcleo arqueado) → ↓pulsos de LH → folículos não atingem dominância → anestro pós-parto. O BEN agrava este mecanismo via ↓IGF-1."
+    },
+    {
+      "id": 26, "banca": "Faculdade", "tema": "Reprodução Animal", "subtema": "Ciclo Estral e Hormônios", "dificuldade": "facil",
+      "tipo": "verdadeiro_falso",
+      "pergunta": "A progesterona estimula o comportamento de cio (aceite de monta) nas fêmeas domésticas.",
+      "alternativas": { "V": "Verdadeiro", "F": "Falso" }, "correta": "F",
+      "explicacao": "FALSO. O ESTROGÊNIO induz o cio. A progesterona INIBE via feedback negativo sobre GnRH."
+    },
+    {
+      "id": 27, "banca": "Vunesp", "tema": "Reprodução Animal", "subtema": "Ciclo Estral e Hormônios", "dificuldade": "media",
+      "tipo": "verdadeiro_falso",
+      "pergunta": "O corpo lúteo (CL) é a principal estrutura produtora de progesterona no ovário.",
+      "alternativas": { "V": "Verdadeiro", "F": "Falso" }, "correta": "V",
+      "explicacao": "VERDADEIRO. O CL, formado após a ovulação, é a fonte primária de P4 necessária para gestação."
+    },
+    {
+      "id": 28, "banca": "FCC", "tema": "Reprodução Animal", "subtema": "Ciclo Estral e Hormônios", "dificuldade": "media",
+      "tipo": "verdadeiro_falso",
+      "pergunta": "A égua é poliestral estacional de dias curtos, assim como a ovelha.",
+      "alternativas": { "V": "Verdadeiro", "F": "Falso" }, "correta": "F",
+      "explicacao": "FALSO. Égua = dias LONGOS (primavera/verão). Ovelha = dias CURTOS (outono/inverno)."
+    },
+    {
+      "id": 29, "banca": "Cebraspe", "tema": "Reprodução Animal", "subtema": "Ciclo Estral e Hormônios", "dificuldade": "dificil",
+      "tipo": "verdadeiro_falso",
+      "pergunta": "Na IATF, a inseminação ocorre em dia e hora fixos, sem necessidade de observar cio individual.",
+      "alternativas": { "V": "Verdadeiro", "F": "Falso" }, "correta": "V",
+      "explicacao": "VERDADEIRO. A sincronização hormonal elimina a detecção de cio. 100% do lote no mesmo dia."
+    },
+    {
+      "id": 30, "banca": "Faculdade", "tema": "Reprodução Animal", "subtema": "Ciclo Estral e Hormônios", "dificuldade": "facil",
+      "tipo": "verdadeiro_falso",
+      "pergunta": "O muco cervical no diestro é fluido e cristalino, facilitando a passagem dos espermatozoides.",
+      "alternativas": { "V": "Verdadeiro", "F": "Falso" }, "correta": "F",
+      "explicacao": "FALSO. No DIESTRO o muco é espesso e viscoso (tampão protetor). Muco cristalino é do ESTRO."
+    },
+    {
+      "id": 31, "banca": "Vunesp", "tema": "Reprodução Animal", "subtema": "Ciclo Estral e Hormônios", "dificuldade": "media",
+      "tipo": "verdadeiro_falso",
+      "pergunta": "A retenção de placenta em vacas por mais de 12 horas é fisiológica e não afeta fertilidade futura.",
+      "alternativas": { "V": "Verdadeiro", "F": "Falso" }, "correta": "F",
+      "explicacao": "FALSO. Retenção >12h é PATOLÓGICA — predispõe metrite e endometrite, aumentando intervalo parto-concepção."
+    },
+    {
+      "id": 32, "banca": "FCC", "tema": "Reprodução Animal", "subtema": "Ciclo Estral e Hormônios", "dificuldade": "media",
+      "tipo": "verdadeiro_falso",
+      "pergunta": "O estrogênio no estro torna o muco cervical fluido e filante, facilitando a progressão espermática.",
+      "alternativas": { "V": "Verdadeiro", "F": "Falso" }, "correta": "V",
+      "explicacao": "VERDADEIRO. Pico de E2 no estro → glândulas cervicais produzem muco aquoso cristalino — ideal para capacitação espermática."
+    },
+    {
+      "id": 33, "banca": "Cebraspe", "tema": "Reprodução Animal", "subtema": "Ciclo Estral e Hormônios", "dificuldade": "dificil",
+      "tipo": "verdadeiro_falso",
+      "pergunta": "Folículo dominante e corpo lúteo produzem os mesmos hormônios esteroides.",
+      "alternativas": { "V": "Verdadeiro", "F": "Falso" }, "correta": "F",
+      "explicacao": "FALSO. Folículo → ESTROGÊNIO. CL → PROGESTERONA. Hormônios opostos com efeitos antagônicos."
+    },
+    {
+      "id": 34, "banca": "Faculdade", "tema": "Reprodução Animal", "subtema": "Ciclo Estral e Hormônios", "dificuldade": "facil",
+      "tipo": "verdadeiro_falso",
+      "pergunta": "Em suínos, a pipeta de IA deve ser travada por rotação na cérvix espiral antes de depositar o sêmen.",
+      "alternativas": { "V": "Verdadeiro", "F": "Falso" }, "correta": "V",
+      "explicacao": "VERDADEIRO. Cérvix espiral da porca requer rotação para travar a pipeta, impedindo refluxo."
+    },
+    {
+      "id": 35, "banca": "Outros", "tema": "Reprodução Animal", "subtema": "Ciclo Estral e Hormônios", "dificuldade": "facil",
+      "tipo": "verdadeiro_falso",
+      "pergunta": "A condição corporal ao parto influencia diretamente o retorno ao ciclo estral pós-parto.",
+      "alternativas": { "V": "Verdadeiro", "F": "Falso" }, "correta": "V",
+      "explicacao": "VERDADEIRO. ECC baixo → BEN severo → ↓IGF-1 → eixo HHG suprimido → anestro prolongado."
+    },
+    {
+      "id": 36, "banca": "Vunesp", "tema": "Reprodução Animal", "subtema": "Ciclo Estral e Hormônios", "dificuldade": "media",
+      "tipo": "verdadeiro_falso",
+      "pergunta": "A progesterona alta no diestro estimula as glândulas endometriais a produzirem histotrofo (leite uterino).",
+      "alternativas": { "V": "Verdadeiro", "F": "Falso" }, "correta": "V",
+      "explicacao": "VERDADEIRO. P4 estimula endométrio → histotrofo nutre o embrião antes da placentação."
+    },
+    {
+      "id": 37, "banca": "FCC", "tema": "Reprodução Animal", "subtema": "Ciclo Estral e Hormônios", "dificuldade": "media",
+      "tipo": "verdadeiro_falso",
+      "pergunta": "Cabras são poliestrais estacionais de dias curtos, portanto têm anestro fisiológico no verão.",
+      "alternativas": { "V": "Verdadeiro", "F": "Falso" }, "correta": "V",
+      "explicacao": "VERDADEIRO. Cabras reproduzem outono/inverno. Verão = dias longos = anestro. Manejo: efeito macho."
+    },
+    {
+      "id": 38, "banca": "Cebraspe", "tema": "Reprodução Animal", "subtema": "Ciclo Estral e Hormônios", "dificuldade": "dificil",
+      "tipo": "verdadeiro_falso",
+      "pergunta": "A PGF2α endógena uterina, no final do diestro sem prenhez, inicia a luteólise e novo ciclo.",
+      "alternativas": { "V": "Verdadeiro", "F": "Falso" }, "correta": "V",
+      "explicacao": "VERDADEIRO. Endométrio secreta PGF2α (mecanismo contracorrente uterovariável) → luteólise → novo ciclo."
+    },
+    {
+      "id": 39, "banca": "Faculdade", "tema": "Anatomia Reprodutiva", "subtema": "Anatomia do Trato Reprodutor", "dificuldade": "facil",
+      "tipo": "associacao",
+      "pergunta": "Associe cada espécie ao formato anatômico da sua CÉRVIX:",
+      "colunaA": ["Vaca", "Porca", "Égua"],
+      "colunaB": ["Anéis simples — cateter passa pelos anéis", "Espiral / Rosca — pipeta trava por rotação", "Roseta / Pregas longitudinais — IA com espéculo"],
+      "pares": [0, 1, 2],
+      "alternativas": { "Vaca": "Anéis simples — cateter passa pelos anéis", "Porca": "Espiral / Rosca — pipeta trava por rotação", "Égua": "Roseta / Pregas longitudinais — IA com espéculo" },
+      "correta": "ver_pares",
+      "explicacao": "Vaca → Anéis simples (IA via retal).\nPorca → Espiral (pipeta trava).\nÉgua → Roseta (visão direta com espéculo)."
+    },
+    {
+      "id": 40, "banca": "Vunesp", "tema": "Reprodução Animal", "subtema": "Ciclo Estral e Hormônios", "dificuldade": "media",
+      "tipo": "associacao",
+      "pergunta": "Associe cada hormônio à sua principal função reprodutiva:",
+      "colunaA": ["GnRH", "PGF2α", "Progesterona", "Estrogênio"],
+      "colunaB": ["Mantém gestação e inibe cio", "Luteólise do corpo lúteo", "Induz cio e prepara útero", "Estimula LH e FSH (hipófise)"],
+      "pares": [3, 1, 0, 2],
+      "alternativas": { "GnRH": "Estimula LH e FSH (hipófise)", "PGF2α": "Luteólise do corpo lúteo", "Progesterona": "Mantém gestação e inibe cio", "Estrogênio": "Induz cio e prepara útero" },
+      "correta": "ver_pares",
+      "explicacao": "GnRH → hipófise libera LH/FSH.\nPGF2α → luteólise.\nProgesterona → gestação/inibe cio.\nEstrogênio → induz cio."
+    },
+    {
+      "id": 41, "banca": "FCC", "tema": "Reprodução Animal", "subtema": "Ciclo Estral e Hormônios", "dificuldade": "media",
+      "tipo": "associacao",
+      "pergunta": "Associe cada fase do ciclo estral ao seu hormônio predominante:",
+      "colunaA": ["Proestro", "Estro", "Metaestro", "Diestro"],
+      "colunaB": ["P4 alta — CL funcional", "E2 crescente — folículo em crescimento", "E2 máximo + pico LH", "P4 em ascensão — CL jovem"],
+      "pares": [1, 2, 3, 0],
+      "alternativas": { "Proestro": "E2 crescente — folículo em crescimento", "Estro": "E2 máximo + pico LH", "Metaestro": "P4 em ascensão — CL jovem", "Diestro": "P4 alta — CL funcional" },
+      "correta": "ver_pares",
+      "explicacao": "Proestro: E2↑.\nEstro: pico E2 + LH → ovulação.\nMetaestro: P4↑ (CL jovem).\nDiestro: P4 alta (CL maduro)."
+    },
+    {
+      "id": 42, "banca": "Cebraspe", "tema": "Anatomia Reprodutiva", "subtema": "Anatomia do Trato Reprodutor", "dificuldade": "dificil",
+      "tipo": "associacao",
+      "pergunta": "Associe cada camada uterina à sua função:",
+      "colunaA": ["Perimétrio", "Miométrio", "Endométrio", "Cérvix"],
+      "colunaB": ["Barreira protetora e tampão mucoso", "Implantação e produção de histotrofo", "Contrações no parto e no estro", "Revestimento externo — proteção"],
+      "pares": [3, 2, 1, 0],
+      "alternativas": { "Perimétrio": "Revestimento externo — proteção", "Miométrio": "Contrações no parto e no estro", "Endométrio": "Implantação e produção de histotrofo", "Cérvix": "Barreira protetora e tampão mucoso" },
+      "correta": "ver_pares",
+      "explicacao": "Perimétrio → externo.\nMiométrio → contrações.\nEndométrio → implantação e nutrição.\nCérvix → barreira."
+    },
+    {
+      "id": 43, "banca": "Outros", "tema": "Reprodução Animal", "subtema": "Ciclo Estral e Hormônios", "dificuldade": "facil",
+      "tipo": "associacao",
+      "pergunta": "Associe cada etapa do protocolo IATF Ovsynch à sua finalidade:",
+      "colunaA": ["GnRH — D0", "PGF2α — D7", "GnRH — D9", "IATF — D10"],
+      "colunaB": ["Inseminação no momento da ovulação", "Luteólise do CL — queda de P4", "Sincroniza ovulação do folículo dominante", "Ovulação + nova onda folicular"],
+      "pares": [3, 1, 2, 0],
+      "alternativas": { "GnRH — D0": "Ovulação + nova onda folicular", "PGF2α — D7": "Luteólise do CL — queda de P4", "GnRH — D9": "Sincroniza ovulação do folículo dominante", "IATF — D10": "Inseminação no momento da ovulação" },
+      "correta": "ver_pares",
+      "explicacao": "D0 GnRH → nova onda.\nD7 PGF2α → luteólise.\nD9 GnRH → ovulação em 24–32h.\nD10 → IATF."
+    }
+  ]
+}

@@ -1,0 +1,61 @@
+{
+  "fonte": "Exemplo interno para pipeline de PDFs",
+  "tema": "Anatomia do Reprodutor Masculino",
+  "subtemas": [
+    {
+      "tema": "Anatomia Reprodutiva",
+      "subtema": "Reprodutor Masculino",
+      "conceitos": [
+        {
+          "id": "testiculos",
+          "titulo": "Testiculos",
+          "resumo": "Gonadas masculinas responsaveis pela producao de espermatozoides e testosterona.",
+          "detalhes": [
+            "A espermatogenese ocorre nos tubulos seminiferos.",
+            "As celulas de Leydig produzem testosterona sob estimulo de LH."
+          ],
+          "tags": ["testiculo", "espermatogenese", "testosterona"]
+        },
+        {
+          "id": "epididimo",
+          "titulo": "Epididimo",
+          "resumo": "Estrutura associada ao testiculo onde ocorre maturacao, concentracao e armazenamento dos espermatozoides.",
+          "detalhes": [
+            "Divide-se em cabeca, corpo e cauda.",
+            "A cauda do epididimo e importante reservatorio espermatico."
+          ],
+          "tags": ["epididimo", "maturacao espermatica"]
+        }
+      ],
+      "flashcards": [
+        {
+          "frente": "O que as celulas de Leydig fazem quando recebem LH?",
+          "verso": "Produzem testosterona, que sustenta espermatogenese e caracteristicas sexuais masculinas.",
+          "tag": "Fisiologia testicular"
+        }
+      ],
+      "questoes": [
+        {
+          "tipo": "multipla_escolha",
+          "dificuldade": "facil",
+          "pergunta": "Qual estrutura e o principal local de maturacao dos espermatozoides?",
+          "alternativas": {
+            "A": "Prostata",
+            "B": "Epididimo",
+            "C": "Vesicula seminal",
+            "D": "Uretra pelvica"
+          },
+          "correta": "B",
+          "explicacao": "O epididimo promove maturacao, concentracao e armazenamento dos espermatozoides antes da ejaculacao."
+        },
+        {
+          "tipo": "verdadeiro_falso",
+          "dificuldade": "media",
+          "pergunta": "As celulas de Leydig produzem testosterona sob estimulo de LH.",
+          "correta": true,
+          "explicacao": "O LH estimula as celulas de Leydig, que sintetizam testosterona no intersticio testicular."
+        }
+      ]
+    }
+  ]
+}

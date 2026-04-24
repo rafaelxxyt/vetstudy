@@ -1,0 +1,673 @@
+{
+  "_meta": { "version": "5.2", "edition": "RBC", "lastUpdated": "2026-04" },
+
+  "drugs": [
+    {
+      "id": "dipirona", "name": "Dipirona", "category": "Analgésico / Antipirético",
+      "tags": ["analgésico","antipirético","espasmolítico"],
+      "mechanism": "Inibição central da síntese de prostaglandinas e ação espasmolítica musculotrópica direta. Sem ação anti-inflamatória periférica.",
+      "contraindications": ["Hipersensibilidade a pirazolonas","Gatos — toxicidade hematológica grave","Anemia aplásica prévia","Insuficiência renal ou hepática"],
+      "species": [
+        {"name":"Cão","emoji":"🐕","dose":"25 mg/kg","route":"IV / IM / SC / VO","interval":"A cada 8h","notes":"IV: diluir em SF 0,9% e infundir lentamente (min. 5 min)."},
+        {"name":"Gato","emoji":"🐈","dose":"⚠️ Não recomendado","route":"—","interval":"—","notes":"Risco de metemoglobinemia e necrose hepática. NÃO USAR."},
+        {"name":"Bovino","emoji":"🐄","dose":"25–50 mg/kg","route":"IV lenta / IM","interval":"A cada 12h","notes":"Uso extra-label. Carência abate 28 dias."},
+        {"name":"Equino","emoji":"🐎","dose":"20–25 mg/kg","route":"IV lenta","interval":"A cada 12h","notes":"Risco de anafilaxia. Ter adrenalina disponível."}
+      ]
+    },
+    {
+      "id": "tramadol", "name": "Tramadol", "category": "Opioide Fraco / Analgésico Central",
+      "tags": ["opioide","analgésico","central"],
+      "mechanism": "Agonista parcial de receptores mu-opioides + inibição de recaptação de serotonina e norepinefrina. Analgesia multimodal.",
+      "contraindications": ["Uso concomitante com IMAO","Epilepsia não controlada","Insuficiência hepática grave"],
+      "species": [
+        {"name":"Cão","emoji":"🐕","dose":"2–5 mg/kg","route":"VO / SC / IV","interval":"A cada 8–12h","notes":"IV: infusão lenta (>10 min)."},
+        {"name":"Gato","emoji":"🐈","dose":"1–2 mg/kg","route":"VO / SC","interval":"A cada 12h","notes":"Metabolismo mais lento. Usar formulação palatável."},
+        {"name":"Equino","emoji":"🐎","dose":"1–2 mg/kg","route":"IV (CRI)","interval":"A cada 12h","notes":"Monitorar excitação do SNC."}
+      ]
+    },
+    {
+      "id": "meloxicam", "name": "Meloxicam", "category": "AINE / Inibidor COX-2 Seletivo",
+      "tags": ["AINE","anti-inflamatório","analgésico","antipirético"],
+      "mechanism": "Inibição preferencial da COX-2. Reduz prostaglandinas inflamatórias com menor gastropatia que AINEs não seletivos.",
+      "contraindications": ["Insuficiência renal ou hepática","Desidratação / hipovolemia","Uso com corticoides ou outros AINEs","Gestação (últimas 48h)"],
+      "species": [
+        {"name":"Cão","emoji":"🐕","dose":"0,2 mg/kg (D1) depois 0,1 mg/kg","route":"SC / VO","interval":"A cada 24h","notes":"Dose de ataque no D1. Monitorar função renal no uso crônico."},
+        {"name":"Gato","emoji":"🐈","dose":"0,3 mg/kg SC ou 0,05 mg/kg VO","route":"SC / VO","interval":"24h — curto prazo","notes":"Uso oral crônico controverso em felinos."},
+        {"name":"Bovino","emoji":"🐄","dose":"0,5 mg/kg","route":"IV / SC","interval":"A cada 24h","notes":"Mastite e pneumonia. Carência: 15 dias abate, 5 dias leite."},
+        {"name":"Equino","emoji":"🐎","dose":"0,6 mg/kg","route":"IV / VO","interval":"A cada 24h","notes":"Alternativa ao flunixin. Menor risco de úlcera gástrica."}
+      ]
+    },
+    {
+      "id": "amoxicilina", "name": "Amoxicilina", "category": "Antibiótico Beta-Lactâmico",
+      "tags": ["antibiótico","aminopenicilina","gram-positivo"],
+      "mechanism": "Inibição irreversível da transpeptidase bacteriana. Bactericida tempo-dependente. Espectro Gram+ e alguns Gram-.",
+      "contraindications": ["Hipersensibilidade a penicilinas","Coelhos e hamsters — disbiose fatal","Pseudomonas resistente"],
+      "species": [
+        {"name":"Cão","emoji":"🐕","dose":"10–20 mg/kg","route":"VO / SC / IM","interval":"A cada 8–12h","notes":"Associar clavulanato para cobertura de beta-lactamases."},
+        {"name":"Gato","emoji":"🐈","dose":"10–20 mg/kg","route":"VO / SC","interval":"A cada 12h","notes":"Refrigerar suspensão após reconstituição."},
+        {"name":"Bovino","emoji":"🐄","dose":"7 mg/kg","route":"IM / SC","interval":"A cada 24h","notes":"Carência abate 14 dias, leite 60h."},
+        {"name":"Suíno","emoji":"🐖","dose":"15 mg/kg","route":"IM / VO","interval":"A cada 24h","notes":"Via oral: ajustar para consumo diário na água."}
+      ]
+    },
+    {
+      "id": "pgf2a", "name": "PGF2alfa — Cloprostenol / Dinoprost", "category": "Hormônio / Prostaglandina Reprodutiva",
+      "tags": ["hormônio","prostaglandina","reprodução","luteolítico","IATF","sincronização"],
+      "mechanism": "Liga-se a receptores luteais do CL, ativando cascata de regressão (luteólise). Queda de P4 desinibe o eixo HHG. Retorno ao estro em 3–5 dias. Pilar do D7 do protocolo Ovsynch.",
+      "contraindications": ["Gestação confirmada (exceto indução de parto controlada)","CL imaturo — menor que D5 — ineficaz","Asma brônquica em humanos que manuseiam"],
+      "species": [
+        {"name":"Bovino","emoji":"🐄","dose":"25 mg dinoprost ou 0,5 mg cloprostenol","route":"IM","interval":"Dose única ou 2x com 11 dias de intervalo","notes":"Confirmar CL por palpação retal ou USG. Usado no D7 do Ovsynch."},
+        {"name":"Equino","emoji":"🐎","dose":"10 mg dinoprost","route":"IM","interval":"Dose única","notes":"Retorno ao estro em 3–5 dias após luteólise."},
+        {"name":"Suíno","emoji":"🐖","dose":"0,175 mg cloprostenol","route":"IM","interval":"Dose única","notes":"Indução de parição no D113 de gestação."},
+        {"name":"Cão","emoji":"🐕","dose":"0,1–0,25 mg/kg","route":"SC","interval":"A cada 12–24h","notes":"Piometra com colo aberto. Monitorar vômito e tremores."}
+      ]
+    },
+    {
+      "id": "gnrh", "name": "GnRH — Lecirelin / Buserelina", "category": "Hormônio / Gonadotrofina Reprodutiva",
+      "tags": ["hormônio","GnRH","reprodução","ovulação","IATF","protocolo"],
+      "mechanism": "Análogo do GnRH hipotalâmico. Estimula liberação de LH e FSH pela hipófise anterior, induzindo ovulação do folículo dominante ou formação de novo CL. Base do D0 e D9 do protocolo Ovsynch.",
+      "contraindications": ["Fase lútea sem folículo dominante presente","Anestro profundo"],
+      "species": [
+        {"name":"Bovino","emoji":"🐄","dose":"100 mcg lecirelin ou 200 mcg buserelina","route":"IM / IV","interval":"D0 e D9 do protocolo Ovsynch","notes":"Verificar folículo de pelo menos 10 mm. Base do protocolo Ovsynch."},
+        {"name":"Equino","emoji":"🐎","dose":"1,8 mg buserelina","route":"IM","interval":"Dose única","notes":"Ovulação em 24–48h com folículo maior ou igual a 35 mm. Confirmar por USG."}
+      ]
+    },
+    {
+      "id": "cidr-progesterona", "name": "Progesterona — CIDR / Sincrogest", "category": "Hormônio Reprodutivo / Progestágeno",
+      "tags": ["hormônio","progesterona","reprodução","sincronização","CIDR","Sincrogest","IATF"],
+      "mechanism": "Progestágeno exógeno que mimetiza o CL funcional: mantém P4 alta, inibindo ovulação via feedback negativo sobre GnRH e LH. Ao ser retirado, queda brusca de P4 desinibe o eixo HHG, gerando pulso de LH e cio em 2–4 dias. Sincroniza fêmeas em qualquer fase do ciclo, inclusive anestro.",
+      "contraindications": ["Gestação confirmada","Infecção vaginal ativa (dispositivo intravaginal)","Tendência a cistos ovarianos"],
+      "species": [
+        {"name":"Bovino","emoji":"🐄","dose":"CIDR 1,9 g ou Sincrogest 0,558 g","route":"Intravaginal","interval":"7–9 dias conforme protocolo IATF","notes":"D0: inserir com estradiol benzoato 2 mg IM. Retirada: aplicar eCG 300–400 UI e PGF2a se indicado."},
+        {"name":"Ovino","emoji":"🐑","dose":"CIDR ovino 0,3 g","route":"Intravaginal","interval":"12–14 dias","notes":"Combinado com efeito macho para indução de cio na entressafra."}
+      ]
+    },
+    {
+      "id": "ocitocina", "name": "Ocitocina", "category": "Hormônio / Ocitócico",
+      "tags": ["hormônio","ocitócico","parto","lactação","útero","retenção de placenta"],
+      "mechanism": "Liga-se a receptores miometriais (em número máximo no parto) e células mioepiteliais da glândula mamária. Induz contrações uterinas rítmicas e ejeção do leite (let-down). Liberação hipotalâmica estimulada por sucção.",
+      "contraindications": ["Distocia mecânica sem resolução do obstáculo","Apresentação anormal do feto","Cesariana indicada","Cérvix sem dilatação completa"],
+      "species": [
+        {"name":"Bovino","emoji":"🐄","dose":"20–40 UI","route":"IM ou IV lenta","interval":"Dose única — repetir após 30 min se necessário","notes":"Atonia uterina pós-parto e ejeção do leite. IV lenta para evitar hipotensão."},
+        {"name":"Cão","emoji":"🐕","dose":"0,5–5 UI","route":"IM / IV","interval":"A cada 30–60 min","notes":"Distocia por inércia uterina. Máximo 3 doses. Verificar via de parto antes."},
+        {"name":"Gato","emoji":"🐈","dose":"0,5–1 UI","route":"IM","interval":"A cada 30 min","notes":"Doses menores que em cães. Monitorar FC fetal."},
+        {"name":"Equino","emoji":"🐎","dose":"20–40 UI","route":"IV lenta ou IM","interval":"Dose única","notes":"Expulsão de retenção de placenta. Não usar com feto ainda não nascido."}
+      ]
+    },
+    {
+      "id": "ecg-novormon", "name": "eCG — Novormon / PMSG", "category": "Hormônio / Gonadotrofina Reprodutiva",
+      "tags": ["hormônio","eCG","PMSG","reprodução","Novormon","anestro","IATF"],
+      "mechanism": "Glicoproteína com atividade de FSH e LH. Estimula crescimento folicular e, em doses altas, superovulação. No protocolo IATF bovino, aplicada na retirada do CIDR para recrutar folículos — especialmente útil em vacas em anestro.",
+      "contraindications": ["Formação de anticorpos com uso repetido — mais de 2 ou 3 vezes — reduz eficácia","Gestação confirmada","Cistos ovarianos ativos"],
+      "species": [
+        {"name":"Bovino","emoji":"🐄","dose":"300–400 UI","route":"IM / SC","interval":"Dose única no momento da retirada do CIDR","notes":"300 UI para vacas ciclando, 400 UI para anestro. Novormon 5000: diluir para dose individual."},
+        {"name":"Ovino","emoji":"🐑","dose":"400–600 UI","route":"IM","interval":"Dose única na sincronização","notes":"Indução de cio na entressafra combinado com CIDR."}
+      ]
+    },
+    {
+      "id": "estradiol-benzoato", "name": "Estradiol Benzoato — EB", "category": "Hormônio Reprodutivo / Estrogênio",
+      "tags": ["hormônio","estrogênio","reprodução","IATF","sincronização","EB","onda folicular"],
+      "mechanism": "Éster do estradiol de ação intermediária. No D0 do protocolo IATF, induz regressão dos folículos existentes e nova onda folicular sincronizada. NUNCA usar sem progestágeno concomitante.",
+      "contraindications": ["NÃO usar sem progesterona concomitante — risco de cisto","Gestação confirmada"],
+      "species": [
+        {"name":"Bovino","emoji":"🐄","dose":"2 mg no D0 e opcionalmente 1 mg no D8 ou D9","route":"IM","interval":"D0 junto com CIDR e opcionalmente D8–9","notes":"D0 + CIDR: sincroniza nova onda folicular. Nunca usar sem progestágeno."}
+      ]
+    },
+    {
+      "id": "ketamina", "name": "Ketamina", "category": "Anestésico Dissociativo",
+      "tags": ["anestésico","dissociativo","sedação","NMDA","emergência"],
+      "mechanism": "Antagonista não-competitivo dos receptores NMDA. Produz anestesia dissociativa com analgesia e preservação dos reflexos protetores. Estimula o sistema cardiovascular aumentando FC e PA.",
+      "contraindications": ["Hipertensão intracraniana","Epilepsia não controlada","Procedimentos oftálmicos — aumenta PIO","Insuficiência cardíaca descompensada"],
+      "species": [
+        {"name":"Cão","emoji":"🐕","dose":"5–10 mg/kg","route":"IV / IM","interval":"Dose única ou CRI","notes":"Associar midazolam 0,2 mg/kg para evitar convulsões."},
+        {"name":"Gato","emoji":"🐈","dose":"5–10 mg/kg","route":"IM","interval":"Dose única","notes":"Protocolo clássico: ketamina + xilazina."},
+        {"name":"Equino","emoji":"🐎","dose":"2,2 mg/kg","route":"IV","interval":"Dose única","notes":"Usar após xilazina 1,1 mg/kg IV. Não usar isoladamente."},
+        {"name":"Bovino","emoji":"🐄","dose":"2 mg/kg","route":"IV","interval":"Dose única","notes":"Associar xilazina 0,05 mg/kg. Decúbito em 3 min."}
+      ]
+    },
+    {
+      "id": "xilazina", "name": "Xilazina", "category": "Sedativo Alfa2-Agonista",
+      "tags": ["sedativo","analgésico","alfa2-agonista","relaxante muscular"],
+      "mechanism": "Agonista dos receptores alfa2-adrenérgicos centrais e periféricos. Sedação dose-dependente, analgesia visceral e relaxamento muscular. Reduz FC e PA.",
+      "contraindications": ["Bradicardia severa","Bloqueio AV de 2 ou 3 grau","Gestação avançada em bovinos","Choque hipovolêmico"],
+      "species": [
+        {"name":"Cão","emoji":"🐕","dose":"0,5–1 mg/kg","route":"IM / IV","interval":"Dose única","notes":"Reversão com atipamezol (5x a dose de xilazina)."},
+        {"name":"Gato","emoji":"🐈","dose":"0,5–1 mg/kg","route":"IM","interval":"Dose única","notes":"Vômito em 5 min. 10x mais sensíveis que bovinos."},
+        {"name":"Bovino","emoji":"🐄","dose":"0,05–0,1 mg/kg","route":"IM / IV","interval":"Dose única","notes":"Dose 10x menor que cão. Reversão com ioimbina."},
+        {"name":"Equino","emoji":"🐎","dose":"0,5–1,1 mg/kg","route":"IV","interval":"Dose única","notes":"Boa sedação em estação. Monitorar FC e PA."}
+      ]
+    },
+    {
+      "id": "enrofloxacina", "name": "Enrofloxacina", "category": "Antibiótico Fluoroquinolona",
+      "tags": ["antibiótico","fluoroquinolona","gram-negativo"],
+      "mechanism": "Inibição da DNA girase e topoisomerase IV bacterianas. Bactericida concentração-dependente. Amplo espectro, especialmente Gram-negativos.",
+      "contraindications": ["Filhotes em crescimento — lesão cartilaginosa","Gestação e lactação","Epilepsia","Insuficiência renal severa"],
+      "species": [
+        {"name":"Cão","emoji":"🐕","dose":"5–20 mg/kg","route":"VO / SC / IV","interval":"A cada 24h","notes":"IV: diluição obrigatória, infusão lenta."},
+        {"name":"Gato","emoji":"🐈","dose":"5 mg/kg","route":"VO / SC","interval":"A cada 24h","notes":"Doses acima de 5 mg/kg causam degeneração retiniana irreversível."},
+        {"name":"Bovino","emoji":"🐄","dose":"7,5 mg/kg","route":"SC","interval":"A cada 24h","notes":"Carência 7 dias. Infecções respiratórias e metrite."}
+      ]
+    },
+    {
+      "id": "dexametasona", "name": "Dexametasona", "category": "Corticosteroide Anti-inflamatório",
+      "tags": ["corticoide","anti-inflamatório","imunossupressor","choque","indução de parto"],
+      "mechanism": "Corticosteroide de longa ação. Liga-se ao receptor GR, modulando transcrição e inibindo fosfolipase A2. Sem prostaglandinas nem leucotrienos. Estabiliza membranas e suprime imunidade celular.",
+      "contraindications": ["Infecções bacterianas ou fúngicas não controladas","Úlcera gástrica ativa","Diabetes mellitus descompensado","Gestação — pode induzir parto em ruminantes"],
+      "species": [
+        {"name":"Cão","emoji":"🐕","dose":"0,1–0,5 mg/kg terapêutico ou 4–8 mg/kg em choque","route":"IV / IM / VO","interval":"A cada 12–24h ou dose única em choque","notes":"Não associar com AINEs."},
+        {"name":"Gato","emoji":"🐈","dose":"0,25–1 mg/kg","route":"IM / IV","interval":"A cada 12–24h","notes":"Gatos são mais resistentes aos efeitos adversos."},
+        {"name":"Bovino","emoji":"🐄","dose":"0,04 mg/kg terapêutico ou 20–30 mg total para indução de parto","route":"IV / IM","interval":"Dose única conforme indicação","notes":"Indução de parto: usar a partir do D260 de gestação."}
+      ]
+    },
+    {
+      "id": "penicilina-g", "name": "Penicilina G Procaína", "category": "Antibiótico Beta-Lactâmico",
+      "tags": ["antibiótico","penicilina","gram-positivo"],
+      "mechanism": "Liga-se às PBPs inibindo a transpeptidação da parede celular bacteriana. Bactericida tempo-dependente. Espectro Gram+: Streptococcus, Clostridium, Actinomyces.",
+      "contraindications": ["Hipersensibilidade a penicilinas","Coelhos e roedores — disbiose"],
+      "species": [
+        {"name":"Cão","emoji":"🐕","dose":"22.000–40.000 UI/kg","route":"IM","interval":"A cada 12–24h","notes":"Leptospirose e feridas. Baixa biodisponibilidade oral."},
+        {"name":"Bovino","emoji":"🐄","dose":"22.000 UI/kg","route":"IM / SC","interval":"A cada 24h","notes":"Carência abate 10 dias. Pneumonias e actinomicose."},
+        {"name":"Equino","emoji":"🐎","dose":"22.000 UI/kg","route":"IM","interval":"A cada 12h","notes":"Garrotilho e feridas por Streptococcus."}
+      ]
+    },
+    {
+      "id": "ivermectina", "name": "Ivermectina", "category": "Antiparasitário Avermectina",
+      "tags": ["antiparasitário","endectocida","carrapato","verme","berne"],
+      "mechanism": "Potencializa canais de Cl dependentes de glutamato em invertebrados, causando paralisia e morte do parasita. Não atravessa a BHE de mamíferos nas doses terapêuticas.",
+      "contraindications": ["Collie, Shetland e Border Collie MDR1 mutante — neurotoxicidade","Filhotes com menos de 6 semanas","Gestação nos primeiros 45 dias em ruminantes"],
+      "species": [
+        {"name":"Cão","emoji":"🐕","dose":"0,006 mg/kg preventivo ou 0,2–0,4 mg/kg para sarna","route":"VO / SC","interval":"Mensal preventivo ou a cada 7–14 dias para sarna","notes":"Testar mutação MDR1 em raças de pastor."},
+        {"name":"Bovino","emoji":"🐄","dose":"0,2 mg/kg SC ou 0,5 mg/kg pour-on","route":"SC ou Pour-on","interval":"Dose única","notes":"Carência SC 28 dias, pour-on 42 dias."},
+        {"name":"Equino","emoji":"🐎","dose":"0,2 mg/kg","route":"VO pasta","interval":"A cada 6–8 semanas","notes":"Botfly e Strongylus. Rotacionar com moxidectina."}
+      ]
+    },
+    {
+      "id": "midazolam", "name": "Midazolam", "category": "Benzodiazepínico Sedativo",
+      "tags": ["sedativo","ansiolítico","anticonvulsivante","pré-anestésico"],
+      "mechanism": "Potencializa GABA-A, aumentando influxo de Cl e provocando hiperpolarização neuronal. Produz sedação, relaxamento muscular, amnésia e ação anticonvulsivante. Reversível com flumazenil.",
+      "contraindications": ["Hipersensibilidade a benzodiazepínicos","Miastenia grave"],
+      "species": [
+        {"name":"Cão","emoji":"🐕","dose":"0,1–0,3 mg/kg","route":"IV / IM / intranasal","interval":"Dose única como pré-medicação","notes":"Status epilepticus: 0,5 mg/kg IV lento."},
+        {"name":"Gato","emoji":"🐈","dose":"0,1–0,2 mg/kg","route":"IV / IM","interval":"Dose única","notes":"Reversão com flumazenil 0,01 mg/kg IV."},
+        {"name":"Equino","emoji":"🐎","dose":"0,05–0,1 mg/kg","route":"IV","interval":"Dose única","notes":"Associar a detomidina para sedação em estação."}
+      ]
+    },
+    {
+      "id": "furosemida", "name": "Furosemida", "category": "Diurético de Alça",
+      "tags": ["diurético","insuficiência cardíaca","edema","oligúria"],
+      "mechanism": "Inibe o cotransportador Na-K-2Cl no ramo ascendente de Henle, aumentando a diurese. Efeito vasodilatador venoso.",
+      "contraindications": ["Anúria estabelecida","Desidratação e hipovolemia","Hipopotassemia grave"],
+      "species": [
+        {"name":"Cão","emoji":"🐕","dose":"1–4 mg/kg","route":"VO / IV / IM","interval":"A cada 8–12h","notes":"Usar dose mínima efetiva na ICC. Monitorar potássio."},
+        {"name":"Gato","emoji":"🐈","dose":"0,5–2 mg/kg","route":"VO / IV","interval":"A cada 12–24h","notes":"Monitorar hidratação e potássio rigorosamente."},
+        {"name":"Bovino","emoji":"🐄","dose":"0,5–1 mg/kg","route":"IV / IM","interval":"A cada 12h","notes":"Edema periparto. Monitorar débito urinário."}
+      ]
+    },
+    {
+      "id": "fenobarbital", "name": "Fenobarbital", "category": "Anticonvulsivante Barbitúrico",
+      "tags": ["anticonvulsivante","epilepsia","sedativo"],
+      "mechanism": "Potencializa GABA-A, aumentando a duração da abertura do canal de cloro. Reduz excitabilidade neuronal e induz enzimas microssomais hepáticas.",
+      "contraindications": ["Insuficiência hepática grave","Porfiria"],
+      "species": [
+        {"name":"Cão","emoji":"🐕","dose":"2–5 mg/kg","route":"VO","interval":"A cada 12h","notes":"Primeira linha para epilepsia. Alvo sérico: 20–40 microg/mL."},
+        {"name":"Gato","emoji":"🐈","dose":"1,5–2,5 mg/kg","route":"VO","interval":"A cada 12h","notes":"Monitorar transaminases periodicamente."}
+      ]
+    },
+    {
+      "id": "metronidazol", "name": "Metronidazol", "category": "Antibiótico Antiprotozoário",
+      "tags": ["antibiótico","anaeróbio","antiprotozoário","Giardia"],
+      "mechanism": "Pró-fármaco ativado em ambiente anaeróbio. Gera radicais nitrosos que danificam o DNA bacteriano. Ativo contra anaeróbios estritos e protozoários como Giardia e Trichomonas.",
+      "contraindications": ["Gestação no 1 trimestre — teratogênico","Disfunção hepática severa"],
+      "species": [
+        {"name":"Cão","emoji":"🐕","dose":"15–25 mg/kg","route":"VO / IV","interval":"A cada 12h","notes":"Giardia e clostridiose. IV em infusão lenta de 30 min."},
+        {"name":"Gato","emoji":"🐈","dose":"10–15 mg/kg","route":"VO","interval":"A cada 12h","notes":"Doses altas causam ataxia e nistagmo."},
+        {"name":"Bovino","emoji":"🐄","dose":"15 mg/kg","route":"IV","interval":"A cada 12h","notes":"Uso extra-label. Peritonite e metrite anaeróbia."}
+      ]
+    },
+    {
+      "id": "ondansetrona", "name": "Ondansetrona", "category": "Antiemético Antagonista 5-HT3",
+      "tags": ["antiemético","vômito","parvovírus","quimioterapia"],
+      "mechanism": "Antagonista seletivo dos receptores 5-HT3 na zona de gatilho quimiorreceptora e nervo vago. Bloqueia o estímulo emético visceral e central.",
+      "contraindications": ["Hipopotassemia ou hipomagnesemia — risco de QT longo","Obstrução intestinal — não trata a causa"],
+      "species": [
+        {"name":"Cão","emoji":"🐕","dose":"0,1–1 mg/kg","route":"IV / SC / VO","interval":"A cada 8–12h","notes":"Parvovirose: 0,1 mg/kg IV a cada 8h."},
+        {"name":"Gato","emoji":"🐈","dose":"0,1–0,2 mg/kg","route":"IV / SC","interval":"A cada 8–12h","notes":"Doença renal crônica com vômito e lipidose hepática."}
+      ]
+    },
+    {
+      "id": "atropina", "name": "Atropina", "category": "Anticolinérgico Parassimpatolítico",
+      "tags": ["anticolinérgico","bradicardia","antídoto","pré-anestésico","organofosforado"],
+      "mechanism": "Antagonista competitivo dos receptores muscarínicos M1, M2 e M3. Aumenta FC, reduz secreções, broncodilata e causa midríase. Antídoto na intoxicação por organofosforados.",
+      "contraindications": ["Glaucoma de ângulo fechado","Taquicardia supraventricular","Retenção urinária ou íleo paralítico"],
+      "species": [
+        {"name":"Cão","emoji":"🐕","dose":"0,02–0,04 mg/kg","route":"IV / IM / SC","interval":"Conforme necessidade","notes":"Organofosforado: 0,2–2 mg/kg IV até secura das secreções."},
+        {"name":"Gato","emoji":"🐈","dose":"0,02–0,04 mg/kg","route":"IV / IM","interval":"Conforme necessidade","notes":"Pré-medicação: reduz sialorréia causada pela ketamina."},
+        {"name":"Bovino","emoji":"🐄","dose":"0,02–0,06 mg/kg","route":"IV / SC","interval":"Conforme necessidade","notes":"Intoxicação por organofosforados: doses altas e repetidas."}
+      ]
+    },
+    {
+      "id": "adrenalina", "name": "Adrenalina (Epinefrina)", "category": "Catecolamina de Emergência",
+      "tags": ["emergência","anafilaxia","RCP","choque","broncoespasmo"],
+      "mechanism": "Agonista dos receptores alfa e beta adrenérgicos. Promove vasoconstrição (alfa1), broncodilatação (beta2) e aumento de FC e contratilidade (beta1). Reverte choque anafilático e sustenta a RCP.",
+      "contraindications": ["Arritmias ventriculares exceto FV em PCR","Hipertensão arterial severa"],
+      "species": [
+        {"name":"Cão","emoji":"🐕","dose":"0,01 mg/kg IM para anafilaxia ou 0,01 mg/kg IV em PCR","route":"IV / IM","interval":"A cada 3–5 min em PCR","notes":"Diluir 1:10.000 para administração IV."},
+        {"name":"Gato","emoji":"🐈","dose":"0,01 mg/kg","route":"IV / IM","interval":"A cada 3–5 min em PCR","notes":"Mesma dose que em cães."},
+        {"name":"Bovino","emoji":"🐄","dose":"0,01–0,02 mg/kg","route":"IV / IM","interval":"Dose única repetindo se necessário","notes":"Anafilaxia pós-vacinas ou após PGF2alfa."},
+        {"name":"Equino","emoji":"🐎","dose":"0,01 mg/kg","route":"IV / IM","interval":"Conforme necessidade","notes":"Anafilaxia pós-penicilina."}
+      ]
+    },
+    {
+      "id": "doxiciclina", "name": "Doxiciclina", "category": "Antibiótico Tetraciclina",
+      "tags": ["antibiótico","tetraciclina","Leptospira","Ehrlichia","Anaplasma"],
+      "mechanism": "Liga-se à subunidade 30S ribosomal, inibindo a síntese proteica bacteriana. Bacteriostático de amplo espectro. Ativo contra intracelulares como Rickettsia, Ehrlichia e Anaplasma.",
+      "contraindications": ["Gestação e filhotes com menos de 6 meses — quelação de cálcio","Insuficiência hepática grave"],
+      "species": [
+        {"name":"Cão","emoji":"🐕","dose":"5–10 mg/kg","route":"VO / IV","interval":"A cada 12h","notes":"Leptospirose portador renal, erliquiose e anaplasmose. IV muito lento."},
+        {"name":"Gato","emoji":"🐈","dose":"5 mg/kg","route":"VO","interval":"A cada 12h","notes":"Mycoplasma haemofelis e clamidiose."}
+      ]
+    },
+    {
+      "id": "flunixin", "name": "Flunixin Meglumine", "category": "AINE Analgésico Equino",
+      "tags": ["AINE","analgésico","equino","endotoxemia","cólica"],
+      "mechanism": "Inibição não seletiva da COX-1 e COX-2. Ação anti-endotóxica por bloqueio de TXA2. Fármaco de escolha para analgesia visceral em equinos.",
+      "contraindications": ["Insuficiência renal","Desidratação e hipovolemia","Uso concomitante com corticoides","Gatos — alta toxicidade"],
+      "species": [
+        {"name":"Equino","emoji":"🐎","dose":"1,1 mg/kg","route":"IV / VO","interval":"A cada 12–24h","notes":"Cólica: dose única IV. Anti-endotóxico: 0,25 mg/kg."},
+        {"name":"Bovino","emoji":"🐄","dose":"1,1–2,2 mg/kg","route":"IV","interval":"A cada 12–24h","notes":"Mastite aguda e septicemia neonatal. Carência 4 dias."}
+      ]
+    },
+    {
+      "id": "ceftiofur", "name": "Ceftiofur", "category": "Antibiótico Cefalosporina 3 Geracao",
+      "tags": ["antibiótico","cefalosporina","gram-negativo","bovino","BRD","metrite"],
+      "mechanism": "Liga-se às PBPs inibindo a síntese da parede celular bacteriana. Bactericida tempo-dependente. Ativo contra Mannheimia, Pasteurella e E. coli.",
+      "contraindications": ["Hipersensibilidade a cefalosporinas ou penicilinas — reação cruzada de 10 por cento","Insuficiência renal severa"],
+      "species": [
+        {"name":"Bovino","emoji":"🐄","dose":"2,2 mg/kg diário ou 6,6 mg/kg longa ação","route":"SC / IM","interval":"A cada 24h por 3–5 dias ou dose única LA","notes":"BRD, metrite e pododermatite. Long-acting atrás da orelha."},
+        {"name":"Suíno","emoji":"🐖","dose":"3–5 mg/kg","route":"IM","interval":"A cada 24h por 3 dias","notes":"MMA, doenças respiratórias e artrite."}
+      ]
+    },
+    {
+      "id": "diminazeno", "name": "Aceturato de Diminazeno — Berenil", "category": "Antiprotozoário Tripanocida",
+      "tags": ["antiprotozoário","tripanocida","babesiose","Babesia","bovino","Berenil"],
+      "mechanism": "Liga-se ao DNA do protozoário nos sulcos menores, inibindo síntese de DNA e RNA e causando morte do parasita. Fármaco de eleição na babesiose bovina.",
+      "contraindications": ["Doses altas em cães causam neurotoxicidade","Insuficiência renal ou hepática grave","NÃO usar em gatos"],
+      "species": [
+        {"name":"Bovino","emoji":"🐄","dose":"3,5 mg/kg","route":"IM profundo","interval":"Dose única — repetir após 24h se necessário","notes":"Diluir a 7 por cento, 35 mg por mL. Volume máximo de 10 mL por ponto."},
+        {"name":"Equino","emoji":"🐎","dose":"3,5 mg/kg","route":"IM","interval":"Dose única","notes":"Trypanosoma spp. Monitorar sinais neurológicos."}
+      ]
+    },
+    {
+      "id": "acepromazina", "name": "Acepromazina (ACP)", "category": "Sedativo Fenotiazínico",
+      "tags": ["sedativo","pré-anestésico","tranquilizante","antiemético"],
+      "mechanism": "Bloqueia receptores dopaminérgicos D2 no SNC produzindo tranquilização suave. Bloqueia receptores alfa1 causando vasodilatação e hipotensão. NÃO possui efeito analgésico.",
+      "contraindications": ["Choque e hipotensão — vasodilatação pode ser fatal","Epilepsia — abaixa o limiar convulsivo","Raças braquicefálicas","Machos inteiros — risco de priapismo"],
+      "species": [
+        {"name":"Cão","emoji":"🐕","dose":"0,025–0,05 mg/kg","route":"IM / SC / IV","interval":"Dose única como pré-medicação","notes":"Associar opioide ou benzodiazepínico. Priapismo: usar no máximo 0,025 mg/kg."},
+        {"name":"Gato","emoji":"🐈","dose":"0,05–0,1 mg/kg","route":"IM","interval":"Dose única","notes":"Manter ambiente aquecido devido à vasodilatação."},
+        {"name":"Equino","emoji":"🐎","dose":"0,02–0,05 mg/kg","route":"IV / IM","interval":"Dose única","notes":"Sedação em estação. Risco de priapismo em garanhões."}
+      ]
+    }
+  ],
+
+  "diseases": [
+    {
+      "id": "mastite-bovina", "name": "Mastite Bovina", "species": "Bovino", "emoji": "🐄",
+      "category": "Infectologia Glândula Mamária",
+      "tags": ["mastite","bovino","leite","úbere","Staphylococcus","Streptococcus"],
+      "etiology": "Staphylococcus aureus contagiosa, Streptococcus agalactiae, Streptococcus uberis, Escherichia coli ambiental, Klebsiella spp.",
+      "classification": ["Clínica Aguda","Subaguda","Subclínica CMT positivo","Crônica"],
+      "symptoms": ["Quarto mamário edemaciado, quente e doloroso","Secreção alterada com grumos, pus ou sangue","Queda abrupta da produção leiteira","Febre igual ou acima de 39,5 graus nas formas sistêmicas","CMT positivo na forma subclínica"],
+      "diagnosis": "CMT, Contagem de Células Somáticas acima de 200.000 por mL, cultura com antibiograma do leite, ultrassonografia mamária.",
+      "treatment": ["Penicilina G 22.000 UI/kg IM a cada 24h por 3 a 5 dias","Ceftiofur 2,2 mg/kg IM a cada 24h","Intramamário conforme antibiograma","Meloxicam 0,5 mg/kg IV ou SC nas formas febris"],
+      "prevention": "Pré e pós-dipping, higiene de ordenha, secagem seletiva com antibiótico.",
+      "prognosis": "Reservado para formas crônicas por S. aureus. Favorável para formas ambientais tratadas precocemente."
+    },
+    {
+      "id": "retencao-placenta", "name": "Retenção de Placenta Bovina", "species": "Bovino", "emoji": "🐄",
+      "category": "Teriogenologia Puerpério",
+      "tags": ["placenta","bovino","puerpério","metrite","infertilidade"],
+      "etiology": "Falha na separação das carúnculas e cotilédones após o parto. Fatores predisponentes: hipocalcemia, distocia, gestação gemelar, aborto, deficiência de selênio e vitamina E, brucelose.",
+      "classification": ["Parcial","Total"],
+      "symptoms": ["Membranas fetais visíveis na vulva por mais de 12 horas após o parto","Odor fétido progressivo da secreção","Febre e inapetência nas formas complicadas","Secreção vaginal purulenta tardia"],
+      "diagnosis": "Diagnóstico clínico: membranas pendentes por mais de 12 horas. Avaliar sinais sistêmicos associados.",
+      "treatment": ["NÃO remover manualmente — risco de hemorragia e endometrite","Ocitocina 20 a 40 UI IM nas primeiras 24 horas","Oxitetraciclina 20 mg/kg IM a cada 48h (antibioticoterapia parenteral)","Separação natural esperada até o 5 dia pós-parto"],
+      "prevention": "Nutrição equilibrada com selênio e vitamina E, prevenção de hipocalcemia, manejo adequado do parto.",
+      "prognosis": "Favorável se tratada precocemente. Risco de metrite e aumento do intervalo parto-concepção."
+    },
+    {
+      "id": "metrite-bovina", "name": "Metrite Bovina", "species": "Bovino", "emoji": "🐄",
+      "category": "Teriogenologia Puerpério",
+      "tags": ["metrite","bovino","útero","infecção","puerpério","infertilidade"],
+      "etiology": "Infecção bacteriana uterina no puerpério entre D1 e D21. Agentes: E. coli, Trueperella pyogenes, Fusobacterium necrophorum, Prevotella spp. Associada à retenção de placenta e distocia.",
+      "classification": ["Metrite Puerperal Aguda grave","Metrite Clínica","Endometrite Subclínica"],
+      "symptoms": ["Secreção vaginal fétida, aquosa, avermelhada ou marrom","Febre acima de 39,5 graus, inapetência e queda de produção","Útero edemaciado à palpação retal","Apatia e queda do escore corporal"],
+      "diagnosis": "Diagnóstico clínico com secreção e febre, vaginoscopia, cultura bacteriana, uso do Metricheck.",
+      "treatment": ["Ceftiofur 2,2 mg/kg IM a cada 24h por 5 dias — primeira linha","PGF2alfa 0,5 mg IM se houver CL presente — promove defesas uterinas","Fluidoterapia IV nas formas tóxicas graves"],
+      "prevention": "Manejo adequado do parto, prevenção de retenção placentária, nutrição pré-parto equilibrada.",
+      "prognosis": "Favorável se tratada precocemente. Endometrite subclínica é causa importante de subfertilidade."
+    },
+    {
+      "id": "piometra-canina", "name": "Piometra Canina", "species": "Cão", "emoji": "🐕",
+      "category": "Teriogenologia Ginecologia",
+      "tags": ["piometra","cão","útero","infecção","cadela","cirurgia"],
+      "etiology": "Acumulação de pus intrauterino. Mediada por progesterona no diestro associada a infecção bacteriana, principalmente E. coli em 85 por cento dos casos. Frequente em cadelas acima de 6 anos.",
+      "classification": ["Colo Aberto — secreção vaginal visível","Colo Fechado — mais grave com risco de sepse"],
+      "symptoms": ["Secreção vaginal purulenta com colo aberto","Distensão abdominal progressiva","Poliúria e polidipsia","Anorexia, vômito e letargia","Febre ou hipotermia nas formas sépticas"],
+      "diagnosis": "Ultrassonografia com útero distendido, hemograma com leucocitose e desvio à esquerda, bioquímica renal.",
+      "treatment": ["CIRÚRGICO definitivo: ovariohisterectomia de urgência","Estabilização pré-cirúrgica com fluidoterapia IV e antibióticos","Clínico: PGF2alfa 0,1 mg/kg SC a cada 12h para colo aberto","Aglepristona 10 mg/kg SC como antagonista de progesterona"],
+      "prevention": "Castração eletiva em cadelas sem uso reprodutivo.",
+      "prognosis": "Excelente com cirurgia precoce. Grave nas formas de colo fechado com sepse sistêmica."
+    },
+    {
+      "id": "brucelose", "name": "Brucelose Bovina", "species": "Bovino", "emoji": "🐄",
+      "category": "Zoonose Infectologia Bacteriana",
+      "tags": ["brucelose","aborto","zoonose","bovino","Brucella"],
+      "etiology": "Brucella abortus. Bactéria Gram-negativa intracelular facultativa. Transmissão por contato com material abortado, via oral e venérea.",
+      "classification": ["Forma Aguda","Forma Crônica"],
+      "symptoms": ["Aborto no terceiro trimestre — principal sinal em bovinos","Natimortos e filhotes fracos","Retenção de placenta pós-aborto","Orquite e epididimite em machos reprodutores","Febre ondulante e artrite em humanos — ZOONOSE GRAVE"],
+      "diagnosis": "Soroaglutinação rápida SAR, soroaglutinação lenta SAL, PCR, cultura bacteriana de placenta e feto.",
+      "treatment": ["SEM tratamento efetivo — política de controle e erradicação","Notificação compulsória e descarte dos animais positivos"],
+      "prevention": "Vacinação B19 em fêmeas de 3 a 8 meses, vacina RB51 em adultas. Programa Nacional PNCEBT.",
+      "prognosis": "Sem cura prática em bovinos. Erradicação do rebanho é a conduta preconizada."
+    },
+    {
+      "id": "leptospirose", "name": "Leptospirose", "species": "Multiplas especies", "emoji": "🦠",
+      "category": "Zoonose Infectologia Bacteriana",
+      "tags": ["leptospirose","zoonose","renal","hepático","cão","bovino"],
+      "etiology": "Leptospira interrogans — sorovares Canicola, Icterohaemorrhagiae, Pomona e Hardjo. Transmissão por urina de animais infectados ou água contaminada.",
+      "classification": ["Forma Renal","Forma Hepática com Icterícia","Forma Hemorrágica","Forma Reprodutiva em bovinos"],
+      "symptoms": ["Febre aguda, anorexia e prostração","Insuficiência renal aguda com oligúria e azotemia","Icterícia intensa","Hemorragias petequiais","Aborto, natimorto e infertilidade — sorovar Hardjo em bovinos"],
+      "diagnosis": "MAT como padrão ouro, PCR de urina e sangue, bioquímica renal e hepática.",
+      "treatment": ["Penicilina G 25.000 a 40.000 UI/kg IM a cada 24h por 7 a 14 dias","Doxiciclina 5 mg/kg VO ou IV a cada 12h para fase de portador renal","Fluidoterapia IV intensiva"],
+      "prevention": "Vacinação anual e controle de roedores. ZOONOSE — EPI obrigatório no manejo.",
+      "prognosis": "Grave sem tratamento precoce. Dano renal irreversível possível nas formas agudas tardias."
+    },
+    {
+      "id": "parvovirose-canina", "name": "Parvovirose Canina", "species": "Cão", "emoji": "🐕",
+      "category": "Infectologia Virologia",
+      "tags": ["parvovírus","cão","gastroenterite","filhote","hemorrágica"],
+      "etiology": "Canine Parvovirus tipo 2. Altamente resistente no ambiente por meses a anos.",
+      "classification": ["Forma Intestinal — mais comum","Forma Cardíaca em filhotes com menos de 4 semanas"],
+      "symptoms": ["Vômitos frequentes e intensos","Diarreia hemorrágica fétida — sinal característico","Desidratação grave e rápida","Letargia e anorexia total","Leucopenia severa abaixo de 2.000 por microlitro"],
+      "diagnosis": "Teste rápido ELISA fecal SNAP Parvo, hemograma com leucopenia, PCR confirmatório.",
+      "treatment": ["ISOLAMENTO IMEDIATO pela alta contagiosidade","Fluidoterapia IV agressiva com Ringer Lactato","Ondansetrona 0,1 mg/kg IV a cada 8h","Ampicilina 22 mg/kg IV mais Metronidazol 15 mg/kg IV","Hemotransfusão se hematócrito abaixo de 20 por cento"],
+      "prevention": "Vacinação em série de filhotes aos 6, 9 e 12 semanas mais reforço anual. Hipoclorito de sódio 1:30 para ambiente.",
+      "prognosis": "Grave sem tratamento — mortalidade acima de 90 por cento. Com suporte intensivo: sobrevivência de 80 a 90 por cento."
+    },
+    {
+      "id": "cinomose", "name": "Cinomose Canina", "species": "Cão", "emoji": "🐕",
+      "category": "Infectologia Virologia",
+      "tags": ["cinomose","cão","neurológico","respiratório","vírus"],
+      "etiology": "Morbillivirus canino CDV, família Paramyxoviridae. Altamente contagioso por aerossóis.",
+      "classification": ["Fase Respiratória","Fase Gastrointestinal","Fase Neurológica"],
+      "symptoms": ["Descarga nasal e ocular mucopurulenta","Febre bifásica","Tosse e pneumonia intersticial","Hiperqueratose de coxins e plano nasal","Mioclonia, convulsões, ataxia e paresia"],
+      "diagnosis": "Imunofluorescência da conjuntiva, PCR, sorologia IgM e IgG.",
+      "treatment": ["Tratamento de suporte sem antiviral específico aprovado","Amoxicilina com Clavulanato para infecções bacterianas secundárias","Fenobarbital para controle de convulsões","Fluidoterapia e vitaminas B e C"],
+      "prevention": "Vacinação polivalente em série de filhotes mais reforços anuais.",
+      "prognosis": "Reservado a grave nas formas neurológicas. Sequelas permanentes frequentes."
+    },
+    {
+      "id": "hipocalcemia-bovina", "name": "Hipocalcemia Puerperal — Febre do Leite", "species": "Bovino", "emoji": "🐄",
+      "category": "Clinica de Ruminantes Disturbio Metabolico",
+      "tags": ["hipocalcemia","febre do leite","bovino","periparto","cálcio"],
+      "etiology": "Queda brusca do cálcio sérico no periparto abaixo de 2,0 mmol/L pela demanda da lactação, com falha nos mecanismos compensatórios de PTH e vitamina D.",
+      "classification": ["Estágio I — excitabilidade","Estágio II — decúbito esternal","Estágio III — decúbito lateral grave"],
+      "symptoms": ["Estágio I: tetania, tremores musculares e andar rígido","Estágio II: decúbito esternal em S, extremidades frias e rúmen hipomotílico","Estágio III: decúbito lateral, inconsciência, taquicardia e morte sem tratamento"],
+      "diagnosis": "Diagnóstico clínico no puerpério associado aos sinais, confirmado por calcemia sérica abaixo de 2,0 mmol/L.",
+      "treatment": ["Gluconato de cálcio 23 por cento — 400 a 600 mL IV lenta em pelo menos 10 min","Monitorar FC durante infusão: bradicardia indica reduzir velocidade","Alternativa SC: gluconato mais borogluconato de cálcio"],
+      "prevention": "Dieta aniônica pré-parto com DCAD negativo, suplementação oral de cálcio no periparto, vitamina D3 injetável.",
+      "prognosis": "Excelente se tratado nos Estágios I ou II. Grave no Estágio III."
+    },
+    {
+      "id": "colica-equina", "name": "Cólica Equina", "species": "Equino", "emoji": "🐎",
+      "category": "Clinica de Equinos Gastroenterologia",
+      "tags": ["cólica","equino","dor abdominal","cirurgia","emergência"],
+      "etiology": "Síndrome de dor abdominal multifatorial: espasmo, impactação cecal ou cólica, timpanismo, deslocamento de cólon maior, estrangulamento de alça.",
+      "classification": ["Forma Médica — espasmo e impactação leve","Forma Cirúrgica — estrangulamento e torção de urgência"],
+      "symptoms": ["Olhar para o flanco e morder os flancos","Decúbito frequente com rolagem","Sudorese intensa e taquicardia acima de 60 bpm indica gravidade","Sons intestinais ausentes à auscultação","Mucosas hiperêmicas com TPC acima de 2 segundos"],
+      "diagnosis": "Exame físico detalhado, palpação retal, paracentese abdominal com líquido sanguinolento indica cirurgia, sonda nasogástrica com refluxo acima de 2L indica cirurgia.",
+      "treatment": ["Flunixin 1,1 mg/kg IV para analgesia e ação anti-endotóxica","N-Butilescopolamina 0,3 mg/kg IV para espasmos","Sonda nasogástrica com óleo mineral 4L para impactação","Xilazina 0,5 a 1 mg/kg IV para sedação e analgesia","CIRÚRGICO para qualquer sinal de comprometimento vascular"],
+      "prevention": "Alimentação fracionada, acesso constante à água, controle de parasitas.",
+      "prognosis": "Excelente para formas médicas. Grave para formas cirúrgicas com mortalidade de 20 a 50 por cento."
+    },
+    {
+      "id": "tristeza-parasitaria", "name": "Tristeza Parasitária Bovina", "species": "Bovino", "emoji": "🐄",
+      "category": "Parasitologia Hemoparasitose",
+      "tags": ["babesiose","anaplasmose","carrapato","hemoparasita","tristeza"],
+      "etiology": "Babesia bovis e Babesia bigemina transmitidas por Rhipicephalus microplus. Anaplasma marginale transmitido por carrapatos e mecanicamente.",
+      "classification": ["Babesiose Aguda","Anaplasmose Aguda","Forma Mista"],
+      "symptoms": ["Febre alta de 41 a 42 graus e apatia intensa","Anemia hemolítica com mucosas pálidas ou ictéricas","Hemoglobinúria ou urina vermelha — sinal clássico da babesiose","Icterícia nas formas de anaplasmose","Sinais nervosos como cambaleio e agressividade na B. bovis"],
+      "diagnosis": "Esfregaço sanguíneo corado por Giemsa, PCR, hematócrito abaixo de 15 por cento é crítico, sorologia.",
+      "treatment": ["Babesiose: Aceturato de diminazeno 3,5 mg/kg IM","Anaplasmose: Oxitetraciclina LA 20 mg/kg IM","Transfusão se hematócrito abaixo de 12 por cento, fluidoterapia"],
+      "prevention": "Controle estratégico de carrapatos, vacinas comerciais triplas, manutenção da premunição em áreas endêmicas.",
+      "prognosis": "Grave em animais não premunidos. Favorável com diagnóstico e tratamento precoces."
+    },
+    {
+      "id": "cistos-ovarianos", "name": "Cistos Ovarianos Bovinos", "species": "Bovino", "emoji": "🐄",
+      "category": "Teriogenologia Disturbio Ovariano",
+      "tags": ["cisto","ovário","bovino","anestro","reprodução"],
+      "etiology": "Folículos maiores ou iguais a 25 mm que não ovulam e persistem por mais de 10 dias. Causa: falha do pico pré-ovulatório de LH. Fatores: BEN pós-parto, estresse e herança genética.",
+      "classification": ["Cisto folicular — parede fina abaixo de 3 mm, ninfomanismo","Cisto luteal — parede espessa acima de 3 mm, anestro"],
+      "symptoms": ["Cisto folicular: ninfomanismo, muco abundante, ciclos irregulares","Cisto luteal: anestro prolongado","Diagnóstico incidental em exame ultrassonográfico"],
+      "diagnosis": "USG transretal: cisto folicular com parede abaixo de 3 mm, cisto luteal com parede acima de 3 mm. Dosagem de progesterona sérica.",
+      "treatment": ["GnRH 100 mcg IM como primeira escolha","PGF2alfa 14 dias após GnRH se o cisto luteinizou","Protocolo Ovsynch adaptado para ciclos irregulares"],
+      "prevention": "Controle nutricional no pós-parto, evitar BEN severo, seleção genética.",
+      "prognosis": "Favorável com tratamento hormonal. Recidiva em aproximadamente 25 por cento dos casos."
+    },
+    {
+      "id": "raiva", "name": "Raiva Animal", "species": "Multiplas especies", "emoji": "🦇",
+      "category": "Zoonose Neurologia Virologia",
+      "tags": ["raiva","zoonose","neurológico","fatal","morcego"],
+      "etiology": "Lyssavirus da família Rhabdoviridae. Transmissão por saliva via mordedura. Bovinos: morcego hematófago Desmodus rotundus.",
+      "classification": ["Forma Furiosa com excitação","Forma Paralítica ou Muda — mais comum em bovinos"],
+      "symptoms": ["Bovinos forma paralítica: disfagia, sialorréia, decúbito progressivo, paralisia dos membros","Cão forma furiosa: agressividade, automutilação e vocalização anormal","Progressão inexorável para a morte em 100 por cento dos casos"],
+      "diagnosis": "Imunofluorescência direta e isolamento viral post-mortem. NUNCA realizar necrópsia sem EPI completo.",
+      "treatment": ["NENHUM tratamento eficaz após início dos sinais clínicos","Eutanásia humanitária dos animais suspeitos"],
+      "prevention": "Vacinação obrigatória de cães e gatos anualmente. Vacinação de bovinos em áreas enzoóticas. ZOONOSE 100 POR CENTO FATAL.",
+      "prognosis": "100 por cento fatal após manifestação clínica."
+    },
+    {
+      "id": "erliquiose-canina", "name": "Erliquiose Canina", "species": "Cão", "emoji": "🐕",
+      "category": "Infectologia Rickettsial",
+      "tags": ["erliquiose","cão","carrapato","trombocitopenia","Ehrlichia"],
+      "etiology": "Ehrlichia canis transmitida pelo carrapato Rhipicephalus sanguineus. Parasita monócitos e macrófagos.",
+      "classification": ["Fase Aguda D1 a D28","Fase Subclínica","Fase Crônica grave"],
+      "symptoms": ["Febre, letargia e anorexia","Trombocitopenia com epistaxe e petéquias","Linfadenopatia e esplenomegalia","Descarga ocular e nasal","Fase crônica: pancitopenia e anemia aplásica"],
+      "diagnosis": "Hemograma com trombocitopenia, RIFI ou ELISA para IgG, PCR, esfregaço com mórulas nos monócitos.",
+      "treatment": ["Doxiciclina 10 mg/kg VO a cada 24h por 28 a 56 dias mínimos","Prednisona 1 mg/kg se plaquetas abaixo de 20.000 com hemorragia ativa","Transfusão nas formas aplásicas graves"],
+      "prevention": "Controle mensal de carrapatos com acaricidas e coleiras repelentes.",
+      "prognosis": "Excelente na fase aguda com tratamento. Grave na fase crônica com pancitopenia."
+    },
+    {
+      "id": "timpanismo-bovino", "name": "Timpanismo Ruminal Bovino", "species": "Bovino", "emoji": "🐄",
+      "category": "Clinica de Ruminantes Gastroenterologia",
+      "tags": ["timpanismo","rúmen","bovino","emergência","gases"],
+      "etiology": "Timpanismo espumoso por pastagens úmidas de leguminosas: espuma estável prende gases. Timpanismo gasoso por obstrução esofagiana ou atonia ruminal.",
+      "classification": ["Timpanismo Espumoso primário","Timpanismo Gasoso Livre secundário"],
+      "symptoms": ["Distensão progressiva do flanco esquerdo","Dificuldade respiratória e dispneia","Mucosas cianóticas e inquietação evoluindo para decúbito e morte rápida"],
+      "diagnosis": "Sondagem ruminal: espumoso gera espuma ao retirar a sonda, gasoso permite saída livre de gás.",
+      "treatment": ["Gasoso: sondagem orogástrica imediata para alívio","Espumoso: antiespumante via sonda e por via oral","Emergência: trocarização do rúmen no flanco esquerdo"],
+      "prevention": "Não pastorear em leguminosas úmidas pela manhã. Fenação antes de oferecer pastagem nova.",
+      "prognosis": "Excelente se tratado imediatamente. Fatal em minutos se ignorado."
+    },
+    {
+      "id": "pneumonia-bovina", "name": "Pneumonia Bovina — BRD", "species": "Bovino", "emoji": "🐄",
+      "category": "Infectologia Respiratório",
+      "tags": ["pneumonia","BRD","bovino","Mannheimia","Pasteurella","respiratório"],
+      "etiology": "Complexo Respiratório Bovino: Mannheimia haemolytica, Pasteurella multocida, Histophilus somni mais vírus IBR, BVD, BRSV e PI-3.",
+      "classification": ["Forma Aguda","Forma Crônica e Fibrinosa"],
+      "symptoms": ["Febre acima de 40 graus e depressão","Descarga nasal mucopurulenta","Tosse seca e dispneia","Sons broncovesiculares aumentados","Anorexia e queda no ganho de peso"],
+      "diagnosis": "Clínico mais lavado broncoalveolar, cultura com antibiograma, hemograma.",
+      "treatment": ["Florfenicol 20 mg/kg IM dose única longa ação","Tulatromicina 2,5 mg/kg SC dose única","Enrofloxacina 7,5 mg/kg SC a cada 24h","Meloxicam 0,5 mg/kg SC como adjuvante anti-inflamatório"],
+      "prevention": "Vacinação contra IBR, BVD, BRSV, PI-3 e Mannheimia. Redução de estresse no confinamento.",
+      "prognosis": "Favorável se tratada precocemente. A forma crônica reduz permanentemente o desempenho."
+    },
+
+    {
+      "id": "anatomy-trato-bovino", "name": "Anatomia: Trato Reprodutor da Vaca", "species": "Bovino", "emoji": "🐄",
+      "category": "Anatomia Trato Reprodutor",
+      "tags": ["anatomia","trato reprodutor","vaca","bovino","estruturas","Q29"],
+      "etiology": "Referência anatômica para a Questão 29 do Estudo Dirigido da Profa. Fernanda Brandão — UNISUL.",
+      "classification": ["Ovário e Ovidutos","Útero bicorno","Cérvix com anéis simples","Vagina e Vestíbulo","Vulva"],
+      "symptoms": [
+        "Estrutura 1 — Ovário: produz oócitos e hormônios estrogênio e progesterona",
+        "Estrutura 2 — Fimbria e Infundíbulo: capta o oócito no momento da ovulação",
+        "Estrutura 3 — Oviduto ou trompa uterina: local de fertilização e transporte embrionário",
+        "Estrutura 4 — Corno uterino: onde ocorre a gestação — a vaca possui dois cornos",
+        "Estrutura 5 — Corpo do útero: curto em bovinos — de 2 a 4 cm",
+        "Estrutura 6 — Cérvix: anéis simples — IA realizada por via retal; barreira protetora do útero",
+        "Estrutura 7 — Vagina: canal de cópula e de parto",
+        "Estrutura 8 — Vestíbulo: junção urogenital",
+        "Estrutura 9 — Vulva: abertura externa com função de proteção e cópula",
+        "Estrutura 10 — Ligamento largo ou mesométrio: estrutura de sustentação do útero e dos ovários"
+      ],
+      "diagnosis": "Ultrassonografia transretal, palpação retal, visualização macroscópica na necrópsia.",
+      "treatment": ["Referencia anatomica — sem aplicacao de tratamento"],
+      "prevention": ["Referencia anatomica — sem aplicacao de prevencao"],
+      "prognosis": "Referencia anatomica — sem aplicacao de prognostico."
+    },
+    {
+      "id": "anatomy-trato-suino", "name": "Anatomia: Trato Reprodutor da Porca", "species": "Suíno", "emoji": "🐖",
+      "category": "Anatomia Trato Reprodutor",
+      "tags": ["anatomia","trato reprodutor","porca","suíno","estruturas","Q29"],
+      "etiology": "Referência anatômica para a Questão 29 do Estudo Dirigido.",
+      "classification": ["Ovário multilobulado","Cornos uterinos muito longos","Cérvix espiral — rosca","Vagina e Vestíbulo","Vulva"],
+      "symptoms": [
+        "Estrutura 1 — Ovário: multilobulado com aspecto de cacho de uvas — de 10 a 25 ovulações por ciclo",
+        "Estrutura 2 — Fimbria e Infundíbulo: ampla para captar múltiplos oócitos",
+        "Estrutura 3 — Oviduto: fertilização e transporte embrionário para o útero",
+        "Estrutura 4 — Cornos uterinos: muito longos — de 100 a 200 cm cada — para acomodar grandes leitegadas",
+        "Estrutura 5 — Corpo do útero: curto — cerca de 5 cm",
+        "Estrutura 6 — Cérvix: formato espiral ou rosca — pipeta de IA trava por rotação para evitar refluxo",
+        "Estrutura 7 — Vagina: curta — monta natural com ejaculação intrauterina",
+        "Estrutura 8 — Vestíbulo: junção urogenital",
+        "Estrutura 9 — Vulva: morfologia variável entre as linhagens suínas",
+        "Estrutura 10 — Ligamento largo: sustentação dos cornos uterinos longos"
+      ],
+      "diagnosis": "Ultrassonografia transabdominal ou transretal, laparoscopia.",
+      "treatment": ["Referencia anatomica — sem aplicacao de tratamento"],
+      "prevention": ["Referencia anatomica — sem aplicacao de prevencao"],
+      "prognosis": "Referencia anatomica — sem aplicacao de prognostico."
+    },
+    {
+      "id": "anatomy-trato-equino", "name": "Anatomia: Trato Reprodutor da Égua", "species": "Equino", "emoji": "🐎",
+      "category": "Anatomia Trato Reprodutor",
+      "tags": ["anatomia","trato reprodutor","égua","equino","estruturas","Q29"],
+      "etiology": "Referência anatômica para a Questão 29 do Estudo Dirigido.",
+      "classification": ["Ovário em forma de feijão com fóvea ovulatória","Útero bicorno","Cérvix com formato de roseta","Vagina longa","Vulva"],
+      "symptoms": [
+        "Estrutura 1 — Ovário: forma de feijão — ovulação SOMENTE na fóvea ovulatória",
+        "Estrutura 2 — Fimbria e Infundíbulo: capta o oócito liberado na fóvea",
+        "Estrutura 3 — Oviduto: local de fertilização — embrião chega ao útero no D5 a D6",
+        "Estrutura 4 — Cornos uterinos: médios com 20 a 25 cm — fixação inicial do embrião",
+        "Estrutura 5 — Corpo do útero: bem desenvolvido com cerca de 20 cm — gestação principalmente aqui",
+        "Estrutura 6 — Cérvix: roseta com pregas amolecidas no estro — IA realizada com espéculo e visão direta",
+        "Estrutura 7 — Vagina: longa com 20 a 25 cm — diagnóstico por vaginoscopia",
+        "Estrutura 8 — Vestíbulo: pneumovagina frequente com má conformação perineal",
+        "Estrutura 9 — Vulva: conformação importa — cirurgia de Caslick em éguas com vulva inclinada",
+        "Estrutura 10 — Clitóris e Fossa do clitóris: local de coleta para triagem de Anemia Infecciosa Equina"
+      ],
+      "diagnosis": "Ultrassonografia transretal como padrão em equinos, vaginoscopia, palpação retal.",
+      "treatment": ["Referencia anatomica — sem aplicacao de tratamento"],
+      "prevention": ["Referencia anatomica — sem aplicacao de prevencao"],
+      "prognosis": "Referencia anatomica — sem aplicacao de prognostico."
+    },
+    {
+      "id": "anatomy-trato-canino", "name": "Anatomia: Trato Reprodutor da Cadela", "species": "Cão", "emoji": "🐕",
+      "category": "Anatomia Trato Reprodutor",
+      "tags": ["anatomia","trato reprodutor","cadela","cão","estruturas","Q29"],
+      "etiology": "Referência anatômica para a Questão 29 do Estudo Dirigido.",
+      "classification": ["Ovário envolto pela bursa ovariana","Cornos uterinos longos","Cérvix","Vagina muito longa","Vulva"],
+      "symptoms": [
+        "Estrutura 1 — Ovário: totalmente envolto pela bursa ovariana — libera oócitos primários I que completam meiose no oviduto",
+        "Estrutura 2 — Fimbria e Infundíbulo: dentro da bursa ovariana — oócitos passam para o oviduto",
+        "Estrutura 3 — Oviduto: curto — meiose completa-se aqui — diferente dos bovinos",
+        "Estrutura 4 — Cornos uterinos: longos com 12 a 15 cm cada — gestação ocorre nos cornos",
+        "Estrutura 5 — Corpo do útero: muito curto com 2 a 3 cm",
+        "Estrutura 6 — Cérvix: pequena — importante na piometra para diferenciar colo aberto de colo fechado",
+        "Estrutura 7 — Vagina: muito longa com 9 a 14 cm — citologia das células esfoliadas para detecção de cio",
+        "Estrutura 8 — Vestíbulo: dorsal ao clitóris — junção com a uretra",
+        "Estrutura 9 — Vulva: edemaciada no proestro e estro — sinal externo de cio",
+        "Estrutura 10 — Clitóris: bem desenvolvido — localizado ventralmente no vestíbulo"
+      ],
+      "diagnosis": "Ultrassonografia transabdominal, citologia vaginal como principal método para detecção de cio, vaginoscopia.",
+      "treatment": ["Referencia anatomica — sem aplicacao de tratamento"],
+      "prevention": ["Referencia anatomica — sem aplicacao de prevencao"],
+      "prognosis": "Referencia anatomica — sem aplicacao de prognostico."
+    }
+  ],
+
+  "labReferenceValues": {
+    "dog": {
+      "label": "Cão", "emoji": "🐕",
+      "hematology": [
+        {"param":"Eritrócitos","unit":"x10 6 por microlitro","min":5.5,"max":8.5},
+        {"param":"Hemoglobina","unit":"g/dL","min":12.0,"max":18.0},
+        {"param":"Hematócrito","unit":"%","min":37.0,"max":55.0},
+        {"param":"Leucócitos","unit":"x10 3 por microlitro","min":6.0,"max":17.0},
+        {"param":"Neutrófilos","unit":"%","min":60,"max":77},
+        {"param":"Plaquetas","unit":"x10 3 por microlitro","min":200,"max":500}
+      ],
+      "biochemistry": [
+        {"param":"ALT (TGP)","unit":"U/L","min":10,"max":88},
+        {"param":"AST (TGO)","unit":"U/L","min":0,"max":50},
+        {"param":"Creatinina","unit":"mg/dL","min":0.5,"max":1.5},
+        {"param":"Ureia","unit":"mg/dL","min":7,"max":27},
+        {"param":"Glicose","unit":"mg/dL","min":60,"max":110},
+        {"param":"Proteínas Totais","unit":"g/dL","min":5.2,"max":8.2}
+      ]
+    },
+    "cat": {
+      "label": "Gato", "emoji": "🐈",
+      "hematology": [
+        {"param":"Eritrócitos","unit":"x10 6 por microlitro","min":5.0,"max":10.0},
+        {"param":"Hemoglobina","unit":"g/dL","min":8.0,"max":15.0},
+        {"param":"Hematócrito","unit":"%","min":24.0,"max":45.0},
+        {"param":"Leucócitos","unit":"x10 3 por microlitro","min":5.5,"max":19.5},
+        {"param":"Plaquetas","unit":"x10 3 por microlitro","min":300,"max":700}
+      ],
+      "biochemistry": [
+        {"param":"ALT (TGP)","unit":"U/L","min":10,"max":100},
+        {"param":"Creatinina","unit":"mg/dL","min":0.8,"max":2.4},
+        {"param":"Ureia","unit":"mg/dL","min":20,"max":60},
+        {"param":"Glicose","unit":"mg/dL","min":70,"max":120}
+      ]
+    },
+    "bovine": {
+      "label": "Bovino", "emoji": "🐄",
+      "hematology": [
+        {"param":"Eritrócitos","unit":"x10 6 por microlitro","min":5.0,"max":10.0},
+        {"param":"Hemoglobina","unit":"g/dL","min":8.0,"max":15.0},
+        {"param":"Hematócrito","unit":"%","min":24.0,"max":46.0},
+        {"param":"Leucócitos","unit":"x10 3 por microlitro","min":4.0,"max":12.0}
+      ],
+      "biochemistry": [
+        {"param":"Glicose","unit":"mg/dL","min":45,"max":75},
+        {"param":"Cálcio total","unit":"mg/dL","min":8.0,"max":10.4},
+        {"param":"Fósforo","unit":"mg/dL","min":4.0,"max":8.0},
+        {"param":"Ureia","unit":"mg/dL","min":20,"max":30}
+      ]
+    },
+    "equine": {
+      "label": "Equino", "emoji": "🐎",
+      "hematology": [
+        {"param":"Eritrócitos","unit":"x10 6 por microlitro","min":6.5,"max":12.5},
+        {"param":"Hemoglobina","unit":"g/dL","min":11.0,"max":19.0},
+        {"param":"Hematócrito","unit":"%","min":32.0,"max":53.0},
+        {"param":"Leucócitos","unit":"x10 3 por microlitro","min":5.4,"max":14.3},
+        {"param":"Neutrófilos","unit":"%","min":35,"max":75},
+        {"param":"Plaquetas","unit":"x10 3 por microlitro","min":100,"max":350}
+      ],
+      "biochemistry": [
+        {"param":"ALT (TGP)","unit":"U/L","min":3,"max":23},
+        {"param":"AST (TGO)","unit":"U/L","min":160,"max":412},
+        {"param":"GGT","unit":"U/L","min":4,"max":44},
+        {"param":"Creatinina","unit":"mg/dL","min":0.8,"max":2.0},
+        {"param":"Ureia","unit":"mg/dL","min":10,"max":24},
+        {"param":"Glicose","unit":"mg/dL","min":60,"max":100},
+        {"param":"Proteínas Totais","unit":"g/dL","min":5.2,"max":7.9},
+        {"param":"Fibrinogênio","unit":"mg/dL","min":100,"max":400}
+      ]
+    }
+  }
+}

@@ -1,0 +1,386 @@
+import { useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import {
+  Search, Pill, AlertCircle, ChevronDown, FlaskConical,
+  Tag, Info, Calculator, Beaker, RotateCcw,
+} from 'lucide-react'
+import db from '../data/central_db.json'
+
+type Drug = typeof db.drugs[0]
+type SpeciesEntry = Drug['species'][0]
+type TabKey = 'sobre' | 'doses' | 'farmaco'
+
+const TABS: { key: TabKey; label: string; icon: React.ElementType }[] = [
+  { key: 'sobre',  label: 'Sobre',              icon: Info       },
+  { key: 'doses',  label: 'Doses & Calculadora', icon: Calculator },
+  { key: 'farmaco',label: 'Farmacologia',        icon: Beaker     },
+]
+
+/* ── Calculadora inline por espécie ── */
+function SpeciesCalc({ sp }: { sp: SpeciesEntry }) {
+  const [weight, setWeight] = useState('')
+  const [conc,   setConc]   = useState('')
+  const [result, setResult] = useState<{ total: number; vol: number | null } | null>(null)
+
+  const open = sp.dose.startsWith('⚠️')
+
+  // Extrai o primeiro número da dose (ex: "25 mg/kg" → 25, "0,2 mg/kg" → 0.2)
+  const doseNum = (() => {
+    const raw = sp.dose.replace(',', '.')
+    const m = raw.match(/(\d+\.?\d*)/)
+    return m ? parseFloat(m[1]) : null
+  })()
+
+  const calc = () => {
+    const w = parseFloat(weight)
+    const c = parseFloat(conc.replace(',', '.'))
+    if (!doseNum || isNaN(w) || w <= 0) return
+    const total = w * doseNum
+    const vol = !isNaN(c) && c > 0 ? total / c : null
+    setResult({ total, vol })
+  }
+
+  const reset = () => { setWeight(''); setConc(''); setResult(null) }
+
+  if (open) return (
+    <div className="px-5 pb-4 pt-3 border-t border-slate-700/50">
+      <div className="bg-red-950/30 rounded-xl p-3 border border-red-500/20 text-xs text-red-400">
+        ⚠️ Calculadora desabilitada — uso não recomendado para esta espécie.
+      </div>
+    </div>
+  )
+
+  return (
+    <div className="px-5 pb-5 pt-3 border-t border-slate-700/50 space-y-3">
+      <div className="grid grid-cols-4 gap-3 items-end">
+        {/* Via e Intervalo */}
+        <div>
+          <p className="text-[10px] text-slate-500 font-medium mb-1 uppercase tracking-wider">Via</p>
+          <p className="text-sm font-semibold text-slate-200">{sp.route}</p>
+        </div>
+        <div>
+          <p className="text-[10px] text-slate-500 font-medium mb-1 uppercase tracking-wider">Intervalo</p>
+          <p className="text-sm font-semibold text-slate-200">{sp.interval}</p>
+        </div>
+        {/* Peso */}
+        <div>
+          <label className="text-[10px] text-slate-500 font-medium mb-1 uppercase tracking-wider block">
+            Peso (kg)
+          </label>
+          <input
+            type="number" min="0" placeholder="ex: 15" value={weight}
+            onChange={e => { setWeight(e.target.value); setResult(null) }}
+            className="w-full px-3 py-2 bg-slate-700/60 border border-slate-600/60 rounded-lg text-sm text-slate-200 placeholder-slate-600 focus:outline-none focus:ring-2 focus:ring-teal-500/40 focus:border-teal-500 transition"
+          />
+        </div>
+        {/* Concentração */}
+        <div>
+          <label className="text-[10px] text-slate-500 font-medium mb-1 uppercase tracking-wider block">
+            Conc. (mg/mL)
+          </label>
+          <input
+            type="number" min="0" placeholder="ex: 500" value={conc}
+            onChange={e => { setConc(e.target.value); setResult(null) }}
+            className="w-full px-3 py-2 bg-slate-700/60 border border-slate-600/60 rounded-lg text-sm text-slate-200 placeholder-slate-600 focus:outline-none focus:ring-2 focus:ring-teal-500/40 focus:border-teal-500 transition"
+          />
+        </div>
+      </div>
+
+      <div className="flex gap-2">
+        <button onClick={calc}
+          className="flex-1 py-2 bg-teal-600 text-white rounded-xl text-xs font-bold hover:bg-teal-700 transition-colors flex items-center justify-center gap-1.5">
+          <Calculator size={12} /> Calcular Volume
+        </button>
+        <button onClick={reset}
+          className="p-2 text-slate-500 hover:text-slate-300 hover:bg-slate-700/50 rounded-xl transition-colors">
+          <RotateCcw size={13} />
+        </button>
+      </div>
+
+      <AnimatePresence>
+        {result && (
+          <motion.div
+            initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}
+            className="bg-teal-500/10 border border-teal-500/25 rounded-xl p-3 grid grid-cols-2 gap-3"
+          >
+            <div>
+              <p className="text-[10px] text-slate-500 mb-0.5">Dose Total</p>
+              <p className="text-xl font-black text-white">
+                {result.total.toFixed(1)}<span className="text-xs text-slate-400 ml-1">mg</span>
+              </p>
+            </div>
+            {result.vol !== null ? (
+              <div>
+                <p className="text-[10px] text-slate-500 mb-0.5">Volume Final</p>
+                <p className="text-xl font-black text-teal-300">
+                  {result.vol.toFixed(2)}<span className="text-xs text-slate-400 ml-1">mL</span>
+                </p>
+              </div>
+            ) : (
+              <div className="flex items-center">
+                <p className="text-xs text-slate-600">Informe a concentração para calcular o volume</p>
+              </div>
+            )}
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {sp.notes && (
+        <div className="flex items-start gap-2 bg-amber-500/5 border border-amber-500/15 rounded-xl p-3">
+          <AlertCircle size={12} className="text-amber-400 flex-shrink-0 mt-0.5" />
+          <p className="text-xs text-amber-300/80 leading-relaxed">{sp.notes}</p>
+        </div>
+      )}
+    </div>
+  )
+}
+
+/* ── Painel de detalhes ── */
+function DrugDetail({ drug }: { drug: Drug }) {
+  const [tab,      setTab]      = useState<TabKey>('sobre')
+  const [expanded, setExpanded] = useState<string | null>(drug.species[0]?.name ?? null)
+
+  return (
+    <AnimatePresence mode="wait">
+      <motion.div
+        key={drug.id}
+        initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: -6 }} transition={{ duration: 0.18 }}
+        className="space-y-3"
+      >
+        {/* Cabeçalho */}
+        <div className="bg-slate-800 rounded-2xl p-5 border border-slate-700/80">
+          <div className="flex items-start gap-3 mb-3">
+            <div className="w-11 h-11 rounded-xl bg-teal-500/15 flex items-center justify-center flex-shrink-0">
+              <Pill size={20} className="text-teal-400" />
+            </div>
+            <div className="flex-1">
+              <h2 className="text-xl font-bold text-white leading-tight">{drug.name}</h2>
+              <span className="text-xs bg-teal-500/10 text-teal-400 border border-teal-500/20 px-2.5 py-0.5 rounded-full font-medium mt-1 inline-block">
+                {drug.category}
+              </span>
+            </div>
+          </div>
+          <div className="flex flex-wrap gap-1.5">
+            {drug.tags.map(t => (
+              <span key={t} className="inline-flex items-center gap-1 text-[10px] bg-slate-700/60 text-slate-400 px-2 py-0.5 rounded-full border border-slate-700/40">
+                <Tag size={8} />{t}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        {/* Abas */}
+        <div className="flex gap-1.5">
+          {TABS.map(({ key, label, icon: Icon }) => (
+            <button key={key} onClick={() => setTab(key)}
+              className={`flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-semibold border transition-all ${
+                tab === key
+                  ? 'bg-teal-500/20 text-teal-300 border-teal-500/30'
+                  : 'bg-slate-800 text-slate-500 border-slate-700/60 hover:text-slate-300 hover:border-slate-600'
+              }`}
+            >
+              <Icon size={12} />{label}
+            </button>
+          ))}
+        </div>
+
+        {/* ── Aba: Sobre ── */}
+        {tab === 'sobre' && (
+          <motion.div key="sobre" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.15 }}
+            className="bg-slate-800 rounded-2xl p-5 border border-slate-700/80 space-y-4">
+            <div>
+              <p className="text-xs text-teal-400 font-bold uppercase tracking-wider mb-2">Mecanismo de Ação</p>
+              <p className="text-sm text-slate-300 leading-relaxed">{drug.mechanism}</p>
+            </div>
+            <div>
+              <p className="text-xs text-red-400 font-bold uppercase tracking-wider mb-2 flex items-center gap-1.5">
+                <AlertCircle size={11} /> Contraindicações
+              </p>
+              <ul className="space-y-1.5">
+                {drug.contraindications.map(c => (
+                  <li key={c} className="flex items-start gap-2 text-sm text-red-300/80">
+                    <span className="mt-2 w-1.5 h-1.5 rounded-full bg-red-500/50 flex-shrink-0" />{c}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </motion.div>
+        )}
+
+        {/* ── Aba: Doses & Calculadora ── */}
+        {tab === 'doses' && (
+          <motion.div key="doses" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.15 }}
+            className="space-y-2">
+            <p className="text-xs text-slate-500 px-1">
+              Informe Peso e Concentração em cada espécie para calcular o volume final automaticamente.
+            </p>
+            {drug.species.map(sp => {
+              const open   = expanded === sp.name
+              const danger = sp.dose.startsWith('⚠️')
+              return (
+                <div key={sp.name} className="bg-slate-800 rounded-2xl border border-slate-700/80 overflow-hidden">
+                  <button
+                    className="w-full flex items-center justify-between px-5 py-3.5 hover:bg-slate-700/40 transition-colors"
+                    onClick={() => setExpanded(open ? null : sp.name)}
+                  >
+                    <div className="flex items-center gap-3">
+                      <span className="text-xl leading-none">{sp.emoji}</span>
+                      <span className="font-semibold text-slate-200 text-sm">{sp.name}</span>
+                      <span className={`text-xs font-bold px-2.5 py-0.5 rounded-full border ${
+                        danger
+                          ? 'bg-red-500/10 text-red-400 border-red-500/20'
+                          : 'bg-teal-500/10 text-teal-400 border-teal-500/20'
+                      }`}>
+                        {sp.dose}
+                      </span>
+                    </div>
+                    <motion.div animate={{ rotate: open ? 180 : 0 }} transition={{ duration: 0.2 }}>
+                      <ChevronDown size={15} className="text-slate-500" />
+                    </motion.div>
+                  </button>
+
+                  <AnimatePresence initial={false}>
+                    {open && (
+                      <motion.div key="body"
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: 'auto', opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.22 }}
+                        className="overflow-hidden"
+                      >
+                        <SpeciesCalc sp={sp} />
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              )
+            })}
+          </motion.div>
+        )}
+
+        {/* ── Aba: Farmacologia ── */}
+        {tab === 'farmaco' && (
+          <motion.div key="farmaco" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.15 }}
+            className="space-y-3">
+
+            <div className="bg-slate-800 rounded-2xl p-5 border border-slate-700/80">
+              <p className="text-xs text-purple-400 font-bold uppercase tracking-wider mb-2">Classe Farmacológica</p>
+              <p className="text-sm text-slate-300">{drug.category}</p>
+              <div className="mt-3 flex flex-wrap gap-1.5">
+                {drug.tags.map(t => (
+                  <span key={t} className="text-[11px] bg-purple-500/10 text-purple-400 border border-purple-500/20 px-2.5 py-0.5 rounded-full font-medium">{t}</span>
+                ))}
+              </div>
+            </div>
+
+            <div className="bg-slate-800 rounded-2xl p-5 border border-slate-700/80">
+              <p className="text-xs text-teal-400 font-bold uppercase tracking-wider mb-2">Mecanismo de Ação Detalhado</p>
+              <p className="text-sm text-slate-300 leading-relaxed">{drug.mechanism}</p>
+            </div>
+
+            <div className="bg-red-950/30 rounded-2xl p-5 border border-red-500/20">
+              <p className="text-xs text-red-400 font-bold uppercase tracking-wider mb-2.5 flex items-center gap-1.5">
+                <AlertCircle size={11} /> Contraindicações e Precauções
+              </p>
+              <ul className="space-y-2">
+                {drug.contraindications.map(c => (
+                  <li key={c} className="flex items-start gap-2 text-sm text-red-300/80">
+                    <span className="mt-2 w-1.5 h-1.5 rounded-full bg-red-500/50 flex-shrink-0" />{c}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="bg-slate-800/50 rounded-2xl p-4 border border-slate-700/50">
+              <p className="text-xs text-slate-500 leading-relaxed">
+                <span className="text-slate-400 font-semibold">Referências: </span>
+                Plumb's Veterinary Drug Handbook (10ª ed.) · Merck Veterinary Manual · Vetsmart Clinical Database
+              </p>
+            </div>
+          </motion.div>
+        )}
+      </motion.div>
+    </AnimatePresence>
+  )
+}
+
+/* ── Página principal ── */
+export default function MedicamentosPage() {
+  const [query,    setQuery]    = useState('')
+  const [selected, setSelected] = useState<Drug>(db.drugs[0])
+
+  const filtered = query.trim()
+    ? db.drugs.filter(d =>
+        d.name.toLowerCase().includes(query.toLowerCase()) ||
+        d.category.toLowerCase().includes(query.toLowerCase()) ||
+        d.tags.some(t => t.toLowerCase().includes(query.toLowerCase()))
+      )
+    : db.drugs
+
+  const select = (drug: Drug) => {
+    setSelected(drug)
+    setQuery('')
+  }
+
+  return (
+    <div className="p-8 max-w-5xl mx-auto">
+      {/* Cabeçalho */}
+      <div className="mb-6">
+        <div className="flex items-center gap-2 mb-1">
+          <FlaskConical size={22} className="text-teal-400" />
+          <h1 className="text-2xl font-bold text-white">Bulário Inteligente</h1>
+        </div>
+        <p className="text-slate-400 text-sm">
+          {db.drugs.length} fármacos · calculadora integrada por espécie · Plumb's + Merck
+        </p>
+      </div>
+
+      {/* Busca */}
+      <div className="relative mb-6">
+        <Search size={17} className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 pointer-events-none" />
+        <input
+          type="text"
+          placeholder="Buscar fármaco, classe ou tag... ex: AINE, GnRH, antibiótico"
+          value={query}
+          onChange={e => setQuery(e.target.value)}
+          className="w-full pl-11 pr-4 py-3 bg-slate-800 border border-slate-700 rounded-2xl text-sm text-slate-200 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-teal-500/50 focus:border-teal-500 transition"
+        />
+      </div>
+
+      <div className="flex gap-5">
+        {/* Lista lateral */}
+        <div className="w-52 flex-shrink-0 space-y-1 max-h-[75vh] overflow-y-auto pr-1 custom-scroll">
+          {filtered.map(drug => {
+            const active = selected.id === drug.id
+            return (
+              <motion.button
+                key={drug.id}
+                whileHover={{ x: active ? 0 : 3 }}
+                onClick={() => select(drug)}
+                className={`w-full text-left px-4 py-3 rounded-xl border text-sm transition-all ${
+                  active
+                    ? 'bg-teal-500/20 text-teal-300 border-teal-500/40 shadow-sm'
+                    : 'bg-slate-800/60 text-slate-400 border-slate-700/60 hover:border-teal-600/40 hover:text-slate-200'
+                }`}
+              >
+                <p className="font-semibold truncate">{drug.name}</p>
+                <p className={`text-xs mt-0.5 truncate ${active ? 'text-teal-400/70' : 'text-slate-600'}`}>
+                  {drug.category}
+                </p>
+              </motion.button>
+            )
+          })}
+          {filtered.length === 0 && (
+            <p className="text-sm text-slate-500 px-2 py-3">Nenhum resultado.</p>
+          )}
+        </div>
+
+        {/* Painel de detalhe */}
+        <div className="flex-1 min-w-0">
+          <DrugDetail drug={selected} />
+        </div>
+      </div>
+    </div>
+  )
+}
