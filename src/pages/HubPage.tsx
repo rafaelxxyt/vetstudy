@@ -536,51 +536,51 @@ function CalendarioRevisao({ topics, setTopics, storageKey }: {
           <Plus size={14} /> Estudei
         </button>
       </div>
-      {dueToday.length > 0 && (
-        <div className="bg-amber-500/10 border border-amber-500/20 rounded-2xl p-4">
-          <p className="text-[10px] font-bold text-amber-400 uppercase tracking-wider mb-2 flex items-center gap-1.5">
-            <RotateCcw size={11} /> Revisar hoje — {dueToday.length} item{dueToday.length > 1 ? 's' : ''}
-          </p>
-          <div className="space-y-2">
-            {dueToday.map(s => (
-              <div key={`${s.topic.id}-${s.interval}`}
-                className="flex items-center justify-between bg-slate-800/50 rounded-xl px-3 py-2.5">
-                <div>
-                  <p className="text-sm font-semibold text-slate-200">{s.topic.name}</p>
-                  <p className="text-xs text-amber-400/70">{INT_LABEL[s.interval]} — Revisão de {s.interval} dia{s.interval > 1 ? 's' : ''}</p>
+        {dueToday.length > 0 && (
+          <div className="bg-amber-500/10 border border-amber-500/20 rounded-2xl p-3">
+            <p className="text-[10px] font-bold text-amber-400 uppercase tracking-wider mb-1.5 flex items-center gap-1">
+              <RotateCcw size={11} /> Revisar hoje — {dueToday.length} item{dueToday.length > 1 ? 's' : ''}
+            </p>
+            <div className="space-y-1.5">
+              {dueToday.map(s => (
+                <div key={`${s.topic.id}-${s.interval}`}
+                  className="flex items-center justify-between gap-3 bg-slate-800/50 rounded-xl px-3 py-2">
+                  <div className="min-w-0">
+                    <p className="text-sm font-semibold text-slate-200">{s.topic.name}</p>
+                    <p className="text-xs text-amber-400/70">{INT_LABEL[s.interval]} — Revisão de {s.interval} dia{s.interval > 1 ? 's' : ''}</p>
+                  </div>
+                  <button onClick={() => markDone(s.topic.id, s.interval)}
+                    className="flex items-center gap-1 text-xs bg-teal-600/20 border border-teal-500/30 text-teal-400 px-2.5 py-1 rounded-xl hover:bg-teal-600/40 transition active:scale-95">
+                    <CheckCircle2 size={12} /> Feito
+                  </button>
                 </div>
-                <button onClick={() => markDone(s.topic.id, s.interval)}
-                  className="flex items-center gap-1 text-xs bg-teal-600/20 border border-teal-500/30 text-teal-400 px-2.5 py-1.5 rounded-xl hover:bg-teal-600/40 transition active:scale-95">
-                  <CheckCircle2 size={12} /> Feito
-                </button>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-        </div>
-      )}
-      {groupedFuture.length > 0 && (
-        <div className="bg-slate-800/40 rounded-2xl border border-slate-700/40 p-3">
-          <p className="text-[10px] font-bold text-slate-600 uppercase tracking-wider mb-2">Próximas revisões</p>
-          <div className="overflow-x-auto">
-            <div className="min-w-[420px]">
-              <div className="grid grid-cols-[minmax(0,1fr)_54px_54px_54px_54px] items-center gap-2 px-2 pb-1 text-[9px] font-bold uppercase tracking-wider text-slate-600">
-                <span>Conteudo</span>
-                {INTERVALS.map(interval => <span key={interval} className="text-center">{INT_LABEL[interval]}</span>)}
-              </div>
-              <div className="divide-y divide-slate-700/40 rounded-xl border border-slate-700/35 overflow-hidden">
-                {groupedFuture.map(row => (
-                  <div key={row.topic.id} className="grid grid-cols-[minmax(0,1fr)_54px_54px_54px_54px] items-center gap-2 bg-slate-800/30 px-2 py-1.5">
-                    <span className="text-xs text-slate-300 truncate">{row.topic.name}</span>
-                    {row.reviews.map(review => {
-                      const pending = review.dueDate > today
-                      const isNext = row.nextInterval === review.interval
-                      return (
-                        <span key={review.interval}
-                          className={`justify-self-center rounded-md px-1.5 py-1 text-[10px] font-mono ${
-                            !pending ? 'text-slate-700 bg-slate-800/70' :
-                            isNext ? 'text-slate-950 bg-teal-300 font-bold' :
-                            'text-slate-500 bg-slate-700/40'
-                          }`}>
+        )}
+        {groupedFuture.length > 0 && (
+          <div className="bg-slate-800/40 rounded-2xl border border-slate-700/40 p-3">
+            <p className="text-[10px] font-bold text-slate-600 uppercase tracking-wider mb-1.5">Próximas revisões</p>
+            <div className="overflow-x-auto">
+              <div className="min-w-[420px]">
+                <div className="grid grid-cols-[minmax(0,1fr)_54px_54px_54px_54px] items-center gap-1.5 px-2 pb-1 text-[9px] font-bold uppercase tracking-wider text-slate-600">
+                  <span>Conteudo</span>
+                  {INTERVALS.map(interval => <span key={interval} className="text-center">{INT_LABEL[interval]}</span>)}
+                </div>
+                <div className="divide-y divide-slate-700/40 rounded-xl border border-slate-700/35 overflow-hidden">
+                  {groupedFuture.map(row => (
+                    <div key={row.topic.id} className="grid grid-cols-[minmax(0,1fr)_54px_54px_54px_54px] items-center gap-1.5 bg-slate-800/30 px-2 py-1">
+                      <span className="text-xs text-slate-300 truncate">{row.topic.name}</span>
+                      {row.reviews.map(review => {
+                        const pending = review.dueDate > today
+                        const isNext = row.nextInterval === review.interval
+                        return (
+                          <span key={review.interval}
+                            className={`justify-self-center rounded-md px-1.5 py-0.5 text-[10px] font-mono ${
+                              !pending ? 'text-slate-700 bg-slate-800/70' :
+                              isNext ? 'text-slate-950 bg-teal-300 font-bold' :
+                              'text-slate-500 bg-slate-700/40'
+                            }`}>
                           {pending ? review.dueDate.slice(5) : '--'}
                         </span>
                       )
@@ -592,27 +592,27 @@ function CalendarioRevisao({ topics, setTopics, storageKey }: {
           </div>
         </div>
       )}
-      {topics.length > 0 && (
-        <div>
-          <p className="text-[10px] font-bold text-slate-600 uppercase tracking-wider mb-2 flex items-center gap-1.5">
-            <BookOpen size={10} /> Cadastrado ({topics.length})
-          </p>
-          <div className="overflow-x-auto">
-            <div className="min-w-[440px]">
-              <div className="grid grid-cols-[minmax(0,1fr)_58px_58px_58px_58px_24px] items-center gap-2 px-3 pb-1 text-[9px] font-bold uppercase tracking-wider text-slate-600">
-                <span>Conteudo</span>
-                {INTERVALS.map(d => <span key={d} className="text-center">D{d}</span>)}
-                <span />
-              </div>
-              <div className="divide-y divide-slate-700/35 rounded-xl border border-slate-700/35 overflow-hidden">
-                {topics.map(t => (
-                  <div key={t.id} className="grid grid-cols-[minmax(0,1fr)_58px_58px_58px_58px_24px] items-center gap-2 bg-slate-800/30 px-3 py-2 group">
-                    <p className="text-xs text-slate-300 font-medium truncate">{t.name}</p>
-                    {INTERVALS.map(d => (
-                      <span key={d} className={`justify-self-center rounded-md px-1.5 py-1 text-[10px] font-mono text-slate-950 ${INT_COLOR[d]}`}>
-                        {addDays(t.studiedAt, d).slice(5)}
-                      </span>
-                    ))}
+        {topics.length > 0 && (
+          <div>
+            <p className="text-[10px] font-bold text-slate-600 uppercase tracking-wider mb-1.5 flex items-center gap-1">
+              <BookOpen size={10} /> Cadastrado ({topics.length})
+            </p>
+            <div className="overflow-x-auto">
+              <div className="min-w-[440px]">
+                <div className="grid grid-cols-[minmax(0,1fr)_58px_58px_58px_58px_24px] items-center gap-1.5 px-3 pb-1 text-[9px] font-bold uppercase tracking-wider text-slate-600">
+                  <span>Conteudo</span>
+                  {INTERVALS.map(d => <span key={d} className="text-center">D{d}</span>)}
+                  <span />
+                </div>
+                <div className="divide-y divide-slate-700/35 rounded-xl border border-slate-700/35 overflow-hidden">
+                  {topics.map(t => (
+                    <div key={t.id} className="grid grid-cols-[minmax(0,1fr)_58px_58px_58px_58px_24px] items-center gap-1.5 bg-slate-800/30 px-3 py-1.5 group">
+                      <p className="text-xs text-slate-300 font-medium truncate">{t.name}</p>
+                      {INTERVALS.map(d => (
+                        <span key={d} className={`justify-self-center rounded-md px-1.5 py-0.5 text-[10px] font-mono text-slate-950 ${INT_COLOR[d]}`}>
+                          {addDays(t.studiedAt, d).slice(5)}
+                        </span>
+                      ))}
                     <button onClick={() => remove(t.id)}
                       className="text-slate-700 hover:text-red-400 transition-colors opacity-0 group-hover:opacity-100">
                       <Trash2 size={12} />
