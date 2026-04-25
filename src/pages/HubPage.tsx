@@ -274,7 +274,7 @@ function MiniCalendarioComHistorico({ topics, storageKey, dailyHistory }: {
       {selectedDay && (
         <motion.div initial={{ opacity: 0, y: 4 }} animate={{ opacity: 1, y: 0 }} className="mt-3 border-t border-slate-700/50 pt-3">
           <p className="text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-2">
-            {selectedDay === today ? 'Hoje' : selectedDay.slice(5)}
+            {selectedDay === today ? 'Hoje' : formatDateBR(selectedDay)}
           </p>
           {!selectedTrace && selectedDots.length === 0 && (
             <p className="text-xs text-slate-600 italic">Nenhum estudo ou revisao neste dia.</p>
@@ -581,11 +581,11 @@ function CalendarioRevisao({ topics, setTopics, storageKey }: {
                               isNext ? 'text-slate-950 bg-teal-300 font-bold' :
                               'text-slate-500 bg-slate-700/40'
                             }`}>
-                          {pending ? review.dueDate.slice(5) : '--'}
-                        </span>
-                      )
-                    })}
-                  </div>
+                            {pending ? formatDateBR(review.dueDate) : '--'}
+                          </span>
+                        )
+                      })}
+                    </div>
                 ))}
               </div>
             </div>
@@ -610,7 +610,7 @@ function CalendarioRevisao({ topics, setTopics, storageKey }: {
                       <p className="text-xs text-slate-300 font-medium truncate">{t.name}</p>
                       {INTERVALS.map(d => (
                         <span key={d} className={`justify-self-center rounded-md px-1.5 py-0.5 text-[10px] font-mono text-slate-950 ${INT_COLOR[d]}`}>
-                          {addDays(t.studiedAt, d).slice(5)}
+                          {formatDateBR(addDays(t.studiedAt, d))}
                         </span>
                       ))}
                     <button onClick={() => remove(t.id)}
