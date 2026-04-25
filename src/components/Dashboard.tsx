@@ -2,9 +2,9 @@ import { motion } from 'framer-motion'
 import { CalendarDays, BookMarked, TrendingUp, CheckCircle2, Target, Lightbulb } from 'lucide-react'
 
 const PROVAS = [
-  { subject: 'Reprodução Animal (A1)',   date: '28 Abr', days: 13, color: 'bg-red-500/10 text-red-400 border border-red-500/20'    },
-  { subject: 'Clínica de Ruminantes',    date: '05 Mai', days: 20, color: 'bg-amber-500/10 text-amber-400 border border-amber-500/20' },
-  { subject: 'Diagnóstico por Imagem',   date: '12 Mai', days: 27, color: 'bg-green-500/10 text-green-400 border border-green-500/20' },
+  { subject: 'Reprodução Animal (A1)',   date: '28/04', days: 13, color: 'bg-red-500/10 text-red-400 border border-red-500/20'    },
+  { subject: 'Clínica de Ruminantes',    date: '05/05', days: 20, color: 'bg-amber-500/10 text-amber-400 border border-amber-500/20' },
+  { subject: 'Diagnóstico por Imagem',   date: '12/05', days: 27, color: 'bg-green-500/10 text-green-400 border border-green-500/20' },
 ]
 
 const STATS = [
@@ -34,7 +34,7 @@ export default function Dashboard() {
           Bom estudo, futuro(a) Médico(a) Veterinário(a)! 🐾
         </h1>
         <p className="text-slate-400 mt-1 text-sm">
-          5ª Fase · {new Date().toLocaleDateString('pt-BR', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })}
+          5ª Fase · {new Date().toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit' })}
         </p>
       </div>
 

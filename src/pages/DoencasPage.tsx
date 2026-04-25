@@ -10,11 +10,24 @@ type Disease = typeof db.diseases[0]
 
 const SECTION_ICONS: Record<string, React.ElementType> = {
   'Etiologia':    Microscope,
+  'Referência Anatômica': Microscope,
   'Sintomas':     Stethoscope,
+  'Estruturas Anatômicas': Stethoscope,
   'Diagnóstico':  Search,
+  'Avaliação Anatômica': Search,
   'Tratamento':   Pill,
+  'Observações': Pill,
   'Prevenção':    ShieldAlert,
+  'Aplicações': ShieldAlert,
   'Prognóstico':  TrendingUp,
+}
+
+function isAnatomyReference(disease: Disease) {
+  return disease.etiology.toLowerCase().includes('referência anatômica')
+}
+
+function cleanAnatomyLabel(item: string) {
+  return item.replace(/^Estrutura\s*\d+\s*[—-]\s*/i, '')
 }
 
 export default function DoencasPage() {
@@ -32,14 +45,24 @@ export default function DoencasPage() {
 
   const select = (d: Disease) => { setSelected(d); setQuery(''); setSection('Sintomas') }
 
-  const sections = [
-    { label: 'Etiologia',   content: selected.etiology    },
-    { label: 'Sintomas',    content: selected.symptoms    },
-    { label: 'Diagnóstico', content: selected.diagnosis   },
-    { label: 'Tratamento',  content: selected.treatment   },
-    { label: 'Prevenção',   content: selected.prevention  },
-    { label: 'Prognóstico', content: selected.prognosis   },
-  ]
+  const anatomyReference = isAnatomyReference(selected)
+  const sections = anatomyReference
+    ? [
+        { label: 'Referência Anatômica', content: selected.etiology.replace(/^Referência anatômica para/i, 'Referência anatômica de') },
+        { label: 'Estruturas Anatômicas', content: selected.symptoms.map(cleanAnatomyLabel) },
+        { label: 'Avaliação Anatômica', content: selected.diagnosis },
+        { label: 'Observações', content: selected.treatment },
+        { label: 'Aplicações', content: selected.prevention },
+        { label: 'Prognóstico', content: selected.prognosis },
+      ]
+    : [
+        { label: 'Etiologia',   content: selected.etiology    },
+        { label: 'Sintomas',    content: selected.symptoms    },
+        { label: 'Diagnóstico', content: selected.diagnosis   },
+        { label: 'Tratamento',  content: selected.treatment   },
+        { label: 'Prevenção',   content: selected.prevention  },
+        { label: 'Prognóstico', content: selected.prognosis   },
+      ]
 
   return (
     <div className="p-4 sm:p-6 md:p-8 max-w-5xl mx-auto">

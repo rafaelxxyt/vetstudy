@@ -53,6 +53,11 @@ interface QuizStats { total: number; correct: number; hours: number }
    HELPERS
    ══════════════════════════════════════════════════════ */
 function todayISO() { return new Date().toISOString().split('T')[0] }
+function formatDateBR(value: string) {
+  const [year, month, day] = value.split('-')
+  if (!year || !month || !day) return value
+  return `${day}/${month}`
+}
 function addDays(date: string, d: number) {
   const dt = new Date(date); dt.setDate(dt.getDate() + d)
   return dt.toISOString().split('T')[0]
@@ -156,7 +161,7 @@ function MiniCalendario({ topics, storageKey: _sk }: { topics: Topic[]; storageK
       {selectedDay && (
         <motion.div initial={{ opacity: 0, y: 4 }} animate={{ opacity: 1, y: 0 }} className="mt-3 border-t border-slate-700/50 pt-3">
           <p className="text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-2">
-            {selectedDay === today ? '📅 Hoje' : selectedDay.slice(5)}
+            {selectedDay === today ? '📅 Hoje' : formatDateBR(selectedDay)}
           </p>
           {selectedItems.length === 0
             ? <p className="text-xs text-slate-600 italic">Nenhuma revisão agendada.</p>
@@ -891,7 +896,7 @@ function HubDashboard({ profile, topics, setTopics, stats, dailyHistory, topicsS
       <div>
         <h2 className="text-xl font-bold text-white">Hub Acadêmico 🎓</h2>
         <p className="text-xs text-slate-500 mt-0.5">
-          {new Date().toLocaleDateString('pt-BR', { weekday: 'long', day: 'numeric', month: 'long' })}
+          {new Date().toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit' })}
         </p>
       </div>
 
