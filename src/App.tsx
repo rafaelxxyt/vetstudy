@@ -8,12 +8,18 @@ import DoencasPage      from './pages/DoencasPage'
 import ToolboxPage      from './pages/ToolboxPage'
 import VetNewsPage      from './pages/VetNewsPage'
 import HubPage          from './pages/HubPage'
+import CasosPage        from './pages/CasosPage'
+import RevisaoPage      from './pages/RevisaoPage'
+import MapasPage        from './pages/MapasPage'
 
 const PAGE_LABELS: Record<Page, string> = {
   hub:          'Hub Acadêmico',
+  revisao:      'Revisão',
+  casos:        'Casos Clínicos',
+  mapas:        'Mapas Mentais',
   medicamentos: 'Medicamentos',
   doencas:      'Doenças',
-  ferramentas:  'Ferramentas',
+  ferramentas:  'Central Clínica',
   vetnews:      'VetNews',
 }
 
@@ -21,6 +27,7 @@ export default function App() {
   const [activePage, setActivePage] = useState<Page>('hub')
   const [mobileOpen, setMobileOpen] = useState(false)
   const [selectionToken, setSelectionToken] = useState(0)
+  const [caseSelectionToken, setCaseSelectionToken] = useState(0)
   const [selectedDiseaseId, setSelectedDiseaseId] = useState<string | undefined>(undefined)
   const [selectedDrugId, setSelectedDrugId] = useState<string | undefined>(undefined)
   const [selectedDrugQuery, setSelectedDrugQuery] = useState<string | undefined>(undefined)
@@ -62,8 +69,28 @@ export default function App() {
     setMobileOpen(false)
   }
 
+  const handleOpenCases = () => {
+    setCaseSelectionToken(Date.now())
+    setActivePage('casos')
+    setMobileOpen(false)
+  }
+
+  const handleOpenReview = () => {
+    setActivePage('revisao')
+    setMobileOpen(false)
+  }
+
   const pageNode = activePage === 'hub'
-    ? <HubPage onGlobalNavigate={handleGlobalNavigate} />
+    ? <HubPage onOpenCases={handleOpenCases} onOpenReview={handleOpenReview} />
+    : activePage === 'revisao'
+      ? <RevisaoPage onRequestCase={handleOpenCases} />
+    : activePage === 'casos'
+      ? <CasosPage
+          selectionToken={caseSelectionToken}
+          onOpenDisease={(diseaseId) => handleGlobalNavigate('doencas', diseaseId)}
+        />
+    : activePage === 'mapas'
+      ? <MapasPage />
     : activePage === 'medicamentos'
       ? <MedicamentosPage
           initialSelectedId={selectedDrugId}
@@ -78,7 +105,7 @@ export default function App() {
             onOpenRelatedDrugs={handleOpenDrugSearch}
           />
         : activePage === 'ferramentas'
-          ? <ToolboxPage />
+          ? <ToolboxPage onNavigate={handleGlobalNavigate} />
           : <VetNewsPage />
 
   return (

@@ -1260,7 +1260,7 @@ function ClinicalCasesSection({
   )
 }
 
-function HubDashboard({ profile, topics, setTopics, stats, dailyHistory, topicsStorageKey, seqStorageKey, caseFocusToken, onOpenSimulator, onOpenDailyStudy, onOpenReview, onStartCase, onGlobalNavigate }: {
+function HubDashboard({ profile, topics, setTopics, stats, dailyHistory, topicsStorageKey, seqStorageKey, onOpenSimulator, onOpenDailyStudy, onOpenReview, onStartCase, onGlobalNavigate }: {
   profile: LocalProfile
   topics: Topic[]
   setTopics: (t: Topic[]) => void
@@ -1268,7 +1268,6 @@ function HubDashboard({ profile, topics, setTopics, stats, dailyHistory, topicsS
   dailyHistory: DailyStudyTrace[]
   topicsStorageKey: string
   seqStorageKey: string
-  caseFocusToken: number
   onOpenSimulator: () => void
   onOpenDailyStudy: () => void
   onOpenReview: () => void
@@ -1334,20 +1333,6 @@ function HubDashboard({ profile, topics, setTopics, stats, dailyHistory, topicsS
         </div>
       </div>
 
-      <GlobalClinicalSearch profileId={profile.id} onNavigate={onGlobalNavigate} />
-
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
-        <QuickSavedList title="⭐ Favoritos" items={favorites.slice(0, 10)} onOpenItem={openSavedItem} />
-        <QuickSavedList title="🕒 Recentes" items={recent.slice(0, 10)} onOpenItem={openSavedItem} />
-      </div>
-
-      <ClinicalCasesSection
-        profileId={profile.id}
-        focusToken={caseFocusToken}
-        reviewedCases={reviewedCases}
-        onOpenDisease={(diseaseId) => onGlobalNavigate('doencas', diseaseId)}
-      />
-
       <EstudoHojeCard profile={profile} onOpenSimulator={onOpenSimulator} onOpenDailyStudy={onOpenDailyStudy} />
 
       <div>
@@ -1393,21 +1378,21 @@ function HubDashboard({ profile, topics, setTopics, stats, dailyHistory, topicsS
 /* ══════════════════════════════════════════════════════
    TABS DO HUB
    ══════════════════════════════════════════════════════ */
-type HubTab = 'home' | 'revisao' | 'simulador' | 'mapas'
+type HubTab = 'home' | 'simulador'
 
 const TABS: { id: HubTab; label: string; icon: React.ElementType }[] = [
   { id: 'home',      label: 'Home',       icon: LayoutDashboard },
-  { id: 'revisao',   label: 'Flashcards', icon: GraduationCap   },
   { id: 'simulador', label: 'Simulador',  icon: ClipboardCheck  },
-  { id: 'mapas',     label: 'Mapas',      icon: Network         },
 ]
 
 function HubContent({
   profile,
-  onGlobalNavigate,
+  onOpenCases,
+  onOpenReview,
 }: {
   profile: LocalProfile
-  onGlobalNavigate: (page: SearchTargetPage, id: string) => void
+  onOpenCases: () => void
+  onOpenReview: () => void
 }) {
   const topicsKey = profileStorageKey(profile.id, PROFILE_DATA_KEYS.topics)
   const seqKey    = profileStorageKey(profile.id, 'vetstudy_study_seq')
@@ -1418,7 +1403,6 @@ function HubContent({
   const [topics, setTopics] = useState<Topic[]>(() => readJSON<Topic[]>(topicsKey, []))
   const [stats,  setStats]  = useState<QuizStats>(() => readJSON<QuizStats>(statsKey, { total: 0, correct: 0, hours: 0 }))
   const [dailyHistory, setDailyHistory] = useState<DailyStudyTrace[]>(() => readJSON<DailyStudyTrace[]>(histKey, []))
-  const [caseFocusToken, setCaseFocusToken] = useState(0)
 
   // Abrir simulador em modo diário (via EstudoHojeCard)
   const [pendingDailyLaunch, setPendingDailyLaunch] = useState(false)
@@ -1443,11 +1427,6 @@ function HubContent({
   useEffect(() => {
     if (pendingDailyLaunch && tab === 'simulador') setPendingDailyLaunch(false)
   }, [pendingDailyLaunch, tab])
-
-  const openClinicalCaseFlow = () => {
-    setCaseFocusToken(Date.now())
-    setTab('home')
-  }
 
   return (
     <div className="flex flex-col h-full">
@@ -1483,17 +1462,14 @@ function HubContent({
                 dailyHistory={dailyHistory}
                 topicsStorageKey={topicsKey}
                 seqStorageKey={seqKey}
-                caseFocusToken={caseFocusToken}
                 onOpenSimulator={() => setTab('simulador')}
                 onOpenDailyStudy={openDailyStudy}
-                onOpenReview={() => setTab('revisao')}
-                onStartCase={openClinicalCaseFlow}
-                onGlobalNavigate={onGlobalNavigate}
+                onOpenReview={onOpenReview}
+                onStartCase={onOpenCases}
+                onGlobalNavigate={() => {}}
               />
             )}
-            {tab === 'revisao'   && <RevisaoPage profileId={profile.id} onRequestCase={openClinicalCaseFlow} />}
             {tab === 'simulador' && <SimuladorPage />}
-            {tab === 'mapas'     && <MapasPage />}
           </motion.div>
         </AnimatePresence>
       </div>
@@ -1505,9 +1481,11 @@ function HubContent({
    EXPORT PRINCIPAL
    ══════════════════════════════════════════════════════ */
 export default function HubPage({
-  onGlobalNavigate,
+  onOpenCases,
+  onOpenReview,
 }: {
-  onGlobalNavigate?: (page: SearchTargetPage, id: string) => void
+  onOpenCases?: () => void
+  onOpenReview?: () => void
 } = {}) {
   const [profile, setProfile] = useState<LocalProfile | null>(() => getActiveProfile())
 
@@ -1540,7 +1518,8 @@ export default function HubPage({
         <HubContent
           key={profile.id}
           profile={profile}
-          onGlobalNavigate={onGlobalNavigate ?? (() => {})}
+          onOpenCases={onOpenCases ?? (() => {})}
+          onOpenReview={onOpenReview ?? (() => {})}
         />
       </div>
     </Gatekeeper>

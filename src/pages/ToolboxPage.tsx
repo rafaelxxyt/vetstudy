@@ -1,7 +1,10 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Wrench, Calculator, Droplets, FlaskConical, AlertCircle } from 'lucide-react'
+import { Wrench, Calculator, Droplets, FlaskConical, AlertCircle, Search } from 'lucide-react'
 import db from '../data/central_db.json'
+import GlobalClinicalSearch from '../components/GlobalClinicalSearch'
+import { getActiveProfile } from '../utils/profiles'
+import type { SearchTargetPage } from '../utils/globalClinicalSearch'
 
 type Tool = 'dose' | 'fluido' | 'lab'
 type LabSpecies = 'dog' | 'cat' | 'bovine' | 'equine'
@@ -298,18 +301,33 @@ function LabRef() {
 }
 
 /* ── Página principal ── */
-export default function FerramentasPage() {
+export default function FerramentasPage({
+  onNavigate,
+}: {
+  onNavigate: (page: SearchTargetPage, id: string) => void
+}) {
   const [active, setActive] = useState<Tool>('dose')
+  const profileId = getActiveProfile()?.id
 
   return (
     <div className="p-4 sm:p-6 md:p-8 max-w-4xl mx-auto">
       <div className="mb-6">
         <div className="flex items-center gap-2 mb-1">
           <Wrench size={22} className="text-teal-400" />
-          <h1 className="text-2xl font-bold text-white">Ferramentas Clínicas</h1>
+          <h1 className="text-2xl font-bold text-white">Central Clínica</h1>
         </div>
-        <p className="text-slate-400 text-sm">Calculadoras e tabelas baseadas em literatura</p>
+        <p className="text-slate-400 text-sm">Busca rápida, calculadoras e referências para consulta prática</p>
       </div>
+
+      {profileId && (
+        <div className="mb-8">
+          <div className="flex items-center gap-2 mb-3">
+            <Search size={14} className="text-teal-400" />
+            <p className="text-xs font-bold text-slate-400 uppercase tracking-wider">Busca Clínica</p>
+          </div>
+          <GlobalClinicalSearch profileId={profileId} onNavigate={onNavigate} />
+        </div>
+      )}
 
       <div className="flex flex-wrap gap-3 mb-8">
         {TOOLS.map(({ id, label, icon: Icon, color, activeClass }) => (

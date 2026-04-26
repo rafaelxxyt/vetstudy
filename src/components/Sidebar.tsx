@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import {
-  FlaskConical, BookOpen, Wrench,
+  FlaskConical, BookOpen, Wrench, Brain,
   Newspaper, GraduationCap, Menu, X, Shield,
 } from 'lucide-react'
 import { isHubUnlocked } from './Gatekeeper'
@@ -9,6 +9,9 @@ import { isHubUnlocked } from './Gatekeeper'
 /* ─── Types ──────────────────────────────────────────── */
 export type Page =
   | 'hub'
+  | 'revisao'
+  | 'casos'
+  | 'mapas'
   | 'medicamentos'
   | 'doencas'
   | 'ferramentas'
@@ -16,10 +19,16 @@ export type Page =
 
 interface NavItem { id: Page; label: string; icon: React.ElementType }
 
+const ESTUDO: NavItem[] = [
+  { id: 'revisao',      label: 'Revisão',              icon: GraduationCap },
+  { id: 'casos',        label: 'Casos Clínicos',       icon: Brain         },
+  { id: 'mapas',        label: 'Mapas Mentais',        icon: BookOpen      },
+]
+
 const CLINICA: NavItem[] = [
-  { id: 'medicamentos', label: 'Medicamentos',         icon: FlaskConical },
   { id: 'doencas',      label: 'Doenças e Patologias', icon: BookOpen     },
-  { id: 'ferramentas',  label: 'Ferramentas Clínicas', icon: Wrench       },
+  { id: 'ferramentas',  label: 'Central Clínica',      icon: Wrench       },
+  { id: 'medicamentos', label: 'Medicamentos',         icon: FlaskConical },
   { id: 'vetnews',      label: 'VetNews',              icon: Newspaper    },
 ]
 
@@ -249,6 +258,18 @@ function renderNav({
             hubUnlocked={hubUnlocked}
             onClick={() => onNavigate('hub')}
           />
+          <div className="mt-1.5 space-y-0.5">
+            {ESTUDO.map(item => (
+              <NavBtn
+                key={item.id}
+                item={item}
+                active={activePage === item.id}
+                collapsed={!isDrawer && collapsed}
+                drawerMode={isDrawer}
+                onClick={() => onNavigate(item.id)}
+              />
+            ))}
+          </div>
         </section>
 
         <div className={`border-t border-slate-800 ${!isDrawer && collapsed ? 'mx-2' : 'mx-1'}`} />
