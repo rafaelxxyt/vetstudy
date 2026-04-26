@@ -30,10 +30,10 @@
         "title": "Etapa 2 - Exame/achado diagnostico",
         "question": "Qual achado reforca mais o diagnostico e ajuda na definicao inicial do caso?",
         "options": [
-          "Ultrassonografia com cornos uterinos distendidos por conteudo ecogenico",
-          "Radiografia toracica com padrao intersticial difuso",
-          "Coproparasitologico positivo para giardia",
-          "Citologia otica com cocos"
+          "Ultrassonografia com cornos uterinos distendidos",
+          "Radiografia abdominal com alcas distendidas",
+          "Coproparasitologico com protozoarios intestinais",
+          "Citologia vaginal com flora mista"
         ],
         "correctIndex": 0,
         "explanation": "A ultrassonografia mostrando utero distendido com conteudo e um achado classico e muito util para confirmar a suspeita."
@@ -44,10 +44,10 @@
         "title": "Etapa 3 - Conduta inicial",
         "question": "Qual conduta deve ser priorizada nas primeiras horas desse atendimento?",
         "options": [
-          "Fluidoterapia, analgesia, antibiotico e preparo para OSH apos estabilizacao",
-          "Dar alta com anti-inflamatorio e retorno se piorar",
-          "Apenas observar por 24 horas sem intervir",
-          "Induzir cio para promover drenagem uterina"
+          "Fluidoterapia, antibiotico e preparo cirurgico",
+          "Alta com anti-inflamatorio e retorno breve",
+          "Observacao clinica e reavaliacao em 24 h",
+          "Inducao hormonal e drenagem uterina"
         ],
         "correctIndex": 0,
         "explanation": "Piometra e um quadro potencialmente toxemico. A prioridade e estabilizar e encaminhar para tratamento definitivo, em geral cirurgico."
@@ -58,10 +58,10 @@
         "title": "Etapa 4 - Erro critico",
         "question": "Qual seria um erro grave nesse caso?",
         "options": [
-          "Adiar a estabilizacao e o encaminhamento cirurgico de uma paciente toxemica",
-          "Monitorar hidratacao e perfusao",
+          "Adiar estabilizacao e cirurgia definitiva",
+          "Monitorar perfusao e hidratacao",
           "Iniciar antibiotico de amplo espectro",
-          "Explicar o risco do quadro ao tutor"
+          "Explicar o risco clinico ao tutor"
         ],
         "correctIndex": 0,
         "explanation": "Atrasar a estabilizacao e o tratamento definitivo aumenta o risco de sepse, choque e ruptura uterina."
@@ -122,10 +122,10 @@
         "title": "Etapa 2 - Exame/achado diagnostico",
         "question": "Qual achado sustenta melhor o diagnostico inicial desse caso?",
         "options": [
-          "Teste antigenico fecal positivo associado a leucopenia",
-          "Ultrassom uterino com conteudo purulento",
-          "MAT positivo para leptospira",
-          "Esfregaco com hemoparasitas intra-eritrocitarios"
+          "Teste fecal positivo com leucopenia importante",
+          "Ultrassom abdominal com liquido uterino",
+          "Sorologia reagente para leptospira",
+          "Esfregaco com hemoparasitas eritrocitarios"
         ],
         "correctIndex": 0,
         "explanation": "A combinacao de teste fecal positivo e leucopenia marcante e muito compativel com parvovirose."
@@ -136,10 +136,10 @@
         "title": "Etapa 3 - Conduta inicial",
         "question": "Qual deve ser a prioridade terapeutica nas primeiras horas?",
         "options": [
-          "Correcao vigorosa da desidratacao, antiemetico e suporte intensivo",
-          "Apenas antiparasitario oral e dieta leve",
-          "Aguardar melhora espontanea antes de internar",
-          "Iniciar corticoide como tratamento principal"
+          "Fluidoterapia, antiemetico e suporte intensivo",
+          "Antiparasitario oral e dieta leve",
+          "Observacao domiciliar e retorno breve",
+          "Corticoide inicial como medida principal"
         ],
         "correctIndex": 0,
         "explanation": "O maior risco imediato e choque hipovolemico com sepse secundaria, entao suporte intensivo precoce e essencial."
@@ -150,9 +150,9 @@
         "title": "Etapa 4 - Erro critico",
         "question": "Qual erro piora mais o prognostico desse paciente?",
         "options": [
-          "Subestimar a desidratacao e retardar internacao e suporte",
-          "Controlar vomito e dor",
-          "Instituir isolamento enterico",
+          "Retardar internacao e reposicao volêmica",
+          "Controlar vomito e desconforto",
+          "Instituir isolamento enterico precoce",
           "Monitorar glicemia e perfusao"
         ],
         "correctIndex": 0,
@@ -214,10 +214,10 @@
         "title": "Etapa 2 - Exame diagnostico",
         "question": "Qual exame confirmatorio voce solicita primeiro?",
         "options": [
-          "Hemograma completo + bioquimica renal",
+          "Hemograma com perfil renal completo",
           "Teste MAT",
-          "Radiografia toracica",
-          "Citologia vaginal"
+          "Radiografia toracica simples",
+          "Citologia urinaria seriada"
         ],
         "correctIndex": 1,
         "explanation": "O MAT e o exame confirmatorio classico para leptospirose. Hemograma e bioquimica ajudam no suporte, mas nao confirmam o agente."
@@ -228,10 +228,10 @@
         "title": "Etapa 3 - Conduta inicial",
         "question": "Qual conduta deve ser priorizada nas primeiras horas?",
         "options": [
-          "Isolamento, EPI, fluidoterapia e antibiotico empirico",
+          "Isolamento, suporte e antibiotico empirico",
           "Alta com antibiotico oral",
-          "Aguardar MAT antes de tratar",
-          "Apenas antiemetico e observacao"
+          "Aguardar sorologia antes do tratamento",
+          "Antiemetico isolado e observacao"
         ],
         "correctIndex": 0,
         "explanation": "A prioridade e proteger a equipe, estabilizar o paciente e iniciar tratamento empirico sem esperar a confirmacao sorologica."
@@ -244,8 +244,8 @@
         "options": [
           "Manipular urina sem protecao",
           "Iniciar fluidoterapia monitorada",
-          "Informar risco zoonotico ao tutor",
-          "Tratar empiricamente antes do MAT"
+          "Informar o risco zoonotico",
+          "Tratar antes do MAT"
         ],
         "correctIndex": 0,
         "explanation": "A urina pode eliminar leptospiras, entao manipular sem protecao expoe a equipe a risco zoonotico importante."
@@ -307,10 +307,10 @@
         "title": "Etapa 2 - Exame/achado diagnostico",
         "question": "Qual achado apoia melhor a suspeita e ajuda na abordagem inicial?",
         "options": [
-          "CMT fortemente positivo com teste da caneca alterado",
-          "MAT reagente para leptospirose",
-          "Esfregaco com hemoparasitas",
-          "Citologia vaginal neutrofilica"
+          "CMT forte com caneca de fundo alterada",
+          "MAT reagente para leptospira",
+          "Esfregaco com hemoparasitas visiveis",
+          "Citologia vaginal com neutrofilos"
         ],
         "correctIndex": 0,
         "explanation": "CMT alterado e leite com grumos sao achados classicos que reforcam o diagnostico de mastite."
@@ -321,10 +321,10 @@
         "title": "Etapa 3 - Conduta inicial",
         "question": "Qual conduta deve ser priorizada no inicio do manejo?",
         "options": [
-          "Esvaziar o quarto afetado, tratar conforme gravidade e oferecer suporte",
-          "Suspender toda ordenha por varios dias sem avaliar o quarto",
-          "Manter observacao sem intervir porque o leite ainda sai",
-          "Aplicar apenas vermifugo e aguardar"
+          "Esvaziar o quarto, tratar e monitorar",
+          "Suspender ordenha e observar evolução",
+          "Aguardar resposta sem medicacao inicial",
+          "Aplicar vermifugo e reavaliar depois"
         ],
         "correctIndex": 0,
         "explanation": "A drenagem do leite alterado, o tratamento precoce e o suporte reduzem dano mamario e perdas produtivas."
@@ -335,10 +335,10 @@
         "title": "Etapa 4 - Prognostico",
         "question": "Qual fator mais melhora o prognostico funcional desse quarto mamario?",
         "options": [
-          "Intervencao precoce antes de dano tecidual mais extenso",
-          "Esperar varios dias para ver se normaliza sozinho",
-          "Ignorar a cultura quando o caso piora",
-          "Retomar o leite sem observar carencia"
+          "Intervencao precoce antes de maior dano",
+          "Esperar dias para reavaliar espontaneamente",
+          "Ignorar cultura nos casos persistentes",
+          "Liberar leite sem respeitar carencia"
         ],
         "correctIndex": 0,
         "explanation": "Quanto mais cedo o caso e reconhecido e tratado, menor a chance de dano permanente e descarte do quarto."
@@ -399,10 +399,10 @@
         "title": "Etapa 2 - Exame/achado diagnostico",
         "question": "Qual achado laboratorial confirma melhor essa suspeita no contexto inicial?",
         "options": [
-          "Esfregaco sanguineo com hemoparasitas intra-eritrocitarios",
-          "CMT fortemente positivo",
-          "Teste antigenico fecal positivo",
-          "Ultrassom uterino com secrecao"
+          "Esfregaco com hemoparasitas intraeritrocitarios",
+          "CMT forte no leite do tanque",
+          "Teste fecal antigenico positivo",
+          "Ultrassom uterino com conteudo"
         ],
         "correctIndex": 0,
         "explanation": "A visualizacao de hemoparasitas no esfregaco acelera a confirmacao e orienta a decisao terapeutica."
@@ -413,10 +413,10 @@
         "title": "Etapa 3 - Conduta inicial",
         "question": "Qual conduta deve ser priorizada nas primeiras horas?",
         "options": [
-          "Iniciar babesicida especifico e suporte intensivo conforme a anemia",
-          "Aguardar varios dias antes de tratar para repetir o esfregaco",
-          "Tratar apenas com anti-inflamatorio como monoterapia",
-          "Liberar o animal sem monitoramento porque a febre pode ceder"
+          "Babesicida especifico e suporte intensivo",
+          "Aguardar novo esfregaco antes de tratar",
+          "Anti-inflamatorio isolado como conduta",
+          "Liberacao sem monitoramento clinico"
         ],
         "correctIndex": 0,
         "explanation": "Babesiose pode evoluir rapido. O tratamento especifico precoce com suporte melhora muito o prognostico."
@@ -427,10 +427,10 @@
         "title": "Etapa 4 - Erro critico",
         "question": "Qual erro traz maior risco nesse caso?",
         "options": [
-          "Atrasar o tratamento em um animal com anemia hemolitica progressiva",
+          "Atrasar tratamento na anemia progressiva",
           "Monitorar hematocrito e perfusao",
           "Controlar estresse e hidratacao",
-          "Orientar controle de carrapatos no rebanho"
+          "Orientar controle de carrapatos"
         ],
         "correctIndex": 0,
         "explanation": "A demora no tratamento favorece agravamento da hemolise, hipoxia tecidual e piora rapida do quadro."
