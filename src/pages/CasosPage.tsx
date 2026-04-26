@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
 import { motion } from 'framer-motion'
-import { ArrowLeft, BookOpen, CheckCircle2, Clock3, Filter, Stethoscope } from 'lucide-react'
+import { ArrowLeft, BookOpen, CheckCircle2, Filter, Stethoscope } from 'lucide-react'
 import Gatekeeper from '../components/Gatekeeper'
 import ProfileSelector from '../components/ProfileSelector'
 import centralDb from '../data/central_db.json'
@@ -133,6 +133,7 @@ function CasosContent({
   const [selfEvaluationByCase, setSelfEvaluationByCase] = useState<Record<string, 'acertei' | 'errei'>>({})
   const [selectedOptionByCase, setSelectedOptionByCase] = useState<Record<string, number | null>>({})
   const [showFallbackResolutionByCase, setShowFallbackResolutionByCase] = useState<Record<string, boolean>>({})
+  const [expandedContextByCase, setExpandedContextByCase] = useState<Record<string, boolean>>({})
 
   useEffect(() => {
     const refreshCases = () => {
@@ -181,6 +182,63 @@ function CasosContent({
   const persistProgress = (caseId: string, nextProgress: CaseProgressState) => {
     saveCaseProgress(caseId, nextProgress, profile.id)
     setCaseProgressMap(current => ({ ...current, [caseId]: nextProgress }))
+  }
+
+  const renderPatientSummary = (clinicalCase: ClinicalCase) => {
+    const showFullContext = expandedContextByCase[clinicalCase.id] ?? false
+
+    return (
+      <div className="rounded-2xl border border-slate-800 bg-slate-950/40 p-4 space-y-3">
+        <div className="flex items-center gap-2">
+          <Stethoscope size={15} className="text-slate-300" />
+          <p className="text-sm font-bold text-white">Resumo do paciente</p>
+        </div>
+
+        <div className="space-y-2 text-xs text-slate-300">
+          <div>
+            <span className="font-bold text-slate-100">Queixa:</span> {clinicalCase.chiefComplaint}
+          </div>
+          <div>
+            <span className="font-bold text-slate-100">História:</span> {clinicalCase.history}
+          </div>
+          <div>
+            <span className="font-bold text-slate-100">Exame:</span> {clinicalCase.physicalExam.slice(0, 3).join(' · ')}
+          </div>
+          <div>
+            <span className="font-bold text-slate-100">Labs:</span> {clinicalCase.labFindings.slice(0, 3).join(' · ')}
+          </div>
+        </div>
+
+        <button
+          type="button"
+          onClick={() => setExpandedContextByCase(current => ({ ...current, [clinicalCase.id]: !showFullContext }))}
+          className="min-h-[44px] w-full rounded-xl border border-slate-700 bg-slate-900/70 px-3 py-2 text-sm font-bold text-slate-200 transition hover:border-fuchsia-500/30"
+        >
+          {showFullContext ? 'Ocultar detalhes' : 'Ver detalhes completos'}
+        </button>
+
+        {showFullContext && (
+          <div className="grid grid-cols-1 gap-3 text-xs">
+            <div className="rounded-xl border border-slate-800 bg-slate-900/70 p-3">
+              <p className="font-bold text-slate-100">Exame físico completo</p>
+              <ul className="mt-2 space-y-1 text-slate-300">
+                {clinicalCase.physicalExam.map(item => (
+                  <li key={item}>• {item}</li>
+                ))}
+              </ul>
+            </div>
+            <div className="rounded-xl border border-slate-800 bg-slate-900/70 p-3">
+              <p className="font-bold text-slate-100">Achados laboratoriais completos</p>
+              <ul className="mt-2 space-y-1 text-slate-300">
+                {clinicalCase.labFindings.map(item => (
+                  <li key={item}>• {item}</li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        )}
+      </div>
+    )
   }
 
   const renderCaseCard = (clinicalCase: ClinicalCase) => {
@@ -318,6 +376,8 @@ function CasosContent({
             Caso {String(clinicalCase.number).padStart(2, '0')} · Etapa {currentStepIndex + 1} de {clinicalCase.steps.length}
           </p>
         </div>
+
+        {renderPatientSummary(clinicalCase)}
 
         <div className="rounded-2xl border border-slate-800 bg-slate-950/40 p-4 space-y-3">
           <div>
