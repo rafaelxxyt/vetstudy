@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
 import { motion } from 'framer-motion'
-import { BookOpen } from 'lucide-react'
+import { ArrowLeft, BookOpen, CheckCircle2, Clock3, Filter, Stethoscope } from 'lucide-react'
 import Gatekeeper from '../components/Gatekeeper'
 import ProfileSelector from '../components/ProfileSelector'
 import centralDb from '../data/central_db.json'
@@ -13,15 +13,35 @@ import {
 } from '../utils/profiles'
 import {
   caseProgressEventName,
+  loadCaseProgress,
   loadReviewedCases,
   markCaseReviewed,
+  saveCaseProgress,
+  type CaseProgressState,
 } from '../utils/reviewHabit'
 
+interface CaseStep {
+  id: string
+  type: string
+  title: string
+  question: string
+  options: string[]
+  correctIndex: number
+  explanation: string
+}
+
 interface ClinicalCase {
+  id: string
+  number: number
   title: string
   species: string
-  estimatedTime: string
+  speciesEmoji: string
+  category: string
   difficulty: 'facil' | 'media' | 'dificil'
+  estimatedTime: string
+  relatedDiseaseId?: string
+  relatedDiseaseName?: string
+  steps?: CaseStep[]
   chiefComplaint: string
   history: string
   physicalExam: string[]
@@ -30,16 +50,10 @@ interface ClinicalCase {
   diagnosis: string
   conduct: string[] | string
   drugs: string[]
-  decisionSteps?: {
-    title: string
-    question: string
-    options: string[]
-    correctOption: string
-    explanation: string
-  }[]
   reasoning: string
-  relatedDiseaseName: string
 }
+
+type CaseFilter = 'todas' | 'cao' | 'bovino' | 'nao_iniciados' | 'concluidos'
 
 const CLINICAL_CASES = clinicalCases as ClinicalCase[]
 const DISEASE_INDEX = (centralDb as { diseases: { id: string; name: string }[] }).diseases
@@ -52,8 +66,9 @@ function normalizeLookup(value: string) {
     .toLowerCase()
 }
 
-function findDiseaseIdByName(name: string) {
-  const target = normalizeLookup(name)
+function findDiseaseId(clinicalCase: ClinicalCase) {
+  if (clinicalCase.relatedDiseaseId) return clinicalCase.relatedDiseaseId
+  const target = normalizeLookup(clinicalCase.relatedDiseaseName ?? '')
   return DISEASE_INDEX.find(disease => {
     const current = normalizeLookup(disease.name)
     return current === target || current.includes(target) || target.includes(current)
@@ -62,6 +77,42 @@ function findDiseaseIdByName(name: string) {
 
 function ensureList(value: string[] | string) {
   return Array.isArray(value) ? value : [value]
+}
+
+function statusLabel(status: 'nao_iniciado' | 'in_progress' | 'completed') {
+  if (status === 'completed') return 'concluído'
+  if (status === 'in_progress') return 'em andamento'
+  return 'não iniciado'
+}
+
+function statusBadgeClass(status: 'nao_iniciado' | 'in_progress' | 'completed') {
+  if (status === 'completed') return 'bg-teal-500/15 border-teal-500/25 text-teal-300'
+  if (status === 'in_progress') return 'bg-amber-500/15 border-amber-500/25 text-amber-300'
+  return 'bg-slate-800/80 border-slate-700 text-slate-400'
+}
+
+function difficultyLabel(value: ClinicalCase['difficulty']) {
+  if (value === 'facil') return 'fácil'
+  if (value === 'dificil') return 'difícil'
+  return 'média'
+}
+
+function getCaseStatus(clinicalCase: ClinicalCase, progress: CaseProgressState | null, reviewedCases: string[]) {
+  if (progress?.status === 'completed') return 'completed' as const
+  if (progress?.status === 'in_progress') return 'in_progress' as const
+  if (reviewedCases.includes(clinicalCase.title)) return 'completed' as const
+  return 'nao_iniciado' as const
+}
+
+function getCaseActionLabel(status: 'nao_iniciado' | 'in_progress' | 'completed') {
+  if (status === 'completed') return 'Revisar caso'
+  if (status === 'in_progress') return 'Continuar caso'
+  return 'Iniciar caso'
+}
+
+function scorePercent(score: number, total: number) {
+  if (total <= 0) return 0
+  return Math.round((score / total) * 100)
 }
 
 function CasosContent({
@@ -74,332 +125,568 @@ function CasosContent({
   onOpenDisease?: (diseaseId: string) => void
 }) {
   const [reviewedCases, setReviewedCases] = useState<string[]>(() => loadReviewedCases(profile.id))
-  const [openCaseTitle, setOpenCaseTitle] = useState<string | null>(null)
-  const [revealedCaseTitle, setRevealedCaseTitle] = useState<string | null>(null)
+  const [selectedCaseId, setSelectedCaseId] = useState<string | null>(null)
+  const [caseProgressMap, setCaseProgressMap] = useState<Record<string, CaseProgressState | null>>(() =>
+    Object.fromEntries(CLINICAL_CASES.map(clinicalCase => [clinicalCase.id, loadCaseProgress(clinicalCase.id, profile.id)])),
+  )
+  const [caseFilter, setCaseFilter] = useState<CaseFilter>('todas')
   const [selfEvaluationByCase, setSelfEvaluationByCase] = useState<Record<string, 'acertei' | 'errei'>>({})
-  const [decisionAnswersByCase, setDecisionAnswersByCase] = useState<Record<string, string[]>>({})
+  const [selectedOptionByCase, setSelectedOptionByCase] = useState<Record<string, number | null>>({})
+  const [showFallbackResolutionByCase, setShowFallbackResolutionByCase] = useState<Record<string, boolean>>({})
 
   useEffect(() => {
-    const refreshCases = () => setReviewedCases(loadReviewedCases(profile.id))
+    const refreshCases = () => {
+      setReviewedCases(loadReviewedCases(profile.id))
+      setCaseProgressMap(Object.fromEntries(
+        CLINICAL_CASES.map(clinicalCase => [clinicalCase.id, loadCaseProgress(clinicalCase.id, profile.id)]),
+      ))
+    }
     window.addEventListener(caseProgressEventName(), refreshCases)
     return () => window.removeEventListener(caseProgressEventName(), refreshCases)
   }, [profile.id])
 
   useEffect(() => {
     if (!selectionToken || CLINICAL_CASES.length === 0) return
-    const firstCase = CLINICAL_CASES.find(item => !reviewedCases.includes(item.title)) ?? CLINICAL_CASES[0]
-    setOpenCaseTitle(firstCase.title)
-    setRevealedCaseTitle(null)
-  }, [reviewedCases, selectionToken])
+    const firstCase = CLINICAL_CASES.find(item => getCaseStatus(item, caseProgressMap[item.id] ?? null, reviewedCases) !== 'completed') ?? CLINICAL_CASES[0]
+    setSelectedCaseId(firstCase.id)
+  }, [caseProgressMap, reviewedCases, selectionToken])
 
-  const nextSuggestedCase = useMemo(
-    () => (currentTitle: string) => CLINICAL_CASES.find(item => !reviewedCases.includes(item.title) && item.title !== currentTitle),
-    [reviewedCases],
-  )
+  const selectedCase = selectedCaseId ? CLINICAL_CASES.find(item => item.id === selectedCaseId) ?? null : null
 
-  const toggleCase = (title: string) => {
-    setOpenCaseTitle(current => current === title ? null : title)
-    setRevealedCaseTitle(current => current === title ? null : current)
+  const filteredCases = useMemo(() => {
+    return CLINICAL_CASES.filter(clinicalCase => {
+      const status = getCaseStatus(clinicalCase, caseProgressMap[clinicalCase.id] ?? null, reviewedCases)
+      if (caseFilter === 'cao') return normalizeLookup(clinicalCase.species) === 'cao'
+      if (caseFilter === 'bovino') return normalizeLookup(clinicalCase.species) === 'bovino'
+      if (caseFilter === 'nao_iniciados') return status === 'nao_iniciado'
+      if (caseFilter === 'concluidos') return status === 'completed'
+      return true
+    })
+  }, [caseFilter, caseProgressMap, reviewedCases])
+
+  const nextCaseId = useMemo(() => {
+    if (!selectedCase) return null
+    const currentIndex = CLINICAL_CASES.findIndex(item => item.id === selectedCase.id)
+    const nextUnfinished = CLINICAL_CASES.find(item =>
+      item.id !== selectedCase.id && getCaseStatus(item, caseProgressMap[item.id] ?? null, reviewedCases) !== 'completed',
+    )
+    if (nextUnfinished) return nextUnfinished.id
+    return currentIndex >= 0 && CLINICAL_CASES[currentIndex + 1] ? CLINICAL_CASES[currentIndex + 1].id : null
+  }, [caseProgressMap, reviewedCases, selectedCase])
+
+  const openCase = (caseId: string) => {
+    setSelectedCaseId(caseId)
+  }
+
+  const persistProgress = (caseId: string, nextProgress: CaseProgressState) => {
+    saveCaseProgress(caseId, nextProgress, profile.id)
+    setCaseProgressMap(current => ({ ...current, [caseId]: nextProgress }))
+  }
+
+  const renderCaseCard = (clinicalCase: ClinicalCase) => {
+    const progress = caseProgressMap[clinicalCase.id] ?? null
+    const status = getCaseStatus(clinicalCase, progress, reviewedCases)
+    const actionLabel = getCaseActionLabel(status)
+
+    return (
+      <div key={clinicalCase.id} className="rounded-2xl border border-slate-800 bg-slate-900/55 p-4">
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+          <div className="min-w-0">
+            <p className="text-sm font-bold text-white">{clinicalCase.title}</p>
+            <div className="flex flex-wrap gap-1.5 mt-2">
+              <span className="text-[11px] px-2 py-0.5 rounded-full bg-slate-800/80 border border-slate-700 text-slate-300">
+                {clinicalCase.speciesEmoji} {clinicalCase.species}
+              </span>
+              <span className="text-[11px] px-2 py-0.5 rounded-full bg-slate-800/80 border border-slate-700 text-slate-300">
+                {clinicalCase.category}
+              </span>
+              <span className="text-[11px] px-2 py-0.5 rounded-full bg-slate-800/80 border border-slate-700 text-slate-300">
+                {difficultyLabel(clinicalCase.difficulty)}
+              </span>
+              <span className="text-[11px] px-2 py-0.5 rounded-full bg-slate-800/80 border border-slate-700 text-slate-300">
+                {clinicalCase.estimatedTime}
+              </span>
+              <span className={`text-[11px] px-2 py-0.5 rounded-full border ${statusBadgeClass(status)}`}>
+                {statusLabel(status)}
+              </span>
+            </div>
+          </div>
+
+          <button
+            type="button"
+            onClick={() => openCase(clinicalCase.id)}
+            className="min-h-[44px] w-full sm:w-auto rounded-xl bg-fuchsia-500/90 px-3 py-2 text-sm font-bold text-white transition hover:bg-fuchsia-400"
+          >
+            {actionLabel}
+          </button>
+        </div>
+      </div>
+    )
+  }
+
+  const renderStepCase = (clinicalCase: ClinicalCase) => {
+    const progress = caseProgressMap[clinicalCase.id] ?? null
+    const stepAnswers = progress?.stepAnswers ?? []
+    const currentStepIndex = progress?.currentStepIndex ?? 0
+    const currentStep = clinicalCase.steps?.[currentStepIndex] ?? null
+    const selectedOption = selectedOptionByCase[clinicalCase.id] ?? null
+    const confirmedAnswer = typeof stepAnswers[currentStepIndex] === 'number' ? stepAnswers[currentStepIndex] : null
+    const allStepsCompleted = Boolean(clinicalCase.steps && stepAnswers.length >= clinicalCase.steps.length)
+    const score = progress?.score ?? stepAnswers.reduce((total, answer, index) => (
+      total + (answer === clinicalCase.steps?.[index]?.correctIndex ? 1 : 0)
+    ), 0)
+
+    if (progress?.status === 'completed' && allStepsCompleted) {
+      const totalSteps = clinicalCase.steps?.length ?? 0
+      const percent = scorePercent(score, totalSteps)
+      const relatedDiseaseId = findDiseaseId(clinicalCase)
+
+      return (
+        <div className="space-y-4">
+          <div className="rounded-2xl border border-teal-500/20 bg-teal-500/5 p-4">
+            <div className="flex items-center gap-2">
+              <CheckCircle2 size={18} className="text-teal-300" />
+              <p className="text-lg font-bold text-white">Caso concluído</p>
+            </div>
+            <p className="text-sm text-slate-300 mt-2">Você acertou {score} de {totalSteps} etapas.</p>
+            <div className="mt-3 h-2 rounded-full bg-slate-800 overflow-hidden">
+              <div className="h-full rounded-full bg-teal-400 transition-all" style={{ width: `${percent}%` }} />
+            </div>
+            <p className="text-xs text-slate-400 mt-3">Diagnóstico: <span className="text-white font-semibold">{clinicalCase.diagnosis}</span></p>
+          </div>
+
+          <div className="space-y-3">
+            {clinicalCase.steps?.map((step, index) => {
+              const answerIndex = stepAnswers[index]
+              const isCorrect = answerIndex === step.correctIndex
+              const userAnswer = typeof answerIndex === 'number' ? step.options[answerIndex] : 'Sem resposta'
+              const correctAnswer = step.options[step.correctIndex]
+
+              return (
+                <div key={step.id} className="rounded-2xl border border-slate-800 bg-slate-950/40 p-4">
+                  <div className="flex items-center gap-2">
+                    <span className={`inline-flex h-5 min-w-5 items-center justify-center rounded-full text-[10px] font-bold ${
+                      isCorrect ? 'bg-teal-500/15 text-teal-300' : 'bg-amber-500/15 text-amber-300'
+                    }`}>
+                      {index + 1}
+                    </span>
+                    <p className="text-sm font-bold text-white">{step.title}</p>
+                  </div>
+                  <p className="text-xs text-slate-400 mt-2">Sua resposta: {userAnswer}</p>
+                  <p className="text-xs text-slate-400 mt-1">Resposta correta: {correctAnswer}</p>
+                  {!isCorrect && <p className="text-xs text-amber-200 mt-2">{step.explanation}</p>}
+                  {isCorrect && <p className="text-xs text-teal-200 mt-2">{step.explanation}</p>}
+                </div>
+              )
+            })}
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+            <button
+              type="button"
+              onClick={() => relatedDiseaseId && onOpenDisease?.(relatedDiseaseId)}
+              disabled={!relatedDiseaseId}
+              className={`min-h-[44px] w-full rounded-xl px-3 py-2 text-sm font-bold transition ${
+                relatedDiseaseId
+                  ? 'border border-slate-700 bg-slate-800 text-white hover:border-teal-500/40'
+                  : 'border border-slate-800 bg-slate-900 text-slate-600 cursor-not-allowed'
+              }`}
+            >
+              Ver doença relacionada
+            </button>
+
+            {nextCaseId && (
+              <button
+                type="button"
+                onClick={() => setSelectedCaseId(nextCaseId)}
+                className="min-h-[44px] w-full rounded-xl bg-fuchsia-500/90 px-3 py-2 text-sm font-bold text-white transition hover:bg-fuchsia-400"
+              >
+                Próximo caso
+              </button>
+            )}
+          </div>
+        </div>
+      )
+    }
+
+    if (!currentStep || !clinicalCase.steps) return null
+
+    return (
+      <div className="space-y-4">
+        <div className="rounded-xl border border-slate-800 bg-slate-950/40 p-3">
+          <p className="text-[11px] font-bold text-fuchsia-300 uppercase tracking-wider">
+            Caso {String(clinicalCase.number).padStart(2, '0')} · Etapa {currentStepIndex + 1} de {clinicalCase.steps.length}
+          </p>
+        </div>
+
+        <div className="rounded-2xl border border-slate-800 bg-slate-950/40 p-4 space-y-3">
+          <div>
+            <p className="text-[10px] font-bold text-slate-500 uppercase tracking-wider">{currentStep.title}</p>
+            <p className="text-sm font-bold text-white mt-1">{currentStep.question}</p>
+          </div>
+
+          <div className="grid grid-cols-1 gap-2">
+            {currentStep.options.map((option, index) => {
+              const isPicked = selectedOption === index
+              const isAnswered = confirmedAnswer !== null
+              let optionClass = 'border border-slate-700 bg-slate-900/70 text-slate-200 hover:border-fuchsia-500/30'
+              if (!isAnswered && isPicked) {
+                optionClass = 'border border-fuchsia-400/40 bg-fuchsia-500/15 text-fuchsia-100'
+              } else if (isAnswered && index === confirmedAnswer && index === currentStep.correctIndex) {
+                optionClass = 'border border-teal-400/40 bg-teal-500/15 text-teal-100'
+              } else if (isAnswered && index === confirmedAnswer && index !== currentStep.correctIndex) {
+                optionClass = 'border border-amber-400/40 bg-amber-500/15 text-amber-100'
+              } else if (isAnswered && index === currentStep.correctIndex) {
+                optionClass = 'border border-teal-400/25 bg-teal-500/8 text-teal-100'
+              }
+
+              return (
+                <button
+                  key={option}
+                  type="button"
+                  disabled={isAnswered}
+                  onClick={() => setSelectedOptionByCase(current => ({ ...current, [clinicalCase.id]: index }))}
+                  className={`min-h-[44px] w-full rounded-xl px-3 py-2 text-left text-sm font-bold transition ${optionClass}`}
+                >
+                  {option}
+                </button>
+              )
+            })}
+          </div>
+
+          {confirmedAnswer === null ? (
+            <button
+              type="button"
+              disabled={selectedOption === null}
+              onClick={() => {
+                if (selectedOption === null) return
+                const nextAnswers = [...stepAnswers]
+                nextAnswers[currentStepIndex] = selectedOption
+                const nextScore = nextAnswers.reduce((total, answer, index) => (
+                  total + (answer === clinicalCase.steps?.[index]?.correctIndex ? 1 : 0)
+                ), 0)
+                persistProgress(clinicalCase.id, {
+                  status: 'in_progress',
+                  currentStepIndex,
+                  stepAnswers: nextAnswers,
+                  score: nextScore,
+                })
+              }}
+              className="min-h-[44px] w-full rounded-xl bg-fuchsia-500/90 px-3 py-2 text-sm font-bold text-white transition hover:bg-fuchsia-400 disabled:opacity-40"
+            >
+              Confirmar resposta
+            </button>
+          ) : (
+            <div className="space-y-3">
+              <div className={`rounded-xl px-3 py-2 text-xs ${
+                confirmedAnswer === currentStep.correctIndex
+                  ? 'border border-teal-500/25 bg-teal-500/10 text-teal-100'
+                  : 'border border-amber-500/25 bg-amber-500/10 text-amber-100'
+              }`}>
+                <p className="font-bold">{confirmedAnswer === currentStep.correctIndex ? 'Correto' : 'Cuidado'}</p>
+                <p className="mt-1">{currentStep.explanation}</p>
+              </div>
+
+              <button
+                type="button"
+                onClick={() => {
+                  setSelectedOptionByCase(current => ({ ...current, [clinicalCase.id]: null }))
+                  if (currentStepIndex >= clinicalCase.steps!.length - 1) {
+                    persistProgress(clinicalCase.id, {
+                      status: 'completed',
+                      currentStepIndex: clinicalCase.steps!.length,
+                      stepAnswers,
+                      score,
+                    })
+                    markCaseReviewed(clinicalCase.title, profile.id)
+                    return
+                  }
+
+                  persistProgress(clinicalCase.id, {
+                    status: 'in_progress',
+                    currentStepIndex: currentStepIndex + 1,
+                    stepAnswers,
+                    score,
+                  })
+                }}
+                className="min-h-[44px] w-full rounded-xl bg-slate-800 px-3 py-2 text-sm font-bold text-white transition hover:border-teal-500/40 border border-slate-700"
+              >
+                {currentStepIndex >= clinicalCase.steps.length - 1 ? 'Ver resultado do caso' : 'Próxima etapa'}
+              </button>
+            </div>
+          )}
+        </div>
+      </div>
+    )
+  }
+
+  const renderFallbackCase = (clinicalCase: ClinicalCase) => {
+    const relatedDiseaseId = findDiseaseId(clinicalCase)
+    const selfEvaluation = selfEvaluationByCase[clinicalCase.id]
+    const showResolution = showFallbackResolutionByCase[clinicalCase.id] ?? false
+    const nextCaseLabel = nextCaseId ? (CLINICAL_CASES.find(item => item.id === nextCaseId)?.title ?? '') : ''
+
+    return (
+      <div className="space-y-3">
+        <div className="rounded-xl border border-slate-800 bg-slate-950/40 p-3">
+          <p className="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Queixa + história</p>
+          <p className="text-sm text-slate-200 mt-1">{clinicalCase.chiefComplaint}</p>
+          <p className="text-xs text-slate-400 mt-2 leading-relaxed">{clinicalCase.history}</p>
+        </div>
+
+        <div className="rounded-xl border border-slate-800 bg-slate-950/40 p-3">
+          <p className="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Exame físico</p>
+          <ul className="mt-2 space-y-1.5">
+            {clinicalCase.physicalExam.map(item => (
+              <li key={item} className="text-xs text-slate-300">• {item}</li>
+            ))}
+          </ul>
+        </div>
+
+        <div className="rounded-xl border border-slate-800 bg-slate-950/40 p-3">
+          <p className="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Achados laboratoriais</p>
+          <ul className="mt-2 space-y-1.5">
+            {clinicalCase.labFindings.map(item => (
+              <li key={item} className="text-xs text-slate-300">• {item}</li>
+            ))}
+          </ul>
+        </div>
+
+        <div className="rounded-xl border border-slate-800 bg-slate-950/40 p-3">
+          <p className="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Pergunta clínica</p>
+          <p className="text-sm text-slate-200 mt-1">{clinicalCase.clinicalQuestion}</p>
+        </div>
+
+        {!showResolution ? (
+          <div className="rounded-xl border border-slate-800 bg-slate-950/40 p-3 space-y-3">
+            <div>
+              <p className="text-sm font-bold text-white">Você já tem um diagnóstico em mente?</p>
+              <p className="text-xs text-slate-400 mt-1">Marque sua percepção antes de ver a resolução.</p>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+              <button
+                type="button"
+                onClick={() => {
+                  setSelfEvaluationByCase(current => ({ ...current, [clinicalCase.id]: 'acertei' }))
+                  persistProgress(clinicalCase.id, { status: 'in_progress', selfEvaluation: 'acertei' })
+                }}
+                className={`min-h-[44px] w-full rounded-xl px-3 py-2 text-sm font-bold transition ${
+                  selfEvaluation === 'acertei'
+                    ? 'border border-teal-400/40 bg-teal-500/15 text-teal-300'
+                    : 'border border-slate-700 bg-slate-900/70 text-slate-200 hover:border-teal-500/30'
+                }`}
+              >
+                Acertei
+              </button>
+              <button
+                type="button"
+                onClick={() => {
+                  setSelfEvaluationByCase(current => ({ ...current, [clinicalCase.id]: 'errei' }))
+                  persistProgress(clinicalCase.id, { status: 'in_progress', selfEvaluation: 'errei' })
+                }}
+                className={`min-h-[44px] w-full rounded-xl px-3 py-2 text-sm font-bold transition ${
+                  selfEvaluation === 'errei'
+                    ? 'border border-amber-400/40 bg-amber-500/15 text-amber-300'
+                    : 'border border-slate-700 bg-slate-900/70 text-slate-200 hover:border-amber-500/30'
+                }`}
+              >
+                Errei
+              </button>
+            </div>
+
+            {selfEvaluation && (
+              <button
+                type="button"
+                onClick={() => {
+                  setShowFallbackResolutionByCase(current => ({ ...current, [clinicalCase.id]: true }))
+                  persistProgress(clinicalCase.id, {
+                    status: 'completed',
+                    selfEvaluation,
+                    revealed: true,
+                  })
+                  markCaseReviewed(clinicalCase.title, profile.id)
+                }}
+                className="min-h-[44px] w-full rounded-xl border border-teal-500/30 bg-teal-500/10 px-3 py-2 text-sm font-bold text-teal-300 transition hover:bg-teal-500/15"
+              >
+                Mostrar resolução
+              </button>
+            )}
+          </div>
+        ) : (
+          <div className="rounded-xl border border-teal-500/20 bg-teal-500/5 p-3 space-y-3">
+            <div className={`rounded-xl px-3 py-2 text-xs font-semibold ${
+              selfEvaluation === 'errei'
+                ? 'border border-amber-500/25 bg-amber-500/10 text-amber-200'
+                : 'border border-teal-500/25 bg-teal-500/10 text-teal-100'
+            }`}>
+              {selfEvaluation === 'errei'
+                ? 'Boa - esse é o momento que mais gera aprendizado.'
+                : 'Perfeito. Confirme seu raciocínio abaixo.'}
+            </div>
+
+            <div>
+              <p className="text-[10px] font-bold text-teal-300 uppercase tracking-wider">Diagnóstico</p>
+              <p className="text-sm text-white mt-1">{clinicalCase.diagnosis}</p>
+            </div>
+
+            <div>
+              <p className="text-[10px] font-bold text-teal-300 uppercase tracking-wider">Conduta</p>
+              <ul className="mt-2 space-y-1.5">
+                {ensureList(clinicalCase.conduct).map(item => (
+                  <li key={item} className="text-xs text-slate-200">• {item}</li>
+                ))}
+              </ul>
+            </div>
+
+            <div>
+              <p className="text-[10px] font-bold text-teal-300 uppercase tracking-wider">Fármacos-chave</p>
+              <div className="flex flex-wrap gap-1.5 mt-2">
+                {clinicalCase.drugs.map(drug => (
+                  <span key={drug} className="px-2 py-1 rounded-full bg-slate-800/80 border border-slate-700 text-[11px] text-slate-200">
+                    {drug}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            <div>
+              <p className="text-[10px] font-bold text-amber-300 uppercase tracking-wider">Por que isso importa?</p>
+              <div className="mt-1 rounded-xl border border-amber-500/20 bg-amber-500/10 px-3 py-2">
+                <p className="text-xs text-amber-100 leading-relaxed">{clinicalCase.reasoning}</p>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+              <button
+                type="button"
+                onClick={() => relatedDiseaseId && onOpenDisease?.(relatedDiseaseId)}
+                disabled={!relatedDiseaseId}
+                className={`min-h-[44px] w-full rounded-xl px-3 py-2 text-sm font-bold transition ${
+                  relatedDiseaseId
+                    ? 'border border-slate-700 bg-slate-800 text-white hover:border-teal-500/40'
+                    : 'border border-slate-800 bg-slate-900 text-slate-600 cursor-not-allowed'
+                }`}
+              >
+                Ver doença relacionada
+              </button>
+
+              {nextCaseId && (
+                <button
+                  type="button"
+                  onClick={() => setSelectedCaseId(nextCaseId)}
+                  className="min-h-[44px] w-full rounded-xl bg-fuchsia-500/90 px-3 py-2 text-sm font-bold text-white transition hover:bg-fuchsia-400"
+                >
+                  {nextCaseLabel ? 'Próximo caso' : 'Voltar aos casos'}
+                </button>
+              )}
+            </div>
+          </div>
+        )}
+      </div>
+    )
+  }
+
+  const renderImmersiveCase = () => {
+    if (!selectedCase) return null
+    const status = getCaseStatus(selectedCase, caseProgressMap[selectedCase.id] ?? null, reviewedCases)
+
+    return (
+      <div className="max-w-4xl mx-auto p-4 sm:p-6 md:p-8 space-y-5">
+        <button
+          type="button"
+          onClick={() => setSelectedCaseId(null)}
+          className="inline-flex min-h-[44px] items-center gap-2 rounded-xl border border-slate-800 bg-slate-900/70 px-3 py-2 text-sm font-bold text-slate-200 transition hover:border-fuchsia-500/30"
+        >
+          <ArrowLeft size={15} />
+          Voltar aos casos
+        </button>
+
+        <div className="rounded-2xl border border-slate-800 bg-slate-900/55 p-4">
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+            <div className="min-w-0">
+              <p className="text-sm font-bold text-white">{selectedCase.title}</p>
+              <div className="flex flex-wrap gap-1.5 mt-2">
+                <span className="text-[11px] px-2 py-0.5 rounded-full bg-slate-800/80 border border-slate-700 text-slate-300">
+                  {selectedCase.speciesEmoji} {selectedCase.species}
+                </span>
+                <span className="text-[11px] px-2 py-0.5 rounded-full bg-slate-800/80 border border-slate-700 text-slate-300">
+                  {selectedCase.category}
+                </span>
+                <span className="text-[11px] px-2 py-0.5 rounded-full bg-slate-800/80 border border-slate-700 text-slate-300">
+                  {difficultyLabel(selectedCase.difficulty)}
+                </span>
+                <span className="text-[11px] px-2 py-0.5 rounded-full bg-slate-800/80 border border-slate-700 text-slate-300">
+                  {selectedCase.estimatedTime}
+                </span>
+                <span className={`text-[11px] px-2 py-0.5 rounded-full border ${statusBadgeClass(status)}`}>
+                  {statusLabel(status)}
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {selectedCase.steps && selectedCase.steps.length > 0
+          ? renderStepCase(selectedCase)
+          : renderFallbackCase(selectedCase)}
+      </div>
+    )
+  }
+
+  if (selectedCase) {
+    return renderImmersiveCase()
   }
 
   return (
-    <div className="p-4 sm:p-6 md:p-8 max-w-5xl mx-auto space-y-5">
+    <div className="p-4 sm:p-6 md:p-8 max-w-6xl mx-auto space-y-5">
       <div>
         <div className="flex items-center gap-2 mb-1">
           <BookOpen size={22} className="text-fuchsia-400" />
-          <h1 className="text-2xl font-bold text-white">🧠 Casos Clínicos</h1>
+          <h1 className="text-2xl font-bold text-white">Casos Clínicos</h1>
         </div>
-        <p className="text-sm text-slate-400">
-          {CLINICAL_CASES.length} casos para treinar raciocínio clínico e tomada de decisão.
-        </p>
+        <p className="text-sm text-slate-400">Treino guiado de raciocínio clínico, um paciente por vez.</p>
       </div>
 
-      <div className="grid grid-cols-1 gap-3">
-        {CLINICAL_CASES.map(clinicalCase => {
-          const isOpen = openCaseTitle === clinicalCase.title
-          const isRevealed = revealedCaseTitle === clinicalCase.title
-          const selfEvaluation = selfEvaluationByCase[clinicalCase.title]
-          const decisionSteps = clinicalCase.decisionSteps ?? []
-          const decisionAnswers = decisionAnswersByCase[clinicalCase.title] ?? []
-          const currentDecisionIndex = decisionAnswers.length
-          const allDecisionStepsAnswered = decisionSteps.length > 0 && decisionAnswers.length >= decisionSteps.length
-          const currentDecisionStep = !allDecisionStepsAnswered ? decisionSteps[currentDecisionIndex] : null
-          const caseCompleted = reviewedCases.includes(clinicalCase.title)
-          const nextCase = nextSuggestedCase(clinicalCase.title)
-          const relatedDiseaseId = findDiseaseIdByName(clinicalCase.relatedDiseaseName)
-
-          return (
-            <div key={clinicalCase.title} className="bg-slate-900/55 border border-slate-800 rounded-2xl p-4">
-              <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
-                <div className="min-w-0">
-                  <p className="text-sm font-bold text-white">{clinicalCase.title}</p>
-                  <div className="flex flex-wrap gap-1.5 mt-2">
-                    <span className="text-[11px] px-2 py-0.5 rounded-full bg-slate-800/80 border border-slate-700 text-slate-300">
-                      {clinicalCase.species}
-                    </span>
-                    <span className="text-[11px] px-2 py-0.5 rounded-full bg-slate-800/80 border border-slate-700 text-slate-300">
-                      {clinicalCase.estimatedTime}
-                    </span>
-                    <span className="text-[11px] px-2 py-0.5 rounded-full bg-slate-800/80 border border-slate-700 text-slate-300 capitalize">
-                      {clinicalCase.difficulty}
-                    </span>
-                    {caseCompleted && (
-                      <span className="text-[11px] px-2 py-0.5 rounded-full bg-teal-500/15 border border-teal-500/25 text-teal-300">
-                        concluído
-                      </span>
-                    )}
-                  </div>
-                </div>
-                <button
-                  onClick={() => toggleCase(clinicalCase.title)}
-                  className="min-h-[44px] w-full sm:w-auto px-3 py-2 rounded-xl bg-fuchsia-600/80 text-white text-xs font-bold hover:bg-fuchsia-600 transition active:scale-95 self-start"
-                >
-                  {isOpen ? 'Fechar caso' : 'Resolver caso'}
-                </button>
-              </div>
-
-              {isOpen && (
-                <motion.div
-                  initial={{ opacity: 0, y: 6 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  className="mt-4 space-y-3"
-                >
-                  <div className="rounded-xl border border-slate-800 bg-slate-950/40 p-3">
-                    <p className="text-[10px] font-bold text-slate-500 uppercase tracking-wider">1. Queixa + história</p>
-                    <p className="text-sm text-slate-200 mt-1">{clinicalCase.chiefComplaint}</p>
-                    <p className="text-xs text-slate-400 mt-2 leading-relaxed">{clinicalCase.history}</p>
-                  </div>
-
-                  <div className="rounded-xl border border-slate-800 bg-slate-950/40 p-3">
-                    <p className="text-[10px] font-bold text-slate-500 uppercase tracking-wider">2. Exame físico</p>
-                    <ul className="mt-2 space-y-1.5">
-                      {clinicalCase.physicalExam.map(item => (
-                        <li key={item} className="text-xs text-slate-300">• {item}</li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  <div className="rounded-xl border border-slate-800 bg-slate-950/40 p-3">
-                    <p className="text-[10px] font-bold text-slate-500 uppercase tracking-wider">3. Achados laboratoriais</p>
-                    <ul className="mt-2 space-y-1.5">
-                      {clinicalCase.labFindings.map(item => (
-                        <li key={item} className="text-xs text-slate-300">• {item}</li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  <div className="rounded-xl border border-slate-800 bg-slate-950/40 p-3">
-                    <p className="text-[10px] font-bold text-slate-500 uppercase tracking-wider">4. Pergunta clínica</p>
-                    <p className="text-sm text-slate-200 mt-1">{clinicalCase.clinicalQuestion}</p>
-                  </div>
-
-                  {!isRevealed ? (
-                    <div className="rounded-xl border border-slate-800 bg-slate-950/40 p-3 space-y-3">
-                      {decisionSteps.length > 0 ? (
-                        <>
-                          {currentDecisionStep && (
-                            <div className="space-y-3">
-                              <div>
-                                <p className="text-[10px] font-bold text-fuchsia-300 uppercase tracking-wider">{currentDecisionStep.title}</p>
-                                <p className="text-sm font-bold text-white mt-1">{currentDecisionStep.question}</p>
-                              </div>
-
-                              <div className="grid grid-cols-1 gap-2">
-                                {currentDecisionStep.options.map(option => {
-                                  const selectedOption = decisionAnswers[currentDecisionIndex]
-                                  const hasAnsweredCurrentStep = selectedOption !== undefined
-                                  const isSelected = selectedOption === option
-                                  const isCorrect = currentDecisionStep.correctOption === option
-
-                                  let optionClass = 'border border-slate-700 bg-slate-900/70 text-slate-200 hover:border-fuchsia-500/30'
-                                  if (hasAnsweredCurrentStep && isSelected && isCorrect) {
-                                    optionClass = 'border border-teal-400/40 bg-teal-500/15 text-teal-200'
-                                  } else if (hasAnsweredCurrentStep && isSelected && !isCorrect) {
-                                    optionClass = 'border border-amber-400/40 bg-amber-500/15 text-amber-200'
-                                  } else if (hasAnsweredCurrentStep && isCorrect) {
-                                    optionClass = 'border border-teal-400/25 bg-teal-500/8 text-teal-200'
-                                  }
-
-                                  return (
-                                    <button
-                                      key={option}
-                                      type="button"
-                                      disabled={hasAnsweredCurrentStep}
-                                      onClick={() => {
-                                        setDecisionAnswersByCase(current => ({
-                                          ...current,
-                                          [clinicalCase.title]: [...decisionAnswers, option],
-                                        }))
-                                      }}
-                                      className={`min-h-[44px] w-full rounded-xl px-3 py-2 text-sm font-bold transition text-left disabled:cursor-default ${optionClass}`}
-                                    >
-                                      {option}
-                                    </button>
-                                  )
-                                })}
-                              </div>
-
-                              {decisionAnswers[currentDecisionIndex] && (
-                                <div className={`rounded-xl px-3 py-2 text-xs space-y-1 ${
-                                  decisionAnswers[currentDecisionIndex] === currentDecisionStep.correctOption
-                                    ? 'border border-teal-500/25 bg-teal-500/10 text-teal-100'
-                                    : 'border border-amber-500/25 bg-amber-500/10 text-amber-100'
-                                }`}>
-                                  <p className="font-bold">
-                                    {decisionAnswers[currentDecisionIndex] === currentDecisionStep.correctOption ? 'Correto' : 'Cuidado'}
-                                  </p>
-                                  <p>{currentDecisionStep.explanation}</p>
-                                </div>
-                              )}
-                            </div>
-                          )}
-
-                          {allDecisionStepsAnswered && (
-                            <button
-                              onClick={() => {
-                                markCaseReviewed(clinicalCase.title, profile.id)
-                                setRevealedCaseTitle(clinicalCase.title)
-                              }}
-                              className="min-h-[44px] w-full px-3 py-2 rounded-xl border border-teal-500/30 bg-teal-500/10 text-teal-300 text-xs font-bold hover:bg-teal-500/15 transition"
-                            >
-                              Mostrar resolução
-                            </button>
-                          )}
-                        </>
-                      ) : (
-                        <>
-                          <div>
-                            <p className="text-sm font-bold text-white">Você já tem um diagnóstico em mente?</p>
-                            <p className="text-xs text-slate-400 mt-1">Marque sua percepção antes de ver a resolução.</p>
-                          </div>
-
-                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                            <button
-                              type="button"
-                              onClick={() => setSelfEvaluationByCase(current => ({ ...current, [clinicalCase.title]: 'acertei' }))}
-                              className={`min-h-[44px] w-full rounded-xl px-3 py-2 text-sm font-bold transition ${
-                                selfEvaluation === 'acertei'
-                                  ? 'border border-teal-400/40 bg-teal-500/15 text-teal-300'
-                                  : 'border border-slate-700 bg-slate-900/70 text-slate-200 hover:border-teal-500/30'
-                              }`}
-                            >
-                              Acertei
-                            </button>
-                            <button
-                              type="button"
-                              onClick={() => setSelfEvaluationByCase(current => ({ ...current, [clinicalCase.title]: 'errei' }))}
-                              className={`min-h-[44px] w-full rounded-xl px-3 py-2 text-sm font-bold transition ${
-                                selfEvaluation === 'errei'
-                                  ? 'border border-amber-400/40 bg-amber-500/15 text-amber-300'
-                                  : 'border border-slate-700 bg-slate-900/70 text-slate-200 hover:border-amber-500/30'
-                              }`}
-                            >
-                              Errei
-                            </button>
-                          </div>
-
-                          {selfEvaluation && (
-                            <button
-                              onClick={() => {
-                                markCaseReviewed(clinicalCase.title, profile.id)
-                                setRevealedCaseTitle(clinicalCase.title)
-                              }}
-                              className="min-h-[44px] w-full px-3 py-2 rounded-xl border border-teal-500/30 bg-teal-500/10 text-teal-300 text-xs font-bold hover:bg-teal-500/15 transition"
-                            >
-                              Mostrar resolução
-                            </button>
-                          )}
-                        </>
-                      )}
-                    </div>
-                  ) : (
-                    <div className="rounded-xl border border-teal-500/20 bg-teal-500/5 p-3 space-y-3">
-                      <div className={`rounded-xl px-3 py-2 text-xs font-semibold ${
-                        selfEvaluation === 'errei'
-                          ? 'border border-amber-500/25 bg-amber-500/10 text-amber-200'
-                          : 'border border-teal-500/25 bg-teal-500/10 text-teal-100'
-                      }`}>
-                        {selfEvaluation === 'errei'
-                          ? 'Boa - esse é o momento que mais gera aprendizado.'
-                          : 'Perfeito. Confirme seu raciocínio abaixo.'}
-                      </div>
-
-                      <div>
-                        <p className="text-[10px] font-bold text-teal-300 uppercase tracking-wider">5. Diagnóstico</p>
-                        <p className="text-sm text-white mt-1">{clinicalCase.diagnosis}</p>
-                      </div>
-
-                      <div>
-                        <p className="text-[10px] font-bold text-teal-300 uppercase tracking-wider">Conduta</p>
-                        <ul className="mt-2 space-y-1.5">
-                          {ensureList(clinicalCase.conduct).map(item => (
-                            <li key={item} className="text-xs text-slate-200">• {item}</li>
-                          ))}
-                        </ul>
-                      </div>
-
-                      <div>
-                        <p className="text-[10px] font-bold text-teal-300 uppercase tracking-wider">Fármacos-chave</p>
-                        <div className="flex flex-wrap gap-1.5 mt-2">
-                          {clinicalCase.drugs.map(drug => (
-                            <span
-                              key={drug}
-                              className="px-2 py-1 rounded-full bg-slate-800/80 border border-slate-700 text-[11px] text-slate-200"
-                            >
-                              {drug}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-
-                      <div>
-                        <p className="text-[10px] font-bold text-amber-300 uppercase tracking-wider">Por que isso importa?</p>
-                        <div className="mt-1 rounded-xl border border-amber-500/20 bg-amber-500/10 px-3 py-2">
-                          <p className="text-xs text-amber-100 leading-relaxed">{clinicalCase.reasoning}</p>
-                        </div>
-                      </div>
-
-                      <button
-                        onClick={() => relatedDiseaseId && onOpenDisease?.(relatedDiseaseId)}
-                        disabled={!relatedDiseaseId}
-                        className={`min-h-[44px] w-full px-3 py-2 rounded-xl text-xs font-bold transition ${
-                          relatedDiseaseId
-                            ? 'bg-slate-800 text-white border border-slate-700 hover:border-teal-500/40'
-                            : 'bg-slate-900 text-slate-600 border border-slate-800 cursor-not-allowed'
-                        }`}
-                      >
-                        Ver doença relacionada
-                      </button>
-
-                      {nextCase ? (
-                        <div className="rounded-xl border border-fuchsia-500/20 bg-fuchsia-500/8 p-3">
-                          <p className="text-sm font-bold text-white">Quer tentar o próximo caso?</p>
-                          <p className="text-xs text-slate-400 mt-1">{nextCase.title}</p>
-                          <button
-                            type="button"
-                            onClick={() => {
-                              setOpenCaseTitle(nextCase.title)
-                              setRevealedCaseTitle(null)
-                            }}
-                            className="mt-3 min-h-[44px] w-full rounded-xl bg-fuchsia-500/90 px-3 py-2 text-xs font-bold text-white transition hover:bg-fuchsia-400"
-                          >
-                            Abrir próximo caso
-                          </button>
-                        </div>
-                      ) : (
-                        <div className="rounded-xl border border-slate-700/70 bg-slate-900/50 p-3">
-                          <p className="text-sm font-bold text-white">Bom trabalho.</p>
-                          <p className="text-xs text-slate-400 mt-1">Você concluiu os casos disponíveis por enquanto.</p>
-                        </div>
-                      )}
-                    </div>
-                  )}
-                </motion.div>
-              )}
-            </div>
-          )
-        })}
+      <div className="rounded-2xl border border-slate-800 bg-slate-900/55 p-3">
+        <div className="flex items-center gap-2 mb-3">
+          <Filter size={14} className="text-slate-400" />
+          <p className="text-xs font-bold text-slate-400 uppercase tracking-wider">Filtros</p>
+        </div>
+        <div className="flex flex-wrap gap-2">
+          {[
+            { id: 'todas', label: 'Todas' },
+            { id: 'cao', label: 'Cão' },
+            { id: 'bovino', label: 'Bovino' },
+            { id: 'nao_iniciados', label: 'Não iniciados' },
+            { id: 'concluidos', label: 'Concluídos' },
+          ].map(filter => (
+            <button
+              key={filter.id}
+              type="button"
+              onClick={() => setCaseFilter(filter.id as CaseFilter)}
+              className={`min-h-[44px] rounded-xl px-3 py-2 text-sm font-bold transition ${
+                caseFilter === filter.id
+                  ? 'border border-fuchsia-400/40 bg-fuchsia-500/15 text-fuchsia-100'
+                  : 'border border-slate-700 bg-slate-900/70 text-slate-300 hover:border-fuchsia-500/30'
+              }`}
+            >
+              {filter.label}
+            </button>
+          ))}
+        </div>
       </div>
+
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
+        {filteredCases.map(renderCaseCard)}
+      </div>
+
+      {filteredCases.length === 0 && (
+        <div className="rounded-2xl border border-slate-800 bg-slate-900/55 p-5 text-center">
+          <p className="text-sm font-bold text-white">Nenhum caso encontrado</p>
+          <p className="text-xs text-slate-400 mt-1">Ajuste o filtro para ver outros casos disponíveis.</p>
+        </div>
+      )}
     </div>
   )
 }

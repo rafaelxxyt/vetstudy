@@ -1,9 +1,15 @@
 [
   {
-    "title": "Caso Clinico: Piometra Canina",
+    "id": "caso-01",
+    "number": 1,
+    "title": "Caso 01 - Cadela com PU/PD e secrecao vulvar",
     "species": "Cao",
-    "estimatedTime": "2–4 min",
+    "speciesEmoji": "🐶",
+    "category": "Reproducao",
     "difficulty": "media",
+    "estimatedTime": "2-4 min",
+    "relatedDiseaseName": "Piometra Canina",
+    "steps": [],
     "chiefComplaint": "Cadela apatica com secrecao vulvar e aumento abdominal.",
     "history": "Femea inteira, 8 anos, cerca de 6 semanas apos o cio. Tutor relata poliuria, polidipsia e queda progressiva do apetite ha 3 dias.",
     "physicalExam": [
@@ -26,14 +32,19 @@
       "Programar ovariossalpingo-histerectomia apos estabilizacao"
     ],
     "drugs": ["Amoxicilina", "Enrofloxacina", "Meloxicam"],
-    "reasoning": "Cadela inteira no diestro, com secrecao purulenta, toxemia e utero aumentado na USG, sugere piometra. O tratamento definitivo costuma ser cirurgico apos estabilizacao.",
-    "relatedDiseaseName": "Piometra Canina"
+    "reasoning": "Cadela inteira no diestro, com secrecao purulenta, toxemia e utero aumentado na USG, sugere piometra. O tratamento definitivo costuma ser cirurgico apos estabilizacao."
   },
   {
-    "title": "Caso Clinico: Parvovirose Canina",
+    "id": "caso-02",
+    "number": 2,
+    "title": "Caso 02 - Filhote com vomito e diarreia hemorragica",
     "species": "Cao",
-    "estimatedTime": "3–4 min",
+    "speciesEmoji": "🐶",
+    "category": "Infectologia",
     "difficulty": "media",
+    "estimatedTime": "3-4 min",
+    "relatedDiseaseName": "Parvovirose Canina",
+    "steps": [],
     "chiefComplaint": "Filhote com vomitos e diarreia intensa com sangue.",
     "history": "Filhote de 4 meses, vacinacao incompleta, com inicio agudo de apatia, anorexia e vomitos nas ultimas 24 horas.",
     "physicalExam": [
@@ -56,22 +67,84 @@
       "Antibioticoterapia de cobertura para translocacao bacteriana e suporte nutricional precoce"
     ],
     "drugs": ["Maropitant", "Metronidazol", "Amoxicilina"],
-    "reasoning": "Filhote nao imunizado com enterite hemorragica, leucopenia e teste positivo fecha um quadro tipico de parvovirose. O risco maior inicial e choque hipovolemico e sepse secundaria.",
-    "relatedDiseaseName": "Parvovirose Canina"
+    "reasoning": "Filhote nao imunizado com enterite hemorragica, leucopenia e teste positivo fecha um quadro tipico de parvovirose. O risco maior inicial e choque hipovolemico e sepse secundaria."
   },
   {
-    "title": "Caso Clinico: Leptospirose",
+    "id": "caso-03",
+    "number": 3,
+    "title": "Caso 03 - Cao com febre, ictericia e oliguria",
     "species": "Cao",
-    "estimatedTime": "3–4 min",
+    "speciesEmoji": "🐶",
+    "category": "Infectologia",
     "difficulty": "dificil",
+    "estimatedTime": "3-5 min",
+    "relatedDiseaseName": "Leptospirose",
+    "steps": [
+      {
+        "id": "suspeita-clinica",
+        "type": "single_choice",
+        "title": "Etapa 1 - Suspeita clinica",
+        "question": "Cao com febre, ictericia, oliguria e historico de contato com agua contaminada. Qual sua principal suspeita?",
+        "options": [
+          "Erliquiose",
+          "Leptospirose",
+          "Hepatite infecciosa canina",
+          "Babesiose"
+        ],
+        "correctIndex": 1,
+        "explanation": "Febre, ictericia, lesao renal e exposicao a agua contaminada formam um quadro altamente sugestivo de leptospirose."
+      },
+      {
+        "id": "exame-diagnostico",
+        "type": "single_choice",
+        "title": "Etapa 2 - Exame diagnostico",
+        "question": "Qual exame confirmatorio voce solicita primeiro?",
+        "options": [
+          "Hemograma completo + bioquimica renal",
+          "Teste MAT",
+          "Radiografia toracica",
+          "Citologia vaginal"
+        ],
+        "correctIndex": 1,
+        "explanation": "O MAT e o exame confirmatorio classico para leptospirose. Hemograma e bioquimica ajudam no suporte, mas nao confirmam o agente."
+      },
+      {
+        "id": "conduta-inicial",
+        "type": "single_choice",
+        "title": "Etapa 3 - Conduta inicial",
+        "question": "Qual conduta deve ser priorizada nas primeiras horas?",
+        "options": [
+          "Isolamento, EPI, fluidoterapia e antibiotico empirico",
+          "Alta com antibiotico oral",
+          "Aguardar MAT antes de tratar",
+          "Apenas antiemetico e observacao"
+        ],
+        "correctIndex": 0,
+        "explanation": "A prioridade e proteger a equipe, estabilizar o paciente e iniciar tratamento empirico sem esperar a confirmacao sorologica."
+      },
+      {
+        "id": "erro-critico",
+        "type": "single_choice",
+        "title": "Etapa 4 - Erro critico",
+        "question": "O que seria um erro grave nesse caso?",
+        "options": [
+          "Manipular urina sem protecao",
+          "Iniciar fluidoterapia monitorada",
+          "Informar risco zoonotico ao tutor",
+          "Tratar empiricamente antes do MAT"
+        ],
+        "correctIndex": 0,
+        "explanation": "A urina pode eliminar leptospiras, entao manipular sem protecao expoe a equipe a risco zoonotico importante."
+      }
+    ],
     "chiefComplaint": "Cao febril com vomitos, ictericia e reducao do volume urinario.",
     "history": "Animal com acesso a area alagada e possivel contato com agua contaminada. Evoluiu em 48 horas com apatia, vomitos e anorexia.",
     "physicalExam": [
       "Febre de 40,1 C",
-      "Mucosas ictéricas",
+      "Mucosas ictericas",
       "Desidratacao",
       "Dor abdominal cranial",
-      "Halito urêmico discreto"
+      "Halito uremico discreto"
     ],
     "labFindings": [
       "Azotemia importante",
@@ -87,52 +160,19 @@
       "Iniciar antibioticoterapia e suporte antiemetico"
     ],
     "drugs": ["Penicilina G Procaina", "Doxiciclina", "Maropitant"],
-    "decisionSteps": [
-      {
-        "title": "Passo 1 - Suspeita clinica",
-        "question": "Qual e a principal suspeita diante de febre, ictericia, azotemia e exposicao a agua contaminada?",
-        "options": [
-          "Leptospirose",
-          "Parvovirose",
-          "Babesiose",
-          "Intoxicacao alimentar"
-        ],
-        "correctOption": "Leptospirose",
-        "explanation": "A combinacao de febre, ictericia, lesao renal e exposicao ambiental e muito sugestiva de leptospirose."
-      },
-      {
-        "title": "Passo 2 - Conduta inicial",
-        "question": "Qual conduta deve ser priorizada nas primeiras horas?",
-        "options": [
-          "Isolamento, EPI, fluidoterapia e antibiotico empirico",
-          "Alta com antibiotico oral",
-          "Aguardar MAT antes de tratar",
-          "Apenas antiemetico e observacao"
-        ],
-        "correctOption": "Isolamento, EPI, fluidoterapia e antibiotico empirico",
-        "explanation": "A prioridade e proteger a equipe, estabilizar o paciente e iniciar tratamento sem esperar confirmacao sorologica."
-      },
-      {
-        "title": "Passo 3 - Erro critico",
-        "question": "O que seria um erro grave nesse caso?",
-        "options": [
-          "Manipular urina sem protecao",
-          "Iniciar fluidoterapia monitorada",
-          "Informar risco zoonotico ao tutor",
-          "Usar antibiotico antes do MAT"
-        ],
-        "correctOption": "Manipular urina sem protecao",
-        "explanation": "A urina pode eliminar leptospiras, entao manipular sem protecao expoe a equipe a risco zoonotico importante."
-      }
-    ],
-    "reasoning": "Ictericia associada a azotemia, febre e exposicao ambiental e altamente sugestiva de leptospirose. Alem do tratamento, a protecao da equipe e parte da conduta.",
-    "relatedDiseaseName": "Leptospirose"
+    "reasoning": "Ictericia associada a azotemia, febre e exposicao ambiental e altamente sugestiva de leptospirose. Alem do tratamento, a protecao da equipe e parte da conduta."
   },
   {
-    "title": "Caso Clinico: Mastite Bovina",
+    "id": "caso-04",
+    "number": 4,
+    "title": "Caso 04 - Vaca com queda brusca de producao e leite alterado",
     "species": "Bovino",
-    "estimatedTime": "2–3 min",
+    "speciesEmoji": "🐄",
+    "category": "Clinica de Ruminantes",
     "difficulty": "facil",
+    "estimatedTime": "2-3 min",
+    "relatedDiseaseName": "Mastite Bovina",
+    "steps": [],
     "chiefComplaint": "Vaca recem-parida com queda de producao e quarto mamario quente.",
     "history": "Vaca leiteira de alta producao, 20 dias pos-parto. Ordenhador observou leite com grumos e dor durante a ordenha.",
     "physicalExam": [
@@ -155,20 +195,25 @@
       "Suporte com anti-inflamatorio e hidratacao quando necessario"
     ],
     "drugs": ["Ceftiofur", "Meloxicam", "Ocitocina"],
-    "reasoning": "Alteracao do leite associada a inflamacao mamaria local caracteriza mastite clinica. O manejo rapido do quarto e o tratamento direcionado diminuem dano tecidual e descarte de leite.",
-    "relatedDiseaseName": "Mastite Bovina"
+    "reasoning": "Alteracao do leite associada a inflamacao mamaria local caracteriza mastite clinica. O manejo rapido do quarto e o tratamento direcionado diminuem dano tecidual e descarte de leite."
   },
   {
-    "title": "Caso Clinico: Babesiose Bovina",
+    "id": "caso-05",
+    "number": 5,
+    "title": "Caso 05 - Bovino com febre, anemia e urina escura",
     "species": "Bovino",
-    "estimatedTime": "2–4 min",
+    "speciesEmoji": "🐄",
+    "category": "Clinica de Ruminantes",
     "difficulty": "media",
+    "estimatedTime": "2-4 min",
+    "relatedDiseaseName": "Babesiose Bovina / Tristeza Parasitária",
+    "steps": [],
     "chiefComplaint": "Novilha com febre, mucosas palidas e urina avermelhada.",
     "history": "Animal criado em area com alta infestacao por carrapatos. Tutor percebeu prostracao acentuada e queda abrupta no consumo nas ultimas 24 horas.",
     "physicalExam": [
       "Temperatura de 41 C",
       "Apatia intensa",
-      "Mucosas palidas a ictéricas",
+      "Mucosas palidas a ictericas",
       "Taquicardia",
       "Urina escura compativel com hemoglobinuria"
     ],
@@ -185,7 +230,6 @@
       "Monitorar necessidade de transfusao nos casos de anemia critica"
     ],
     "drugs": ["Aceturato de Diminazeno - Berenil", "Doxiciclina"],
-    "reasoning": "Febre alta, anemia hemolitica, hemoglobinuria e carrapatos apontam para babesiose bovina. A confirmacao no esfregaco acelera a decisao terapeutica e melhora o prognostico.",
-    "relatedDiseaseName": "Babesiose Bovina / Tristeza Parasitária"
+    "reasoning": "Febre alta, anemia hemolitica, hemoglobinuria e carrapatos apontam para babesiose bovina. A confirmacao no esfregaco acelera a decisao terapeutica e melhora o prognostico."
   }
 ]

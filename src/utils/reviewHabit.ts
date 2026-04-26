@@ -4,10 +4,20 @@ const REVIEW_HABIT_KEY = 'vetstudy_review_habit'
 const REVIEWED_CASES_KEY = 'vetstudy_reviewed_cases'
 const REVIEW_HABIT_EVENT = 'vetstudy_review_habit_update'
 const CASE_PROGRESS_EVENT = 'vetstudy_case_progress_update'
+const CASE_PROGRESS_KEY_PREFIX = 'vetstudy_case_'
 
 export interface ReviewHabitState {
   currentStreak: number
   lastReviewDate: string | null
+}
+
+export interface CaseProgressState {
+  status: 'in_progress' | 'completed'
+  stepAnswers?: number[]
+  score?: number
+  currentStepIndex?: number
+  revealed?: boolean
+  selfEvaluation?: 'acertei' | 'errei'
 }
 
 function todayISO() {
@@ -86,6 +96,18 @@ export function markReviewCompleted(profileId?: string, date = todayISO()) {
 export function loadReviewedCases(profileId?: string) {
   const resolvedProfileId = getProfileId(profileId)
   return readJSON<string[]>(keyFor(resolvedProfileId, REVIEWED_CASES_KEY), [])
+}
+
+export function loadCaseProgress(caseId: string, profileId?: string) {
+  const resolvedProfileId = getProfileId(profileId)
+  return readJSON<CaseProgressState | null>(keyFor(resolvedProfileId, `${CASE_PROGRESS_KEY_PREFIX}${caseId}`), null)
+}
+
+export function saveCaseProgress(caseId: string, progress: CaseProgressState, profileId?: string) {
+  const resolvedProfileId = getProfileId(profileId)
+  saveJSON(keyFor(resolvedProfileId, `${CASE_PROGRESS_KEY_PREFIX}${caseId}`), progress)
+  try { window.dispatchEvent(new Event(CASE_PROGRESS_EVENT)) } catch {}
+  return progress
 }
 
 export function markCaseReviewed(caseTitle: string, profileId?: string) {
