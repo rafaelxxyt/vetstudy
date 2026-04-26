@@ -1066,13 +1066,16 @@ function ClinicalCasesSection({
   profileId,
   onOpenDisease,
   focusToken,
+  reviewedCases,
 }: {
   profileId: string
   onOpenDisease: (diseaseId: string) => void
   focusToken: number
+  reviewedCases: string[]
 }) {
   const [openCaseTitle, setOpenCaseTitle] = useState<string | null>(null)
   const [revealedCaseTitle, setRevealedCaseTitle] = useState<string | null>(null)
+  const nextSuggestedCase = (currentTitle: string) => CLINICAL_CASES.find(item => !reviewedCases.includes(item.title) && item.title !== currentTitle)
 
   const toggleCase = (title: string) => {
     setOpenCaseTitle(current => current === title ? null : title)
@@ -1081,11 +1084,11 @@ function ClinicalCasesSection({
 
   useEffect(() => {
     if (!focusToken || CLINICAL_CASES.length === 0) return
-    const firstCase = CLINICAL_CASES[0]
+    const firstCase = CLINICAL_CASES.find(item => !reviewedCases.includes(item.title)) ?? CLINICAL_CASES[0]
     setOpenCaseTitle(firstCase.title)
     const element = document.getElementById('hub-clinical-cases')
     element?.scrollIntoView({ behavior: 'smooth', block: 'start' })
-  }, [focusToken])
+  }, [focusToken, reviewedCases])
 
   return (
     <div id="hub-clinical-cases">
@@ -1098,6 +1101,8 @@ function ClinicalCasesSection({
           const isOpen = openCaseTitle === clinicalCase.title
           const isRevealed = revealedCaseTitle === clinicalCase.title
           const relatedDiseaseId = findDiseaseIdByName(clinicalCase.relatedDiseaseName)
+          const caseCompleted = reviewedCases.includes(clinicalCase.title)
+          const nextCase = nextSuggestedCase(clinicalCase.title)
 
           return (
             <div key={clinicalCase.title} className="bg-slate-900/55 border border-slate-800 rounded-2xl p-4">
@@ -1114,11 +1119,16 @@ function ClinicalCasesSection({
                     <span className="text-[11px] px-2 py-0.5 rounded-full bg-slate-800/80 border border-slate-700 text-slate-300 capitalize">
                       {clinicalCase.difficulty}
                     </span>
+                    {caseCompleted && (
+                      <span className="text-[11px] px-2 py-0.5 rounded-full bg-teal-500/15 border border-teal-500/25 text-teal-300">
+                        concluído
+                      </span>
+                    )}
                   </div>
                 </div>
                 <button
                   onClick={() => toggleCase(clinicalCase.title)}
-                  className="px-3 py-2 rounded-xl bg-fuchsia-600/80 text-white text-xs font-bold hover:bg-fuchsia-600 transition active:scale-95 self-start"
+                  className="min-h-[44px] w-full sm:w-auto px-3 py-2 rounded-xl bg-fuchsia-600/80 text-white text-xs font-bold hover:bg-fuchsia-600 transition active:scale-95 self-start"
                 >
                   {isOpen ? 'Fechar caso' : 'Resolver caso'}
                 </button>
@@ -1165,7 +1175,7 @@ function ClinicalCasesSection({
                         markCaseReviewed(clinicalCase.title, profileId)
                         setRevealedCaseTitle(clinicalCase.title)
                       }}
-                      className="w-full px-3 py-2 rounded-xl border border-teal-500/30 bg-teal-500/10 text-teal-300 text-xs font-bold hover:bg-teal-500/15 transition"
+                      className="min-h-[44px] w-full px-3 py-2 rounded-xl border border-teal-500/30 bg-teal-500/10 text-teal-300 text-xs font-bold hover:bg-teal-500/15 transition"
                     >
                       Mostrar resolução
                     </button>
@@ -1209,7 +1219,7 @@ function ClinicalCasesSection({
                       <button
                         onClick={() => relatedDiseaseId && onOpenDisease(relatedDiseaseId)}
                         disabled={!relatedDiseaseId}
-                        className={`w-full px-3 py-2 rounded-xl text-xs font-bold transition ${
+                        className={`min-h-[44px] w-full px-3 py-2 rounded-xl text-xs font-bold transition ${
                           relatedDiseaseId
                             ? 'bg-slate-800 text-white border border-slate-700 hover:border-teal-500/40'
                             : 'bg-slate-900 text-slate-600 border border-slate-800 cursor-not-allowed'
@@ -1217,6 +1227,27 @@ function ClinicalCasesSection({
                       >
                         Ver doença relacionada
                       </button>
+                      {nextCase ? (
+                        <div className="rounded-xl border border-fuchsia-500/20 bg-fuchsia-500/8 p-3">
+                          <p className="text-sm font-bold text-white">Quer tentar o próximo caso?</p>
+                          <p className="text-xs text-slate-400 mt-1">{nextCase.title}</p>
+                          <button
+                            type="button"
+                            onClick={() => {
+                              setOpenCaseTitle(nextCase.title)
+                              setRevealedCaseTitle(null)
+                            }}
+                            className="mt-3 min-h-[44px] w-full rounded-xl bg-fuchsia-500/90 px-3 py-2 text-xs font-bold text-white transition hover:bg-fuchsia-400"
+                          >
+                            Abrir próximo caso
+                          </button>
+                        </div>
+                      ) : (
+                        <div className="rounded-xl border border-slate-700/70 bg-slate-900/50 p-3">
+                          <p className="text-sm font-bold text-white">Bom trabalho.</p>
+                          <p className="text-xs text-slate-400 mt-1">Você concluiu os casos disponíveis por enquanto.</p>
+                        </div>
+                      )}
                     </div>
                   )}
                 </motion.div>
@@ -1229,7 +1260,7 @@ function ClinicalCasesSection({
   )
 }
 
-function HubDashboard({ profile, topics, setTopics, stats, dailyHistory, topicsStorageKey, seqStorageKey, onOpenSimulator, onOpenDailyStudy, onOpenReview, onGlobalNavigate }: {
+function HubDashboard({ profile, topics, setTopics, stats, dailyHistory, topicsStorageKey, seqStorageKey, caseFocusToken, onOpenSimulator, onOpenDailyStudy, onOpenReview, onStartCase, onGlobalNavigate }: {
   profile: LocalProfile
   topics: Topic[]
   setTopics: (t: Topic[]) => void
@@ -1237,9 +1268,11 @@ function HubDashboard({ profile, topics, setTopics, stats, dailyHistory, topicsS
   dailyHistory: DailyStudyTrace[]
   topicsStorageKey: string
   seqStorageKey: string
+  caseFocusToken: number
   onOpenSimulator: () => void
   onOpenDailyStudy: () => void
   onOpenReview: () => void
+  onStartCase: () => void
   onGlobalNavigate: (page: SearchTargetPage, id: string) => void
 }) {
   const dica = DICAS[new Date().getDay() % DICAS.length]
@@ -1247,7 +1280,6 @@ function HubDashboard({ profile, topics, setTopics, stats, dailyHistory, topicsS
   const [recent, setRecent] = useState<ClinicalSavedItem[]>(() => loadClinicalRecent())
   const [reviewHabit, setReviewHabit] = useState<ReviewHabitState>(() => loadReviewHabit(profile.id))
   const [reviewedCases, setReviewedCases] = useState<string[]>(() => loadReviewedCases(profile.id))
-  const [caseFocusToken, setCaseFocusToken] = useState(0)
   const dueToday = dueReviewCount(topics)
   const pendingCases = Math.max(0, CLINICAL_CASES.length - reviewedCases.length)
 
@@ -1289,7 +1321,7 @@ function HubDashboard({ profile, topics, setTopics, stats, dailyHistory, topicsS
         pendingCases={pendingCases}
         streak={reviewHabit.currentStreak}
         onStartReview={onOpenReview}
-        onStartCase={() => setCaseFocusToken(Date.now())}
+        onStartCase={onStartCase}
       />
 
       <div className="bg-gradient-to-br from-teal-500/15 to-slate-800/80 border border-teal-500/20 rounded-2xl p-4 flex items-start gap-3 backdrop-blur-sm">
@@ -1312,6 +1344,7 @@ function HubDashboard({ profile, topics, setTopics, stats, dailyHistory, topicsS
       <ClinicalCasesSection
         profileId={profile.id}
         focusToken={caseFocusToken}
+        reviewedCases={reviewedCases}
         onOpenDisease={(diseaseId) => onGlobalNavigate('doencas', diseaseId)}
       />
 
@@ -1385,6 +1418,7 @@ function HubContent({
   const [topics, setTopics] = useState<Topic[]>(() => readJSON<Topic[]>(topicsKey, []))
   const [stats,  setStats]  = useState<QuizStats>(() => readJSON<QuizStats>(statsKey, { total: 0, correct: 0, hours: 0 }))
   const [dailyHistory, setDailyHistory] = useState<DailyStudyTrace[]>(() => readJSON<DailyStudyTrace[]>(histKey, []))
+  const [caseFocusToken, setCaseFocusToken] = useState(0)
 
   // Abrir simulador em modo diário (via EstudoHojeCard)
   const [pendingDailyLaunch, setPendingDailyLaunch] = useState(false)
@@ -1409,6 +1443,11 @@ function HubContent({
   useEffect(() => {
     if (pendingDailyLaunch && tab === 'simulador') setPendingDailyLaunch(false)
   }, [pendingDailyLaunch, tab])
+
+  const openClinicalCaseFlow = () => {
+    setCaseFocusToken(Date.now())
+    setTab('home')
+  }
 
   return (
     <div className="flex flex-col h-full">
@@ -1444,13 +1483,15 @@ function HubContent({
                 dailyHistory={dailyHistory}
                 topicsStorageKey={topicsKey}
                 seqStorageKey={seqKey}
+                caseFocusToken={caseFocusToken}
                 onOpenSimulator={() => setTab('simulador')}
                 onOpenDailyStudy={openDailyStudy}
                 onOpenReview={() => setTab('revisao')}
+                onStartCase={openClinicalCaseFlow}
                 onGlobalNavigate={onGlobalNavigate}
               />
             )}
-            {tab === 'revisao'   && <RevisaoPage profileId={profile.id} />}
+            {tab === 'revisao'   && <RevisaoPage profileId={profile.id} onRequestCase={openClinicalCaseFlow} />}
             {tab === 'simulador' && <SimuladorPage />}
             {tab === 'mapas'     && <MapasPage />}
           </motion.div>

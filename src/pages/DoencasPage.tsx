@@ -65,6 +65,14 @@ const DRUG_REFERENCE_INDEX = db.drugs.map(drug => {
   return { id: drug.id, name: primaryName, aliases }
 })
 
+function findDrugReferenceByName(name: string) {
+  const target = normalizeText(name)
+  return DRUG_REFERENCE_INDEX.find(drug => (
+    normalizeText(drug.name) === target ||
+    drug.aliases.some(alias => normalizeText(alias) === target)
+  ))
+}
+
 function getTreatmentLines(disease: Disease) {
   if (Array.isArray(disease.conduct) && disease.conduct.length > 0) return disease.conduct
   return Array.isArray(disease.treatment) ? disease.treatment : [disease.treatment]
@@ -184,6 +192,12 @@ export default function DoencasPage({ initialSelectedId, selectionToken, onOpenD
   const anatomyReference = isAnatomyReference(selected)
   const treatmentLines = useMemo(() => getTreatmentLines(selected), [selected])
   const referencedDrugs = useMemo(() => extractReferencedDrugs(treatmentLines, selected), [selected, treatmentLines])
+  const quickActionDrugs = useMemo(() => {
+    if (referencedDrugs.length > 0) return referencedDrugs
+    return (selected.mainDrugs ?? [])
+      .map(name => findDrugReferenceByName(name))
+      .filter((drug): drug is NonNullable<typeof drug> => Boolean(drug))
+  }, [referencedDrugs, selected.mainDrugs])
   const quickAction = useMemo(() => splitQuickAction(treatmentLines), [treatmentLines])
   const keySigns = useMemo(() => (
     selected.keySigns && selected.keySigns.length > 0 ? selected.keySigns : selected.symptoms.slice(0, 4)
@@ -363,7 +377,7 @@ export default function DoencasPage({ initialSelectedId, selectionToken, onOpenD
                     <button
                       type="button"
                       onClick={() => { if (hasProtocol) setShowProtocol(open => !open) }}
-                      className={`px-3 py-2 rounded-xl text-xs font-bold border transition-all ${
+                      className={`min-h-[44px] w-full sm:w-auto px-3 py-2 rounded-xl text-xs font-bold border transition-all ${
                         hasProtocol
                           ? 'bg-amber-500/10 border-amber-500/20 text-amber-300 hover:bg-amber-500/15'
                           : 'bg-slate-700/40 border-slate-700 text-slate-500 cursor-default'
@@ -388,14 +402,14 @@ export default function DoencasPage({ initialSelectedId, selectionToken, onOpenD
                     </div>
                   </div>
 
-                  {referencedDrugs.length > 0 && (
-                    <div className="mt-3 flex flex-wrap gap-2">
-                      {referencedDrugs.map(drug => (
+                  <div className="mt-3 flex flex-wrap gap-2">
+                    {quickActionDrugs.length > 0 ? (
+                      quickActionDrugs.map(drug => (
                         <button
                           key={drug.id}
                           type="button"
                           onClick={() => onOpenDrug?.(drug.id)}
-                          className={`px-2.5 py-1 rounded-full text-[11px] font-bold border ${
+                          className={`min-h-[44px] px-2.5 py-1 rounded-full text-[11px] font-bold border ${
                             onOpenDrug
                               ? 'bg-teal-500/15 border-teal-500/25 text-teal-300 hover:bg-teal-500/20'
                               : 'bg-slate-700/60 border-slate-600/60 text-slate-200'
@@ -403,9 +417,17 @@ export default function DoencasPage({ initialSelectedId, selectionToken, onOpenD
                         >
                           {drug.name}
                         </button>
-                      ))}
-                    </div>
-                  )}
+                      ))
+                    ) : (
+                      <button
+                        type="button"
+                        onClick={() => onOpenRelatedDrugs?.(selected.mainDrugs?.[0] ?? selected.name)}
+                        className="min-h-[44px] w-full sm:w-auto px-3 py-2 rounded-xl text-xs font-bold border bg-teal-500/10 border-teal-500/20 text-teal-300 hover:bg-teal-500/15 transition-all"
+                      >
+                        Ver fármacos recomendados
+                      </button>
+                    )}
+                  </div>
 
                   {showProtocol && hasProtocol && (
                     <div className="mt-3 rounded-xl bg-slate-900/60 border border-slate-700/70 p-3">
@@ -429,8 +451,11 @@ export default function DoencasPage({ initialSelectedId, selectionToken, onOpenD
                     <h3 className="text-sm font-bold text-white">🧠 Raciocínio Clínico</h3>
                     <button
                       type="button"
-                      onClick={() => onOpenRelatedDrugs?.(selected.mainDrugs?.[0] ?? referencedDrugs[0]?.name, referencedDrugs[0]?.id)}
-                      className="px-3 py-2 rounded-xl text-xs font-bold border bg-teal-500/10 border-teal-500/20 text-teal-300 hover:bg-teal-500/15 transition-all"
+                      onClick={() => onOpenRelatedDrugs?.(
+                        selected.mainDrugs?.[0] ?? quickActionDrugs[0]?.name ?? referencedDrugs[0]?.name ?? selected.name,
+                        quickActionDrugs[0]?.id ?? referencedDrugs[0]?.id,
+                      )}
+                      className="min-h-[44px] w-full sm:w-auto px-3 py-2 rounded-xl text-xs font-bold border bg-teal-500/10 border-teal-500/20 text-teal-300 hover:bg-teal-500/15 transition-all"
                     >
                       Ver fármacos relacionados
                     </button>
@@ -491,7 +516,7 @@ export default function DoencasPage({ initialSelectedId, selectionToken, onOpenD
                   </div>
 
                   <div className="rounded-xl bg-slate-900/60 border border-slate-700/70 p-3 mt-3">
-                    <p className="text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-2">Dica clÃ­nica</p>
+                    <p className="text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-2">Dica clínica</p>
                     <p className="text-sm text-slate-300 leading-relaxed">
                       {clinicalTip || 'Sem dica clínica estruturada para esta ficha.'}
                     </p>
