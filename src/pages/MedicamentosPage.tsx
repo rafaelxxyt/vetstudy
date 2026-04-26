@@ -2,13 +2,26 @@ import { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import {
   Search, Pill, AlertCircle, ChevronDown, FlaskConical,
-  Tag, Info, Calculator, Beaker, RotateCcw,
+  Tag, Info, Calculator, Beaker, RotateCcw, Star,
 } from 'lucide-react'
 import db from '../data/central_db.json'
+import {
+  clinicalActivityEventName,
+  isClinicalFavorite,
+  pushClinicalRecent,
+  toggleClinicalFavorite,
+} from '../utils/clinicalActivity'
 
 type Drug = typeof db.drugs[0]
 type SpeciesEntry = Drug['species'][0]
 type TabKey = 'sobre' | 'doses' | 'farmaco'
+
+function normalizeText(value: string) {
+  return value
+    .toLocaleLowerCase('pt-BR')
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+}
 
 const TABS: { key: TabKey; label: string; icon: React.ElementType }[] = [
   { key: 'sobre',  label: 'Sobre',              icon: Info       },
@@ -308,29 +321,60 @@ function DrugDetail({ drug }: { drug: Drug }) {
 /* ── Página principal ── */
 interface MedicamentosPageProps {
   initialSelectedId?: string
+  initialQuery?: string
   selectionToken?: number
 }
 
-export default function MedicamentosPage({ initialSelectedId, selectionToken }: MedicamentosPageProps = {}) {
+export default function MedicamentosPage({ initialSelectedId, initialQuery, selectionToken }: MedicamentosPageProps = {}) {
   const [query,    setQuery]    = useState('')
   const [selected, setSelected] = useState<Drug>(() => (
     db.drugs.find(drug => drug.id === initialSelectedId) ?? db.drugs[0]
   ))
+  const [, setFavoriteRefreshKey] = useState(0)
 
   useEffect(() => {
-    if (!initialSelectedId) return
-    const nextSelected = db.drugs.find(drug => drug.id === initialSelectedId)
-    if (!nextSelected) return
-    setSelected(nextSelected)
-    setQuery('')
-  }, [initialSelectedId, selectionToken])
+    if (initialSelectedId) {
+      const nextSelected = db.drugs.find(drug => drug.id === initialSelectedId)
+      if (nextSelected) setSelected(nextSelected)
+    }
+    setQuery(initialQuery ?? '')
+  }, [initialQuery, initialSelectedId, selectionToken])
+
+  useEffect(() => {
+    const handleRefresh = () => setFavoriteRefreshKey(value => value + 1)
+    window.addEventListener(clinicalActivityEventName(), handleRefresh)
+    return () => window.removeEventListener(clinicalActivityEventName(), handleRefresh)
+  }, [])
+
+  useEffect(() => {
+    pushClinicalRecent({
+      id: selected.id,
+      type: 'drug',
+      title: selected.name,
+      subtitle: selected.category,
+      targetPage: 'medicamentos',
+      targetId: selected.id,
+    })
+  }, [selected.id])
+
+  const toggleFavorite = (drug: Drug) => {
+    toggleClinicalFavorite({
+      id: drug.id,
+      type: 'drug',
+      title: drug.name,
+      subtitle: drug.category,
+      targetPage: 'medicamentos',
+      targetId: drug.id,
+    })
+    setFavoriteRefreshKey(value => value + 1)
+  }
 
   const filtered = query.trim()
-    ? db.drugs.filter(d =>
-        d.name.toLowerCase().includes(query.toLowerCase()) ||
-        d.category.toLowerCase().includes(query.toLowerCase()) ||
-        d.tags.some(t => t.toLowerCase().includes(query.toLowerCase()))
-      )
+    ? db.drugs.filter(d => {
+        const terms = normalizeText(query).split(/\s+/).filter(Boolean)
+        const haystack = normalizeText(`${d.name} ${d.category} ${d.tags.join(' ')}`)
+        return terms.some(term => haystack.includes(term))
+      })
     : db.drugs
 
   const select = (drug: Drug) => {
@@ -368,6 +412,7 @@ export default function MedicamentosPage({ initialSelectedId, selectionToken }: 
         <div className="w-full lg:w-52 lg:flex-shrink-0 space-y-1 max-h-[36vh] lg:max-h-[75vh] overflow-y-auto pr-1 custom-scroll">
           {filtered.map(drug => {
             const active = selected.id === drug.id
+            const favorite = isClinicalFavorite('drug', drug.id)
             return (
               <motion.button
                 key={drug.id}
@@ -379,7 +424,20 @@ export default function MedicamentosPage({ initialSelectedId, selectionToken }: 
                     : 'bg-slate-800/60 text-slate-400 border-slate-700/60 hover:border-teal-600/40 hover:text-slate-200'
                 }`}
               >
-                <p className="font-semibold truncate">{drug.name}</p>
+                <div className="flex items-start gap-2">
+                  <p className="font-semibold truncate flex-1">{drug.name}</p>
+                  <button
+                    type="button"
+                    onClick={(event) => { event.stopPropagation(); toggleFavorite(drug) }}
+                    className={`p-1 rounded-lg border ${
+                      favorite
+                        ? 'text-amber-300 border-amber-500/30 bg-amber-500/10'
+                        : 'text-slate-600 border-transparent hover:text-amber-300'
+                    }`}
+                  >
+                    <Star size={12} fill={favorite ? 'currentColor' : 'none'} />
+                  </button>
+                </div>
                 <p className={`text-xs mt-0.5 truncate ${active ? 'text-teal-400/70' : 'text-slate-600'}`}>
                   {drug.category}
                 </p>
@@ -393,6 +451,19 @@ export default function MedicamentosPage({ initialSelectedId, selectionToken }: 
 
         {/* Painel de detalhe */}
         <div className="flex-1 min-w-0">
+          <div className="flex justify-end mb-2">
+            <button
+              type="button"
+              onClick={() => toggleFavorite(selected)}
+              className={`p-2 rounded-xl border ${
+                isClinicalFavorite('drug', selected.id)
+                  ? 'text-amber-300 border-amber-500/30 bg-amber-500/10'
+                  : 'text-slate-500 border-slate-700 hover:text-amber-300 hover:border-amber-500/20'
+              }`}
+            >
+              <Star size={14} fill={isClinicalFavorite('drug', selected.id) ? 'currentColor' : 'none'} />
+            </button>
+          </div>
           <DrugDetail drug={selected} />
         </div>
       </div>

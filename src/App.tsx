@@ -23,6 +23,7 @@ export default function App() {
   const [selectionToken, setSelectionToken] = useState(0)
   const [selectedDiseaseId, setSelectedDiseaseId] = useState<string | undefined>(undefined)
   const [selectedDrugId, setSelectedDrugId] = useState<string | undefined>(undefined)
+  const [selectedDrugQuery, setSelectedDrugQuery] = useState<string | undefined>(undefined)
 
   // ── Body scroll lock ──────────────────────────────────
   // Prevents the background page from scrolling while the
@@ -44,21 +45,37 @@ export default function App() {
 
   const handleGlobalNavigate = (page: 'doencas' | 'medicamentos', id: string) => {
     if (page === 'doencas') setSelectedDiseaseId(id)
-    if (page === 'medicamentos') setSelectedDrugId(id)
+    if (page === 'medicamentos') {
+      setSelectedDrugId(id)
+      setSelectedDrugQuery(undefined)
+    }
     setSelectionToken(Date.now())
     setActivePage(page)
+    setMobileOpen(false)
+  }
+
+  const handleOpenDrugSearch = (query?: string, preferredDrugId?: string) => {
+    setSelectedDrugId(preferredDrugId)
+    setSelectedDrugQuery(query)
+    setSelectionToken(Date.now())
+    setActivePage('medicamentos')
     setMobileOpen(false)
   }
 
   const pageNode = activePage === 'hub'
     ? <HubPage onGlobalNavigate={handleGlobalNavigate} />
     : activePage === 'medicamentos'
-      ? <MedicamentosPage initialSelectedId={selectedDrugId} selectionToken={selectionToken} />
+      ? <MedicamentosPage
+          initialSelectedId={selectedDrugId}
+          initialQuery={selectedDrugQuery}
+          selectionToken={selectionToken}
+        />
       : activePage === 'doencas'
         ? <DoencasPage
             initialSelectedId={selectedDiseaseId}
             selectionToken={selectionToken}
             onOpenDrug={(drugId) => handleGlobalNavigate('medicamentos', drugId)}
+            onOpenRelatedDrugs={handleOpenDrugSearch}
           />
         : activePage === 'ferramentas'
           ? <ToolboxPage />

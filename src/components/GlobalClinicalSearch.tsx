@@ -1,10 +1,17 @@
 import { useEffect, useMemo, useState } from 'react'
-import { BookOpen, ChevronRight, ClipboardList, Pill, Search, Stethoscope } from 'lucide-react'
+import { BookOpen, ChevronRight, ClipboardList, Pill, Search, Star, Stethoscope } from 'lucide-react'
 import {
   searchGlobalClinicalContent,
   type GlobalSearchResult,
   type SearchTargetPage,
 } from '../utils/globalClinicalSearch'
+import {
+  clinicalActivityEventName,
+  isClinicalFavorite,
+  pushClinicalRecent,
+  toggleClinicalFavorite,
+  type ClinicalSavedItem,
+} from '../utils/clinicalActivity'
 
 function GroupIcon({ label }: { label: GlobalSearchResult['groupLabel'] }) {
   if (label === 'Doenças') return <Stethoscope size={13} className="text-rose-300" />
@@ -16,28 +23,59 @@ function GroupIcon({ label }: { label: GlobalSearchResult['groupLabel'] }) {
 function ResultCard({
   result,
   onClick,
+  favorite,
+  onToggleFavorite,
 }: {
   result: GlobalSearchResult
   onClick: (result: GlobalSearchResult) => void
+  favorite: boolean
+  onToggleFavorite: (result: GlobalSearchResult) => void
 }) {
   return (
-    <button
-      onClick={() => onClick(result)}
-      className="w-full text-left rounded-2xl border border-slate-700/70 bg-slate-800/55 px-4 py-3 hover:border-teal-500/35 hover:bg-slate-800 transition-all"
-    >
+    <div className="rounded-2xl border border-slate-700/70 bg-slate-800/55 px-4 py-3 hover:border-teal-500/35 hover:bg-slate-800 transition-all">
       <div className="flex items-start justify-between gap-3">
         <div className="min-w-0">
-          <p className="text-sm font-bold text-white truncate">{result.title}</p>
-          <p className="text-[11px] text-slate-500 mt-0.5">{result.subtitle}</p>
+          <button onClick={() => onClick(result)} className="text-left min-w-0">
+            <p className="text-sm font-bold text-white truncate">{result.title}</p>
+            <p className="text-[11px] text-slate-500 mt-0.5">{result.subtitle}</p>
+          </button>
         </div>
-        <span className="text-[10px] px-2 py-0.5 rounded-full bg-slate-700/70 text-slate-300 border border-slate-600/60 flex-shrink-0">
-          {result.groupLabel}
-        </span>
+        <div className="flex items-center gap-2 flex-shrink-0">
+          <span className="text-[10px] px-2 py-0.5 rounded-full bg-slate-700/70 text-slate-300 border border-slate-600/60">
+            {result.groupLabel}
+          </span>
+          <button
+            type="button"
+            onClick={() => onToggleFavorite(result)}
+            aria-label={favorite ? 'Remover dos favoritos' : 'Adicionar aos favoritos'}
+            className={`p-1 rounded-lg border transition-colors ${
+              favorite
+                ? 'text-amber-300 border-amber-500/30 bg-amber-500/10'
+                : 'text-slate-500 border-slate-700 hover:text-amber-300 hover:border-amber-500/20'
+            }`}
+          >
+            <Star size={13} fill={favorite ? 'currentColor' : 'none'} />
+          </button>
+        </div>
       </div>
-      <p className="text-xs text-slate-300 mt-2 leading-relaxed">{result.summary}</p>
-      <p className="text-[11px] text-teal-300 mt-2">{result.actionText}</p>
-    </button>
+      <button onClick={() => onClick(result)} className="w-full text-left">
+        <p className="text-xs text-slate-300 mt-2 leading-relaxed">{result.summary}</p>
+        <p className="text-[11px] text-teal-300 mt-2">{result.actionText}</p>
+      </button>
+    </div>
   )
+}
+
+function toSavedItem(result: GlobalSearchResult): Omit<ClinicalSavedItem, 'updatedAt'> {
+  return {
+    id: result.id,
+    type: result.type === 'disease' ? 'disease' : result.type === 'drug' ? 'drug' : 'protocol',
+    title: result.title,
+    subtitle: result.subtitle,
+    targetPage: result.targetPage,
+    targetId: result.targetId,
+    queryHint: result.title,
+  }
 }
 
 export default function GlobalClinicalSearch({
@@ -55,9 +93,20 @@ export default function GlobalClinicalSearch({
     const handleRefresh = () => setRefreshKey(value => value + 1)
     window.addEventListener('vetstudy_questions_update', handleRefresh)
     window.addEventListener('vetstudy_flashcards_update', handleRefresh)
+    window.addEventListener(clinicalActivityEventName(), handleRefresh)
+
+    const handleOpenSaved = (event: Event) => {
+      const detail = (event as CustomEvent<ClinicalSavedItem>).detail
+      if (!detail || detail.type !== 'protocol') return
+      setQuery(detail.queryHint ?? detail.title)
+    }
+
+    window.addEventListener('vetstudy_open_saved_clinical_item', handleOpenSaved as EventListener)
     return () => {
       window.removeEventListener('vetstudy_questions_update', handleRefresh)
       window.removeEventListener('vetstudy_flashcards_update', handleRefresh)
+      window.removeEventListener(clinicalActivityEventName(), handleRefresh)
+      window.removeEventListener('vetstudy_open_saved_clinical_item', handleOpenSaved as EventListener)
     }
   }, [])
 
@@ -78,11 +127,36 @@ export default function GlobalClinicalSearch({
 
   const handleResultClick = (result: GlobalSearchResult) => {
     if (result.targetPage && result.targetId) {
+      pushClinicalRecent(toSavedItem(result))
       setFocusedResult(null)
       onNavigate(result.targetPage, result.targetId)
       return
     }
     setFocusedResult(result)
+    if (result.type === 'protocol') {
+      pushClinicalRecent(toSavedItem(result))
+    }
+  }
+
+  useEffect(() => {
+    if (!query.trim()) {
+      setFocusedResult(null)
+      return
+    }
+
+    if (focusedResult && focusedResult.type === 'protocol') {
+      const nextProtocol = results.protocolos.find(item => item.id === focusedResult.id)
+      if (nextProtocol) setFocusedResult(nextProtocol)
+      return
+    }
+
+    if (!focusedResult && results.protocolos.length === 1 && results.doencas.length === 0 && results.farmacos.length === 0) {
+      setFocusedResult(results.protocolos[0])
+    }
+  }, [focusedResult, query, results])
+
+  const toggleFavoriteForResult = (result: GlobalSearchResult) => {
+    toggleClinicalFavorite(toSavedItem(result))
   }
 
   return (
@@ -123,7 +197,13 @@ export default function GlobalClinicalSearch({
                   </div>
                   <div className="space-y-2">
                     {group.items.map(item => (
-                      <ResultCard key={`${item.type}-${item.id}`} result={item} onClick={handleResultClick} />
+                      <ResultCard
+                        key={`${item.type}-${item.id}`}
+                        result={item}
+                        onClick={handleResultClick}
+                        favorite={isClinicalFavorite(item.type === 'disease' ? 'disease' : item.type === 'drug' ? 'drug' : 'protocol', item.id)}
+                        onToggleFavorite={toggleFavoriteForResult}
+                      />
                     ))}
                   </div>
                 </div>
@@ -149,6 +229,17 @@ export default function GlobalClinicalSearch({
                     <h3 className="text-lg font-bold text-white mt-1">{focusedResult.title}</h3>
                     <p className="text-xs text-slate-500 mt-1">{focusedResult.subtitle}</p>
                   </div>
+                  <button
+                    type="button"
+                    onClick={() => toggleFavoriteForResult(focusedResult)}
+                    className={`p-2 rounded-xl border transition-colors ${
+                      isClinicalFavorite(focusedResult.type === 'disease' ? 'disease' : focusedResult.type === 'drug' ? 'drug' : 'protocol', focusedResult.id)
+                        ? 'text-amber-300 border-amber-500/30 bg-amber-500/10'
+                        : 'text-slate-500 border-slate-700 hover:text-amber-300 hover:border-amber-500/20'
+                    }`}
+                  >
+                    <Star size={14} fill={isClinicalFavorite(focusedResult.type === 'disease' ? 'disease' : focusedResult.type === 'drug' ? 'drug' : 'protocol', focusedResult.id) ? 'currentColor' : 'none'} />
+                  </button>
                 </div>
                 <p className="text-sm text-slate-300 leading-relaxed">{focusedResult.summary}</p>
                 <div className="mt-3 space-y-2">

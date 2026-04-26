@@ -12,6 +12,8 @@ import ProfileSelector from '../components/ProfileSelector'
 import RevisaoPage   from './RevisaoPage'
 import SimuladorPage from './SimuladorPage'
 import MapasPage     from './MapasPage'
+import centralDb from '../data/central_db.json'
+import clinicalCases from '../data/clinical_cases.json'
 import studyContentExample from '../data/studyContent.example.json'
 import estralCycleModule from '../data/modules/reproducao-animal/estral_cycle_module.json'
 import bovineReproductiveDiseasesModule from '../data/modules/clinica-ruminantes/bovine_reproductive_diseases_module.json'
@@ -41,6 +43,20 @@ import {
 } from '../utils/mergeStudyContent'
 import { parseStudyContent, type StudyContentDocument } from '../utils/parseStudyContent'
 import type { SearchTargetPage } from '../utils/globalClinicalSearch'
+import {
+  clinicalActivityEventName,
+  loadClinicalFavorites,
+  loadClinicalRecent,
+  type ClinicalSavedItem,
+} from '../utils/clinicalActivity'
+import {
+  caseProgressEventName,
+  loadReviewHabit,
+  loadReviewedCases,
+  markCaseReviewed,
+  reviewHabitEventName,
+  type ReviewHabitState,
+} from '../utils/reviewHabit'
 
 const IS_DEV = Boolean((import.meta as ImportMeta & { env?: { DEV?: boolean } }).env?.DEV)
 
@@ -50,6 +66,63 @@ const IS_DEV = Boolean((import.meta as ImportMeta & { env?: { DEV?: boolean } })
 interface Topic { id: string; name: string; studiedAt: string }
 interface StudyItem { id: string; name: string; targetMin: number; doneMin: number }
 interface QuizStats { total: number; correct: number; hours: number }
+interface ClinicalCase {
+  title: string
+  species: string
+  chiefComplaint: string
+  history: string
+  physicalExam: string[]
+  labFindings: string[]
+  clinicalQuestion: string
+  diagnosis: string
+  conduct: string[] | string
+  drugs: string[]
+  reasoning: string
+  relatedDiseaseName: string
+}
+
+const CLINICAL_CASES = clinicalCases as ClinicalCase[]
+const DISEASE_INDEX = (centralDb as { diseases: { id: string; name: string }[] }).diseases
+
+function savedItemTypeLabel(type: ClinicalSavedItem['type']) {
+  if (type === 'disease') return 'Doença'
+  if (type === 'drug') return 'Fármaco'
+  return 'Protocolo'
+}
+
+function openSavedClinicalItem(
+  item: ClinicalSavedItem,
+  onGlobalNavigate: (page: SearchTargetPage, id: string) => void,
+) {
+  if (item.targetPage && item.targetId) {
+    onGlobalNavigate(item.targetPage, item.targetId)
+    return
+  }
+
+  try {
+    window.dispatchEvent(new CustomEvent('vetstudy_open_saved_clinical_item', { detail: item }))
+  } catch {}
+}
+
+function normalizeLookup(value: string) {
+  return value
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .trim()
+    .toLowerCase()
+}
+
+function findDiseaseIdByName(name: string) {
+  const target = normalizeLookup(name)
+  return DISEASE_INDEX.find(disease => {
+    const current = normalizeLookup(disease.name)
+    return current === target || current.includes(target) || target.includes(current)
+  })?.id
+}
+
+function ensureList(value: string[] | string) {
+  return Array.isArray(value) ? value : [value]
+}
 
 /* ══════════════════════════════════════════════════════
    HELPERS
@@ -79,6 +152,10 @@ const DAY_BG: Record<number, string> = {
   7: 'bg-orange-400/25 text-orange-100 border-orange-400/30',
   30: 'bg-red-400/25 text-red-100 border-red-400/30',
   90: 'bg-red-500/30 text-red-100 border-red-500/40',
+}
+
+function dueReviewCount(topics: Topic[], date = todayISO()) {
+  return topics.filter(topic => INTERVALS.some(interval => addDays(topic.studiedAt, interval) === date)).length
 }
 
 function calendarDayClass(dots: { interval: number }[], hasStudy = false) {
@@ -880,7 +957,227 @@ const DICAS = [
 ]
 const SHOW_STUDY_SEQUENCE = false
 
-function HubDashboard({ profile, topics, setTopics, stats, dailyHistory, topicsStorageKey, seqStorageKey, onOpenSimulator, onOpenDailyStudy, onGlobalNavigate }: {
+function QuickSavedList({
+  title,
+  items,
+  onOpenItem,
+}: {
+  title: string
+  items: ClinicalSavedItem[]
+  onOpenItem: (item: ClinicalSavedItem) => void
+}) {
+  return (
+    <div className="bg-slate-900/55 border border-slate-800 rounded-2xl p-4">
+      <p className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">{title}</p>
+      {items.length === 0 ? (
+        <p className="text-xs text-slate-500">Nada por aqui ainda.</p>
+      ) : (
+        <div className="space-y-2">
+          {items.map(item => (
+            <button
+              key={`${item.type}-${item.id}`}
+              onClick={() => onOpenItem(item)}
+              className="w-full text-left flex items-center justify-between gap-3 px-3 py-2 rounded-xl border border-slate-700/60 bg-slate-800/45 hover:border-teal-500/25 transition-all"
+            >
+              <div className="min-w-0">
+                <p className="text-sm text-white font-medium truncate">{item.title}</p>
+                <p className="text-[11px] text-slate-500 truncate">{item.subtitle}</p>
+              </div>
+              <span className="text-[10px] px-2 py-0.5 rounded-full bg-slate-700/70 text-slate-300 border border-slate-600/60 flex-shrink-0">
+                {savedItemTypeLabel(item.type)}
+              </span>
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
+  )
+}
+
+function DailyReviewCard({
+  dueToday,
+  pendingCases,
+  streak,
+  onStartReview,
+}: {
+  dueToday: number
+  pendingCases: number
+  streak: number
+  onStartReview: () => void
+}) {
+  return (
+    <div className="bg-gradient-to-br from-amber-500/10 to-slate-900/70 border border-amber-500/20 rounded-2xl p-4">
+      <div className="flex items-start justify-between gap-3">
+        <div>
+          <p className="text-xs font-bold text-amber-300 uppercase tracking-wider">📅 Revisão de Hoje</p>
+          <p className="text-sm text-white font-semibold mt-1">
+            Você tem {dueToday} {dueToday === 1 ? 'revisão' : 'revisões'} hoje
+          </p>
+          <p className="text-xs text-slate-400 mt-1">
+            {pendingCases} {pendingCases === 1 ? 'caso para treinar' : 'casos para treinar'}
+          </p>
+        </div>
+        <div className="text-right flex-shrink-0">
+          <p className="text-[10px] font-bold text-slate-500 uppercase tracking-wider">🔥 Sequência</p>
+          <p className="text-lg font-black text-white mt-1">{streak} {streak === 1 ? 'dia' : 'dias'}</p>
+        </div>
+      </div>
+      <button
+        onClick={onStartReview}
+        className="mt-4 w-full px-3 py-2 rounded-xl bg-amber-500/90 text-slate-950 text-sm font-bold hover:bg-amber-400 transition active:scale-[0.99]"
+      >
+        Começar revisão
+      </button>
+    </div>
+  )
+}
+
+function ClinicalCasesSection({
+  profileId,
+  onOpenDisease,
+}: {
+  profileId: string
+  onOpenDisease: (diseaseId: string) => void
+}) {
+  const [openCaseTitle, setOpenCaseTitle] = useState<string | null>(null)
+  const [revealedCaseTitle, setRevealedCaseTitle] = useState<string | null>(null)
+
+  const toggleCase = (title: string) => {
+    setOpenCaseTitle(current => current === title ? null : title)
+    setRevealedCaseTitle(current => current === title ? null : current)
+  }
+
+  return (
+    <div>
+      <div className="flex items-center gap-2 mb-3">
+        <BookOpen size={14} className="text-fuchsia-400" />
+        <p className="text-xs font-bold text-slate-400 uppercase tracking-wider">🧠 Casos Clínicos</p>
+      </div>
+      <div className="space-y-3">
+        {CLINICAL_CASES.map(clinicalCase => {
+          const isOpen = openCaseTitle === clinicalCase.title
+          const isRevealed = revealedCaseTitle === clinicalCase.title
+          const relatedDiseaseId = findDiseaseIdByName(clinicalCase.relatedDiseaseName)
+
+          return (
+            <div key={clinicalCase.title} className="bg-slate-900/55 border border-slate-800 rounded-2xl p-4">
+              <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+                <div className="min-w-0">
+                  <p className="text-sm font-bold text-white">{clinicalCase.title}</p>
+                  <p className="text-xs text-slate-500 mt-1">{clinicalCase.species}</p>
+                </div>
+                <button
+                  onClick={() => toggleCase(clinicalCase.title)}
+                  className="px-3 py-2 rounded-xl bg-fuchsia-600/80 text-white text-xs font-bold hover:bg-fuchsia-600 transition active:scale-95 self-start"
+                >
+                  {isOpen ? 'Fechar caso' : 'Resolver caso'}
+                </button>
+              </div>
+
+              {isOpen && (
+                <motion.div
+                  initial={{ opacity: 0, y: 6 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="mt-4 space-y-3"
+                >
+                  <div className="rounded-xl border border-slate-800 bg-slate-950/40 p-3">
+                    <p className="text-[10px] font-bold text-slate-500 uppercase tracking-wider">1. Queixa + história</p>
+                    <p className="text-sm text-slate-200 mt-1">{clinicalCase.chiefComplaint}</p>
+                    <p className="text-xs text-slate-400 mt-2 leading-relaxed">{clinicalCase.history}</p>
+                  </div>
+
+                  <div className="rounded-xl border border-slate-800 bg-slate-950/40 p-3">
+                    <p className="text-[10px] font-bold text-slate-500 uppercase tracking-wider">2. Exame físico</p>
+                    <ul className="mt-2 space-y-1.5">
+                      {clinicalCase.physicalExam.map(item => (
+                        <li key={item} className="text-xs text-slate-300">• {item}</li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <div className="rounded-xl border border-slate-800 bg-slate-950/40 p-3">
+                    <p className="text-[10px] font-bold text-slate-500 uppercase tracking-wider">3. Achados laboratoriais</p>
+                    <ul className="mt-2 space-y-1.5">
+                      {clinicalCase.labFindings.map(item => (
+                        <li key={item} className="text-xs text-slate-300">• {item}</li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <div className="rounded-xl border border-slate-800 bg-slate-950/40 p-3">
+                    <p className="text-[10px] font-bold text-slate-500 uppercase tracking-wider">4. Pergunta clínica</p>
+                    <p className="text-sm text-slate-200 mt-1">{clinicalCase.clinicalQuestion}</p>
+                  </div>
+
+                  {!isRevealed ? (
+                    <button
+                      onClick={() => {
+                        markCaseReviewed(clinicalCase.title, profileId)
+                        setRevealedCaseTitle(clinicalCase.title)
+                      }}
+                      className="w-full px-3 py-2 rounded-xl border border-teal-500/30 bg-teal-500/10 text-teal-300 text-xs font-bold hover:bg-teal-500/15 transition"
+                    >
+                      Mostrar resolução
+                    </button>
+                  ) : (
+                    <div className="rounded-xl border border-teal-500/20 bg-teal-500/5 p-3 space-y-3">
+                      <div>
+                        <p className="text-[10px] font-bold text-teal-300 uppercase tracking-wider">5. Diagnóstico</p>
+                        <p className="text-sm text-white mt-1">{clinicalCase.diagnosis}</p>
+                      </div>
+
+                      <div>
+                        <p className="text-[10px] font-bold text-teal-300 uppercase tracking-wider">Conduta</p>
+                        <ul className="mt-2 space-y-1.5">
+                          {ensureList(clinicalCase.conduct).map(item => (
+                            <li key={item} className="text-xs text-slate-200">• {item}</li>
+                          ))}
+                        </ul>
+                      </div>
+
+                      <div>
+                        <p className="text-[10px] font-bold text-teal-300 uppercase tracking-wider">Fármacos-chave</p>
+                        <div className="flex flex-wrap gap-1.5 mt-2">
+                          {clinicalCase.drugs.map(drug => (
+                            <span
+                              key={drug}
+                              className="px-2 py-1 rounded-full bg-slate-800/80 border border-slate-700 text-[11px] text-slate-200"
+                            >
+                              {drug}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+
+                      <div>
+                        <p className="text-[10px] font-bold text-teal-300 uppercase tracking-wider">Raciocínio</p>
+                        <p className="text-xs text-slate-300 mt-1 leading-relaxed">{clinicalCase.reasoning}</p>
+                      </div>
+
+                      <button
+                        onClick={() => relatedDiseaseId && onOpenDisease(relatedDiseaseId)}
+                        disabled={!relatedDiseaseId}
+                        className={`w-full px-3 py-2 rounded-xl text-xs font-bold transition ${
+                          relatedDiseaseId
+                            ? 'bg-slate-800 text-white border border-slate-700 hover:border-teal-500/40'
+                            : 'bg-slate-900 text-slate-600 border border-slate-800 cursor-not-allowed'
+                        }`}
+                      >
+                        Ver doença relacionada
+                      </button>
+                    </div>
+                  )}
+                </motion.div>
+              )}
+            </div>
+          )
+        })}
+      </div>
+    </div>
+  )
+}
+
+function HubDashboard({ profile, topics, setTopics, stats, dailyHistory, topicsStorageKey, seqStorageKey, onOpenSimulator, onOpenDailyStudy, onOpenReview, onGlobalNavigate }: {
   profile: LocalProfile
   topics: Topic[]
   setTopics: (t: Topic[]) => void
@@ -890,9 +1187,40 @@ function HubDashboard({ profile, topics, setTopics, stats, dailyHistory, topicsS
   seqStorageKey: string
   onOpenSimulator: () => void
   onOpenDailyStudy: () => void
+  onOpenReview: () => void
   onGlobalNavigate: (page: SearchTargetPage, id: string) => void
 }) {
   const dica = DICAS[new Date().getDay() % DICAS.length]
+  const [favorites, setFavorites] = useState<ClinicalSavedItem[]>(() => loadClinicalFavorites())
+  const [recent, setRecent] = useState<ClinicalSavedItem[]>(() => loadClinicalRecent())
+  const [reviewHabit, setReviewHabit] = useState<ReviewHabitState>(() => loadReviewHabit(profile.id))
+  const [reviewedCases, setReviewedCases] = useState<string[]>(() => loadReviewedCases(profile.id))
+  const dueToday = dueReviewCount(topics)
+  const pendingCases = Math.max(0, CLINICAL_CASES.length - reviewedCases.length)
+
+  useEffect(() => {
+    const handleRefresh = () => {
+      setFavorites(loadClinicalFavorites())
+      setRecent(loadClinicalRecent())
+    }
+    window.addEventListener(clinicalActivityEventName(), handleRefresh)
+    return () => window.removeEventListener(clinicalActivityEventName(), handleRefresh)
+  }, [])
+
+  useEffect(() => {
+    const refreshReviewState = () => {
+      setReviewHabit(loadReviewHabit(profile.id))
+      setReviewedCases(loadReviewedCases(profile.id))
+    }
+    window.addEventListener(reviewHabitEventName(), refreshReviewState)
+    window.addEventListener(caseProgressEventName(), refreshReviewState)
+    return () => {
+      window.removeEventListener(reviewHabitEventName(), refreshReviewState)
+      window.removeEventListener(caseProgressEventName(), refreshReviewState)
+    }
+  }, [profile.id])
+
+  const openSavedItem = (item: ClinicalSavedItem) => openSavedClinicalItem(item, onGlobalNavigate)
 
   return (
     <div className="p-5 space-y-5">
@@ -902,6 +1230,13 @@ function HubDashboard({ profile, topics, setTopics, stats, dailyHistory, topicsS
           {new Date().toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit' })}
         </p>
       </div>
+
+      <DailyReviewCard
+        dueToday={dueToday}
+        pendingCases={pendingCases}
+        streak={reviewHabit.currentStreak}
+        onStartReview={onOpenReview}
+      />
 
       <div className="bg-gradient-to-br from-teal-500/15 to-slate-800/80 border border-teal-500/20 rounded-2xl p-4 flex items-start gap-3 backdrop-blur-sm">
         <div className="w-8 h-8 rounded-xl bg-teal-500/20 flex items-center justify-center flex-shrink-0">
@@ -914,6 +1249,13 @@ function HubDashboard({ profile, topics, setTopics, stats, dailyHistory, topicsS
       </div>
 
       <GlobalClinicalSearch profileId={profile.id} onNavigate={onGlobalNavigate} />
+
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
+        <QuickSavedList title="⭐ Favoritos" items={favorites.slice(0, 10)} onOpenItem={openSavedItem} />
+        <QuickSavedList title="🕒 Recentes" items={recent.slice(0, 10)} onOpenItem={openSavedItem} />
+      </div>
+
+      <ClinicalCasesSection profileId={profile.id} onOpenDisease={(diseaseId) => onGlobalNavigate('doencas', diseaseId)} />
 
       <EstudoHojeCard profile={profile} onOpenSimulator={onOpenSimulator} onOpenDailyStudy={onOpenDailyStudy} />
 
@@ -1046,10 +1388,11 @@ function HubContent({
                 seqStorageKey={seqKey}
                 onOpenSimulator={() => setTab('simulador')}
                 onOpenDailyStudy={openDailyStudy}
+                onOpenReview={() => setTab('revisao')}
                 onGlobalNavigate={onGlobalNavigate}
               />
             )}
-            {tab === 'revisao'   && <RevisaoPage />}
+            {tab === 'revisao'   && <RevisaoPage profileId={profile.id} />}
             {tab === 'simulador' && <SimuladorPage />}
             {tab === 'mapas'     && <MapasPage />}
           </motion.div>

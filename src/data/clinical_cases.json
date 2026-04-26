@@ -1,0 +1,143 @@
+[
+  {
+    "title": "Caso Clinico: Piometra Canina",
+    "species": "Cao",
+    "chiefComplaint": "Cadela apatica com secrecao vulvar e aumento abdominal.",
+    "history": "Femea inteira, 8 anos, cerca de 6 semanas apos o cio. Tutor relata poliuria, polidipsia e queda progressiva do apetite ha 3 dias.",
+    "physicalExam": [
+      "Temperatura de 39,7 C",
+      "Mucosas discretamente congestas",
+      "Desidratacao moderada",
+      "Dor a palpacao abdominal caudal",
+      "Secrecao vaginal purulenta"
+    ],
+    "labFindings": [
+      "Leucocitose neutrofilica com desvio a esquerda",
+      "Azotemia pre-renal leve",
+      "Ultrassonografia com cornos uterinos distendidos por conteudo ecogenico"
+    ],
+    "clinicalQuestion": "Qual o diagnostico mais provavel e qual deve ser a conduta inicial mais segura?",
+    "diagnosis": "Piometra aberta",
+    "conduct": [
+      "Estabilizar com fluidoterapia e analgesia",
+      "Iniciar antibioticoterapia de amplo espectro",
+      "Programar ovariossalpingo-histerectomia apos estabilizacao"
+    ],
+    "drugs": ["Amoxicilina", "Enrofloxacina", "Meloxicam"],
+    "reasoning": "Cadela inteira no diestro, com secrecao purulenta, toxemia e utero aumentado na USG, sugere piometra. O tratamento definitivo costuma ser cirurgico apos estabilizacao.",
+    "relatedDiseaseName": "Piometra Canina"
+  },
+  {
+    "title": "Caso Clinico: Parvovirose Canina",
+    "species": "Cao",
+    "chiefComplaint": "Filhote com vomitos e diarreia intensa com sangue.",
+    "history": "Filhote de 4 meses, vacinacao incompleta, com inicio agudo de apatia, anorexia e vomitos nas ultimas 24 horas.",
+    "physicalExam": [
+      "Depressao intensa",
+      "Desidratacao importante",
+      "Dor abdominal difusa",
+      "Fezes hemorragicas com odor forte",
+      "Temperatura variavel entre febre e hipotermia"
+    ],
+    "labFindings": [
+      "Leucopenia marcante",
+      "Hipoglicemia leve",
+      "Teste antigenico fecal positivo para parvovirus"
+    ],
+    "clinicalQuestion": "Qual o diagnostico mais provavel e qual deve ser a prioridade terapeutica nas primeiras horas?",
+    "diagnosis": "Parvovirose canina aguda",
+    "conduct": [
+      "Correcao agressiva da desidratacao e dos disturbios eletroliticos",
+      "Antiemeticos e analgesia",
+      "Antibioticoterapia de cobertura para translocacao bacteriana e suporte nutricional precoce"
+    ],
+    "drugs": ["Maropitant", "Metronidazol", "Amoxicilina"],
+    "reasoning": "Filhote nao imunizado com enterite hemorragica, leucopenia e teste positivo fecha um quadro tipico de parvovirose. O risco maior inicial e choque hipovolemico e sepse secundaria.",
+    "relatedDiseaseName": "Parvovirose Canina"
+  },
+  {
+    "title": "Caso Clinico: Leptospirose",
+    "species": "Cao",
+    "chiefComplaint": "Cao febril com vomitos, ictericia e reducao do volume urinario.",
+    "history": "Animal com acesso a area alagada e possivel contato com agua contaminada. Evoluiu em 48 horas com apatia, vomitos e anorexia.",
+    "physicalExam": [
+      "Febre de 40,1 C",
+      "Mucosas ictéricas",
+      "Desidratacao",
+      "Dor abdominal cranial",
+      "Halito urêmico discreto"
+    ],
+    "labFindings": [
+      "Azotemia importante",
+      "Aumento de ALT e bilirrubinas",
+      "Trombocitopenia moderada",
+      "Urinalise com proteinuria"
+    ],
+    "clinicalQuestion": "Qual sindrome infecciosa deve ser priorizada e qual conduta protege o paciente e a equipe?",
+    "diagnosis": "Leptospirose com comprometimento renal e hepatobiliar",
+    "conduct": [
+      "Isolamento e biosseguranca imediatos",
+      "Fluidoterapia com monitorizacao renal",
+      "Iniciar antibioticoterapia e suporte antiemetico"
+    ],
+    "drugs": ["Penicilina G Procaina", "Doxiciclina", "Maropitant"],
+    "reasoning": "Ictericia associada a azotemia, febre e exposicao ambiental e altamente sugestiva de leptospirose. Alem do tratamento, a protecao da equipe e parte da conduta.",
+    "relatedDiseaseName": "Leptospirose"
+  },
+  {
+    "title": "Caso Clinico: Mastite Bovina",
+    "species": "Bovino",
+    "chiefComplaint": "Vaca recem-parida com queda de producao e quarto mamario quente.",
+    "history": "Vaca leiteira de alta producao, 20 dias pos-parto. Ordenhador observou leite com grumos e dor durante a ordenha.",
+    "physicalExam": [
+      "Quarto mamario aumentado de volume",
+      "Calor e dor local",
+      "Leite aquoso com coagulos",
+      "Febre discreta",
+      "Reducao do apetite"
+    ],
+    "labFindings": [
+      "Teste da caneca positivo",
+      "CMT fortemente positivo",
+      "Cultura do leite recomendada antes do ajuste fino do antibiotico"
+    ],
+    "clinicalQuestion": "Qual a conduta inicial mais apropriada para reduzir dano mamario e perdas produtivas?",
+    "diagnosis": "Mastite clinica bovina",
+    "conduct": [
+      "Esvaziamento frequente do quarto afetado",
+      "Antibiotico intramamario ou sistemico conforme gravidade",
+      "Suporte com anti-inflamatorio e hidratacao quando necessario"
+    ],
+    "drugs": ["Ceftiofur", "Meloxicam", "Ocitocina"],
+    "reasoning": "Alteracao do leite associada a inflamacao mamaria local caracteriza mastite clinica. O manejo rapido do quarto e o tratamento direcionado diminuem dano tecidual e descarte de leite.",
+    "relatedDiseaseName": "Mastite Bovina"
+  },
+  {
+    "title": "Caso Clinico: Babesiose Bovina",
+    "species": "Bovino",
+    "chiefComplaint": "Novilha com febre, mucosas palidas e urina avermelhada.",
+    "history": "Animal criado em area com alta infestacao por carrapatos. Tutor percebeu prostracao acentuada e queda abrupta no consumo nas ultimas 24 horas.",
+    "physicalExam": [
+      "Temperatura de 41 C",
+      "Apatia intensa",
+      "Mucosas palidas a ictéricas",
+      "Taquicardia",
+      "Urina escura compativel com hemoglobinuria"
+    ],
+    "labFindings": [
+      "Hematocrito reduzido",
+      "Esfregaco sanguineo com hemoparasitas intra-eritrocitarios",
+      "Bilirrubina aumentada"
+    ],
+    "clinicalQuestion": "Qual hemoparasitose deve ser fortemente suspeitada e qual e a conduta de primeira linha?",
+    "diagnosis": "Babesiose bovina",
+    "conduct": [
+      "Iniciar tratamento babesicida especifico",
+      "Associar suporte com fluidoterapia e controle de estresse",
+      "Monitorar necessidade de transfusao nos casos de anemia critica"
+    ],
+    "drugs": ["Aceturato de Diminazeno - Berenil", "Doxiciclina"],
+    "reasoning": "Febre alta, anemia hemolitica, hemoglobinuria e carrapatos apontam para babesiose bovina. A confirmacao no esfregaco acelera a decisao terapeutica e melhora o prognostico.",
+    "relatedDiseaseName": "Babesiose Bovina / Tristeza Parasitária"
+  }
+]

@@ -2,11 +2,24 @@ import { Fragment, useEffect, useMemo, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import {
   Search, BookOpen, Stethoscope, Microscope, Pill,
-  ShieldAlert, TrendingUp, ChevronRight, Tag,
+  ShieldAlert, TrendingUp, ChevronRight, Star, Tag,
 } from 'lucide-react'
 import db from '../data/central_db.json'
+import {
+  clinicalActivityEventName,
+  isClinicalFavorite,
+  pushClinicalRecent,
+  toggleClinicalFavorite,
+} from '../utils/clinicalActivity'
 
-type Disease = typeof db.diseases[0]
+type Disease = (typeof db.diseases)[0] & {
+  pathophysiology?: string
+  keySigns?: string[]
+  mainDrugs?: string[]
+  differentials?: string[]
+  clinicalTip?: string
+  conduct?: string[]
+}
 
 const SECTION_ICONS: Record<string, React.ElementType> = {
   'Etiologia':    Microscope,
@@ -53,14 +66,17 @@ const DRUG_REFERENCE_INDEX = db.drugs.map(drug => {
 })
 
 function getTreatmentLines(disease: Disease) {
+  if (Array.isArray(disease.conduct) && disease.conduct.length > 0) return disease.conduct
   return Array.isArray(disease.treatment) ? disease.treatment : [disease.treatment]
 }
 
-function extractReferencedDrugs(lines: string[]) {
+function extractReferencedDrugs(lines: string[], disease?: Disease) {
   const content = normalizeText(lines.join(' '))
-  return DRUG_REFERENCE_INDEX.filter(drug =>
+  const explicitDrugNames = new Set((disease?.mainDrugs ?? []).map(normalizeText))
+  return DRUG_REFERENCE_INDEX.filter(drug => (
+    explicitDrugNames.has(normalizeText(drug.name)) ||
     drug.aliases.some(alias => content.includes(normalizeText(alias)))
-  )
+  ))
 }
 
 function splitQuickAction(lines: string[]) {
@@ -76,19 +92,44 @@ function splitQuickAction(lines: string[]) {
   }
 }
 
+function splitTextToItems(value: string) {
+  return value
+    .split(/[;,]|\.\s+/)
+    .map(item => item.trim())
+    .filter(item => item.length > 2)
+    .slice(0, 4)
+}
+
+function getDifferentialSuggestions(disease: Disease) {
+  const selectedTags = new Set(disease.tags.map(normalizeText))
+  return db.diseases
+    .filter(candidate => candidate.id !== disease.id && candidate.species === disease.species)
+    .map(candidate => {
+      const sharedTags = candidate.tags.filter(tag => selectedTags.has(normalizeText(tag))).length
+      const categoryScore = candidate.category === disease.category ? 2 : 0
+      return { candidate, score: sharedTags + categoryScore }
+    })
+    .filter(item => item.score > 0)
+    .sort((a, b) => b.score - a.score || a.candidate.name.localeCompare(b.candidate.name, 'pt-BR'))
+    .slice(0, 3)
+    .map(item => item.candidate.name)
+}
+
 interface DoencasPageProps {
   initialSelectedId?: string
   selectionToken?: number
   onOpenDrug?: (drugId: string) => void
+  onOpenRelatedDrugs?: (query?: string, preferredDrugId?: string) => void
 }
 
-export default function DoencasPage({ initialSelectedId, selectionToken, onOpenDrug }: DoencasPageProps = {}) {
+export default function DoencasPage({ initialSelectedId, selectionToken, onOpenDrug, onOpenRelatedDrugs }: DoencasPageProps = {}) {
   const [query,    setQuery]    = useState('')
   const [selected, setSelected] = useState<Disease>(() => (
     db.diseases.find(disease => disease.id === initialSelectedId) ?? db.diseases[0]
   ))
   const [section,  setSection]  = useState<string | null>('Sintomas')
   const [showProtocol, setShowProtocol] = useState(false)
+  const [, setFavoriteRefreshKey] = useState(0)
 
   useEffect(() => {
     if (!initialSelectedId) return
@@ -100,6 +141,12 @@ export default function DoencasPage({ initialSelectedId, selectionToken, onOpenD
     setShowProtocol(false)
   }, [initialSelectedId, selectionToken])
 
+  useEffect(() => {
+    const handleRefresh = () => setFavoriteRefreshKey(value => value + 1)
+    window.addEventListener(clinicalActivityEventName(), handleRefresh)
+    return () => window.removeEventListener(clinicalActivityEventName(), handleRefresh)
+  }, [])
+
   const filtered = query.trim()
     ? db.diseases.filter(d =>
         d.name.toLowerCase().includes(query.toLowerCase()) ||
@@ -109,11 +156,46 @@ export default function DoencasPage({ initialSelectedId, selectionToken, onOpenD
     : db.diseases
 
   const select = (d: Disease) => { setSelected(d); setQuery(''); setSection('Sintomas'); setShowProtocol(false) }
+  const selectedFavorite = isClinicalFavorite('disease', selected.id)
+
+  useEffect(() => {
+    pushClinicalRecent({
+      id: selected.id,
+      type: 'disease',
+      title: selected.name,
+      subtitle: `${selected.species} · ${selected.category}`,
+      targetPage: 'doencas',
+      targetId: selected.id,
+    })
+  }, [selected.id])
+
+  const toggleFavorite = (disease: Disease) => {
+    toggleClinicalFavorite({
+      id: disease.id,
+      type: 'disease',
+      title: disease.name,
+      subtitle: `${disease.species} · ${disease.category}`,
+      targetPage: 'doencas',
+      targetId: disease.id,
+    })
+    setFavoriteRefreshKey(value => value + 1)
+  }
 
   const anatomyReference = isAnatomyReference(selected)
   const treatmentLines = useMemo(() => getTreatmentLines(selected), [selected])
-  const referencedDrugs = useMemo(() => extractReferencedDrugs(treatmentLines), [treatmentLines])
+  const referencedDrugs = useMemo(() => extractReferencedDrugs(treatmentLines, selected), [selected, treatmentLines])
   const quickAction = useMemo(() => splitQuickAction(treatmentLines), [treatmentLines])
+  const keySigns = useMemo(() => (
+    selected.keySigns && selected.keySigns.length > 0 ? selected.keySigns : selected.symptoms.slice(0, 4)
+  ), [selected.keySigns, selected.symptoms])
+  const diagnosticSuggestions = useMemo(() => splitTextToItems(selected.diagnosis), [selected.diagnosis])
+  const treatmentSummary = useMemo(() => treatmentLines.slice(0, 3), [treatmentLines])
+  const differentials = useMemo(() => (
+    selected.differentials && selected.differentials.length > 0
+      ? selected.differentials
+      : getDifferentialSuggestions(selected)
+  ), [selected])
+  const clinicalTip = selected.clinicalTip ?? selected.pathophysiology ?? ''
   const hasProtocol = useMemo(() => {
     const text = normalizeText(treatmentLines.join(' '))
     return treatmentLines.length > 1 || text.includes('protocolo') || text.includes('primeira escolha')
@@ -198,14 +280,28 @@ export default function DoencasPage({ initialSelectedId, selectionToken, onOpenD
         <div className="w-full lg:w-52 lg:flex-shrink-0 space-y-1.5 max-h-[36vh] lg:max-h-[70vh] overflow-y-auto pr-1">
           {filtered.map(d => {
             const active = selected.id === d.id
+            const favorite = isClinicalFavorite('disease', d.id)
             return (
               <motion.button key={d.id} whileHover={{ x: active ? 0 : 3 }} onClick={() => select(d)}
                 className={`w-full text-left px-4 py-3 rounded-xl border text-sm transition-all ${
                   active ? 'bg-teal-500/20 text-teal-300 border-teal-500/40' : 'bg-slate-800/60 text-slate-400 border-slate-700/60 hover:border-teal-600/40 hover:text-slate-200'
                 }`}>
-                <div className="flex items-center gap-2 mb-0.5">
+                <div className="flex items-start gap-2 mb-0.5">
                   <span className="text-base leading-none">{d.emoji}</span>
-                  <p className="font-semibold truncate text-xs">{d.name}</p>
+                  <div className="min-w-0 flex-1">
+                    <p className="font-semibold truncate text-xs">{d.name}</p>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={(event) => { event.stopPropagation(); toggleFavorite(d) }}
+                    className={`p-1 rounded-lg border ${
+                      favorite
+                        ? 'text-amber-300 border-amber-500/30 bg-amber-500/10'
+                        : 'text-slate-600 border-transparent hover:text-amber-300'
+                    }`}
+                  >
+                    <Star size={12} fill={favorite ? 'currentColor' : 'none'} />
+                  </button>
                 </div>
                 <p className={`text-[10px] truncate ${active ? 'text-teal-400/70' : 'text-slate-600'}`}>{d.species}</p>
               </motion.button>
@@ -223,7 +319,20 @@ export default function DoencasPage({ initialSelectedId, selectionToken, onOpenD
                 <div className="flex items-start gap-4">
                   <span className="text-4xl">{selected.emoji}</span>
                   <div className="flex-1">
-                    <h2 className="text-xl font-bold text-white leading-tight">{selected.name}</h2>
+                    <div className="flex items-start justify-between gap-3">
+                      <h2 className="text-xl font-bold text-white leading-tight">{selected.name}</h2>
+                      <button
+                        type="button"
+                        onClick={() => toggleFavorite(selected)}
+                        className={`p-2 rounded-xl border flex-shrink-0 ${
+                          selectedFavorite
+                            ? 'text-amber-300 border-amber-500/30 bg-amber-500/10'
+                            : 'text-slate-500 border-slate-700 hover:text-amber-300 hover:border-amber-500/20'
+                        }`}
+                      >
+                        <Star size={14} fill={selectedFavorite ? 'currentColor' : 'none'} />
+                      </button>
+                    </div>
                     <div className="flex flex-wrap gap-2 mt-2">
                       <span className="text-xs bg-teal-500/10 text-teal-400 border border-teal-500/20 px-2.5 py-0.5 rounded-full font-medium">{selected.species}</span>
                       <span className="text-xs bg-slate-700 text-slate-400 px-2.5 py-0.5 rounded-full">{selected.category}</span>
@@ -311,6 +420,82 @@ export default function DoencasPage({ initialSelectedId, selectionToken, onOpenD
                       </div>
                     </div>
                   )}
+                </div>
+              )}
+
+              {!anatomyReference && (
+                <div className="bg-slate-800 rounded-2xl p-4 border border-slate-700/80">
+                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-3">
+                    <h3 className="text-sm font-bold text-white">🧠 Raciocínio Clínico</h3>
+                    <button
+                      type="button"
+                      onClick={() => onOpenRelatedDrugs?.(selected.mainDrugs?.[0] ?? referencedDrugs[0]?.name, referencedDrugs[0]?.id)}
+                      className="px-3 py-2 rounded-xl text-xs font-bold border bg-teal-500/10 border-teal-500/20 text-teal-300 hover:bg-teal-500/15 transition-all"
+                    >
+                      Ver fármacos relacionados
+                    </button>
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                    <div className="rounded-xl bg-slate-900/60 border border-slate-700/70 p-3">
+                      <p className="text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-2">Sinais-chave</p>
+                      <ul className="space-y-1.5">
+                        {keySigns.map(item => (
+                          <li key={item} className="flex items-start gap-2 text-sm text-slate-300">
+                            <span className="mt-2 w-1.5 h-1.5 rounded-full bg-amber-400/70 flex-shrink-0" />
+                            {item}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    <div className="rounded-xl bg-slate-900/60 border border-slate-700/70 p-3">
+                      <p className="text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-2">Diagnóstico sugerido</p>
+                      <ul className="space-y-1.5">
+                        {(diagnosticSuggestions.length > 0 ? diagnosticSuggestions : [selected.diagnosis]).map(item => (
+                          <li key={item} className="flex items-start gap-2 text-sm text-slate-300">
+                            <span className="mt-2 w-1.5 h-1.5 rounded-full bg-teal-400/70 flex-shrink-0" />
+                            {item}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    <div className="rounded-xl bg-slate-900/60 border border-slate-700/70 p-3">
+                      <p className="text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-2">Tratamento resumido</p>
+                      <ul className="space-y-1.5">
+                        {treatmentSummary.map(item => (
+                          <li key={item} className="flex items-start gap-2 text-sm text-slate-300">
+                            <span className="mt-2 w-1.5 h-1.5 rounded-full bg-violet-400/70 flex-shrink-0" />
+                            {renderWithDrugLinks(item)}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    <div className="rounded-xl bg-slate-900/60 border border-slate-700/70 p-3">
+                      <p className="text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-2">Diferenciais</p>
+                      {differentials.length > 0 ? (
+                        <ul className="space-y-1.5">
+                          {differentials.map(item => (
+                            <li key={item} className="flex items-start gap-2 text-sm text-slate-300">
+                              <span className="mt-2 w-1.5 h-1.5 rounded-full bg-slate-400/70 flex-shrink-0" />
+                              {item}
+                            </li>
+                          ))}
+                        </ul>
+                      ) : (
+                        <p className="text-sm text-slate-500">Sem diferenciais derivados para esta ficha.</p>
+                      )}
+                    </div>
+                  </div>
+
+                  <div className="rounded-xl bg-slate-900/60 border border-slate-700/70 p-3 mt-3">
+                    <p className="text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-2">Dica clÃ­nica</p>
+                    <p className="text-sm text-slate-300 leading-relaxed">
+                      {clinicalTip || 'Sem dica clínica estruturada para esta ficha.'}
+                    </p>
+                  </div>
                 </div>
               )}
 
