@@ -9,7 +9,64 @@
     "difficulty": "media",
     "estimatedTime": "2-4 min",
     "relatedDiseaseName": "Piometra Canina",
-    "steps": [],
+    "steps": [
+      {
+        "id": "suspeita-clinica",
+        "type": "single_choice",
+        "title": "Etapa 1 - Suspeita clinica",
+        "question": "Cadela inteira, em diestro, com PU/PD, apatia e secrecao vulvar purulenta. Qual e a principal suspeita clinica?",
+        "options": [
+          "Piometra",
+          "Cistite bacteriana",
+          "Mastite aguda",
+          "Gastroenterite infecciosa"
+        ],
+        "correctIndex": 0,
+        "explanation": "Cadela inteira no diestro com secrecao purulenta, toxemia e aumento uterino sugere fortemente piometra."
+      },
+      {
+        "id": "achado-diagnostico",
+        "type": "single_choice",
+        "title": "Etapa 2 - Exame/achado diagnostico",
+        "question": "Qual achado reforca mais o diagnostico e ajuda na definicao inicial do caso?",
+        "options": [
+          "Ultrassonografia com cornos uterinos distendidos por conteudo ecogenico",
+          "Radiografia toracica com padrao intersticial difuso",
+          "Coproparasitologico positivo para giardia",
+          "Citologia otica com cocos"
+        ],
+        "correctIndex": 0,
+        "explanation": "A ultrassonografia mostrando utero distendido com conteudo e um achado classico e muito util para confirmar a suspeita."
+      },
+      {
+        "id": "conduta-inicial",
+        "type": "single_choice",
+        "title": "Etapa 3 - Conduta inicial",
+        "question": "Qual conduta deve ser priorizada nas primeiras horas desse atendimento?",
+        "options": [
+          "Fluidoterapia, analgesia, antibiotico e preparo para OSH apos estabilizacao",
+          "Dar alta com anti-inflamatorio e retorno se piorar",
+          "Apenas observar por 24 horas sem intervir",
+          "Induzir cio para promover drenagem uterina"
+        ],
+        "correctIndex": 0,
+        "explanation": "Piometra e um quadro potencialmente toxemico. A prioridade e estabilizar e encaminhar para tratamento definitivo, em geral cirurgico."
+      },
+      {
+        "id": "erro-critico",
+        "type": "single_choice",
+        "title": "Etapa 4 - Erro critico",
+        "question": "Qual seria um erro grave nesse caso?",
+        "options": [
+          "Adiar a estabilizacao e o encaminhamento cirurgico de uma paciente toxemica",
+          "Monitorar hidratacao e perfusao",
+          "Iniciar antibiotico de amplo espectro",
+          "Explicar o risco do quadro ao tutor"
+        ],
+        "correctIndex": 0,
+        "explanation": "Atrasar a estabilizacao e o tratamento definitivo aumenta o risco de sepse, choque e ruptura uterina."
+      }
+    ],
     "chiefComplaint": "Cadela apatica com secrecao vulvar e aumento abdominal.",
     "history": "Femea inteira, 8 anos, cerca de 6 semanas apos o cio. Tutor relata poliuria, polidipsia e queda progressiva do apetite ha 3 dias.",
     "physicalExam": [
@@ -44,7 +101,64 @@
     "difficulty": "media",
     "estimatedTime": "3-4 min",
     "relatedDiseaseName": "Parvovirose Canina",
-    "steps": [],
+    "steps": [
+      {
+        "id": "suspeita-clinica",
+        "type": "single_choice",
+        "title": "Etapa 1 - Suspeita clinica",
+        "question": "Filhote nao imunizado com vomito, diarreia hemorragica e apatia intensa. Qual e a principal suspeita?",
+        "options": [
+          "Parvovirose canina",
+          "Leptospirose",
+          "Piometra",
+          "Erliquiose cronica"
+        ],
+        "correctIndex": 0,
+        "explanation": "Enterite hemorragica aguda em filhote com vacinacao incompleta e altamente sugestiva de parvovirose."
+      },
+      {
+        "id": "achado-diagnostico",
+        "type": "single_choice",
+        "title": "Etapa 2 - Exame/achado diagnostico",
+        "question": "Qual achado sustenta melhor o diagnostico inicial desse caso?",
+        "options": [
+          "Teste antigenico fecal positivo associado a leucopenia",
+          "Ultrassom uterino com conteudo purulento",
+          "MAT positivo para leptospira",
+          "Esfregaco com hemoparasitas intra-eritrocitarios"
+        ],
+        "correctIndex": 0,
+        "explanation": "A combinacao de teste fecal positivo e leucopenia marcante e muito compativel com parvovirose."
+      },
+      {
+        "id": "conduta-inicial",
+        "type": "single_choice",
+        "title": "Etapa 3 - Conduta inicial",
+        "question": "Qual deve ser a prioridade terapeutica nas primeiras horas?",
+        "options": [
+          "Correcao vigorosa da desidratacao, antiemetico e suporte intensivo",
+          "Apenas antiparasitario oral e dieta leve",
+          "Aguardar melhora espontanea antes de internar",
+          "Iniciar corticoide como tratamento principal"
+        ],
+        "correctIndex": 0,
+        "explanation": "O maior risco imediato e choque hipovolemico com sepse secundaria, entao suporte intensivo precoce e essencial."
+      },
+      {
+        "id": "erro-critico",
+        "type": "single_choice",
+        "title": "Etapa 4 - Erro critico",
+        "question": "Qual erro piora mais o prognostico desse paciente?",
+        "options": [
+          "Subestimar a desidratacao e retardar internacao e suporte",
+          "Controlar vomito e dor",
+          "Instituir isolamento enterico",
+          "Monitorar glicemia e perfusao"
+        ],
+        "correctIndex": 0,
+        "explanation": "Atrasar reposicao volêmica e suporte intensivo em parvovirose aumenta muito o risco de choque e complicacoes."
+      }
+    ],
     "chiefComplaint": "Filhote com vomitos e diarreia intensa com sangue.",
     "history": "Filhote de 4 meses, vacinacao incompleta, com inicio agudo de apatia, anorexia e vomitos nas ultimas 24 horas.",
     "physicalExam": [
@@ -172,7 +286,64 @@
     "difficulty": "facil",
     "estimatedTime": "2-3 min",
     "relatedDiseaseName": "Mastite Bovina",
-    "steps": [],
+    "steps": [
+      {
+        "id": "suspeita-clinica",
+        "type": "single_choice",
+        "title": "Etapa 1 - Suspeita clinica",
+        "question": "Vaca em lactacao com queda brusca de producao, quarto quente e leite com grumos. Qual e a principal suspeita?",
+        "options": [
+          "Mastite clinica bovina",
+          "Babesiose bovina",
+          "Metrite puerperal",
+          "Hipocalcemia"
+        ],
+        "correctIndex": 0,
+        "explanation": "Alteracao do leite associada a inflamacao do quarto mamario caracteriza mastite clinica."
+      },
+      {
+        "id": "achado-diagnostico",
+        "type": "single_choice",
+        "title": "Etapa 2 - Exame/achado diagnostico",
+        "question": "Qual achado apoia melhor a suspeita e ajuda na abordagem inicial?",
+        "options": [
+          "CMT fortemente positivo com teste da caneca alterado",
+          "MAT reagente para leptospirose",
+          "Esfregaco com hemoparasitas",
+          "Citologia vaginal neutrofilica"
+        ],
+        "correctIndex": 0,
+        "explanation": "CMT alterado e leite com grumos sao achados classicos que reforcam o diagnostico de mastite."
+      },
+      {
+        "id": "conduta-inicial",
+        "type": "single_choice",
+        "title": "Etapa 3 - Conduta inicial",
+        "question": "Qual conduta deve ser priorizada no inicio do manejo?",
+        "options": [
+          "Esvaziar o quarto afetado, tratar conforme gravidade e oferecer suporte",
+          "Suspender toda ordenha por varios dias sem avaliar o quarto",
+          "Manter observacao sem intervir porque o leite ainda sai",
+          "Aplicar apenas vermifugo e aguardar"
+        ],
+        "correctIndex": 0,
+        "explanation": "A drenagem do leite alterado, o tratamento precoce e o suporte reduzem dano mamario e perdas produtivas."
+      },
+      {
+        "id": "prognostico",
+        "type": "single_choice",
+        "title": "Etapa 4 - Prognostico",
+        "question": "Qual fator mais melhora o prognostico funcional desse quarto mamario?",
+        "options": [
+          "Intervencao precoce antes de dano tecidual mais extenso",
+          "Esperar varios dias para ver se normaliza sozinho",
+          "Ignorar a cultura quando o caso piora",
+          "Retomar o leite sem observar carencia"
+        ],
+        "correctIndex": 0,
+        "explanation": "Quanto mais cedo o caso e reconhecido e tratado, menor a chance de dano permanente e descarte do quarto."
+      }
+    ],
     "chiefComplaint": "Vaca recem-parida com queda de producao e quarto mamario quente.",
     "history": "Vaca leiteira de alta producao, 20 dias pos-parto. Ordenhador observou leite com grumos e dor durante a ordenha.",
     "physicalExam": [
@@ -207,7 +378,64 @@
     "difficulty": "media",
     "estimatedTime": "2-4 min",
     "relatedDiseaseName": "Babesiose Bovina / Tristeza Parasitária",
-    "steps": [],
+    "steps": [
+      {
+        "id": "suspeita-clinica",
+        "type": "single_choice",
+        "title": "Etapa 1 - Suspeita clinica",
+        "question": "Bovino com febre alta, anemia, ictericia e urina escura em area com carrapatos. Qual e a principal suspeita?",
+        "options": [
+          "Babesiose bovina",
+          "Mastite clinica",
+          "Parvovirose",
+          "Reticuloperitonite traumatica"
+        ],
+        "correctIndex": 0,
+        "explanation": "Hemoglobinuria, anemia hemolitica e infestacao por carrapatos tornam babesiose uma suspeita muito forte."
+      },
+      {
+        "id": "achado-diagnostico",
+        "type": "single_choice",
+        "title": "Etapa 2 - Exame/achado diagnostico",
+        "question": "Qual achado laboratorial confirma melhor essa suspeita no contexto inicial?",
+        "options": [
+          "Esfregaco sanguineo com hemoparasitas intra-eritrocitarios",
+          "CMT fortemente positivo",
+          "Teste antigenico fecal positivo",
+          "Ultrassom uterino com secrecao"
+        ],
+        "correctIndex": 0,
+        "explanation": "A visualizacao de hemoparasitas no esfregaco acelera a confirmacao e orienta a decisao terapeutica."
+      },
+      {
+        "id": "conduta-inicial",
+        "type": "single_choice",
+        "title": "Etapa 3 - Conduta inicial",
+        "question": "Qual conduta deve ser priorizada nas primeiras horas?",
+        "options": [
+          "Iniciar babesicida especifico e suporte intensivo conforme a anemia",
+          "Aguardar varios dias antes de tratar para repetir o esfregaco",
+          "Tratar apenas com anti-inflamatorio como monoterapia",
+          "Liberar o animal sem monitoramento porque a febre pode ceder"
+        ],
+        "correctIndex": 0,
+        "explanation": "Babesiose pode evoluir rapido. O tratamento especifico precoce com suporte melhora muito o prognostico."
+      },
+      {
+        "id": "erro-critico",
+        "type": "single_choice",
+        "title": "Etapa 4 - Erro critico",
+        "question": "Qual erro traz maior risco nesse caso?",
+        "options": [
+          "Atrasar o tratamento em um animal com anemia hemolitica progressiva",
+          "Monitorar hematocrito e perfusao",
+          "Controlar estresse e hidratacao",
+          "Orientar controle de carrapatos no rebanho"
+        ],
+        "correctIndex": 0,
+        "explanation": "A demora no tratamento favorece agravamento da hemolise, hipoxia tecidual e piora rapida do quadro."
+      }
+    ],
     "chiefComplaint": "Novilha com febre, mucosas palidas e urina avermelhada.",
     "history": "Animal criado em area com alta infestacao por carrapatos. Tutor percebeu prostracao acentuada e queda abrupta no consumo nas ultimas 24 horas.",
     "physicalExam": [

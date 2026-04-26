@@ -54,9 +54,76 @@ interface ClinicalCase {
   reasoning: string
 }
 
+interface RawCaseStep {
+  id?: string
+  type?: string
+  title?: string
+  question?: string
+  options?: unknown
+  correctIndex?: number | string
+  correctOption?: number | string
+  explanation?: string
+}
+
+interface RawClinicalCase extends Omit<ClinicalCase, 'steps'> {
+  steps?: RawCaseStep[]
+  decisionSteps?: RawCaseStep[]
+}
+
 type CaseFilter = 'todas' | 'cao' | 'bovino' | 'nao_iniciados' | 'concluidos'
 
-const CLINICAL_CASES = clinicalCases as ClinicalCase[]
+function normalizeStep(rawStep: RawCaseStep, index: number): CaseStep | null {
+  const options = Array.isArray(rawStep.options)
+    ? rawStep.options.filter((option): option is string => typeof option === 'string' && option.trim().length > 0)
+    : []
+  const question = typeof rawStep.question === 'string' ? rawStep.question.trim() : ''
+  const explanation = typeof rawStep.explanation === 'string' ? rawStep.explanation.trim() : ''
+  if (!question || !explanation || options.length < 2) return null
+
+  let correctIndex = typeof rawStep.correctIndex === 'number' ? rawStep.correctIndex : Number(rawStep.correctIndex)
+  if (!Number.isInteger(correctIndex)) {
+    const correctOption = rawStep.correctOption
+    if (typeof correctOption === 'number' && Number.isInteger(correctOption)) {
+      correctIndex = correctOption
+    } else if (typeof correctOption === 'string') {
+      const numericOption = Number(correctOption)
+      correctIndex = Number.isInteger(numericOption)
+        ? numericOption
+        : options.findIndex(option => normalizeLookup(option) === normalizeLookup(correctOption))
+    } else {
+      correctIndex = -1
+    }
+  }
+
+  if (correctIndex < 0 || correctIndex >= options.length) return null
+
+  return {
+    id: typeof rawStep.id === 'string' && rawStep.id.trim().length > 0 ? rawStep.id : `step-${index + 1}`,
+    type: typeof rawStep.type === 'string' && rawStep.type.trim().length > 0 ? rawStep.type : 'single_choice',
+    title: typeof rawStep.title === 'string' && rawStep.title.trim().length > 0 ? rawStep.title : `Etapa ${index + 1}`,
+    question,
+    options,
+    correctIndex,
+    explanation,
+  }
+}
+
+function normalizeClinicalCase(rawCase: RawClinicalCase): ClinicalCase {
+  const stepSource = Array.isArray(rawCase.steps)
+    ? rawCase.steps
+    : Array.isArray(rawCase.decisionSteps)
+      ? rawCase.decisionSteps
+      : []
+
+  return {
+    ...rawCase,
+    steps: stepSource
+      .map((step, index) => normalizeStep(step, index))
+      .filter((step): step is CaseStep => step !== null),
+  }
+}
+
+const CLINICAL_CASES = (clinicalCases as RawClinicalCase[]).map(normalizeClinicalCase)
 const DISEASE_INDEX = (centralDb as { diseases: { id: string; name: string }[] }).diseases
 
 function normalizeLookup(value: string) {
@@ -116,6 +183,37 @@ function scorePercent(score: number, total: number) {
   return Math.round((score / total) * 100)
 }
 
+function normalizeCaseProgress(clinicalCase: ClinicalCase, progress: CaseProgressState | null): CaseProgressState | null {
+  if (!progress) return null
+  const totalSteps = clinicalCase.steps?.length ?? 0
+  if (totalSteps === 0) return progress
+
+  const stepAnswers = Array.isArray(progress.stepAnswers)
+    ? progress.stepAnswers.filter((answer): answer is number => typeof answer === 'number').slice(0, totalSteps)
+    : []
+  const score = stepAnswers.reduce((total, answer, index) => (
+    total + (answer === clinicalCase.steps?.[index]?.correctIndex ? 1 : 0)
+  ), 0)
+
+  if (progress.status === 'completed' && stepAnswers.length < totalSteps) {
+    return {
+      status: 'in_progress',
+      currentStepIndex: Math.min(stepAnswers.length, Math.max(totalSteps - 1, 0)),
+      stepAnswers,
+      score,
+    }
+  }
+
+  return {
+    ...progress,
+    currentStepIndex: typeof progress.currentStepIndex === 'number'
+      ? Math.min(Math.max(progress.currentStepIndex, 0), totalSteps)
+      : Math.min(stepAnswers.length, Math.max(totalSteps - 1, 0)),
+    stepAnswers,
+    score,
+  }
+}
+
 function CasosContent({
   profile,
   selectionToken,
@@ -136,6 +234,9 @@ function CasosContent({
   const [showFallbackResolutionByCase, setShowFallbackResolutionByCase] = useState<Record<string, boolean>>({})
   const [expandedContextByCase, setExpandedContextByCase] = useState<Record<string, boolean>>({})
 
+  const getProgressForCase = (clinicalCase: ClinicalCase) =>
+    normalizeCaseProgress(clinicalCase, caseProgressMap[clinicalCase.id] ?? null)
+
   useEffect(() => {
     const refreshCases = () => {
       setReviewedCases(loadReviewedCases(profile.id))
@@ -149,7 +250,7 @@ function CasosContent({
 
   useEffect(() => {
     if (!selectionToken || CLINICAL_CASES.length === 0) return
-    const firstCase = CLINICAL_CASES.find(item => getCaseStatus(item, caseProgressMap[item.id] ?? null, reviewedCases) !== 'completed') ?? CLINICAL_CASES[0]
+    const firstCase = CLINICAL_CASES.find(item => getCaseStatus(item, getProgressForCase(item), reviewedCases) !== 'completed') ?? CLINICAL_CASES[0]
     setSelectedCaseId(firstCase.id)
   }, [caseProgressMap, reviewedCases, selectionToken])
 
@@ -157,7 +258,7 @@ function CasosContent({
 
   const filteredCases = useMemo(() => {
     return CLINICAL_CASES.filter(clinicalCase => {
-      const status = getCaseStatus(clinicalCase, caseProgressMap[clinicalCase.id] ?? null, reviewedCases)
+      const status = getCaseStatus(clinicalCase, getProgressForCase(clinicalCase), reviewedCases)
       if (caseFilter === 'cao') return normalizeLookup(clinicalCase.species) === 'cao'
       if (caseFilter === 'bovino') return normalizeLookup(clinicalCase.species) === 'bovino'
       if (caseFilter === 'nao_iniciados') return status === 'nao_iniciado'
@@ -170,7 +271,7 @@ function CasosContent({
     if (!selectedCase) return null
     const currentIndex = CLINICAL_CASES.findIndex(item => item.id === selectedCase.id)
     const nextUnfinished = CLINICAL_CASES.find(item =>
-      item.id !== selectedCase.id && getCaseStatus(item, caseProgressMap[item.id] ?? null, reviewedCases) !== 'completed',
+      item.id !== selectedCase.id && getCaseStatus(item, getProgressForCase(item), reviewedCases) !== 'completed',
     )
     if (nextUnfinished) return nextUnfinished.id
     return currentIndex >= 0 && CLINICAL_CASES[currentIndex + 1] ? CLINICAL_CASES[currentIndex + 1].id : null
@@ -270,7 +371,7 @@ function CasosContent({
   }
 
   const renderCaseCard = (clinicalCase: ClinicalCase) => {
-    const progress = caseProgressMap[clinicalCase.id] ?? null
+    const progress = getProgressForCase(clinicalCase)
     const status = getCaseStatus(clinicalCase, progress, reviewedCases)
     const actionLabel = getCaseActionLabel(status)
 
@@ -323,7 +424,7 @@ function CasosContent({
   }
 
   const renderStepCase = (clinicalCase: ClinicalCase) => {
-    const progress = caseProgressMap[clinicalCase.id] ?? null
+    const progress = getProgressForCase(clinicalCase)
     const stepAnswers = progress?.stepAnswers ?? []
     const currentStepIndex = progress?.currentStepIndex ?? 0
     const currentStep = clinicalCase.steps?.[currentStepIndex] ?? null
@@ -705,7 +806,7 @@ function CasosContent({
 
   const renderImmersiveCase = () => {
     if (!selectedCase) return null
-    const status = getCaseStatus(selectedCase, caseProgressMap[selectedCase.id] ?? null, reviewedCases)
+    const status = getCaseStatus(selectedCase, getProgressForCase(selectedCase), reviewedCases)
 
     return (
       <div className="max-w-4xl mx-auto p-4 sm:p-6 md:p-8 space-y-5">
