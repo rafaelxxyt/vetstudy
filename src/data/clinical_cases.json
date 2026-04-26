@@ -2,6 +2,8 @@
   {
     "title": "Caso Clinico: Piometra Canina",
     "species": "Cao",
+    "estimatedTime": "2–4 min",
+    "difficulty": "media",
     "chiefComplaint": "Cadela apatica com secrecao vulvar e aumento abdominal.",
     "history": "Femea inteira, 8 anos, cerca de 6 semanas apos o cio. Tutor relata poliuria, polidipsia e queda progressiva do apetite ha 3 dias.",
     "physicalExam": [
@@ -30,6 +32,8 @@
   {
     "title": "Caso Clinico: Parvovirose Canina",
     "species": "Cao",
+    "estimatedTime": "3–4 min",
+    "difficulty": "media",
     "chiefComplaint": "Filhote com vomitos e diarreia intensa com sangue.",
     "history": "Filhote de 4 meses, vacinacao incompleta, com inicio agudo de apatia, anorexia e vomitos nas ultimas 24 horas.",
     "physicalExam": [
@@ -58,6 +62,8 @@
   {
     "title": "Caso Clinico: Leptospirose",
     "species": "Cao",
+    "estimatedTime": "3–4 min",
+    "difficulty": "dificil",
     "chiefComplaint": "Cao febril com vomitos, ictericia e reducao do volume urinario.",
     "history": "Animal com acesso a area alagada e possivel contato com agua contaminada. Evoluiu em 48 horas com apatia, vomitos e anorexia.",
     "physicalExam": [
@@ -87,6 +93,8 @@
   {
     "title": "Caso Clinico: Mastite Bovina",
     "species": "Bovino",
+    "estimatedTime": "2–3 min",
+    "difficulty": "facil",
     "chiefComplaint": "Vaca recem-parida com queda de producao e quarto mamario quente.",
     "history": "Vaca leiteira de alta producao, 20 dias pos-parto. Ordenhador observou leite com grumos e dor durante a ordenha.",
     "physicalExam": [
@@ -115,6 +123,8 @@
   {
     "title": "Caso Clinico: Babesiose Bovina",
     "species": "Bovino",
+    "estimatedTime": "2–4 min",
+    "difficulty": "media",
     "chiefComplaint": "Novilha com febre, mucosas palidas e urina avermelhada.",
     "history": "Animal criado em area com alta infestacao por carrapatos. Tutor percebeu prostracao acentuada e queda abrupta no consumo nas ultimas 24 horas.",
     "physicalExam": [

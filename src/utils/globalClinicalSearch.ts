@@ -100,18 +100,28 @@ function normalizeText(value: string) {
     .replace(/[\u0300-\u036f]/g, '')
 }
 
+function tokenize(value: string) {
+  return normalizeText(value)
+    .split(/[^a-z0-9]+/)
+    .filter(Boolean)
+}
+
 function makeScore(query: string, weightedFields: Array<[string, number]>) {
   const normalizedQuery = normalizeText(query).trim()
-  if (!normalizedQuery) return 0
+  const queryTerms = tokenize(query)
+  if (!normalizedQuery || queryTerms.length === 0) return 0
 
-  return normalizedQuery
-    .split(/\s+/)
-    .filter(Boolean)
-    .reduce((total, term) => (
-      total + weightedFields.reduce((fieldTotal, [field, weight]) => (
-        normalizeText(field).includes(term) ? fieldTotal + weight : fieldTotal
-      ), 0)
-    ), 0)
+  return queryTerms.reduce((total, term) => (
+    total + weightedFields.reduce((fieldTotal, [field, weight]) => {
+      const normalizedField = normalizeText(field)
+      const fieldTerms = tokenize(field)
+
+      if (normalizedField.includes(term)) return fieldTotal + weight
+      if (fieldTerms.some(fieldTerm => fieldTerm.startsWith(term))) return fieldTotal + Math.max(1, weight - 1)
+      if (fieldTerms.some(fieldTerm => term.startsWith(fieldTerm) && fieldTerm.length >= 3)) return fieldTotal + 1
+      return fieldTotal
+    }, 0)
+  ), 0)
 }
 
 function uniqueStrings(values: string[]) {

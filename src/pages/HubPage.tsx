@@ -69,6 +69,8 @@ interface QuizStats { total: number; correct: number; hours: number }
 interface ClinicalCase {
   title: string
   species: string
+  estimatedTime: string
+  difficulty: 'facil' | 'media' | 'dificil'
   chiefComplaint: string
   history: string
   physicalExam: string[]
@@ -122,6 +124,12 @@ function findDiseaseIdByName(name: string) {
 
 function ensureList(value: string[] | string) {
   return Array.isArray(value) ? value : [value]
+}
+
+function streakMicrocopy(streak: number) {
+  if (streak <= 0) return 'Comece sua sequência hoje'
+  if (streak === 1) return 'Primeiro dia concluído'
+  return 'Você está mantendo o ritmo'
 }
 
 /* ══════════════════════════════════════════════════════
@@ -999,35 +1007,57 @@ function DailyReviewCard({
   pendingCases,
   streak,
   onStartReview,
+  onStartCase,
 }: {
   dueToday: number
   pendingCases: number
   streak: number
   onStartReview: () => void
+  onStartCase: () => void
 }) {
+  const allClear = dueToday === 0 && pendingCases === 0
   return (
     <div className="bg-gradient-to-br from-amber-500/10 to-slate-900/70 border border-amber-500/20 rounded-2xl p-4">
       <div className="flex items-start justify-between gap-3">
         <div>
           <p className="text-xs font-bold text-amber-300 uppercase tracking-wider">📅 Revisão de Hoje</p>
-          <p className="text-sm text-white font-semibold mt-1">
-            Você tem {dueToday} {dueToday === 1 ? 'revisão' : 'revisões'} hoje
-          </p>
-          <p className="text-xs text-slate-400 mt-1">
-            {pendingCases} {pendingCases === 1 ? 'caso para treinar' : 'casos para treinar'}
-          </p>
+          {allClear ? (
+            <>
+              <p className="text-sm text-white font-semibold mt-1">Tudo em dia. Que tal resolver um caso clínico?</p>
+              <p className="text-xs text-slate-400 mt-1">Seus cards estão organizados por hoje, mas você ainda pode treinar raciocínio clínico.</p>
+            </>
+          ) : (
+            <>
+              <p className="text-sm text-white font-semibold mt-1">
+                Você tem {dueToday} {dueToday === 1 ? 'revisão' : 'revisões'} hoje
+              </p>
+              <p className="text-xs text-slate-400 mt-1">
+                {pendingCases} {pendingCases === 1 ? 'caso para treinar' : 'casos para treinar'}
+              </p>
+            </>
+          )}
         </div>
         <div className="text-right flex-shrink-0">
           <p className="text-[10px] font-bold text-slate-500 uppercase tracking-wider">🔥 Sequência</p>
           <p className="text-lg font-black text-white mt-1">{streak} {streak === 1 ? 'dia' : 'dias'}</p>
+          <p className="text-[11px] text-slate-400 mt-1 max-w-28">{streakMicrocopy(streak)}</p>
         </div>
       </div>
-      <button
-        onClick={onStartReview}
-        className="mt-4 w-full px-3 py-2 rounded-xl bg-amber-500/90 text-slate-950 text-sm font-bold hover:bg-amber-400 transition active:scale-[0.99]"
-      >
-        Começar revisão
-      </button>
+      {allClear ? (
+        <button
+          onClick={onStartCase}
+          className="mt-4 w-full px-3 py-2 rounded-xl bg-fuchsia-500/90 text-white text-sm font-bold hover:bg-fuchsia-400 transition active:scale-[0.99]"
+        >
+          Resolver caso clínico
+        </button>
+      ) : (
+        <button
+          onClick={onStartReview}
+          className="mt-4 w-full px-3 py-2 rounded-xl bg-amber-500/90 text-slate-950 text-sm font-bold hover:bg-amber-400 transition active:scale-[0.99]"
+        >
+          Começar revisão
+        </button>
+      )}
     </div>
   )
 }
@@ -1035,9 +1065,11 @@ function DailyReviewCard({
 function ClinicalCasesSection({
   profileId,
   onOpenDisease,
+  focusToken,
 }: {
   profileId: string
   onOpenDisease: (diseaseId: string) => void
+  focusToken: number
 }) {
   const [openCaseTitle, setOpenCaseTitle] = useState<string | null>(null)
   const [revealedCaseTitle, setRevealedCaseTitle] = useState<string | null>(null)
@@ -1047,8 +1079,16 @@ function ClinicalCasesSection({
     setRevealedCaseTitle(current => current === title ? null : current)
   }
 
+  useEffect(() => {
+    if (!focusToken || CLINICAL_CASES.length === 0) return
+    const firstCase = CLINICAL_CASES[0]
+    setOpenCaseTitle(firstCase.title)
+    const element = document.getElementById('hub-clinical-cases')
+    element?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+  }, [focusToken])
+
   return (
-    <div>
+    <div id="hub-clinical-cases">
       <div className="flex items-center gap-2 mb-3">
         <BookOpen size={14} className="text-fuchsia-400" />
         <p className="text-xs font-bold text-slate-400 uppercase tracking-wider">🧠 Casos Clínicos</p>
@@ -1064,7 +1104,17 @@ function ClinicalCasesSection({
               <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
                 <div className="min-w-0">
                   <p className="text-sm font-bold text-white">{clinicalCase.title}</p>
-                  <p className="text-xs text-slate-500 mt-1">{clinicalCase.species}</p>
+                  <div className="flex flex-wrap gap-1.5 mt-2">
+                    <span className="text-[11px] px-2 py-0.5 rounded-full bg-slate-800/80 border border-slate-700 text-slate-300">
+                      {clinicalCase.species}
+                    </span>
+                    <span className="text-[11px] px-2 py-0.5 rounded-full bg-slate-800/80 border border-slate-700 text-slate-300">
+                      {clinicalCase.estimatedTime}
+                    </span>
+                    <span className="text-[11px] px-2 py-0.5 rounded-full bg-slate-800/80 border border-slate-700 text-slate-300 capitalize">
+                      {clinicalCase.difficulty}
+                    </span>
+                  </div>
                 </div>
                 <button
                   onClick={() => toggleCase(clinicalCase.title)}
@@ -1150,8 +1200,10 @@ function ClinicalCasesSection({
                       </div>
 
                       <div>
-                        <p className="text-[10px] font-bold text-teal-300 uppercase tracking-wider">Raciocínio</p>
-                        <p className="text-xs text-slate-300 mt-1 leading-relaxed">{clinicalCase.reasoning}</p>
+                        <p className="text-[10px] font-bold text-amber-300 uppercase tracking-wider">Por que isso importa?</p>
+                        <div className="mt-1 rounded-xl border border-amber-500/20 bg-amber-500/10 px-3 py-2">
+                          <p className="text-xs text-amber-100 leading-relaxed">{clinicalCase.reasoning}</p>
+                        </div>
                       </div>
 
                       <button
@@ -1195,6 +1247,7 @@ function HubDashboard({ profile, topics, setTopics, stats, dailyHistory, topicsS
   const [recent, setRecent] = useState<ClinicalSavedItem[]>(() => loadClinicalRecent())
   const [reviewHabit, setReviewHabit] = useState<ReviewHabitState>(() => loadReviewHabit(profile.id))
   const [reviewedCases, setReviewedCases] = useState<string[]>(() => loadReviewedCases(profile.id))
+  const [caseFocusToken, setCaseFocusToken] = useState(0)
   const dueToday = dueReviewCount(topics)
   const pendingCases = Math.max(0, CLINICAL_CASES.length - reviewedCases.length)
 
@@ -1236,6 +1289,7 @@ function HubDashboard({ profile, topics, setTopics, stats, dailyHistory, topicsS
         pendingCases={pendingCases}
         streak={reviewHabit.currentStreak}
         onStartReview={onOpenReview}
+        onStartCase={() => setCaseFocusToken(Date.now())}
       />
 
       <div className="bg-gradient-to-br from-teal-500/15 to-slate-800/80 border border-teal-500/20 rounded-2xl p-4 flex items-start gap-3 backdrop-blur-sm">
@@ -1255,7 +1309,11 @@ function HubDashboard({ profile, topics, setTopics, stats, dailyHistory, topicsS
         <QuickSavedList title="🕒 Recentes" items={recent.slice(0, 10)} onOpenItem={openSavedItem} />
       </div>
 
-      <ClinicalCasesSection profileId={profile.id} onOpenDisease={(diseaseId) => onGlobalNavigate('doencas', diseaseId)} />
+      <ClinicalCasesSection
+        profileId={profile.id}
+        focusToken={caseFocusToken}
+        onOpenDisease={(diseaseId) => onGlobalNavigate('doencas', diseaseId)}
+      />
 
       <EstudoHojeCard profile={profile} onOpenSimulator={onOpenSimulator} onOpenDailyStudy={onOpenDailyStudy} />
 
