@@ -9,14 +9,6 @@ import ToolboxPage      from './pages/ToolboxPage'
 import VetNewsPage      from './pages/VetNewsPage'
 import HubPage          from './pages/HubPage'
 
-const PAGE_MAP: Record<Page, React.ElementType> = {
-  hub:          HubPage,
-  medicamentos: MedicamentosPage,
-  doencas:      DoencasPage,
-  ferramentas:  ToolboxPage,
-  vetnews:      VetNewsPage,
-}
-
 const PAGE_LABELS: Record<Page, string> = {
   hub:          'Hub Acadêmico',
   medicamentos: 'Medicamentos',
@@ -28,8 +20,9 @@ const PAGE_LABELS: Record<Page, string> = {
 export default function App() {
   const [activePage, setActivePage] = useState<Page>('hub')
   const [mobileOpen, setMobileOpen] = useState(false)
-
-  const PageComponent = PAGE_MAP[activePage]
+  const [selectionToken, setSelectionToken] = useState(0)
+  const [selectedDiseaseId, setSelectedDiseaseId] = useState<string | undefined>(undefined)
+  const [selectedDrugId, setSelectedDrugId] = useState<string | undefined>(undefined)
 
   // ── Body scroll lock ──────────────────────────────────
   // Prevents the background page from scrolling while the
@@ -48,6 +41,24 @@ export default function App() {
     setActivePage(p)
     setMobileOpen(false)
   }
+
+  const handleGlobalNavigate = (page: 'doencas' | 'medicamentos', id: string) => {
+    if (page === 'doencas') setSelectedDiseaseId(id)
+    if (page === 'medicamentos') setSelectedDrugId(id)
+    setSelectionToken(Date.now())
+    setActivePage(page)
+    setMobileOpen(false)
+  }
+
+  const pageNode = activePage === 'hub'
+    ? <HubPage onGlobalNavigate={handleGlobalNavigate} />
+    : activePage === 'medicamentos'
+      ? <MedicamentosPage initialSelectedId={selectedDrugId} selectionToken={selectionToken} />
+      : activePage === 'doencas'
+        ? <DoencasPage initialSelectedId={selectedDiseaseId} selectionToken={selectionToken} />
+        : activePage === 'ferramentas'
+          ? <ToolboxPage />
+          : <VetNewsPage />
 
   return (
     <div className="flex h-dvh md:h-screen bg-slate-950 overflow-hidden font-sans">
@@ -131,7 +142,7 @@ export default function App() {
             transition={{ duration: 0.18, ease: [0.4, 0, 0.2, 1] }}
             className="min-h-full"
           >
-            <PageComponent />
+            {pageNode}
           </motion.div>
         </AnimatePresence>
       </main>

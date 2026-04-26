@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import {
   Search, Pill, AlertCircle, ChevronDown, FlaskConical,
@@ -306,9 +306,24 @@ function DrugDetail({ drug }: { drug: Drug }) {
 }
 
 /* ── Página principal ── */
-export default function MedicamentosPage() {
+interface MedicamentosPageProps {
+  initialSelectedId?: string
+  selectionToken?: number
+}
+
+export default function MedicamentosPage({ initialSelectedId, selectionToken }: MedicamentosPageProps = {}) {
   const [query,    setQuery]    = useState('')
-  const [selected, setSelected] = useState<Drug>(db.drugs[0])
+  const [selected, setSelected] = useState<Drug>(() => (
+    db.drugs.find(drug => drug.id === initialSelectedId) ?? db.drugs[0]
+  ))
+
+  useEffect(() => {
+    if (!initialSelectedId) return
+    const nextSelected = db.drugs.find(drug => drug.id === initialSelectedId)
+    if (!nextSelected) return
+    setSelected(nextSelected)
+    setQuery('')
+  }, [initialSelectedId, selectionToken])
 
   const filtered = query.trim()
     ? db.drugs.filter(d =>

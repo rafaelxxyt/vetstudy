@@ -7,6 +7,7 @@ import {
   Clock, ChevronLeft, ChevronRight, Play, BarChart3,
 } from 'lucide-react'
 import Gatekeeper, { lockHub } from '../components/Gatekeeper'
+import GlobalClinicalSearch from '../components/GlobalClinicalSearch'
 import ProfileSelector from '../components/ProfileSelector'
 import RevisaoPage   from './RevisaoPage'
 import SimuladorPage from './SimuladorPage'
@@ -39,6 +40,7 @@ import {
   type StaticStudyModule,
 } from '../utils/mergeStudyContent'
 import { parseStudyContent, type StudyContentDocument } from '../utils/parseStudyContent'
+import type { SearchTargetPage } from '../utils/globalClinicalSearch'
 
 const IS_DEV = Boolean((import.meta as ImportMeta & { env?: { DEV?: boolean } }).env?.DEV)
 
@@ -878,7 +880,7 @@ const DICAS = [
 ]
 const SHOW_STUDY_SEQUENCE = false
 
-function HubDashboard({ profile, topics, setTopics, stats, dailyHistory, topicsStorageKey, seqStorageKey, onOpenSimulator, onOpenDailyStudy }: {
+function HubDashboard({ profile, topics, setTopics, stats, dailyHistory, topicsStorageKey, seqStorageKey, onOpenSimulator, onOpenDailyStudy, onGlobalNavigate }: {
   profile: LocalProfile
   topics: Topic[]
   setTopics: (t: Topic[]) => void
@@ -888,6 +890,7 @@ function HubDashboard({ profile, topics, setTopics, stats, dailyHistory, topicsS
   seqStorageKey: string
   onOpenSimulator: () => void
   onOpenDailyStudy: () => void
+  onGlobalNavigate: (page: SearchTargetPage, id: string) => void
 }) {
   const dica = DICAS[new Date().getDay() % DICAS.length]
 
@@ -909,6 +912,8 @@ function HubDashboard({ profile, topics, setTopics, stats, dailyHistory, topicsS
           <p className="text-sm text-slate-300 leading-relaxed mt-0.5">{dica}</p>
         </div>
       </div>
+
+      <GlobalClinicalSearch profileId={profile.id} onNavigate={onGlobalNavigate} />
 
       <EstudoHojeCard profile={profile} onOpenSimulator={onOpenSimulator} onOpenDailyStudy={onOpenDailyStudy} />
 
@@ -964,7 +969,13 @@ const TABS: { id: HubTab; label: string; icon: React.ElementType }[] = [
   { id: 'mapas',     label: 'Mapas',      icon: Network         },
 ]
 
-function HubContent({ profile }: { profile: LocalProfile }) {
+function HubContent({
+  profile,
+  onGlobalNavigate,
+}: {
+  profile: LocalProfile
+  onGlobalNavigate: (page: SearchTargetPage, id: string) => void
+}) {
   const topicsKey = profileStorageKey(profile.id, PROFILE_DATA_KEYS.topics)
   const seqKey    = profileStorageKey(profile.id, 'vetstudy_study_seq')
   const statsKey  = profileStorageKey(profile.id, PROFILE_DATA_KEYS.quizStats)
@@ -1035,6 +1046,7 @@ function HubContent({ profile }: { profile: LocalProfile }) {
                 seqStorageKey={seqKey}
                 onOpenSimulator={() => setTab('simulador')}
                 onOpenDailyStudy={openDailyStudy}
+                onGlobalNavigate={onGlobalNavigate}
               />
             )}
             {tab === 'revisao'   && <RevisaoPage />}
@@ -1050,7 +1062,11 @@ function HubContent({ profile }: { profile: LocalProfile }) {
 /* ══════════════════════════════════════════════════════
    EXPORT PRINCIPAL
    ══════════════════════════════════════════════════════ */
-export default function HubPage() {
+export default function HubPage({
+  onGlobalNavigate,
+}: {
+  onGlobalNavigate?: (page: SearchTargetPage, id: string) => void
+} = {}) {
   const [profile, setProfile] = useState<LocalProfile | null>(() => getActiveProfile())
 
   useEffect(() => {
@@ -1079,7 +1095,11 @@ export default function HubPage() {
   return (
     <Gatekeeper pageTitle="Hub Acadêmico — RBC">
       <div className="flex flex-col h-full">
-        <HubContent key={profile.id} profile={profile} />
+        <HubContent
+          key={profile.id}
+          profile={profile}
+          onGlobalNavigate={onGlobalNavigate ?? (() => {})}
+        />
       </div>
     </Gatekeeper>
   )

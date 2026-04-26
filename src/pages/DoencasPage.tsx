@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import {
   Search, BookOpen, Stethoscope, Microscope, Pill,
@@ -30,10 +30,26 @@ function cleanAnatomyLabel(item: string) {
   return item.replace(/^Estrutura\s*\d+\s*[—-]\s*/i, '')
 }
 
-export default function DoencasPage() {
+interface DoencasPageProps {
+  initialSelectedId?: string
+  selectionToken?: number
+}
+
+export default function DoencasPage({ initialSelectedId, selectionToken }: DoencasPageProps = {}) {
   const [query,    setQuery]    = useState('')
-  const [selected, setSelected] = useState<Disease>(db.diseases[0])
+  const [selected, setSelected] = useState<Disease>(() => (
+    db.diseases.find(disease => disease.id === initialSelectedId) ?? db.diseases[0]
+  ))
   const [section,  setSection]  = useState<string | null>('Sintomas')
+
+  useEffect(() => {
+    if (!initialSelectedId) return
+    const nextSelected = db.diseases.find(disease => disease.id === initialSelectedId)
+    if (!nextSelected) return
+    setSelected(nextSelected)
+    setQuery('')
+    setSection('Sintomas')
+  }, [initialSelectedId, selectionToken])
 
   const filtered = query.trim()
     ? db.diseases.filter(d =>
