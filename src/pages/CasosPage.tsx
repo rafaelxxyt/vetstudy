@@ -13,6 +13,7 @@ import {
 } from '../utils/profiles'
 import {
   caseProgressEventName,
+  clearCaseProgress,
   loadCaseProgress,
   loadReviewedCases,
   markCaseReviewed,
@@ -184,6 +185,33 @@ function CasosContent({
     setCaseProgressMap(current => ({ ...current, [caseId]: nextProgress }))
   }
 
+  const resetCase = (clinicalCase: ClinicalCase) => {
+    clearCaseProgress(clinicalCase.id, clinicalCase.title, profile.id)
+    setCaseProgressMap(current => ({ ...current, [clinicalCase.id]: null }))
+    setReviewedCases(current => current.filter(title => title !== clinicalCase.title))
+    setSelfEvaluationByCase(current => {
+      const next = { ...current }
+      delete next[clinicalCase.id]
+      return next
+    })
+    setSelectedOptionByCase(current => {
+      const next = { ...current }
+      delete next[clinicalCase.id]
+      return next
+    })
+    setShowFallbackResolutionByCase(current => {
+      const next = { ...current }
+      delete next[clinicalCase.id]
+      return next
+    })
+    setExpandedContextByCase(current => {
+      const next = { ...current }
+      delete next[clinicalCase.id]
+      return next
+    })
+    setSelectedCaseId(clinicalCase.id)
+  }
+
   const renderPatientSummary = (clinicalCase: ClinicalCase) => {
     const showFullContext = expandedContextByCase[clinicalCase.id] ?? false
 
@@ -270,13 +298,25 @@ function CasosContent({
             </div>
           </div>
 
-          <button
-            type="button"
-            onClick={() => openCase(clinicalCase.id)}
-            className="min-h-[44px] w-full sm:w-auto rounded-xl bg-fuchsia-500/90 px-3 py-2 text-sm font-bold text-white transition hover:bg-fuchsia-400"
-          >
-            {actionLabel}
-          </button>
+          <div className="grid grid-cols-1 gap-2 w-full sm:w-auto sm:min-w-[160px]">
+            <button
+              type="button"
+              onClick={() => openCase(clinicalCase.id)}
+              className="min-h-[44px] w-full rounded-xl bg-fuchsia-500/90 px-3 py-2 text-sm font-bold text-white transition hover:bg-fuchsia-400"
+            >
+              {actionLabel}
+            </button>
+
+            {status === 'completed' && (
+              <button
+                type="button"
+                onClick={() => resetCase(clinicalCase)}
+                className="min-h-[44px] w-full rounded-xl border border-slate-700 bg-slate-900/70 px-3 py-2 text-sm font-bold text-slate-200 transition hover:border-fuchsia-500/30"
+              >
+                Refazer caso
+              </button>
+            )}
+          </div>
         </div>
       </div>
     )
@@ -339,7 +379,15 @@ function CasosContent({
             })}
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
+            <button
+              type="button"
+              onClick={() => resetCase(clinicalCase)}
+              className="min-h-[44px] w-full rounded-xl border border-slate-700 bg-slate-900/70 px-3 py-2 text-sm font-bold text-slate-200 transition hover:border-fuchsia-500/30"
+            >
+              Refazer caso
+            </button>
+
             <button
               type="button"
               onClick={() => relatedDiseaseId && onOpenDisease?.(relatedDiseaseId)}
@@ -617,7 +665,15 @@ function CasosContent({
               </div>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
+              <button
+                type="button"
+                onClick={() => resetCase(clinicalCase)}
+                className="min-h-[44px] w-full rounded-xl border border-slate-700 bg-slate-900/70 px-3 py-2 text-sm font-bold text-slate-200 transition hover:border-fuchsia-500/30"
+              >
+                Refazer caso
+              </button>
+
               <button
                 type="button"
                 onClick={() => relatedDiseaseId && onOpenDisease?.(relatedDiseaseId)}

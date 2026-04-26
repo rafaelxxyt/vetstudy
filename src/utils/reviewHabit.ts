@@ -110,6 +110,21 @@ export function saveCaseProgress(caseId: string, progress: CaseProgressState, pr
   return progress
 }
 
+export function clearCaseProgress(caseId: string, caseTitle?: string, profileId?: string) {
+  const resolvedProfileId = getProfileId(profileId)
+  try {
+    localStorage.removeItem(keyFor(resolvedProfileId, `${CASE_PROGRESS_KEY_PREFIX}${caseId}`))
+  } catch {}
+
+  if (caseTitle) {
+    const reviewedCases = loadReviewedCases(resolvedProfileId)
+    const nextReviewedCases = reviewedCases.filter(title => title !== caseTitle)
+    saveJSON(keyFor(resolvedProfileId, REVIEWED_CASES_KEY), nextReviewedCases)
+  }
+
+  try { window.dispatchEvent(new Event(CASE_PROGRESS_EVENT)) } catch {}
+}
+
 export function markCaseReviewed(caseTitle: string, profileId?: string) {
   const resolvedProfileId = getProfileId(profileId)
   const current = loadReviewedCases(resolvedProfileId)
