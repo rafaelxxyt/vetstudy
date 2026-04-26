@@ -87,6 +87,44 @@
       "Iniciar antibioticoterapia e suporte antiemetico"
     ],
     "drugs": ["Penicilina G Procaina", "Doxiciclina", "Maropitant"],
+    "decisionSteps": [
+      {
+        "title": "Passo 1 - Suspeita clinica",
+        "question": "Qual e a principal suspeita diante de febre, ictericia, azotemia e exposicao a agua contaminada?",
+        "options": [
+          "Leptospirose",
+          "Parvovirose",
+          "Babesiose",
+          "Intoxicacao alimentar"
+        ],
+        "correctOption": "Leptospirose",
+        "explanation": "A combinacao de febre, ictericia, lesao renal e exposicao ambiental e muito sugestiva de leptospirose."
+      },
+      {
+        "title": "Passo 2 - Conduta inicial",
+        "question": "Qual conduta deve ser priorizada nas primeiras horas?",
+        "options": [
+          "Isolamento, EPI, fluidoterapia e antibiotico empirico",
+          "Alta com antibiotico oral",
+          "Aguardar MAT antes de tratar",
+          "Apenas antiemetico e observacao"
+        ],
+        "correctOption": "Isolamento, EPI, fluidoterapia e antibiotico empirico",
+        "explanation": "A prioridade e proteger a equipe, estabilizar o paciente e iniciar tratamento sem esperar confirmacao sorologica."
+      },
+      {
+        "title": "Passo 3 - Erro critico",
+        "question": "O que seria um erro grave nesse caso?",
+        "options": [
+          "Manipular urina sem protecao",
+          "Iniciar fluidoterapia monitorada",
+          "Informar risco zoonotico ao tutor",
+          "Usar antibiotico antes do MAT"
+        ],
+        "correctOption": "Manipular urina sem protecao",
+        "explanation": "A urina pode eliminar leptospiras, entao manipular sem protecao expoe a equipe a risco zoonotico importante."
+      }
+    ],
     "reasoning": "Ictericia associada a azotemia, febre e exposicao ambiental e altamente sugestiva de leptospirose. Alem do tratamento, a protecao da equipe e parte da conduta.",
     "relatedDiseaseName": "Leptospirose"
   },

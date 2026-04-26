@@ -30,6 +30,13 @@ interface ClinicalCase {
   diagnosis: string
   conduct: string[] | string
   drugs: string[]
+  decisionSteps?: {
+    title: string
+    question: string
+    options: string[]
+    correctOption: string
+    explanation: string
+  }[]
   reasoning: string
   relatedDiseaseName: string
 }
@@ -70,6 +77,7 @@ function CasosContent({
   const [openCaseTitle, setOpenCaseTitle] = useState<string | null>(null)
   const [revealedCaseTitle, setRevealedCaseTitle] = useState<string | null>(null)
   const [selfEvaluationByCase, setSelfEvaluationByCase] = useState<Record<string, 'acertei' | 'errei'>>({})
+  const [decisionAnswersByCase, setDecisionAnswersByCase] = useState<Record<string, string[]>>({})
 
   useEffect(() => {
     const refreshCases = () => setReviewedCases(loadReviewedCases(profile.id))
@@ -111,6 +119,11 @@ function CasosContent({
           const isOpen = openCaseTitle === clinicalCase.title
           const isRevealed = revealedCaseTitle === clinicalCase.title
           const selfEvaluation = selfEvaluationByCase[clinicalCase.title]
+          const decisionSteps = clinicalCase.decisionSteps ?? []
+          const decisionAnswers = decisionAnswersByCase[clinicalCase.title] ?? []
+          const currentDecisionIndex = decisionAnswers.length
+          const allDecisionStepsAnswered = decisionSteps.length > 0 && decisionAnswers.length >= decisionSteps.length
+          const currentDecisionStep = !allDecisionStepsAnswered ? decisionSteps[currentDecisionIndex] : null
           const caseCompleted = reviewedCases.includes(clinicalCase.title)
           const nextCase = nextSuggestedCase(clinicalCase.title)
           const relatedDiseaseId = findDiseaseIdByName(clinicalCase.relatedDiseaseName)
@@ -182,46 +195,121 @@ function CasosContent({
 
                   {!isRevealed ? (
                     <div className="rounded-xl border border-slate-800 bg-slate-950/40 p-3 space-y-3">
-                      <div>
-                        <p className="text-sm font-bold text-white">Você já tem um diagnóstico em mente?</p>
-                        <p className="text-xs text-slate-400 mt-1">Marque sua percepção antes de ver a resolução.</p>
-                      </div>
+                      {decisionSteps.length > 0 ? (
+                        <>
+                          {currentDecisionStep && (
+                            <div className="space-y-3">
+                              <div>
+                                <p className="text-[10px] font-bold text-fuchsia-300 uppercase tracking-wider">{currentDecisionStep.title}</p>
+                                <p className="text-sm font-bold text-white mt-1">{currentDecisionStep.question}</p>
+                              </div>
 
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                        <button
-                          type="button"
-                          onClick={() => setSelfEvaluationByCase(current => ({ ...current, [clinicalCase.title]: 'acertei' }))}
-                          className={`min-h-[44px] w-full rounded-xl px-3 py-2 text-sm font-bold transition ${
-                            selfEvaluation === 'acertei'
-                              ? 'border border-teal-400/40 bg-teal-500/15 text-teal-300'
-                              : 'border border-slate-700 bg-slate-900/70 text-slate-200 hover:border-teal-500/30'
-                          }`}
-                        >
-                          Acertei
-                        </button>
-                        <button
-                          type="button"
-                          onClick={() => setSelfEvaluationByCase(current => ({ ...current, [clinicalCase.title]: 'errei' }))}
-                          className={`min-h-[44px] w-full rounded-xl px-3 py-2 text-sm font-bold transition ${
-                            selfEvaluation === 'errei'
-                              ? 'border border-amber-400/40 bg-amber-500/15 text-amber-300'
-                              : 'border border-slate-700 bg-slate-900/70 text-slate-200 hover:border-amber-500/30'
-                          }`}
-                        >
-                          Errei
-                        </button>
-                      </div>
+                              <div className="grid grid-cols-1 gap-2">
+                                {currentDecisionStep.options.map(option => {
+                                  const selectedOption = decisionAnswers[currentDecisionIndex]
+                                  const hasAnsweredCurrentStep = selectedOption !== undefined
+                                  const isSelected = selectedOption === option
+                                  const isCorrect = currentDecisionStep.correctOption === option
 
-                      {selfEvaluation && (
-                        <button
-                          onClick={() => {
-                            markCaseReviewed(clinicalCase.title, profile.id)
-                            setRevealedCaseTitle(clinicalCase.title)
-                          }}
-                          className="min-h-[44px] w-full px-3 py-2 rounded-xl border border-teal-500/30 bg-teal-500/10 text-teal-300 text-xs font-bold hover:bg-teal-500/15 transition"
-                        >
-                          Mostrar resolução
-                        </button>
+                                  let optionClass = 'border border-slate-700 bg-slate-900/70 text-slate-200 hover:border-fuchsia-500/30'
+                                  if (hasAnsweredCurrentStep && isSelected && isCorrect) {
+                                    optionClass = 'border border-teal-400/40 bg-teal-500/15 text-teal-200'
+                                  } else if (hasAnsweredCurrentStep && isSelected && !isCorrect) {
+                                    optionClass = 'border border-amber-400/40 bg-amber-500/15 text-amber-200'
+                                  } else if (hasAnsweredCurrentStep && isCorrect) {
+                                    optionClass = 'border border-teal-400/25 bg-teal-500/8 text-teal-200'
+                                  }
+
+                                  return (
+                                    <button
+                                      key={option}
+                                      type="button"
+                                      disabled={hasAnsweredCurrentStep}
+                                      onClick={() => {
+                                        setDecisionAnswersByCase(current => ({
+                                          ...current,
+                                          [clinicalCase.title]: [...decisionAnswers, option],
+                                        }))
+                                      }}
+                                      className={`min-h-[44px] w-full rounded-xl px-3 py-2 text-sm font-bold transition text-left disabled:cursor-default ${optionClass}`}
+                                    >
+                                      {option}
+                                    </button>
+                                  )
+                                })}
+                              </div>
+
+                              {decisionAnswers[currentDecisionIndex] && (
+                                <div className={`rounded-xl px-3 py-2 text-xs space-y-1 ${
+                                  decisionAnswers[currentDecisionIndex] === currentDecisionStep.correctOption
+                                    ? 'border border-teal-500/25 bg-teal-500/10 text-teal-100'
+                                    : 'border border-amber-500/25 bg-amber-500/10 text-amber-100'
+                                }`}>
+                                  <p className="font-bold">
+                                    {decisionAnswers[currentDecisionIndex] === currentDecisionStep.correctOption ? 'Correto' : 'Cuidado'}
+                                  </p>
+                                  <p>{currentDecisionStep.explanation}</p>
+                                </div>
+                              )}
+                            </div>
+                          )}
+
+                          {allDecisionStepsAnswered && (
+                            <button
+                              onClick={() => {
+                                markCaseReviewed(clinicalCase.title, profile.id)
+                                setRevealedCaseTitle(clinicalCase.title)
+                              }}
+                              className="min-h-[44px] w-full px-3 py-2 rounded-xl border border-teal-500/30 bg-teal-500/10 text-teal-300 text-xs font-bold hover:bg-teal-500/15 transition"
+                            >
+                              Mostrar resolução
+                            </button>
+                          )}
+                        </>
+                      ) : (
+                        <>
+                          <div>
+                            <p className="text-sm font-bold text-white">Você já tem um diagnóstico em mente?</p>
+                            <p className="text-xs text-slate-400 mt-1">Marque sua percepção antes de ver a resolução.</p>
+                          </div>
+
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                            <button
+                              type="button"
+                              onClick={() => setSelfEvaluationByCase(current => ({ ...current, [clinicalCase.title]: 'acertei' }))}
+                              className={`min-h-[44px] w-full rounded-xl px-3 py-2 text-sm font-bold transition ${
+                                selfEvaluation === 'acertei'
+                                  ? 'border border-teal-400/40 bg-teal-500/15 text-teal-300'
+                                  : 'border border-slate-700 bg-slate-900/70 text-slate-200 hover:border-teal-500/30'
+                              }`}
+                            >
+                              Acertei
+                            </button>
+                            <button
+                              type="button"
+                              onClick={() => setSelfEvaluationByCase(current => ({ ...current, [clinicalCase.title]: 'errei' }))}
+                              className={`min-h-[44px] w-full rounded-xl px-3 py-2 text-sm font-bold transition ${
+                                selfEvaluation === 'errei'
+                                  ? 'border border-amber-400/40 bg-amber-500/15 text-amber-300'
+                                  : 'border border-slate-700 bg-slate-900/70 text-slate-200 hover:border-amber-500/30'
+                              }`}
+                            >
+                              Errei
+                            </button>
+                          </div>
+
+                          {selfEvaluation && (
+                            <button
+                              onClick={() => {
+                                markCaseReviewed(clinicalCase.title, profile.id)
+                                setRevealedCaseTitle(clinicalCase.title)
+                              }}
+                              className="min-h-[44px] w-full px-3 py-2 rounded-xl border border-teal-500/30 bg-teal-500/10 text-teal-300 text-xs font-bold hover:bg-teal-500/15 transition"
+                            >
+                              Mostrar resolução
+                            </button>
+                          )}
+                        </>
                       )}
                     </div>
                   ) : (
