@@ -55,7 +55,11 @@ export default function App() {
     : activePage === 'medicamentos'
       ? <MedicamentosPage initialSelectedId={selectedDrugId} selectionToken={selectionToken} />
       : activePage === 'doencas'
-        ? <DoencasPage initialSelectedId={selectedDiseaseId} selectionToken={selectionToken} />
+        ? <DoencasPage
+            initialSelectedId={selectedDiseaseId}
+            selectionToken={selectionToken}
+            onOpenDrug={(drugId) => handleGlobalNavigate('medicamentos', drugId)}
+          />
         : activePage === 'ferramentas'
           ? <ToolboxPage />
           : <VetNewsPage />

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { Fragment, useEffect, useMemo, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import {
   Search, BookOpen, Stethoscope, Microscope, Pill,
@@ -30,17 +30,65 @@ function cleanAnatomyLabel(item: string) {
   return item.replace(/^Estrutura\s*\d+\s*[—-]\s*/i, '')
 }
 
+function normalizeText(value: string) {
+  return value
+    .toLocaleLowerCase('pt-BR')
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+}
+
+function escapeRegExp(value: string) {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+}
+
+const DRUG_REFERENCE_INDEX = db.drugs.map(drug => {
+  const primaryName = drug.name.split(' â€” ')[0].trim()
+  const aliases = Array.from(new Set([
+    primaryName,
+    primaryName.split(' / ')[0].trim(),
+    primaryName.split(' ')[0].trim(),
+  ])).filter(alias => alias.length >= 4)
+
+  return { id: drug.id, name: primaryName, aliases }
+})
+
+function getTreatmentLines(disease: Disease) {
+  return Array.isArray(disease.treatment) ? disease.treatment : [disease.treatment]
+}
+
+function extractReferencedDrugs(lines: string[]) {
+  const content = normalizeText(lines.join(' '))
+  return DRUG_REFERENCE_INDEX.filter(drug =>
+    drug.aliases.some(alias => content.includes(normalizeText(alias)))
+  )
+}
+
+function splitQuickAction(lines: string[]) {
+  const firstLine = lines[0] ?? 'Sem conduta principal registrada.'
+  const supportLines = lines.slice(1).filter(line => (
+    /anti|suporte|fluido|transfus|monitor|hidr|adjuv|meloxicam|dipirona|analg/i.test(line)
+  ))
+
+  return {
+    firstLine,
+    supportLine: supportLines[0] ?? lines[1] ?? 'Reavaliar sinais clínicos e ajustar suporte conforme estado geral.',
+    summary: `${firstLine}${lines[1] ? ` ${lines[1]}` : ''}`.slice(0, 220),
+  }
+}
+
 interface DoencasPageProps {
   initialSelectedId?: string
   selectionToken?: number
+  onOpenDrug?: (drugId: string) => void
 }
 
-export default function DoencasPage({ initialSelectedId, selectionToken }: DoencasPageProps = {}) {
+export default function DoencasPage({ initialSelectedId, selectionToken, onOpenDrug }: DoencasPageProps = {}) {
   const [query,    setQuery]    = useState('')
   const [selected, setSelected] = useState<Disease>(() => (
     db.diseases.find(disease => disease.id === initialSelectedId) ?? db.diseases[0]
   ))
   const [section,  setSection]  = useState<string | null>('Sintomas')
+  const [showProtocol, setShowProtocol] = useState(false)
 
   useEffect(() => {
     if (!initialSelectedId) return
@@ -49,6 +97,7 @@ export default function DoencasPage({ initialSelectedId, selectionToken }: Doenc
     setSelected(nextSelected)
     setQuery('')
     setSection('Sintomas')
+    setShowProtocol(false)
   }, [initialSelectedId, selectionToken])
 
   const filtered = query.trim()
@@ -59,9 +108,52 @@ export default function DoencasPage({ initialSelectedId, selectionToken }: Doenc
       )
     : db.diseases
 
-  const select = (d: Disease) => { setSelected(d); setQuery(''); setSection('Sintomas') }
+  const select = (d: Disease) => { setSelected(d); setQuery(''); setSection('Sintomas'); setShowProtocol(false) }
 
   const anatomyReference = isAnatomyReference(selected)
+  const treatmentLines = useMemo(() => getTreatmentLines(selected), [selected])
+  const referencedDrugs = useMemo(() => extractReferencedDrugs(treatmentLines), [treatmentLines])
+  const quickAction = useMemo(() => splitQuickAction(treatmentLines), [treatmentLines])
+  const hasProtocol = useMemo(() => {
+    const text = normalizeText(treatmentLines.join(' '))
+    return treatmentLines.length > 1 || text.includes('protocolo') || text.includes('primeira escolha')
+  }, [treatmentLines])
+  const treatmentRegex = useMemo(() => {
+    const aliases = referencedDrugs
+      .flatMap(drug => drug.aliases.map(alias => ({ alias, id: drug.id })))
+      .sort((a, b) => b.alias.length - a.alias.length)
+
+    if (aliases.length === 0) return null
+
+    return {
+      regex: new RegExp(`(${aliases.map(item => escapeRegExp(item.alias)).join('|')})`, 'gi'),
+      aliases,
+    }
+  }, [referencedDrugs])
+
+  const renderWithDrugLinks = (text: string) => {
+    if (!treatmentRegex) return text
+
+    return text.split(treatmentRegex.regex).map((part, index) => {
+      const matched = treatmentRegex.aliases.find(item => normalizeText(item.alias) === normalizeText(part))
+      if (!matched) return <Fragment key={`${part}-${index}`}>{part}</Fragment>
+
+      return (
+        <button
+          key={`${part}-${index}`}
+          type="button"
+          onClick={() => onOpenDrug?.(matched.id)}
+          className={`inline-flex items-center rounded-full px-2 py-0.5 mx-0.5 text-[11px] font-bold border ${
+            onOpenDrug
+              ? 'bg-teal-500/15 border-teal-500/30 text-teal-300 hover:bg-teal-500/20'
+              : 'bg-slate-700/70 border-slate-600/70 text-white'
+          }`}
+        >
+          {part}
+        </button>
+      )
+    })
+  }
   const sections = anatomyReference
     ? [
         { label: 'Referência Anatômica', content: selected.etiology.replace(/^Referência anatômica para/i, 'Referência anatômica de') },
@@ -155,6 +247,73 @@ export default function DoencasPage({ initialSelectedId, selectionToken }: Doenc
               </div>
 
               {/* Tabs de seção */}
+              {!anatomyReference && (
+                <div className="bg-slate-800 rounded-2xl p-4 border border-amber-500/20">
+                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-3">
+                    <h3 className="text-sm font-bold text-white">⚡ Conduta Rápida</h3>
+                    <button
+                      type="button"
+                      onClick={() => { if (hasProtocol) setShowProtocol(open => !open) }}
+                      className={`px-3 py-2 rounded-xl text-xs font-bold border transition-all ${
+                        hasProtocol
+                          ? 'bg-amber-500/10 border-amber-500/20 text-amber-300 hover:bg-amber-500/15'
+                          : 'bg-slate-700/40 border-slate-700 text-slate-500 cursor-default'
+                      }`}
+                    >
+                      Ver protocolo completo
+                    </button>
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                    <div className="rounded-xl bg-slate-900/60 border border-slate-700/70 p-3">
+                      <p className="text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-1.5">Antibiótico / Principal tratamento</p>
+                      <p className="text-sm text-slate-200 leading-relaxed">{renderWithDrugLinks(quickAction.firstLine)}</p>
+                    </div>
+                    <div className="rounded-xl bg-slate-900/60 border border-slate-700/70 p-3">
+                      <p className="text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-1.5">Anti-inflamatório / suporte</p>
+                      <p className="text-sm text-slate-200 leading-relaxed">{renderWithDrugLinks(quickAction.supportLine)}</p>
+                    </div>
+                    <div className="rounded-xl bg-slate-900/60 border border-slate-700/70 p-3">
+                      <p className="text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-1.5">Ação clínica resumida</p>
+                      <p className="text-sm text-slate-200 leading-relaxed">{renderWithDrugLinks(quickAction.summary)}</p>
+                    </div>
+                  </div>
+
+                  {referencedDrugs.length > 0 && (
+                    <div className="mt-3 flex flex-wrap gap-2">
+                      {referencedDrugs.map(drug => (
+                        <button
+                          key={drug.id}
+                          type="button"
+                          onClick={() => onOpenDrug?.(drug.id)}
+                          className={`px-2.5 py-1 rounded-full text-[11px] font-bold border ${
+                            onOpenDrug
+                              ? 'bg-teal-500/15 border-teal-500/25 text-teal-300 hover:bg-teal-500/20'
+                              : 'bg-slate-700/60 border-slate-600/60 text-slate-200'
+                          }`}
+                        >
+                          {drug.name}
+                        </button>
+                      ))}
+                    </div>
+                  )}
+
+                  {showProtocol && hasProtocol && (
+                    <div className="mt-3 rounded-xl bg-slate-900/60 border border-slate-700/70 p-3">
+                      <p className="text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-2">Protocolo completo</p>
+                      <div className="space-y-2">
+                        {treatmentLines.map((line, index) => (
+                          <p key={`${line}-${index}`} className="text-sm text-slate-300 leading-relaxed">
+                            <span className="text-slate-500 mr-2">{index + 1}.</span>
+                            {renderWithDrugLinks(line)}
+                          </p>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              )}
+
               <div className="flex gap-1.5 flex-wrap">
                 {sections.map(({ label }) => {
                   const Icon = SECTION_ICONS[label] ?? ChevronRight
