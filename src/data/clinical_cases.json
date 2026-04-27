@@ -17,9 +17,9 @@
         "question": "Cadela inteira, em diestro, com PU/PD, apatia e secrecao vulvar purulenta. Qual e a principal suspeita clinica?",
         "options": [
           "Piometra",
-          "Cistite bacteriana",
-          "Mastite aguda",
-          "Gastroenterite infecciosa"
+          "Endometrite pos-cio",
+          "Cistite bacteriana complicada",
+          "Mucopios em cervix aberta"
         ],
         "correctIndex": 0,
         "explanation": "Cadela inteira no diestro com secrecao purulenta, toxemia e aumento uterino sugere fortemente piometra."
@@ -31,9 +31,9 @@
         "question": "Qual achado reforca mais o diagnostico e ajuda na definicao inicial do caso?",
         "options": [
           "Ultrassonografia com cornos uterinos distendidos",
-          "Radiografia abdominal com alcas distendidas",
-          "Coproparasitologico com protozoarios intestinais",
-          "Citologia vaginal com flora mista"
+          "Hemograma com neutrofilia e desvio",
+          "Radiografia abdominal com massa tubular",
+          "Citologia vaginal compativel com diestro"
         ],
         "correctIndex": 0,
         "explanation": "A ultrassonografia mostrando utero distendido com conteudo e um achado classico e muito util para confirmar a suspeita."
@@ -45,9 +45,9 @@
         "question": "Qual conduta deve ser priorizada nas primeiras horas desse atendimento?",
         "options": [
           "Fluidoterapia, antibiotico e preparo cirurgico",
-          "Alta com anti-inflamatorio e retorno breve",
-          "Observacao clinica e reavaliacao em 24 h",
-          "Inducao hormonal e drenagem uterina"
+          "Antibiotico, monitorizacao e reavaliacao em horas",
+          "Terapia hormonal e suporte intensivo",
+          "Analgesia, exames e observacao hospitalar"
         ],
         "correctIndex": 0,
         "explanation": "Piometra e um quadro potencialmente toxemico. A prioridade e estabilizar e encaminhar para tratamento definitivo, em geral cirurgico."
@@ -59,9 +59,9 @@
         "question": "Qual seria um erro grave nesse caso?",
         "options": [
           "Adiar estabilizacao e cirurgia definitiva",
-          "Monitorar perfusao e hidratacao",
-          "Iniciar antibiotico de amplo espectro",
-          "Explicar o risco clinico ao tutor"
+          "Tentar manejo clinico sem estabilizacao previa",
+          "Iniciar antibiotico sem definir plano definitivo",
+          "Postergar cirurgia apos melhora parcial"
         ],
         "correctIndex": 0,
         "explanation": "Atrasar a estabilizacao e o tratamento definitivo aumenta o risco de sepse, choque e ruptura uterina."
@@ -109,9 +109,9 @@
         "question": "Filhote nao imunizado com vomito, diarreia hemorragica e apatia intensa. Qual e a principal suspeita?",
         "options": [
           "Parvovirose canina",
-          "Leptospirose",
-          "Piometra",
-          "Erliquiose cronica"
+          "Coronavirus enterico canino",
+          "Gastroenterite hemorragica aguda",
+          "Giardiase grave"
         ],
         "correctIndex": 0,
         "explanation": "Enterite hemorragica aguda em filhote com vacinacao incompleta e altamente sugestiva de parvovirose."
@@ -123,9 +123,9 @@
         "question": "Qual achado sustenta melhor o diagnostico inicial desse caso?",
         "options": [
           "Teste fecal positivo com leucopenia importante",
-          "Ultrassom abdominal com liquido uterino",
-          "Sorologia reagente para leptospira",
-          "Esfregaco com hemoparasitas eritrocitarios"
+          "Teste fecal positivo com linfopenia marcada",
+          "Leucopenia com hipoglicemia em filhote",
+          "Espessamento intestinal com enterite difusa"
         ],
         "correctIndex": 0,
         "explanation": "A combinacao de teste fecal positivo e leucopenia marcante e muito compativel com parvovirose."
@@ -137,9 +137,9 @@
         "question": "Qual deve ser a prioridade terapeutica nas primeiras horas?",
         "options": [
           "Fluidoterapia, antiemetico e suporte intensivo",
-          "Antiparasitario oral e dieta leve",
-          "Observacao domiciliar e retorno breve",
-          "Corticoide inicial como medida principal"
+          "Fluidoterapia, analgesia e jejum monitorado",
+          "Antibiotico oral e alta com retorno curto",
+          "Internacao breve e dieta enteral precoce"
         ],
         "correctIndex": 0,
         "explanation": "O maior risco imediato e choque hipovolemico com sepse secundaria, entao suporte intensivo precoce e essencial."
@@ -151,9 +151,9 @@
         "question": "Qual erro piora mais o prognostico desse paciente?",
         "options": [
           "Retardar internacao e reposicao volêmica",
-          "Controlar vomito e desconforto",
-          "Instituir isolamento enterico precoce",
-          "Monitorar glicemia e perfusao"
+          "Manter via oral apesar dos vomitos",
+          "Adiar cobertura para translocacao bacteriana",
+          "Subestimar a necessidade de isolamento"
         ],
         "correctIndex": 0,
         "explanation": "Atrasar reposicao volêmica e suporte intensivo em parvovirose aumenta muito o risco de choque e complicacoes."
@@ -203,7 +203,7 @@
           "Erliquiose",
           "Leptospirose",
           "Hepatite infecciosa canina",
-          "Babesiose"
+          "Colangio-hepatite bacteriana"
         ],
         "correctIndex": 1,
         "explanation": "Febre, ictericia, lesao renal e exposicao a agua contaminada formam um quadro altamente sugestivo de leptospirose."
@@ -216,8 +216,8 @@
         "options": [
           "Hemograma com perfil renal completo",
           "Teste MAT",
-          "Radiografia toracica simples",
-          "Citologia urinaria seriada"
+          "PCR para leptospira na urina",
+          "Urinalise com sedimento completo"
         ],
         "correctIndex": 1,
         "explanation": "O MAT e o exame confirmatorio classico para leptospirose. Hemograma e bioquimica ajudam no suporte, mas nao confirmam o agente."
@@ -229,9 +229,9 @@
         "question": "Qual conduta deve ser priorizada nas primeiras horas?",
         "options": [
           "Isolamento, suporte e antibiotico empirico",
-          "Alta com antibiotico oral",
-          "Aguardar sorologia antes do tratamento",
-          "Antiemetico isolado e observacao"
+          "Fluidoterapia, coleta e aguardar confirmacao",
+          "Internacao com suporte sem isolamento",
+          "Antibiotico oral e monitorizacao ambulatorial"
         ],
         "correctIndex": 0,
         "explanation": "A prioridade e proteger a equipe, estabilizar o paciente e iniciar tratamento empirico sem esperar a confirmacao sorologica."
@@ -243,9 +243,9 @@
         "question": "O que seria um erro grave nesse caso?",
         "options": [
           "Manipular urina sem protecao",
-          "Iniciar fluidoterapia monitorada",
-          "Informar o risco zoonotico",
-          "Tratar antes do MAT"
+          "Atrasar isolamento ate a confirmacao",
+          "Descartar biosseguranca na coleta de sangue",
+          "Liberar o paciente sem orientar o tutor"
         ],
         "correctIndex": 0,
         "explanation": "A urina pode eliminar leptospiras, entao manipular sem protecao expoe a equipe a risco zoonotico importante."
@@ -294,9 +294,9 @@
         "question": "Vaca em lactacao com queda brusca de producao, quarto quente e leite com grumos. Qual e a principal suspeita?",
         "options": [
           "Mastite clinica bovina",
-          "Babesiose bovina",
-          "Metrite puerperal",
-          "Hipocalcemia"
+          "Congestao mamaria puerperal",
+          "Edema mamario pos-parto",
+          "Trauma de teto com infeccao secundaria"
         ],
         "correctIndex": 0,
         "explanation": "Alteracao do leite associada a inflamacao do quarto mamario caracteriza mastite clinica."
@@ -308,9 +308,9 @@
         "question": "Qual achado apoia melhor a suspeita e ajuda na abordagem inicial?",
         "options": [
           "CMT forte com caneca de fundo alterada",
-          "MAT reagente para leptospira",
-          "Esfregaco com hemoparasitas visiveis",
-          "Citologia vaginal com neutrofilos"
+          "Cultura do leite com agente contagioso",
+          "Contagem celular somatica elevada",
+          "Exame do leite com grumos e pus"
         ],
         "correctIndex": 0,
         "explanation": "CMT alterado e leite com grumos sao achados classicos que reforcam o diagnostico de mastite."
@@ -322,9 +322,9 @@
         "question": "Qual conduta deve ser priorizada no inicio do manejo?",
         "options": [
           "Esvaziar o quarto, tratar e monitorar",
-          "Suspender ordenha e observar evolução",
-          "Aguardar resposta sem medicacao inicial",
-          "Aplicar vermifugo e reavaliar depois"
+          "Ordenha frequente, anti-inflamatorio e suporte",
+          "Tratamento intramamario e repouso do quarto",
+          "Suporte sistemico e cultura antes do ajuste"
         ],
         "correctIndex": 0,
         "explanation": "A drenagem do leite alterado, o tratamento precoce e o suporte reduzem dano mamario e perdas produtivas."
@@ -336,9 +336,9 @@
         "question": "Qual fator mais melhora o prognostico funcional desse quarto mamario?",
         "options": [
           "Intervencao precoce antes de maior dano",
-          "Esperar dias para reavaliar espontaneamente",
-          "Ignorar cultura nos casos persistentes",
-          "Liberar leite sem respeitar carencia"
+          "Ajuste rapido conforme resposta inicial",
+          "Identificacao do agente e sensibilidade",
+          "Manejo correto da ordenha e higiene"
         ],
         "correctIndex": 0,
         "explanation": "Quanto mais cedo o caso e reconhecido e tratado, menor a chance de dano permanente e descarte do quarto."
@@ -386,9 +386,9 @@
         "question": "Bovino com febre alta, anemia, ictericia e urina escura em area com carrapatos. Qual e a principal suspeita?",
         "options": [
           "Babesiose bovina",
-          "Mastite clinica",
-          "Parvovirose",
-          "Reticuloperitonite traumatica"
+          "Anaplasmose bovina",
+          "Tristeza parasitaria mista",
+          "Hemoglobinuria bacilar"
         ],
         "correctIndex": 0,
         "explanation": "Hemoglobinuria, anemia hemolitica e infestacao por carrapatos tornam babesiose uma suspeita muito forte."
@@ -400,9 +400,9 @@
         "question": "Qual achado laboratorial confirma melhor essa suspeita no contexto inicial?",
         "options": [
           "Esfregaco com hemoparasitas intraeritrocitarios",
-          "CMT forte no leite do tanque",
-          "Teste fecal antigenico positivo",
-          "Ultrassom uterino com conteudo"
+          "Hematocrito baixo com bilirrubina alta",
+          "Sorologia positiva para hemoparasitas",
+          "PCR sanguineo para babesia"
         ],
         "correctIndex": 0,
         "explanation": "A visualizacao de hemoparasitas no esfregaco acelera a confirmacao e orienta a decisao terapeutica."
@@ -414,9 +414,9 @@
         "question": "Qual conduta deve ser priorizada nas primeiras horas?",
         "options": [
           "Babesicida especifico e suporte intensivo",
-          "Aguardar novo esfregaco antes de tratar",
-          "Anti-inflamatorio isolado como conduta",
-          "Liberacao sem monitoramento clinico"
+          "Babesicida, fluidoterapia e monitorizacao",
+          "Suporte intensivo e repetir exame depois",
+          "Antimicrobiano de amplo espectro e observacao"
         ],
         "correctIndex": 0,
         "explanation": "Babesiose pode evoluir rapido. O tratamento especifico precoce com suporte melhora muito o prognostico."
@@ -428,9 +428,9 @@
         "question": "Qual erro traz maior risco nesse caso?",
         "options": [
           "Atrasar tratamento na anemia progressiva",
-          "Monitorar hematocrito e perfusao",
-          "Controlar estresse e hidratacao",
-          "Orientar controle de carrapatos"
+          "Tratar sem avaliar gravidade da anemia",
+          "Adiar suporte ate confirmar no laboratorio",
+          "Negligenciar controle de carrapatos no lote"
         ],
         "correctIndex": 0,
         "explanation": "A demora no tratamento favorece agravamento da hemolise, hipoxia tecidual e piora rapida do quadro."
