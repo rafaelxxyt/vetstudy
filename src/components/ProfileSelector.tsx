@@ -38,6 +38,10 @@ export default function ProfileSelector({ onSelect }: ProfileSelectorProps) {
           </div>
         </div>
 
+        <p className="text-xs text-slate-400 leading-relaxed">
+          Seus estudos são salvos por perfil. Escolha ou crie um para continuar.
+        </p>
+
         <div className="space-y-2">
           {profiles.map(profile => {
             const hasSession = hasProfileData(profile.id, PROFILE_DATA_KEYS.quizSession)

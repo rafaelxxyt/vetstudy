@@ -1,4 +1,4 @@
-﻿import { useState } from 'react'
+import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Wrench, Calculator, Droplets, FlaskConical, AlertCircle, Search } from 'lucide-react'
 import db from '../data/central_db.json'
@@ -13,7 +13,7 @@ type LabTab = 'hematology' | 'biochemistry'
 const TOOLS = [
   { id: 'dose'   as Tool, label: 'Calculadora de Dose',   icon: Calculator,  color: 'text-teal-400',   activeClass: 'bg-teal-500/10 border-teal-500/25' },
   { id: 'fluido' as Tool, label: 'Fluidoterapia IV',      icon: Droplets,    color: 'text-blue-400',   activeClass: 'bg-blue-500/10 border-blue-500/25' },
-  { id: 'lab'    as Tool, label: 'Valores de ReferÃªncia', icon: FlaskConical,color: 'text-purple-400', activeClass: 'bg-purple-500/10 border-purple-500/25' },
+  { id: 'lab'    as Tool, label: 'Valores de Refer?ncia', icon: FlaskConical,color: 'text-purple-400', activeClass: 'bg-purple-500/10 border-purple-500/25' },
 ]
 
 const EQUINE_LAB = {
@@ -50,8 +50,8 @@ const AvisoLegal = () => (
   <div className="flex items-start gap-2.5 bg-amber-500/10 border border-amber-500/25 rounded-2xl px-4 py-3 backdrop-blur-sm">
     <AlertCircle size={14} className="text-amber-400 flex-shrink-0 mt-0.5" />
     <p className="text-xs text-amber-300/80 leading-relaxed">
-      <span className="font-bold text-amber-400">âš ï¸ Uso orientativo e acadÃªmico.</span>{' '}
-      ImprescindÃ­vel consulta Ã  bula oficial e avaliaÃ§Ã£o clÃ­nica individualizada antes de qualquer prescriÃ§Ã£o.
+      <span className="font-bold text-amber-400">âš ï¸ ?? Uso orientativo e acad?mico.</span>{' '}
+      Imprescind?vel consulta ? bula oficial e avalia??o cl?nica individualizada antes de qualquer prescri??o.
     </p>
   </div>
 )
@@ -164,7 +164,7 @@ function FluidCalc() {
     setResult({ deficit, manut, total: deficit + manut, rate: (deficit + manut) / h })
   }
 
-  const OPTS = [{ id: 'cao', label: 'CÃ£o', emoji: 'ðŸ•' }, { id: 'gato', label: 'Gato', emoji: 'ðŸˆ' }, { id: 'bovino', label: 'Bovino', emoji: 'ðŸ„' }, { id: 'equino', label: 'Equino', emoji: 'ðŸŽ' }] as const
+  const OPTS = [{ id: 'cao', label: 'Cão', emoji: 'ðŸ•' }, { id: 'gato', label: 'Gato', emoji: 'ðŸˆ' }, { id: 'bovino', label: 'Bovino', emoji: 'ðŸ„' }, { id: 'equino', label: 'Equino', emoji: 'ðŸŽ' }] as const
 
   return (
     <div className="max-w-lg mx-auto space-y-4">
@@ -294,7 +294,7 @@ function LabRef() {
       </AnimatePresence>
 
       <p className="text-xs text-slate-600 text-center">
-        Fonte: Jain (2018) Â· Stockham & Scott (2019) Â· Thrall et al. (2022)
+        Fonte: Jain (2018) · Stockham & Scott (2019) · Thrall et al. (2022)
       </p>
     </div>
   )
@@ -314,7 +314,7 @@ export default function FerramentasPage({
       <div className="mb-6">
         <div className="flex items-center gap-2 mb-1">
           <Wrench size={22} className="text-teal-400" />
-          <h1 className="text-2xl font-bold text-white">Consulta RÃ¡pida</h1>
+          <h1 className="text-2xl font-bold text-white">Consulta Rápida</h1>
         </div>
         <p className="text-slate-400 text-sm">Pesquise por doenÃ§a, fÃ¡rmaco, dose, sintoma ou protocolo.</p>
       </div>
@@ -323,7 +323,7 @@ export default function FerramentasPage({
         <div className="mb-8">
           <div className="flex items-center gap-2 mb-3">
             <Search size={14} className="text-teal-400" />
-            <p className="text-xs font-bold text-slate-400 uppercase tracking-wider">Busca ClÃ­nica</p>
+            <p className="text-xs font-bold text-slate-400 uppercase tracking-wider">Busca Clínica</p>
           </div>
           <GlobalClinicalSearch profileId={profileId} onNavigate={onNavigate} />
         </div>

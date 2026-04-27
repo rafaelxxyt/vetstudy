@@ -1,4 +1,4 @@
-﻿import { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Menu } from 'lucide-react'
 import Sidebar, { type Page } from './components/Sidebar'
@@ -13,14 +13,14 @@ import RevisaoPage      from './pages/RevisaoPage'
 import MapasPage        from './pages/MapasPage'
 
 const PAGE_LABELS: Record<Page, string> = {
-  hub:          'InÃ­cio',
+  hub:          'Início',
   revisao:      'Flashcards',
   casos:        'Casos',
   mapas:        'Resumos',
   medicamentos: 'Medicamentos',
-  doencas:      'DoenÃ§as',
-  ferramentas:  'Consulta RÃ¡pida',
-  vetnews:      'VetNews',
+  doencas:      'Doenças',
+  ferramentas:  'Consulta Rápida',
+  vetnews:      'Atualidades',
 }
 
 export default function App() {
@@ -75,6 +75,11 @@ export default function App() {
     setMobileOpen(false)
   }
 
+  const handleOpenCasesList = () => {
+    setActivePage('casos')
+    setMobileOpen(false)
+  }
+
   const handleOpenReview = () => {
     setActivePage('revisao')
     setMobileOpen(false)
@@ -83,7 +88,7 @@ export default function App() {
   const pageNode = activePage === 'hub'
     ? <HubPage onOpenCases={handleOpenCases} onOpenReview={handleOpenReview} />
     : activePage === 'revisao'
-      ? <RevisaoPage onRequestCase={handleOpenCases} />
+      ? <RevisaoPage onRequestCase={handleOpenCasesList} />
     : activePage === 'casos'
       ? <CasosPage
           selectionToken={caseSelectionToken}

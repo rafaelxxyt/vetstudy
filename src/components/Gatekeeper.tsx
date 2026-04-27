@@ -1,4 +1,4 @@
-﻿import { useState } from 'react'
+import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Lock, ShieldAlert, Eye, EyeOff, ShieldCheck } from 'lucide-react'
 
@@ -22,7 +22,7 @@ interface GatekeeperProps {
   pageTitle?: string
 }
 
-export default function Gatekeeper({ children, pageTitle = 'InÃ­cio' }: GatekeeperProps) {
+export default function Gatekeeper({ children, pageTitle = 'Início' }: GatekeeperProps) {
   const [unlocked, setUnlocked] = useState(() => isHubUnlocked())
   const [input,    setInput]    = useState('')
   const [error,    setError]    = useState(false)
@@ -57,7 +57,7 @@ export default function Gatekeeper({ children, pageTitle = 'InÃ­cio' }: Gateke
 
           <h2 className="text-lg font-bold text-white mb-1">{pageTitle}</h2>
           <p className="text-xs text-slate-400 mb-6">
-            Ãrea exclusiva Â· <span className="text-teal-400 font-semibold">RBC Academic</span>
+            Área exclusiva · <span className="text-teal-400 font-semibold">RBC Academic</span>
           </p>
 
           <div className="relative mb-3">

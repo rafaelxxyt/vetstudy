@@ -1,4 +1,4 @@
-﻿import { useState } from 'react'
+import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import {
   FlaskConical, BookOpen, Wrench, Brain,
@@ -26,10 +26,13 @@ const ESTUDO: NavItem[] = [
 ]
 
 const CLINICA: NavItem[] = [
-  { id: 'doencas',      label: 'DoenÃ§as e Patologias', icon: BookOpen     },
-  { id: 'ferramentas',  label: 'Consulta RÃ¡pida',      icon: Wrench       },
+  { id: 'doencas',      label: 'Doenças e Patologias', icon: BookOpen     },
+  { id: 'ferramentas',  label: 'Consulta Rápida',      icon: Wrench       },
   { id: 'medicamentos', label: 'Medicamentos',         icon: FlaskConical },
-  { id: 'vetnews',      label: 'VetNews',              icon: Newspaper    },
+]
+
+const GERAL: NavItem[] = [
+  { id: 'vetnews',      label: 'Atualidades',          icon: Newspaper    },
 ]
 
 interface SidebarProps {
@@ -149,7 +152,7 @@ function HubBtn({
   return (
     <button
       onClick={onClick}
-      title={!drawerMode && collapsed ? 'InÃ­cio' : undefined}
+      title={!drawerMode && collapsed ? 'Início' : undefined}
       className={`w-full flex items-center gap-3 rounded-xl transition-all duration-150 ${
         !drawerMode && collapsed ? 'justify-center p-2.5' : `px-3 ${vertPad}`
       } ${
@@ -162,11 +165,11 @@ function HubBtn({
 
       {showLabel && (
         <div className="flex-1 text-left min-w-0">
-          <p className="text-sm font-semibold leading-tight">InÃ­cio</p>
+          <p className="text-sm font-semibold leading-tight">Início</p>
           <p className="text-[10px] font-medium mt-0.5 leading-none">
             {hubUnlocked
-              ? <span className="text-teal-500">InÃ­cio Â· Flashcards Â· Simulador Â· Resumos</span>
-              : <span className="text-slate-600">InÃ­cio Â· Flashcards Â· Simulador</span>
+              ? <span className="text-teal-500">Início · Flashcards · Simulador · Resumos</span>
+              : <span className="text-slate-600">Início · Flashcards · Simulador</span>
             }
           </p>
         </div>
@@ -174,8 +177,8 @@ function HubBtn({
 
       {showLabel && (
         hubUnlocked
-          ? <span className="text-teal-500 text-xs flex-shrink-0">âœ“</span>
-          : <span className="text-[11px] bg-slate-800/80 text-slate-500 px-1.5 py-0.5 rounded-md border border-slate-700 flex-shrink-0">ðŸ”’</span>
+          ? <span className="text-teal-500 text-xs flex-shrink-0">✓</span>
+          : <span className="text-[11px] bg-slate-800/80 text-slate-500 px-1.5 py-0.5 rounded-md border border-slate-700 flex-shrink-0">🔒</span>
       )}
     </button>
   )
@@ -250,7 +253,7 @@ function renderNav({
 
         {/* Hub AcadÃªmico */}
         <section>
-          {showLabels && <SectionLabel label="InÃ­cio" icon={Shield} />}
+          {showLabels && <SectionLabel label="Início" icon={Shield} />}
           <HubBtn
             active={activePage === 'hub'}
             collapsed={!isDrawer && collapsed}
@@ -274,11 +277,27 @@ function renderNav({
 
         <div className={`border-t border-slate-800 ${!isDrawer && collapsed ? 'mx-2' : 'mx-1'}`} />
 
-        {/* Central ClÃ­nica */}
+        {/* Central Clínica */}
         <section>
-          {showLabels && <SectionLabel label="Consulta RÃ¡pida" />}
+          {showLabels && <SectionLabel label="Clínica" />}
           <div className="space-y-0.5">
             {CLINICA.map(item => (
+              <NavBtn
+                key={item.id}
+                item={item}
+                active={activePage === item.id}
+                collapsed={!isDrawer && collapsed}
+                drawerMode={isDrawer}
+                onClick={() => onNavigate(item.id)}
+              />
+            ))}
+          </div>
+        </section>
+
+        <section>
+          {showLabels && <SectionLabel label="Geral" />}
+          <div className="space-y-0.5">
+            {GERAL.map(item => (
               <NavBtn
                 key={item.id}
                 item={item}
@@ -299,7 +318,7 @@ function renderNav({
           : (
             <p className="text-[10px] text-slate-600 text-center">
               Criado por <span className="font-bold text-teal-400">RBC</span>
-              <span className="mx-1.5">Â·</span>
+              <span className="mx-1.5">·</span>
               <span className="text-slate-700">v5.2</span>
             </p>
           )
