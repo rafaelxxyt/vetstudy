@@ -1,12 +1,18 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import {
-  FlaskConical, BookOpen, Wrench, Brain,
-  Newspaper, GraduationCap, Menu, X, Shield,
+  FlaskConical,
+  BookOpen,
+  Wrench,
+  Brain,
+  Newspaper,
+  GraduationCap,
+  Menu,
+  X,
+  Shield,
 } from 'lucide-react'
 import { isHubUnlocked } from './Gatekeeper'
 
-/* â”€â”€â”€ Types â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 export type Page =
   | 'hub'
   | 'revisao'
@@ -17,178 +23,182 @@ export type Page =
   | 'ferramentas'
   | 'vetnews'
 
-interface NavItem { id: Page; label: string; icon: React.ElementType }
+interface NavItem {
+  id: Page
+  label: string
+  icon: React.ElementType
+}
 
 const ESTUDO: NavItem[] = [
-  { id: 'revisao',      label: 'Flashcards',           icon: GraduationCap },
-  { id: 'casos',        label: 'Casos',                icon: Brain         },
-  { id: 'mapas',        label: 'Resumos',              icon: BookOpen      },
+  { id: 'revisao', label: 'Flashcards', icon: GraduationCap },
+  { id: 'casos', label: 'Casos', icon: Brain },
+  { id: 'mapas', label: 'Resumos', icon: BookOpen },
 ]
 
 const CLINICA: NavItem[] = [
-  { id: 'doencas',      label: 'Doenças e Patologias', icon: BookOpen     },
-  { id: 'ferramentas',  label: 'Consulta Rápida',      icon: Wrench       },
-  { id: 'medicamentos', label: 'Medicamentos',         icon: FlaskConical },
+  { id: 'doencas', label: 'Doenças e Patologias', icon: BookOpen },
+  { id: 'ferramentas', label: 'Consulta Rápida', icon: Wrench },
+  { id: 'medicamentos', label: 'Medicamentos', icon: FlaskConical },
 ]
 
 const GERAL: NavItem[] = [
-  { id: 'vetnews',      label: 'Atualidades',          icon: Newspaper    },
+  { id: 'vetnews', label: 'Atualidades', icon: Newspaper },
 ]
 
 interface SidebarProps {
-  activePage:    Page
-  onNavigate:    (p: Page) => void
-  mobileOpen:    boolean
+  activePage: Page
+  onNavigate: (page: Page) => void
+  mobileOpen: boolean
   onMobileClose: () => void
 }
 
-/* â”€â”€â”€ Desktop collapse/expand button â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 function CollapseBtn({
-  collapsed, onToggle,
-}: { collapsed: boolean; onToggle: () => void }) {
+  collapsed,
+  onToggle,
+}: {
+  collapsed: boolean
+  onToggle: () => void
+}) {
   return (
     <button
       onClick={onToggle}
       title={collapsed ? 'Abrir menu' : 'Fechar menu'}
       className={`flex-shrink-0 rounded-xl transition-all ${
         collapsed
-          ? 'w-10 h-10 flex items-center justify-center bg-slate-800 hover:bg-teal-500/20 text-slate-400 hover:text-teal-400'
-          : 'ml-auto p-2 text-slate-500 hover:text-teal-400 hover:bg-slate-800'
+          ? 'flex h-10 w-10 items-center justify-center bg-slate-800 text-slate-400 hover:bg-teal-500/20 hover:text-teal-400'
+          : 'ml-auto p-2 text-slate-500 hover:bg-slate-800 hover:text-teal-400'
       }`}
     >
       <AnimatePresence mode="wait" initial={false}>
-        {collapsed
-          ? (
-            <motion.div
-              key="open-icon"
-              initial={{ rotate: -90, opacity: 0 }}
-              animate={{ rotate: 0, opacity: 1 }}
-              exit={{ rotate: 90, opacity: 0 }}
-              transition={{ duration: 0.16 }}
-            >
-              <Menu size={17} />
-            </motion.div>
-          ) : (
-            <motion.div
-              key="close-icon"
-              initial={{ rotate: 90, opacity: 0 }}
-              animate={{ rotate: 0, opacity: 1 }}
-              exit={{ rotate: -90, opacity: 0 }}
-              transition={{ duration: 0.16 }}
-            >
-              <X size={15} />
-            </motion.div>
-          )
-        }
+        {collapsed ? (
+          <motion.div
+            key="open-icon"
+            initial={{ rotate: -90, opacity: 0 }}
+            animate={{ rotate: 0, opacity: 1 }}
+            exit={{ rotate: 90, opacity: 0 }}
+            transition={{ duration: 0.16 }}
+          >
+            <Menu size={17} />
+          </motion.div>
+        ) : (
+          <motion.div
+            key="close-icon"
+            initial={{ rotate: 90, opacity: 0 }}
+            animate={{ rotate: 0, opacity: 1 }}
+            exit={{ rotate: -90, opacity: 0 }}
+            transition={{ duration: 0.16 }}
+          >
+            <X size={15} />
+          </motion.div>
+        )}
       </AnimatePresence>
     </button>
   )
 }
 
-/* â”€â”€â”€ Shared section header â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
-function SectionLabel({ label, icon: Icon }: { label: string; icon?: React.ElementType }) {
+function SectionLabel({
+  label,
+  icon: Icon,
+}: {
+  label: string
+  icon?: React.ElementType
+}) {
   return (
-    <div className="flex items-center gap-1.5 px-3 mb-1.5">
-      {Icon && <Icon size={9} className="text-teal-500 flex-shrink-0" />}
-      <p className="text-[9px] font-black text-slate-600 uppercase tracking-widest select-none">
-        {label}
-      </p>
+    <div className="mb-1.5 flex items-center gap-1.5 px-3">
+      {Icon && <Icon size={9} className="flex-shrink-0 text-teal-500" />}
+      <p className="select-none text-[9px] font-black uppercase tracking-widest text-slate-600">{label}</p>
     </div>
   )
 }
 
-/* â”€â”€â”€ Nav button â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 function NavBtn({
-  item, active, collapsed, drawerMode, onClick,
+  item,
+  active,
+  collapsed,
+  drawerMode,
+  onClick,
 }: {
-  item:       NavItem
-  active:     boolean
-  collapsed:  boolean   // desktop collapsed icon-only mode
-  drawerMode: boolean   // mobile drawer â€” larger touch targets
-  onClick:    () => void
+  item: NavItem
+  active: boolean
+  collapsed: boolean
+  drawerMode: boolean
+  onClick: () => void
 }) {
   const Icon = item.icon
-
-  // Vertical padding:
-  //   drawerMode  â†’ py-3   = 24px padding â†’ ~44-48px total (meets Apple HIG)
-  //   desktop     â†’ py-2.5 = 20px padding â†’ ~40px total (fine on desktop)
   const vertPad = drawerMode ? 'py-3' : 'py-2.5'
 
   return (
     <button
       onClick={onClick}
       title={collapsed ? item.label : undefined}
-      className={`w-full flex items-center gap-3 rounded-xl transition-all duration-150 ${
-        collapsed ? `justify-center p-2.5` : `px-3 ${vertPad}`
+      className={`w-full rounded-xl transition-all duration-150 ${
+        collapsed ? 'flex justify-center p-2.5' : `flex items-center gap-3 px-3 ${vertPad}`
       } ${
         active
-          ? 'bg-teal-500/15 text-teal-300 border border-teal-500/25'
-          : 'text-slate-500 hover:bg-slate-800 hover:text-slate-200 border border-transparent'
+          ? 'border border-teal-500/25 bg-teal-500/15 text-teal-300'
+          : 'border border-transparent text-slate-500 hover:bg-slate-800 hover:text-slate-200'
       }`}
     >
       <Icon size={16} className="flex-shrink-0" />
-      {!collapsed && (
-        <span className="text-sm font-medium whitespace-nowrap flex-1 text-left">
-          {item.label}
-        </span>
-      )}
+      {!collapsed && <span className="flex-1 text-left text-sm font-medium">{item.label}</span>}
     </button>
   )
 }
 
-/* â”€â”€â”€ Hub button (has subtitle line) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 function HubBtn({
-  active, collapsed, drawerMode, hubUnlocked, onClick,
+  active,
+  collapsed,
+  drawerMode,
+  hubUnlocked,
+  onClick,
 }: {
-  active:       boolean
-  collapsed:    boolean
-  drawerMode:   boolean
-  hubUnlocked:  boolean
-  onClick:      () => void
+  active: boolean
+  collapsed: boolean
+  drawerMode: boolean
+  hubUnlocked: boolean
+  onClick: () => void
 }) {
   const showLabel = drawerMode || !collapsed
-  const vertPad   = drawerMode ? 'py-3' : 'py-3'   // always py-3 â€” Hub is the primary CTA
 
   return (
     <button
       onClick={onClick}
       title={!drawerMode && collapsed ? 'Início' : undefined}
-      className={`w-full flex items-center gap-3 rounded-xl transition-all duration-150 ${
-        !drawerMode && collapsed ? 'justify-center p-2.5' : `px-3 ${vertPad}`
+      className={`w-full rounded-xl transition-all duration-150 ${
+        !drawerMode && collapsed ? 'flex justify-center p-2.5' : 'flex items-center gap-3 px-3 py-3'
       } ${
         active
-          ? 'bg-teal-500/15 text-teal-300 border border-teal-500/25 shadow-sm shadow-teal-950'
-          : 'text-slate-500 hover:bg-slate-800 hover:text-slate-200 border border-transparent'
+          ? 'border border-teal-500/25 bg-teal-500/15 text-teal-300 shadow-sm shadow-teal-950'
+          : 'border border-transparent text-slate-500 hover:bg-slate-800 hover:text-slate-200'
       }`}
     >
       <GraduationCap size={16} className="flex-shrink-0" />
 
       {showLabel && (
-        <div className="flex-1 text-left min-w-0">
+        <div className="min-w-0 flex-1 text-left">
           <p className="text-sm font-semibold leading-tight">Início</p>
-          <p className="text-[10px] font-medium mt-0.5 leading-none">
-            {hubUnlocked
-              ? <span className="text-teal-500">Início · Flashcards · Simulador · Resumos</span>
-              : <span className="text-slate-600">Início · Flashcards · Simulador</span>
-            }
+          <p className="mt-0.5 text-[10px] font-medium leading-none">
+            {hubUnlocked ? (
+              <span className="text-teal-500">Início · Flashcards · Simulador · Resumos</span>
+            ) : (
+              <span className="text-slate-600">Início · Flashcards · Simulador</span>
+            )}
           </p>
         </div>
       )}
 
-      {showLabel && (
-        hubUnlocked
-          ? <span className="text-teal-500 text-xs flex-shrink-0">✓</span>
-          : <span className="text-[11px] bg-slate-800/80 text-slate-500 px-1.5 py-0.5 rounded-md border border-slate-700 flex-shrink-0">🔒</span>
-      )}
+      {showLabel &&
+        (hubUnlocked ? (
+          <span className="flex-shrink-0 text-xs text-teal-500">✓</span>
+        ) : (
+          <span className="flex-shrink-0 rounded-md border border-slate-700 bg-slate-800/80 px-1.5 py-0.5 text-[11px] text-slate-500">
+            🔒
+          </span>
+        ))}
     </button>
   )
 }
 
-/* â”€â”€â”€ Shared nav structure â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
-   Called as a plain function (not rendered as <NavContent />)
-   to avoid React treating it as a new component type on each
-   render of Sidebar, which would cause unnecessary remounts.
-â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 function renderNav({
   isDrawer,
   collapsed,
@@ -198,60 +208,49 @@ function renderNav({
   onMobileClose,
   onToggleCollapse,
 }: {
-  isDrawer:         boolean
-  collapsed:        boolean
-  activePage:       Page
-  hubUnlocked:      boolean
-  onNavigate:       (p: Page) => void
-  onMobileClose:    () => void
+  isDrawer: boolean
+  collapsed: boolean
+  activePage: Page
+  hubUnlocked: boolean
+  onNavigate: (page: Page) => void
+  onMobileClose: () => void
   onToggleCollapse: () => void
 }) {
   const showLabels = isDrawer || !collapsed
+  const navigate = (page: Page) => {
+    onNavigate(page)
+    if (isDrawer) onMobileClose()
+  }
 
   return (
     <>
-      {/* â”€â”€ Drawer / sidebar header â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
-      <div className={`flex items-center border-b border-slate-800 h-16 flex-shrink-0 ${
-        !isDrawer && collapsed ? 'justify-center px-2' : 'px-3 gap-3'
-      }`}>
-
+      <div className={`flex h-16 flex-shrink-0 items-center border-b border-slate-800 ${!isDrawer && collapsed ? 'justify-center px-2' : 'gap-3 px-3'}`}>
         {showLabels && (
-          <div className="flex items-center gap-3 flex-1 min-w-0">
-            <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-teal-400 to-teal-600
-                            flex items-center justify-center flex-shrink-0
-                            shadow-lg shadow-teal-900/50">
-              <span className="text-white font-black text-xs tracking-tight">V5</span>
+          <div className="flex min-w-0 flex-1 items-center gap-3">
+            <div className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-teal-400 to-teal-600 shadow-lg shadow-teal-900/50">
+              <span className="text-xs font-black tracking-tight text-white">V5</span>
             </div>
-            <div className="leading-tight min-w-0">
-              <p className="font-bold text-white text-sm">VetStudy 5.0</p>
-              <p className="text-[10px] text-teal-400 font-semibold">RBC Edition</p>
+            <div className="min-w-0 leading-tight">
+              <p className="text-sm font-bold text-white">VetStudy 5.0</p>
+              <p className="text-[10px] font-semibold text-teal-400">RBC Edition</p>
             </div>
           </div>
         )}
 
-        {/* Desktop: collapse/expand toggle */}
-        {!isDrawer && (
-          <CollapseBtn collapsed={collapsed} onToggle={onToggleCollapse} />
-        )}
+        {!isDrawer && <CollapseBtn collapsed={collapsed} onToggle={onToggleCollapse} />}
 
-        {/* Mobile drawer: close button â€” 44Ã—44 tap target */}
         {isDrawer && (
           <button
             onClick={onMobileClose}
             aria-label="Fechar menu"
-            className="ml-auto w-11 h-11 flex items-center justify-center
-                       text-slate-500 hover:text-teal-400
-                       hover:bg-slate-800 rounded-xl transition-colors"
+            className="ml-auto flex h-11 w-11 items-center justify-center rounded-xl text-slate-500 transition-colors hover:bg-slate-800 hover:text-teal-400"
           >
             <X size={18} />
           </button>
         )}
       </div>
 
-      {/* â”€â”€ Nav links â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
-      <nav className="flex-1 px-2 py-3 space-y-4 overflow-y-auto">
-
-        {/* Hub AcadÃªmico */}
+      <nav className="flex-1 space-y-4 overflow-y-auto px-2 py-3">
         <section>
           {showLabels && <SectionLabel label="Início" icon={Shield} />}
           <HubBtn
@@ -259,9 +258,13 @@ function renderNav({
             collapsed={!isDrawer && collapsed}
             drawerMode={isDrawer}
             hubUnlocked={hubUnlocked}
-            onClick={() => onNavigate('hub')}
+            onClick={() => navigate('hub')}
           />
-          <div className="mt-1.5 space-y-0.5">
+        </section>
+
+        <section>
+          {showLabels && <SectionLabel label="Estudo" />}
+          <div className="space-y-1.5">
             {ESTUDO.map(item => (
               <NavBtn
                 key={item.id}
@@ -269,18 +272,15 @@ function renderNav({
                 active={activePage === item.id}
                 collapsed={!isDrawer && collapsed}
                 drawerMode={isDrawer}
-                onClick={() => onNavigate(item.id)}
+                onClick={() => navigate(item.id)}
               />
             ))}
           </div>
         </section>
 
-        <div className={`border-t border-slate-800 ${!isDrawer && collapsed ? 'mx-2' : 'mx-1'}`} />
-
-        {/* Central Clínica */}
         <section>
           {showLabels && <SectionLabel label="Clínica" />}
-          <div className="space-y-0.5">
+          <div className="space-y-1.5">
             {CLINICA.map(item => (
               <NavBtn
                 key={item.id}
@@ -288,7 +288,7 @@ function renderNav({
                 active={activePage === item.id}
                 collapsed={!isDrawer && collapsed}
                 drawerMode={isDrawer}
-                onClick={() => onNavigate(item.id)}
+                onClick={() => navigate(item.id)}
               />
             ))}
           </div>
@@ -296,7 +296,7 @@ function renderNav({
 
         <section>
           {showLabels && <SectionLabel label="Geral" />}
-          <div className="space-y-0.5">
+          <div className="space-y-1.5">
             {GERAL.map(item => (
               <NavBtn
                 key={item.id}
@@ -304,107 +304,71 @@ function renderNav({
                 active={activePage === item.id}
                 collapsed={!isDrawer && collapsed}
                 drawerMode={isDrawer}
-                onClick={() => onNavigate(item.id)}
+                onClick={() => navigate(item.id)}
               />
             ))}
           </div>
         </section>
       </nav>
-
-      {/* â”€â”€ Footer â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
-      <div className="px-3 py-3 border-t border-slate-800 flex-shrink-0">
-        {!isDrawer && collapsed
-          ? <p className="text-[11px] font-black text-teal-400 text-center">R</p>
-          : (
-            <p className="text-[10px] text-slate-600 text-center">
-              Criado por <span className="font-bold text-teal-400">RBC</span>
-              <span className="mx-1.5">·</span>
-              <span className="text-slate-700">v5.2</span>
-            </p>
-          )
-        }
-      </div>
     </>
   )
 }
 
-/* â”€â”€â”€ Sidebar root â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 export default function Sidebar({
-  activePage, onNavigate, mobileOpen, onMobileClose,
+  activePage,
+  onNavigate,
+  mobileOpen,
+  onMobileClose,
 }: SidebarProps) {
   const [collapsed, setCollapsed] = useState(false)
   const hubUnlocked = isHubUnlocked()
 
-  const sharedProps = {
-    activePage,
-    hubUnlocked,
-    onNavigate,
-    onMobileClose,
-    onToggleCollapse: () => setCollapsed(c => !c),
-  }
-
   return (
     <>
-      {/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-          DESKTOP SIDEBAR  (md+)
-          Static flex column, animated width on collapse.
-          Completely unchanged from original behavior.
-      â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */}
-      <motion.aside
-        animate={{ width: collapsed ? 64 : 256 }}
-        transition={{ duration: 0.28, ease: [0.4, 0, 0.2, 1] }}
-        className="hidden md:flex md:flex-col
-                   bg-slate-900 border-r border-slate-800
-                   overflow-hidden flex-shrink-0
-                   z-20 relative"
-      >
-        {renderNav({ ...sharedProps, isDrawer: false, collapsed })}
-      </motion.aside>
-
-      {/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-          MOBILE DRAWER  (< md only)
-
-          â”Œâ”€ Positioning â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
-          â”‚  fixed inset-y-0 left-0  full-height, left â”‚
-          â”‚  z-50  above backdrop (z-40) & topbar (z-30)â”‚
-          â”‚  w-72  288 px â€” leaves ~30% visible on 375pxâ”‚
-          â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
-
-          â”Œâ”€ Animation â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
-          â”‚  transition-transform duration-300          â”‚
-          â”‚  ease-in-out                                â”‚
-          â”‚  translate-x-0      â†’ visible (open)        â”‚
-          â”‚  -translate-x-full  â†’ off-screen (closed)   â”‚
-          â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
-
-          â”Œâ”€ Why CSS transition, not framer-motion â”€â”€â”€â”€â”
-          â”‚  Framer's layout animations conflict with   â”‚
-          â”‚  the desktop motion.aside width animation   â”‚
-          â”‚  when both are mounted. Pure CSS transition  â”‚
-          â”‚  on the mobile element avoids that conflict. â”‚
-          â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
-      â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */}
-      <aside
-        role="dialog"
-        aria-modal="true"
-        aria-label="Menu de navegaÃ§Ã£o"
-        className={[
-          'md:hidden',
-          'fixed inset-y-0 left-0 z-50',
-          'w-72 flex flex-col',
-          'bg-slate-900 border-r border-slate-800',
-          // Smooth slide â€” 280 ms matches backdrop fade
-          'transition-transform duration-[280ms] ease-in-out',
-          // Will-change hints to GPU for jank-free compositing
-          'will-change-transform',
-          mobileOpen ? 'translate-x-0' : '-translate-x-full',
-          // Deep shadow separates drawer from dimmed content
-          'shadow-[4px_0_32px_0_rgba(0,0,0,0.7)]',
-        ].join(' ')}
-      >
-        {renderNav({ ...sharedProps, isDrawer: true, collapsed: false })}
+      <aside className="hidden h-screen border-r border-slate-800 bg-slate-900 md:flex md:w-72 md:flex-col">
+        {renderNav({
+          isDrawer: false,
+          collapsed,
+          activePage,
+          hubUnlocked,
+          onNavigate,
+          onMobileClose,
+          onToggleCollapse: () => setCollapsed(value => !value),
+        })}
       </aside>
+
+      <AnimatePresence>
+        {mobileOpen && (
+          <>
+            <motion.button
+              type="button"
+              aria-label="Fechar menu"
+              className="fixed inset-0 z-40 bg-slate-950/70 md:hidden"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={onMobileClose}
+            />
+            <motion.aside
+              className="fixed inset-y-0 left-0 z-50 flex w-80 max-w-[88vw] flex-col border-r border-slate-800 bg-slate-900 md:hidden"
+              initial={{ x: -320 }}
+              animate={{ x: 0 }}
+              exit={{ x: -320 }}
+              transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
+            >
+              {renderNav({
+                isDrawer: true,
+                collapsed: false,
+                activePage,
+                hubUnlocked,
+                onNavigate,
+                onMobileClose,
+                onToggleCollapse: () => {},
+              })}
+            </motion.aside>
+          </>
+        )}
+      </AnimatePresence>
     </>
   )
 }
-

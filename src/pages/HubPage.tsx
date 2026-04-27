@@ -83,7 +83,7 @@ interface ClinicalCase {
   relatedDiseaseName: string
 }
 
-const CLINICAL_CASES = clinicalCases as ClinicalCase[]
+const CLINICAL_CASES = clinicalCases as unknown as ClinicalCase[]
 const DISEASE_INDEX = (centralDb as { diseases: { id: string; name: string }[] }).diseases
 
 function savedItemTypeLabel(type: ClinicalSavedItem['type']) {
@@ -248,10 +248,10 @@ function MiniCalendario({ topics, storageKey: _sk }: { topics: Topic[]; storageK
       {selectedDay && (
         <motion.div initial={{ opacity: 0, y: 4 }} animate={{ opacity: 1, y: 0 }} className="mt-3 border-t border-slate-700/50 pt-3">
           <p className="text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-2">
-            {selectedDay === today ? 'ðŸ“… Hoje' : formatDateBR(selectedDay)}
+            {selectedDay === today ? '�x& Hoje' : formatDateBR(selectedDay)}
           </p>
           {selectedItems.length === 0
-            ? <p className="text-xs text-slate-600 italic">Nenhuma revisÃ£o agendada.</p>
+            ? <p className="text-xs text-slate-600 italic">Nenhuma revis�o agendada.</p>
             : selectedItems.map((item, i) => (
                 <div key={i} className="flex items-center gap-2 py-1">
                   <span className={`w-2 h-2 rounded-full flex-shrink-0 ${INT_COLOR[item.interval]}`} />
@@ -459,7 +459,7 @@ function PerformanceCharts({ stats }: { stats: QuizStats }) {
           </div>
         </div>
         <p className={`text-[10px] font-semibold mt-1 ${pct >= 70 ? 'text-green-400' : pct >= 50 ? 'text-amber-400' : 'text-red-400'}`}>
-          {pct >= 70 ? 'Ã“timo!' : pct >= 50 ? 'Regular' : 'Estudar mais'}
+          {pct >= 70 ? '�timo!' : pct >= 50 ? 'Regular' : 'Estudar mais'}
         </p>
       </div>
       <div className="bg-slate-800/60 backdrop-blur-md rounded-2xl border border-slate-700/60 p-4">
@@ -626,7 +626,7 @@ function CalendarioRevisao({ topics, setTopics, storageKey }: {
         {dueToday.length > 0 && (
           <div className="bg-amber-500/10 border border-amber-500/20 rounded-2xl p-3">
             <p className="text-[10px] font-bold text-amber-400 uppercase tracking-wider mb-1.5 flex items-center gap-1">
-              <RotateCcw size={11} /> Revisar hoje â€” {dueToday.length} item{dueToday.length > 1 ? 's' : ''}
+              <RotateCcw size={11} /> Revisar hoje � {dueToday.length} item{dueToday.length > 1 ? 's' : ''}
             </p>
             <div className="space-y-1.5">
               {dueToday.map(s => (
@@ -634,7 +634,7 @@ function CalendarioRevisao({ topics, setTopics, storageKey }: {
                   className="flex items-center justify-between gap-3 bg-slate-800/50 rounded-xl px-3 py-2">
                   <div className="min-w-0">
                     <p className="text-sm font-semibold text-slate-200">{s.topic.name}</p>
-                    <p className="text-xs text-amber-400/70">{INT_LABEL[s.interval]} â€” RevisÃ£o de {s.interval} dia{s.interval > 1 ? 's' : ''}</p>
+                    <p className="text-xs text-amber-400/70">{INT_LABEL[s.interval]} � Revis�o de {s.interval} dia{s.interval > 1 ? 's' : ''}</p>
                   </div>
                   <button onClick={() => markDone(s.topic.id, s.interval)}
                     className="flex items-center gap-1 text-xs bg-teal-600/20 border border-teal-500/30 text-teal-400 px-2.5 py-1 rounded-xl hover:bg-teal-600/40 transition active:scale-95">
@@ -826,7 +826,7 @@ function EstudoHojeCard({ profile, onOpenSimulator, onOpenDailyStudy }: {
         ) : (
           <button onClick={onOpenDailyStudy}
             className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-amber-500 text-white text-sm font-bold hover:bg-amber-600 transition-all active:scale-95">
-            {session.answeredCount > 0 ? 'Continuar estudo de hoje' : 'ComeÃ§ar estudo de hoje'} <ChevronRight size={15} />
+            {session.answeredCount > 0 ? 'Continuar estudo de hoje' : 'Come�ar estudo de hoje'} <ChevronRight size={15} />
           </button>
         )}
       </div>
@@ -902,7 +902,7 @@ function DevStudyContentImport({ profile }: { profile: LocalProfile }) {
         <div className="rounded-xl bg-slate-800/70 border border-slate-700/60 px-3 py-2">
           <p className="text-[10px] text-slate-500 font-bold uppercase">Simulador</p>
           <p className={`text-xs font-bold ${status.inMergedBank ? 'text-green-300' : 'text-slate-500'}`}>
-            {status.inMergedBank ? 'Banco combinado OK' : 'Ainda nao importado'}
+            {status.inMergedBank ? 'Banco combinado OK' : 'Ainda n?o importado'}
           </p>
         </div>
         <div className="rounded-xl bg-slate-800/70 border border-slate-700/60 px-3 py-2">
@@ -1024,13 +1024,13 @@ function DailyReviewCard({
           <p className="text-xs font-bold text-amber-300 uppercase tracking-wider">ðŸ“… RevisÃ£o de Hoje</p>
           {allClear ? (
             <>
-              <p className="text-sm text-white font-semibold mt-1">Tudo em dia. Que tal resolver um caso clÃ­nico?</p>
+              <p className="text-sm text-white font-semibold mt-1">Tudo em dia. Que tal resolver um caso cl�nico?</p>
               <p className="text-xs text-slate-400 mt-1">Seus cards estÃ£o organizados por hoje, mas vocÃª ainda pode treinar raciocÃ­nio clÃ­nico.</p>
             </>
           ) : (
             <>
               <p className="text-sm text-white font-semibold mt-1">
-                VocÃª tem {dueToday} {dueToday === 1 ? 'revisÃ£o' : 'revisÃµes'} hoje
+                Voc� tem {dueToday} {dueToday === 1 ? 'revis�o' : 'revis�es'} hoje
               </p>
               <p className="text-xs text-slate-400 mt-1">
                 {pendingCases} {pendingCases === 1 ? 'caso para treinar' : 'casos para treinar'}
@@ -1086,6 +1086,7 @@ function ClinicalCasesSection({
   useEffect(() => {
     if (!focusToken || CLINICAL_CASES.length === 0) return
     const firstCase = CLINICAL_CASES.find(item => !reviewedCases.includes(item.title)) ?? CLINICAL_CASES[0]
+    if (!firstCase) return
     setOpenCaseTitle(firstCase.title)
     const element = document.getElementById('hub-clinical-cases')
     element?.scrollIntoView({ behavior: 'smooth', block: 'start' })
@@ -1230,7 +1231,7 @@ function ClinicalCasesSection({
                       </button>
                       {nextCase ? (
                         <div className="rounded-xl border border-fuchsia-500/20 bg-fuchsia-500/8 p-3">
-                          <p className="text-sm font-bold text-white">Quer tentar o prÃ³ximo caso?</p>
+                          <p className="text-sm font-bold text-white">Quer tentar o pr�ximo caso?</p>
                           <p className="text-xs text-slate-400 mt-1">{nextCase.title}</p>
                           <button
                             type="button"
@@ -1507,14 +1508,14 @@ export default function HubPage({
 
   if (!profile) {
     return (
-      <Gatekeeper pageTitle="InÃ­cio â€” RBC">
+      <Gatekeeper pageTitle="Início — RBC">
         <ProfileSelector onSelect={handleProfileSelected} />
       </Gatekeeper>
     )
   }
 
   return (
-    <Gatekeeper pageTitle="InÃ­cio â€” RBC">
+    <Gatekeeper pageTitle="Início — RBC">
       <div className="flex flex-col h-full">
         <HubContent
           key={profile.id}
@@ -1526,4 +1527,3 @@ export default function HubPage({
     </Gatekeeper>
   )
 }
-

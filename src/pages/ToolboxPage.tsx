@@ -11,56 +11,65 @@ type LabSpecies = 'dog' | 'cat' | 'bovine' | 'equine'
 type LabTab = 'hematology' | 'biochemistry'
 
 const TOOLS = [
-  { id: 'dose'   as Tool, label: 'Calculadora de Dose',   icon: Calculator,  color: 'text-teal-400',   activeClass: 'bg-teal-500/10 border-teal-500/25' },
-  { id: 'fluido' as Tool, label: 'Fluidoterapia IV',      icon: Droplets,    color: 'text-blue-400',   activeClass: 'bg-blue-500/10 border-blue-500/25' },
-  { id: 'lab'    as Tool, label: 'Valores de Refer?ncia', icon: FlaskConical,color: 'text-purple-400', activeClass: 'bg-purple-500/10 border-purple-500/25' },
+  { id: 'dose' as Tool, label: 'Calculadora de Dose', icon: Calculator, color: 'text-teal-400', activeClass: 'bg-teal-500/10 border-teal-500/25' },
+  { id: 'fluido' as Tool, label: 'Fluidoterapia IV', icon: Droplets, color: 'text-blue-400', activeClass: 'bg-blue-500/10 border-blue-500/25' },
+  { id: 'lab' as Tool, label: 'Valores de Referência', icon: FlaskConical, color: 'text-purple-400', activeClass: 'bg-purple-500/10 border-purple-500/25' },
 ]
 
 const EQUINE_LAB = {
-  label: 'Equino', emoji: 'ðŸŽ',
+  label: 'Equino',
+  emoji: '🐎',
   hematology: [
-    { param: 'EritrÃ³citos', unit: 'x10â¶/ÂµL', min: 6.5,  max: 12.5 },
-    { param: 'Hemoglobina', unit: 'g/dL',     min: 11.0, max: 19.0 },
-    { param: 'HematÃ³crito', unit: '%',        min: 32.0, max: 53.0 },
-    { param: 'LeucÃ³citos',  unit: 'x10Â³/ÂµL',  min: 5.4,  max: 14.3 },
-    { param: 'NeutrÃ³filos', unit: '%',        min: 35,   max: 75   },
-    { param: 'Plaquetas',   unit: 'x10Â³/ÂµL',  min: 100,  max: 350  },
+    { param: 'Eritrócitos', unit: 'x10⁶/µL', min: 6.5, max: 12.5 },
+    { param: 'Hemoglobina', unit: 'g/dL', min: 11.0, max: 19.0 },
+    { param: 'Hematócrito', unit: '%', min: 32.0, max: 53.0 },
+    { param: 'Leucócitos', unit: 'x10³/µL', min: 5.4, max: 14.3 },
+    { param: 'Neutrófilos', unit: '%', min: 35, max: 75 },
+    { param: 'Plaquetas', unit: 'x10³/µL', min: 100, max: 350 },
   ],
   biochemistry: [
-    { param: 'ALT (TGP)',     unit: 'U/L',   min: 3,   max: 23  },
-    { param: 'AST (TGO)',     unit: 'U/L',   min: 160, max: 412 },
-    { param: 'GGT',           unit: 'U/L',   min: 4,   max: 44  },
-    { param: 'Creatinina',    unit: 'mg/dL', min: 0.8, max: 2.0 },
-    { param: 'Ureia',         unit: 'mg/dL', min: 10,  max: 24  },
-    { param: 'Glicose',       unit: 'mg/dL', min: 60,  max: 100 },
-    { param: 'ProteÃ­nas Tot.',unit: 'g/dL',  min: 5.2, max: 7.9 },
-    { param: 'FibrinogÃªnio',  unit: 'mg/dL', min: 100, max: 400 },
+    { param: 'ALT (TGP)', unit: 'U/L', min: 3, max: 23 },
+    { param: 'AST (TGO)', unit: 'U/L', min: 160, max: 412 },
+    { param: 'GGT', unit: 'U/L', min: 4, max: 44 },
+    { param: 'Creatinina', unit: 'mg/dL', min: 0.8, max: 2.0 },
+    { param: 'Ureia', unit: 'mg/dL', min: 10, max: 24 },
+    { param: 'Glicose', unit: 'mg/dL', min: 60, max: 100 },
+    { param: 'Proteínas Tot.', unit: 'g/dL', min: 5.2, max: 7.9 },
+    { param: 'Fibrinogênio', unit: 'mg/dL', min: 100, max: 400 },
   ],
 }
 
-const ALL_SPECIES: Record<string, { label: string; emoji: string; hematology: { param: string; unit: string; min: number; max: number }[]; biochemistry: { param: string; unit: string; min: number; max: number }[] }> = {
-  dog:    { ...db.labReferenceValues.dog },
-  cat:    { ...db.labReferenceValues.cat },
+const ALL_SPECIES: Record<
+  string,
+  {
+    label: string
+    emoji: string
+    hematology: { param: string; unit: string; min: number; max: number }[]
+    biochemistry: { param: string; unit: string; min: number; max: number }[]
+  }
+> = {
+  dog: { ...db.labReferenceValues.dog },
+  cat: { ...db.labReferenceValues.cat },
   bovine: { ...db.labReferenceValues.bovine },
   equine: EQUINE_LAB,
 }
 
-/* â”€â”€ Aviso Legal reutilizÃ¡vel â”€â”€ */
-const AvisoLegal = () => (
-  <div className="flex items-start gap-2.5 bg-amber-500/10 border border-amber-500/25 rounded-2xl px-4 py-3 backdrop-blur-sm">
-    <AlertCircle size={14} className="text-amber-400 flex-shrink-0 mt-0.5" />
-    <p className="text-xs text-amber-300/80 leading-relaxed">
-      <span className="font-bold text-amber-400">âš ï¸ ?? Uso orientativo e acad?mico.</span>{' '}
-      Imprescind?vel consulta ? bula oficial e avalia??o cl?nica individualizada antes de qualquer prescri??o.
-    </p>
-  </div>
-)
+function AvisoLegal() {
+  return (
+    <div className="flex items-start gap-2.5 rounded-2xl border border-amber-500/25 bg-amber-500/10 px-4 py-3 backdrop-blur-sm">
+      <AlertCircle size={14} className="mt-0.5 flex-shrink-0 text-amber-400" />
+      <p className="text-xs leading-relaxed text-amber-300/80">
+        <span className="font-bold text-amber-400">⚠️ Uso orientativo e acadêmico.</span>{' '}
+        Imprescindível consulta à bula oficial e avaliação clínica individualizada antes de qualquer prescrição.
+      </p>
+    </div>
+  )
+}
 
-/* â”€â”€ Calculadora de Dose â”€â”€ */
 function DoseCalc() {
   const [weight, setWeight] = useState('')
-  const [dose,   setDose]   = useState('')
-  const [conc,   setConc]   = useState('')
+  const [dose, setDose] = useState('')
+  const [conc, setConc] = useState('')
   const [result, setResult] = useState<{ total: number; vol: number | null } | null>(null)
 
   const calc = () => {
@@ -69,74 +78,97 @@ function DoseCalc() {
     const c = parseFloat(conc.replace(',', '.'))
     if (isNaN(w) || isNaN(d) || w <= 0 || d <= 0) return
     const total = w * d
-    const vol   = !isNaN(c) && c > 0 ? total / c : null
+    const vol = !isNaN(c) && c > 0 ? total / c : null
     setResult({ total, vol })
   }
 
   return (
-    <div className="max-w-lg mx-auto space-y-4">
+    <div className="mx-auto max-w-lg space-y-4">
       <AvisoLegal />
 
-      <div className="bg-slate-800/60 backdrop-blur-md rounded-2xl border border-slate-700/60 p-5 space-y-4">
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div className="space-y-4 rounded-2xl border border-slate-700/60 bg-slate-800/60 p-5 backdrop-blur-md">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           {[
-            { label: 'Peso do Animal', value: weight, set: setWeight, ph: 'ex: 15', unit: 'kg' },
-            { label: 'Dose Prescrita', value: dose,   set: setDose,   ph: 'ex: 25', unit: 'mg/kg' },
-          ].map(f => (
-            <div key={f.label}>
-              <label className="text-xs text-slate-400 font-semibold block mb-1.5">{f.label}</label>
+            { label: 'Peso do animal', value: weight, set: setWeight, ph: 'ex: 15', unit: 'kg' },
+            { label: 'Dose prescrita', value: dose, set: setDose, ph: 'ex: 25', unit: 'mg/kg' },
+          ].map(field => (
+            <div key={field.label}>
+              <label className="mb-1.5 block text-xs font-semibold text-slate-400">{field.label}</label>
               <div className="flex items-center gap-2">
-                <input type="number" min="0" placeholder={f.ph} value={f.value}
-                  onChange={e => { f.set(e.target.value); setResult(null) }}
-                  className="flex-1 px-3 py-2.5 bg-slate-900/60 border border-slate-700 rounded-xl text-sm text-slate-200 placeholder-slate-600 focus:outline-none focus:ring-2 focus:ring-teal-500/40 focus:border-teal-500 transition"
+                <input
+                  type="number"
+                  min="0"
+                  placeholder={field.ph}
+                  value={field.value}
+                  onChange={event => {
+                    field.set(event.target.value)
+                    setResult(null)
+                  }}
+                  className="flex-1 rounded-xl border border-slate-700 bg-slate-900/60 px-3 py-2.5 text-sm text-slate-200 placeholder-slate-600 transition focus:border-teal-500 focus:outline-none focus:ring-2 focus:ring-teal-500/40"
                 />
-                <span className="text-xs text-slate-500 w-12 flex-shrink-0 font-mono">{f.unit}</span>
+                <span className="w-12 flex-shrink-0 font-mono text-xs text-slate-500">{field.unit}</span>
               </div>
             </div>
           ))}
         </div>
 
         <div>
-          <label className="text-xs text-slate-400 font-semibold block mb-1.5">
-            ConcentraÃ§Ã£o do Produto <span className="text-slate-600 font-normal">(opcional)</span>
+          <label className="mb-1.5 block text-xs font-semibold text-slate-400">
+            Concentração do produto <span className="font-normal text-slate-600">(opcional)</span>
           </label>
           <div className="flex items-center gap-2">
-            <input type="number" min="0" placeholder="ex: 500" value={conc}
-              onChange={e => { setConc(e.target.value); setResult(null) }}
-              className="flex-1 px-3 py-2.5 bg-slate-900/60 border border-slate-700 rounded-xl text-sm text-slate-200 placeholder-slate-600 focus:outline-none focus:ring-2 focus:ring-teal-500/40 focus:border-teal-500 transition"
+            <input
+              type="number"
+              min="0"
+              placeholder="ex: 500"
+              value={conc}
+              onChange={event => {
+                setConc(event.target.value)
+                setResult(null)
+              }}
+              className="flex-1 rounded-xl border border-slate-700 bg-slate-900/60 px-3 py-2.5 text-sm text-slate-200 placeholder-slate-600 transition focus:border-teal-500 focus:outline-none focus:ring-2 focus:ring-teal-500/40"
             />
-            <span className="text-xs text-slate-500 w-12 flex-shrink-0 font-mono">mg/mL</span>
+            <span className="w-12 flex-shrink-0 font-mono text-xs text-slate-500">mg/mL</span>
           </div>
         </div>
 
-        <motion.button whileTap={{ scale: 0.97 }} onClick={calc}
-          className="w-full py-3 bg-teal-600 text-white rounded-xl text-sm font-bold hover:bg-teal-700 transition-colors shadow-lg shadow-teal-950/50 flex items-center justify-center gap-2">
+        <motion.button
+          whileTap={{ scale: 0.97 }}
+          onClick={calc}
+          className="flex w-full items-center justify-center gap-2 rounded-xl bg-teal-600 py-3 text-sm font-bold text-white transition-colors hover:bg-teal-700"
+        >
           <Calculator size={15} /> Calcular
         </motion.button>
       </div>
 
       <AnimatePresence>
         {result && (
-          <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}
-            className="bg-teal-500/10 backdrop-blur-md border border-teal-500/25 rounded-2xl p-5">
-            <p className="text-[10px] text-teal-400 font-bold uppercase tracking-widest mb-3">Resultado</p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <motion.div
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0 }}
+            className="rounded-2xl border border-teal-500/25 bg-teal-500/10 p-5 backdrop-blur-md"
+          >
+            <p className="mb-3 text-[10px] font-bold uppercase tracking-widest text-teal-400">Resultado</p>
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
               <div>
-                <p className="text-xs text-slate-500 mb-1">Dose Total</p>
+                <p className="mb-1 text-xs text-slate-500">Dose total</p>
                 <p className="text-3xl font-black text-white">
-                  {result.total.toFixed(1)}<span className="text-sm text-slate-400 ml-1.5">mg</span>
+                  {result.total.toFixed(1)}
+                  <span className="ml-1.5 text-sm text-slate-400">mg</span>
                 </p>
               </div>
               {result.vol !== null ? (
                 <div>
-                  <p className="text-xs text-slate-500 mb-1">Volume Final</p>
+                  <p className="mb-1 text-xs text-slate-500">Volume final</p>
                   <p className="text-3xl font-black text-teal-300">
-                    {result.vol.toFixed(2)}<span className="text-sm text-slate-400 ml-1.5">mL</span>
+                    {result.vol.toFixed(2)}
+                    <span className="ml-1.5 text-sm text-slate-400">mL</span>
                   </p>
                 </div>
               ) : (
                 <div className="flex items-center">
-                  <p className="text-xs text-slate-600">Informe a concentraÃ§Ã£o para calcular o volume</p>
+                  <p className="text-xs text-slate-600">Informe a concentração para calcular o volume.</p>
                 </div>
               )}
             </div>
@@ -147,89 +179,122 @@ function DoseCalc() {
   )
 }
 
-/* â”€â”€ Fluidoterapia â”€â”€ */
 function FluidCalc() {
-  const [species,  setSpecies]  = useState<'cao' | 'gato' | 'bovino' | 'equino'>('cao')
-  const [weight,   setWeight]   = useState('')
+  const [species, setSpecies] = useState<'cao' | 'gato' | 'bovino' | 'equino'>('cao')
+  const [weight, setWeight] = useState('')
   const [dehydPct, setDehydPct] = useState('5')
-  const [hours,    setHours]    = useState('24')
-  const [result,   setResult]   = useState<{ deficit: number; manut: number; total: number; rate: number } | null>(null)
+  const [hours, setHours] = useState('24')
+  const [result, setResult] = useState<{ deficit: number; manut: number; total: number; rate: number } | null>(null)
 
   const MANUT: Record<string, number> = { cao: 60, gato: 60, bovino: 50, equino: 60 }
+  const OPTS = [
+    { id: 'cao', label: 'Cão', emoji: '🐕' },
+    { id: 'gato', label: 'Gato', emoji: '🐈' },
+    { id: 'bovino', label: 'Bovino', emoji: '🐄' },
+    { id: 'equino', label: 'Equino', emoji: '🐎' },
+  ] as const
 
   const calc = () => {
-    const w = parseFloat(weight.replace(',', '.')); const d = parseFloat(dehydPct); const h = parseFloat(hours)
+    const w = parseFloat(weight.replace(',', '.'))
+    const d = parseFloat(dehydPct)
+    const h = parseFloat(hours)
     if (isNaN(w) || isNaN(d) || isNaN(h) || w <= 0) return
-    const deficit = (d / 100) * w * 1000; const manut = MANUT[species] * w
+    const deficit = (d / 100) * w * 1000
+    const manut = MANUT[species] * w
     setResult({ deficit, manut, total: deficit + manut, rate: (deficit + manut) / h })
   }
 
-  const OPTS = [{ id: 'cao', label: 'Cão', emoji: 'ðŸ•' }, { id: 'gato', label: 'Gato', emoji: 'ðŸˆ' }, { id: 'bovino', label: 'Bovino', emoji: 'ðŸ„' }, { id: 'equino', label: 'Equino', emoji: 'ðŸŽ' }] as const
-
   return (
-    <div className="max-w-lg mx-auto space-y-4">
+    <div className="mx-auto max-w-lg space-y-4">
       <AvisoLegal />
 
-      <div className="bg-slate-800/60 backdrop-blur-md rounded-2xl border border-slate-700/60 p-5 space-y-4">
+      <div className="space-y-4 rounded-2xl border border-slate-700/60 bg-slate-800/60 p-5 backdrop-blur-md">
         <div>
-          <p className="text-xs text-slate-400 font-semibold mb-2">EspÃ©cie</p>
-          <div className="flex gap-2 flex-wrap">
-            {OPTS.map(s => (
-              <button key={s.id} onClick={() => { setSpecies(s.id); setResult(null) }}
-                className={`flex items-center gap-1.5 px-3 py-2 rounded-xl border text-xs font-semibold transition-all ${
-                  species === s.id ? 'bg-blue-500/20 text-blue-300 border-blue-500/30' : 'bg-slate-900/60 text-slate-500 border-slate-700 hover:text-slate-300'
-                }`}>
-                {s.emoji} {s.label}
+          <p className="mb-2 text-xs font-semibold text-slate-400">Espécie</p>
+          <div className="flex flex-wrap gap-2">
+            {OPTS.map(option => (
+              <button
+                key={option.id}
+                onClick={() => {
+                  setSpecies(option.id)
+                  setResult(null)
+                }}
+                className={`rounded-xl border px-3 py-2 text-xs font-semibold transition-all ${
+                  species === option.id
+                    ? 'border-blue-500/30 bg-blue-500/20 text-blue-300'
+                    : 'border-slate-700 bg-slate-900/60 text-slate-500 hover:text-slate-300'
+                }`}
+              >
+                {option.emoji} {option.label}
               </button>
             ))}
           </div>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+        <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
           {[
             { label: 'Peso', value: weight, set: setWeight, unit: 'kg', ph: '15' },
-            { label: 'DesidrataÃ§Ã£o', value: dehydPct, set: setDehydPct, unit: '%', ph: '5' },
+            { label: 'Desidratação', value: dehydPct, set: setDehydPct, unit: '%', ph: '5' },
             { label: 'Janela (h)', value: hours, set: setHours, unit: 'h', ph: '24' },
-          ].map(f => (
-            <div key={f.label}>
-              <label className="text-xs text-slate-400 font-semibold block mb-1.5">{f.label}</label>
+          ].map(field => (
+            <div key={field.label}>
+              <label className="mb-1.5 block text-xs font-semibold text-slate-400">{field.label}</label>
               <div className="flex items-center gap-1.5">
-                <input type="number" min="0" placeholder={f.ph} value={f.value}
-                  onChange={e => { f.set(e.target.value); setResult(null) }}
-                  className="flex-1 px-3 py-2.5 bg-slate-900/60 border border-slate-700 rounded-xl text-sm text-slate-200 placeholder-slate-600 focus:outline-none focus:ring-2 focus:ring-blue-500/40 focus:border-blue-500 transition min-w-0"
+                <input
+                  type="number"
+                  min="0"
+                  placeholder={field.ph}
+                  value={field.value}
+                  onChange={event => {
+                    field.set(event.target.value)
+                    setResult(null)
+                  }}
+                  className="min-w-0 flex-1 rounded-xl border border-slate-700 bg-slate-900/60 px-3 py-2.5 text-sm text-slate-200 placeholder-slate-600 transition focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/40"
                 />
-                <span className="text-xs text-slate-500 font-mono">{f.unit}</span>
+                <span className="font-mono text-xs text-slate-500">{field.unit}</span>
               </div>
             </div>
           ))}
         </div>
 
-        <div className="bg-slate-900/40 rounded-xl p-3 flex gap-2 border border-slate-700/40">
-          <AlertCircle size={13} className="text-slate-500 flex-shrink-0 mt-0.5" />
-          <p className="text-xs text-slate-500">ManutenÃ§Ã£o: {MANUT[species]} mL/kg/dia. Adicionar perdas contÃ­nuas (vÃ´mito, diarreia, lactaÃ§Ã£o).</p>
+        <div className="flex gap-2 rounded-xl border border-slate-700/40 bg-slate-900/40 p-3">
+          <AlertCircle size={13} className="mt-0.5 flex-shrink-0 text-slate-500" />
+          <p className="text-xs text-slate-500">
+            Manutenção: {MANUT[species]} mL/kg/dia. Adicionar perdas contínuas (vômito, diarreia, lactação).
+          </p>
         </div>
 
-        <motion.button whileTap={{ scale: 0.97 }} onClick={calc}
-          className="w-full py-3 bg-blue-600 text-white rounded-xl text-sm font-bold hover:bg-blue-700 transition-colors shadow-lg shadow-blue-950/50 flex items-center justify-center gap-2">
-          <Droplets size={15} /> Calcular Plano
+        <motion.button
+          whileTap={{ scale: 0.97 }}
+          onClick={calc}
+          className="flex w-full items-center justify-center gap-2 rounded-xl bg-blue-600 py-3 text-sm font-bold text-white transition-colors hover:bg-blue-700"
+        >
+          <Droplets size={15} /> Calcular plano
         </motion.button>
       </div>
 
       <AnimatePresence>
         {result && (
-          <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}
-            className="bg-blue-500/10 backdrop-blur-md border border-blue-500/25 rounded-2xl p-5">
-            <p className="text-[10px] text-blue-400 font-bold uppercase tracking-widest mb-3">Plano de Fluidos</p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <motion.div
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0 }}
+            className="rounded-2xl border border-blue-500/25 bg-blue-500/10 p-5 backdrop-blur-md"
+          >
+            <p className="mb-3 text-[10px] font-bold uppercase tracking-widest text-blue-400">Plano de fluidos</p>
+            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
               {[
-                { label: 'DÃ©ficit HÃ­drico', value: result.deficit.toFixed(0), unit: 'mL',   color: 'text-white' },
-                { label: 'ManutenÃ§Ã£o',      value: result.manut.toFixed(0),   unit: 'mL',   color: 'text-white' },
-                { label: 'Volume Total',    value: result.total.toFixed(0),   unit: 'mL',   color: 'text-blue-200 font-black' },
-                { label: 'Taxa de InfusÃ£o', value: result.rate.toFixed(1),    unit: 'mL/h', color: 'text-blue-300 font-black' },
-              ].map(r => (
-                <div key={r.label} className="bg-slate-800/80 rounded-xl p-3 border border-slate-700/60">
-                  <p className="text-[10px] text-slate-500 mb-1">{r.label}</p>
-                  <p className={`text-xl font-bold ${r.color}`}>{r.value}<span className="text-xs text-slate-500 ml-1">{r.unit}</span></p>
+                { label: 'Déficit hídrico', value: result.deficit.toFixed(0), unit: 'mL', color: 'text-white' },
+                { label: 'Manutenção', value: result.manut.toFixed(0), unit: 'mL', color: 'text-white' },
+                { label: 'Volume total', value: result.total.toFixed(0), unit: 'mL', color: 'text-blue-200 font-black' },
+                { label: 'Taxa de infusão', value: result.rate.toFixed(1), unit: 'mL/h', color: 'text-blue-300 font-black' },
+              ].map(item => (
+                <div key={item.label} className="rounded-xl border border-slate-700/60 bg-slate-800/80 p-3">
+                  <p className="mb-1 text-[10px] text-slate-500">{item.label}</p>
+                  <p className={`text-xl font-bold ${item.color}`}>
+                    {item.value}
+                    <span className="ml-1 text-xs text-slate-500">{item.unit}</span>
+                  </p>
                 </div>
               ))}
             </div>
@@ -240,67 +305,80 @@ function FluidCalc() {
   )
 }
 
-/* â”€â”€ Valores de ReferÃªncia â”€â”€ */
 function LabRef() {
   const [species, setSpecies] = useState<LabSpecies>('dog')
-  const [tab,     setTab]     = useState<LabTab>('hematology')
+  const [tab, setTab] = useState<LabTab>('hematology')
   const data = ALL_SPECIES[species]
 
   return (
-    <div className="max-w-2xl mx-auto space-y-4">
+    <div className="mx-auto max-w-2xl space-y-4">
       <div className="flex flex-wrap gap-2">
-        {(Object.entries(ALL_SPECIES) as [LabSpecies, typeof EQUINE_LAB][]).map(([key, val]) => (
-          <button key={key} onClick={() => setSpecies(key)}
-            className={`flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold transition-all border ${
+        {(Object.entries(ALL_SPECIES) as [LabSpecies, typeof EQUINE_LAB][]).map(([key, value]) => (
+          <button
+            key={key}
+            onClick={() => setSpecies(key)}
+            className={`flex items-center gap-2 rounded-xl border px-4 py-2 text-sm font-semibold transition-all ${
               species === key
-                ? 'bg-purple-500/20 text-purple-300 border-purple-500/30'
-                : 'bg-slate-800 text-slate-500 border-slate-700/60 hover:text-slate-300'
-            }`}>
-            <span>{val.emoji}</span>{val.label}
+                ? 'border-purple-500/30 bg-purple-500/20 text-purple-300'
+                : 'border-slate-700/60 bg-slate-800 text-slate-500 hover:text-slate-300'
+            }`}
+          >
+            <span>{value.emoji}</span>
+            {value.label}
           </button>
         ))}
       </div>
 
-      <div className="flex flex-wrap gap-2 bg-slate-800/60 p-1 rounded-xl border border-slate-700/50 w-fit max-w-full">
-        {(['hematology', 'biochemistry'] as const).map(t => (
-          <button key={t} onClick={() => setTab(t)}
-            className={`px-4 py-1.5 rounded-lg text-xs font-bold transition-all ${
-              tab === t ? 'bg-purple-500/20 text-purple-300' : 'text-slate-500 hover:text-slate-300'
-            }`}>
-            {t === 'hematology' ? 'ðŸ©¸ Hematologia' : 'âš—ï¸ BioquÃ­mica'}
+      <div className="w-fit max-w-full rounded-xl border border-slate-700/50 bg-slate-800/60 p-1">
+        {(['hematology', 'biochemistry'] as const).map(currentTab => (
+          <button
+            key={currentTab}
+            onClick={() => setTab(currentTab)}
+            className={`rounded-lg px-4 py-1.5 text-xs font-bold transition-all ${
+              tab === currentTab ? 'bg-purple-500/20 text-purple-300' : 'text-slate-500 hover:text-slate-300'
+            }`}
+          >
+            {currentTab === 'hematology' ? '🩸 Hematologia' : '⚗️ Bioquímica'}
           </button>
         ))}
       </div>
 
       <AnimatePresence mode="wait">
-        <motion.div key={`${species}-${tab}`}
-          initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}
+        <motion.div
+          key={`${species}-${tab}`}
+          initial={{ opacity: 0, y: 6 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0 }}
           transition={{ duration: 0.15 }}
-          className="overflow-x-auto">
-          <div className="min-w-[36rem] bg-slate-800/80 backdrop-blur-md rounded-2xl border border-slate-700/80 overflow-hidden">
-            <div className="grid grid-cols-4 px-5 py-2.5 bg-slate-700/50 text-[10px] font-black text-slate-500 uppercase tracking-wider border-b border-slate-700/60">
-              <span>ParÃ¢metro</span><span className="text-center">MÃ­n.</span><span className="text-center">MÃ¡x.</span><span className="text-center">Unidade</span>
+          className="overflow-x-auto"
+        >
+          <div className="min-w-[36rem] overflow-hidden rounded-2xl border border-slate-700/80 bg-slate-800/80 backdrop-blur-md">
+            <div className="grid grid-cols-4 border-b border-slate-700/60 bg-slate-700/50 px-5 py-2.5 text-[10px] font-black uppercase tracking-wider text-slate-500">
+              <span>Parâmetro</span>
+              <span className="text-center">Mín.</span>
+              <span className="text-center">Máx.</span>
+              <span className="text-center">Unidade</span>
             </div>
-            {data[tab].map((row, i) => (
-              <div key={row.param} className={`grid grid-cols-4 px-5 py-3 text-sm ${i % 2 === 0 ? 'bg-slate-800' : 'bg-slate-800/40'} hover:bg-teal-500/5`}>
-                <span className="text-slate-300 font-semibold">{row.param}</span>
-                <span className="text-center text-teal-400 font-mono font-bold">{row.min}</span>
-                <span className="text-center text-teal-400 font-mono font-bold">{row.max}</span>
-                <span className="text-center text-slate-500 text-xs">{row.unit}</span>
+            {data[tab].map((row, index) => (
+              <div
+                key={row.param}
+                className={`grid grid-cols-4 px-5 py-3 text-sm ${index % 2 === 0 ? 'bg-slate-800' : 'bg-slate-800/40'} hover:bg-teal-500/5`}
+              >
+                <span className="font-semibold text-slate-300">{row.param}</span>
+                <span className="text-center font-mono font-bold text-teal-400">{row.min}</span>
+                <span className="text-center font-mono font-bold text-teal-400">{row.max}</span>
+                <span className="text-center text-xs text-slate-500">{row.unit}</span>
               </div>
             ))}
           </div>
         </motion.div>
       </AnimatePresence>
 
-      <p className="text-xs text-slate-600 text-center">
-        Fonte: Jain (2018) · Stockham & Scott (2019) · Thrall et al. (2022)
-      </p>
+      <p className="text-center text-xs text-slate-600">Fonte: Jain (2018) · Stockham & Scott (2019) · Thrall et al. (2022)</p>
     </div>
   )
 }
 
-/* â”€â”€ PÃ¡gina principal â”€â”€ */
 export default function FerramentasPage({
   onNavigate,
 }: {
@@ -310,33 +388,36 @@ export default function FerramentasPage({
   const profileId = getActiveProfile()?.id
 
   return (
-    <div className="p-4 sm:p-6 md:p-8 max-w-4xl mx-auto">
+    <div className="mx-auto max-w-4xl p-4 sm:p-6 md:p-8">
       <div className="mb-6">
-        <div className="flex items-center gap-2 mb-1">
+        <div className="mb-1 flex items-center gap-2">
           <Wrench size={22} className="text-teal-400" />
           <h1 className="text-2xl font-bold text-white">Consulta Rápida</h1>
         </div>
-        <p className="text-slate-400 text-sm">Pesquise por doenÃ§a, fÃ¡rmaco, dose, sintoma ou protocolo.</p>
+        <p className="text-sm text-slate-400">Pesquise por doença, fármaco, dose, sintoma ou protocolo.</p>
       </div>
 
       {profileId && (
         <div className="mb-8">
-          <div className="flex items-center gap-2 mb-3">
+          <div className="mb-3 flex items-center gap-2">
             <Search size={14} className="text-teal-400" />
-            <p className="text-xs font-bold text-slate-400 uppercase tracking-wider">Busca Clínica</p>
+            <p className="text-xs font-bold uppercase tracking-wider text-slate-400">Busca Clínica</p>
           </div>
           <GlobalClinicalSearch profileId={profileId} onNavigate={onNavigate} />
         </div>
       )}
 
-      <div className="flex flex-wrap gap-3 mb-8">
+      <div className="mb-8 flex flex-wrap gap-3">
         {TOOLS.map(({ id, label, icon: Icon, color, activeClass }) => (
-          <button key={id} onClick={() => setActive(id)}
-            className={`flex items-center gap-2.5 px-5 py-3 rounded-2xl border text-sm font-semibold transition-all ${
+          <button
+            key={id}
+            onClick={() => setActive(id)}
+            className={`flex items-center gap-2.5 rounded-2xl border px-5 py-3 text-sm font-semibold transition-all ${
               active === id
                 ? `${activeClass} text-white shadow-lg`
-                : 'bg-slate-800/60 border-slate-700/60 text-slate-500 hover:text-slate-300 hover:bg-slate-800'
-            }`}>
+                : 'border-slate-700/60 bg-slate-800/60 text-slate-500 hover:bg-slate-800 hover:text-slate-300'
+            }`}
+          >
             <Icon size={16} className={active === id ? color : ''} />
             {label}
           </button>
@@ -344,15 +425,18 @@ export default function FerramentasPage({
       </div>
 
       <AnimatePresence mode="wait">
-        <motion.div key={active}
-          initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -6 }} transition={{ duration: 0.18 }}>
-          {active === 'dose'   && <DoseCalc />}
+        <motion.div
+          key={active}
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -6 }}
+          transition={{ duration: 0.18 }}
+        >
+          {active === 'dose' && <DoseCalc />}
           {active === 'fluido' && <FluidCalc />}
-          {active === 'lab'    && <LabRef />}
+          {active === 'lab' && <LabRef />}
         </motion.div>
       </AnimatePresence>
     </div>
   )
 }
-
