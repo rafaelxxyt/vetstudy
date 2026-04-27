@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+﻿import { useEffect, useMemo, useState } from 'react'
 import { BookOpen, ChevronRight, ClipboardList, Pill, Search, Star, Stethoscope } from 'lucide-react'
 import {
   searchGlobalClinicalContent,
@@ -164,7 +164,7 @@ export default function GlobalClinicalSearch({
       <div className="bg-slate-900/70 border border-slate-800 rounded-2xl p-4">
         <div className="flex items-center gap-2 mb-2">
           <Search size={15} className="text-teal-400" />
-          <p className="text-xs font-bold text-slate-400 uppercase tracking-wider">Busca Clínica Global</p>
+          <p className="text-xs font-bold text-slate-400 uppercase tracking-wider">Consulta RÃ¡pida</p>
         </div>
 
         <div className="relative">
@@ -173,14 +173,14 @@ export default function GlobalClinicalSearch({
             type="text"
             value={query}
             onChange={(event) => setQuery(event.target.value)}
-            placeholder="Buscar doença, fármaco, protocolo..."
+            placeholder="Buscar medicamento, doenÃ§a ou protocolo..."
             className="w-full rounded-2xl border border-slate-700 bg-slate-800 pl-11 pr-4 py-3 text-sm text-slate-100 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-teal-500/40 focus:border-teal-500 transition"
           />
         </div>
 
         {!hasQuery && (
           <p className="text-xs text-slate-500 mt-2">
-            Procure por espécie, categoria, sintomas, tratamento, dose, protocolo ou tema de estudo.
+            Pesquise por doenÃ§a, fÃ¡rmaco, dose, sintoma ou protocolo.
           </p>
         )}
       </div>
@@ -260,9 +260,9 @@ export default function GlobalClinicalSearch({
               </>
             ) : (
               <>
-                <p className="text-xs font-bold text-slate-400 uppercase tracking-wider">Painel rápido</p>
+                <p className="text-xs font-bold text-slate-400 uppercase tracking-wider">Painel rÃ¡pido</p>
                 <p className="text-sm text-slate-300 mt-2 leading-relaxed">
-                  Clique em um protocolo ou conteúdo de estudo para ver um resumo útil aqui. Em doenças e fármacos, o clique já abre o item na página clínica correspondente.
+                  Clique em um protocolo ou conteÃºdo de estudo para ver um resumo Ãºtil aqui. Em doenÃ§as e fÃ¡rmacos, o clique jÃ¡ abre o item na pÃ¡gina clÃ­nica correspondente.
                 </p>
               </>
             )}
@@ -272,3 +272,5 @@ export default function GlobalClinicalSearch({
     </div>
   )
 }
+
+

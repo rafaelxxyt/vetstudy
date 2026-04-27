@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+﻿import { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Menu } from 'lucide-react'
 import Sidebar, { type Page } from './components/Sidebar'
@@ -13,13 +13,13 @@ import RevisaoPage      from './pages/RevisaoPage'
 import MapasPage        from './pages/MapasPage'
 
 const PAGE_LABELS: Record<Page, string> = {
-  hub:          'Hub Acadêmico',
-  revisao:      'Revisão',
-  casos:        'Casos Clínicos',
-  mapas:        'Mapas Mentais',
+  hub:          'InÃ­cio',
+  revisao:      'Flashcards',
+  casos:        'Casos',
+  mapas:        'Resumos',
   medicamentos: 'Medicamentos',
-  doencas:      'Doenças',
-  ferramentas:  'Central Clínica',
+  doencas:      'DoenÃ§as',
+  ferramentas:  'Consulta RÃ¡pida',
   vetnews:      'VetNews',
 }
 
@@ -32,9 +32,9 @@ export default function App() {
   const [selectedDrugId, setSelectedDrugId] = useState<string | undefined>(undefined)
   const [selectedDrugQuery, setSelectedDrugQuery] = useState<string | undefined>(undefined)
 
-  // ── Body scroll lock ──────────────────────────────────
+  // â”€â”€ Body scroll lock â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   // Prevents the background page from scrolling while the
-  // drawer is open — critical for the "native app" feel.
+  // drawer is open â€” critical for the "native app" feel.
   useEffect(() => {
     if (mobileOpen) {
       document.body.style.overflow = 'hidden'
@@ -111,18 +111,18 @@ export default function App() {
   return (
     <div className="flex h-dvh md:h-screen bg-slate-950 overflow-hidden font-sans">
 
-      {/* ── Mobile top bar ──────────────────────────────────
+      {/* â”€â”€ Mobile top bar â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
           Fixed, always visible on mobile.
-          h-14 = 56 px → main content offset by pt-14.
+          h-14 = 56 px â†’ main content offset by pt-14.
           shadow-[0_1px_0] instead of border-b keeps it
           visually lighter while still providing separation.
-      ──────────────────────────────────────────────────── */}
+      â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
       <header className="md:hidden fixed inset-x-0 top-0 z-30 h-14
                          flex items-center gap-3 px-4
                          bg-slate-900/98 backdrop-blur-md
                          shadow-[0_1px_0_0_rgba(51,65,85,0.6)]">
 
-        {/* Hamburger — 44×44 tap target (Apple HIG minimum) */}
+        {/* Hamburger â€” 44Ã—44 tap target (Apple HIG minimum) */}
         <button
           onClick={() => setMobileOpen(true)}
           aria-label="Abrir menu"
@@ -146,12 +146,12 @@ export default function App() {
         </div>
       </header>
 
-      {/* ── Backdrop ────────────────────────────────────────
+      {/* â”€â”€ Backdrop â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
           Sits between the drawer (z-50) and the content (z-0).
           bg-black/70 + backdrop-blur-md creates a strong visual
           separation so the user focuses entirely on the drawer.
           Tapping backdrop closes the drawer.
-      ──────────────────────────────────────────────────── */}
+      â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
@@ -167,7 +167,7 @@ export default function App() {
         )}
       </AnimatePresence>
 
-      {/* ── Sidebar ─────────────────────────────────────── */}
+      {/* â”€â”€ Sidebar â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
       <Sidebar
         activePage={activePage}
         onNavigate={handleNavigate}
@@ -175,11 +175,11 @@ export default function App() {
         onMobileClose={() => setMobileOpen(false)}
       />
 
-      {/* ── Main content ────────────────────────────────────
+      {/* â”€â”€ Main content â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
           pt-14 clears the fixed top bar on mobile.
           overflow-x-hidden prevents any runaway child widths
           from causing horizontal scroll.
-      ──────────────────────────────────────────────────── */}
+      â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
       <main className="min-w-0 flex-1 overflow-y-auto overflow-x-hidden bg-slate-950 pt-14 md:pt-0">
         <AnimatePresence mode="wait">
           <motion.div
@@ -198,3 +198,4 @@ export default function App() {
     </div>
   )
 }
+

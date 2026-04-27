@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+﻿import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import {
   GraduationCap, ClipboardCheck, Network, CalendarDays,
@@ -60,9 +60,9 @@ import {
 
 const IS_DEV = Boolean((import.meta as ImportMeta & { env?: { DEV?: boolean } }).env?.DEV)
 
-/* ══════════════════════════════════════════════════════
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
    TIPOS LOCAIS
-   ══════════════════════════════════════════════════════ */
+   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 interface Topic { id: string; name: string; studiedAt: string }
 interface StudyItem { id: string; name: string; targetMin: number; doneMin: number }
 interface QuizStats { total: number; correct: number; hours: number }
@@ -87,8 +87,8 @@ const CLINICAL_CASES = clinicalCases as ClinicalCase[]
 const DISEASE_INDEX = (centralDb as { diseases: { id: string; name: string }[] }).diseases
 
 function savedItemTypeLabel(type: ClinicalSavedItem['type']) {
-  if (type === 'disease') return 'Doença'
-  if (type === 'drug') return 'Fármaco'
+  if (type === 'disease') return 'DoenÃ§a'
+  if (type === 'drug') return 'FÃ¡rmaco'
   return 'Protocolo'
 }
 
@@ -127,14 +127,14 @@ function ensureList(value: string[] | string) {
 }
 
 function streakMicrocopy(streak: number) {
-  if (streak <= 0) return 'Comece sua sequência hoje'
-  if (streak === 1) return 'Primeiro dia concluído'
-  return 'Você está mantendo o ritmo'
+  if (streak <= 0) return 'Comece sua sequÃªncia hoje'
+  if (streak === 1) return 'Primeiro dia concluÃ­do'
+  return 'VocÃª estÃ¡ mantendo o ritmo'
 }
 
-/* ══════════════════════════════════════════════════════
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
    HELPERS
-   ══════════════════════════════════════════════════════ */
+   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 function todayISO() { return new Date().toISOString().split('T')[0] }
 function formatDateBR(value: string) {
   const [year, month, day] = value.split('-')
@@ -174,9 +174,9 @@ function calendarDayClass(dots: { interval: number }[], hasStudy = false) {
   return 'bg-slate-800/45 text-slate-500 border-slate-800/60'
 }
 
-/* ══════════════════════════════════════════════════════
-   MINI CALENDÁRIO
-   ══════════════════════════════════════════════════════ */
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   MINI CALENDÃRIO
+   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 function MiniCalendario({ topics, storageKey: _sk }: { topics: Topic[]; storageKey: string }) {
   const today = todayISO()
   const [viewDate, setViewDate] = useState(() => new Date())
@@ -248,10 +248,10 @@ function MiniCalendario({ topics, storageKey: _sk }: { topics: Topic[]; storageK
       {selectedDay && (
         <motion.div initial={{ opacity: 0, y: 4 }} animate={{ opacity: 1, y: 0 }} className="mt-3 border-t border-slate-700/50 pt-3">
           <p className="text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-2">
-            {selectedDay === today ? '📅 Hoje' : formatDateBR(selectedDay)}
+            {selectedDay === today ? 'ðŸ“… Hoje' : formatDateBR(selectedDay)}
           </p>
           {selectedItems.length === 0
-            ? <p className="text-xs text-slate-600 italic">Nenhuma revisão agendada.</p>
+            ? <p className="text-xs text-slate-600 italic">Nenhuma revisÃ£o agendada.</p>
             : selectedItems.map((item, i) => (
                 <div key={i} className="flex items-center gap-2 py-1">
                   <span className={`w-2 h-2 rounded-full flex-shrink-0 ${INT_COLOR[item.interval]}`} />
@@ -278,9 +278,9 @@ function MiniCalendario({ topics, storageKey: _sk }: { topics: Topic[]; storageK
   )
 }
 
-/* ══════════════════════════════════════════════════════
-   MINI CALENDÁRIO EXPANDIDO (com histórico de estudo)
-   ══════════════════════════════════════════════════════ */
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   MINI CALENDÃRIO EXPANDIDO (com histÃ³rico de estudo)
+   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 function MiniCalendarioComHistorico({ topics, storageKey, dailyHistory }: {
   topics: Topic[]
   storageKey: string
@@ -426,9 +426,9 @@ function MiniCalendarioComHistorico({ topics, storageKey, dailyHistory }: {
   )
 }
 
-/* ══════════════════════════════════════════════════════
-   GRÁFICOS DE PERFORMANCE
-   ══════════════════════════════════════════════════════ */
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   GRÃFICOS DE PERFORMANCE
+   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 function PerformanceCharts({ stats }: { stats: QuizStats }) {
   const pct = stats.total > 0 ? Math.round((stats.correct / stats.total) * 100) : 0
   const wrong = stats.total - stats.correct
@@ -437,11 +437,11 @@ function PerformanceCharts({ stats }: { stats: QuizStats }) {
   return (
     <div className="grid grid-cols-3 gap-3">
       <div className="bg-slate-800/60 backdrop-blur-md rounded-2xl border border-slate-700/60 p-4">
-        <p className="text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-2">Total de Questões</p>
+        <p className="text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-2">Total de QuestÃµes</p>
         <p className="text-3xl font-black text-white">{stats.total}</p>
         <div className="flex gap-2 mt-2">
-          <span className="text-[10px] text-green-400">✓ {stats.correct}</span>
-          <span className="text-[10px] text-red-400">✗ {wrong}</span>
+          <span className="text-[10px] text-green-400">âœ“ {stats.correct}</span>
+          <span className="text-[10px] text-red-400">âœ— {wrong}</span>
         </div>
         <div className="h-1.5 bg-slate-700 rounded-full mt-2 overflow-hidden">
           <div className="h-full bg-gradient-to-r from-green-500 to-teal-400 rounded-full transition-all duration-700"
@@ -459,7 +459,7 @@ function PerformanceCharts({ stats }: { stats: QuizStats }) {
           </div>
         </div>
         <p className={`text-[10px] font-semibold mt-1 ${pct >= 70 ? 'text-green-400' : pct >= 50 ? 'text-amber-400' : 'text-red-400'}`}>
-          {pct >= 70 ? 'Ótimo!' : pct >= 50 ? 'Regular' : 'Estudar mais'}
+          {pct >= 70 ? 'Ã“timo!' : pct >= 50 ? 'Regular' : 'Estudar mais'}
         </p>
       </div>
       <div className="bg-slate-800/60 backdrop-blur-md rounded-2xl border border-slate-700/60 p-4">
@@ -471,23 +471,23 @@ function PerformanceCharts({ stats }: { stats: QuizStats }) {
               style={{ height: `${h * 100}%` }} />
           ))}
         </div>
-        <p className="text-[9px] text-slate-600 mt-1">últimos 7 dias</p>
+        <p className="text-[9px] text-slate-600 mt-1">Ãºltimos 7 dias</p>
       </div>
     </div>
   )
 }
 
-/* ══════════════════════════════════════════════════════
-   SEQUÊNCIA DE ESTUDOS
-   ══════════════════════════════════════════════════════ */
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   SEQUÃŠNCIA DE ESTUDOS
+   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 const DEFAULT_SEQ: StudyItem[] = [
   { id: '1', name: 'Anatomia do Trato Reprodutor',    targetMin: 45,  doneMin: 45 },
-  { id: '2', name: 'Ciclo Estral e Hormônios',        targetMin: 60,  doneMin: 30 },
-  { id: '3', name: 'Fotoperíodo e Sazonalidade',      targetMin: 30,  doneMin: 0  },
+  { id: '2', name: 'Ciclo Estral e HormÃ´nios',        targetMin: 60,  doneMin: 30 },
+  { id: '3', name: 'FotoperÃ­odo e Sazonalidade',      targetMin: 30,  doneMin: 0  },
   { id: '4', name: 'Protocolos IATF (Ovsynch)',       targetMin: 60,  doneMin: 0  },
-  { id: '5', name: 'Transferência de Embriões (TE)',  targetMin: 30,  doneMin: 0  },
-  { id: '6', name: 'IA em Suínos — Técnica Pipeta',   targetMin: 20,  doneMin: 0  },
-  { id: '7', name: 'Puerpério e Pós-parto',           targetMin: 40,  doneMin: 0  },
+  { id: '5', name: 'TransferÃªncia de EmbriÃµes (TE)',  targetMin: 30,  doneMin: 0  },
+  { id: '6', name: 'IA em SuÃ­nos â€” TÃ©cnica Pipeta',   targetMin: 20,  doneMin: 0  },
+  { id: '7', name: 'PuerpÃ©rio e PÃ³s-parto',           targetMin: 40,  doneMin: 0  },
 ]
 
 function fmtMin(m: number) {
@@ -516,9 +516,9 @@ function SequenciaEstudos({ storageKey }: { storageKey: string }) {
       <div className="flex items-center justify-between mb-3">
         <div className="flex items-center gap-2">
           <Play size={14} className="text-teal-400" />
-          <p className="text-sm font-bold text-white">Sequência de Estudos</p>
+          <p className="text-sm font-bold text-white">SequÃªncia de Estudos</p>
         </div>
-        <span className="text-xs text-slate-500">{fmtMin(totalDone)} / {fmtMin(totalTarget)} · {totalPct}%</span>
+        <span className="text-xs text-slate-500">{fmtMin(totalDone)} / {fmtMin(totalTarget)} Â· {totalPct}%</span>
       </div>
       <div className="h-1.5 bg-slate-700 rounded-full mb-4 overflow-hidden">
         <motion.div className="h-full bg-gradient-to-r from-teal-500 to-teal-400 rounded-full"
@@ -541,7 +541,7 @@ function SequenciaEstudos({ storageKey }: { storageKey: string }) {
                 </div>
                 <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
                   <button onClick={() => addMin(item.id, -15)}
-                    className="text-[10px] w-5 h-5 rounded bg-slate-700 text-slate-400 hover:text-white flex items-center justify-center">−</button>
+                    className="text-[10px] w-5 h-5 rounded bg-slate-700 text-slate-400 hover:text-white flex items-center justify-center">âˆ’</button>
                   <span className="text-[10px] text-slate-500 w-14 text-center font-mono">
                     {fmtMin(item.doneMin)}/{fmtMin(item.targetMin)}
                   </span>
@@ -563,9 +563,9 @@ function SequenciaEstudos({ storageKey }: { storageKey: string }) {
   )
 }
 
-/* ══════════════════════════════════════════════════════
-   CALENDÁRIO DE REVISÃO ESPAÇADA
-   ══════════════════════════════════════════════════════ */
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   CALENDÃRIO DE REVISÃƒO ESPAÃ‡ADA
+   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 function CalendarioRevisao({ topics, setTopics, storageKey }: {
   topics: Topic[]
   setTopics: (t: Topic[]) => void
@@ -615,7 +615,7 @@ function CalendarioRevisao({ topics, setTopics, storageKey }: {
       <div className="flex gap-2">
         <input type="text" value={newTopic} onChange={e => setNewTopic(e.target.value)}
           onKeyDown={e => e.key === 'Enter' && add()}
-          placeholder="ex: Ciclo Estral, PGF2α, Piometra Canina..."
+          placeholder="ex: Ciclo Estral, PGF2Î±, Piometra Canina..."
           className="flex-1 px-4 py-2.5 bg-slate-800/60 border border-slate-700 rounded-xl text-sm text-slate-200 placeholder-slate-600 focus:outline-none focus:ring-2 focus:ring-teal-500/40 focus:border-teal-500 transition"
         />
         <button onClick={add}
@@ -626,7 +626,7 @@ function CalendarioRevisao({ topics, setTopics, storageKey }: {
         {dueToday.length > 0 && (
           <div className="bg-amber-500/10 border border-amber-500/20 rounded-2xl p-3">
             <p className="text-[10px] font-bold text-amber-400 uppercase tracking-wider mb-1.5 flex items-center gap-1">
-              <RotateCcw size={11} /> Revisar hoje — {dueToday.length} item{dueToday.length > 1 ? 's' : ''}
+              <RotateCcw size={11} /> Revisar hoje â€” {dueToday.length} item{dueToday.length > 1 ? 's' : ''}
             </p>
             <div className="space-y-1.5">
               {dueToday.map(s => (
@@ -634,7 +634,7 @@ function CalendarioRevisao({ topics, setTopics, storageKey }: {
                   className="flex items-center justify-between gap-3 bg-slate-800/50 rounded-xl px-3 py-2">
                   <div className="min-w-0">
                     <p className="text-sm font-semibold text-slate-200">{s.topic.name}</p>
-                    <p className="text-xs text-amber-400/70">{INT_LABEL[s.interval]} — Revisão de {s.interval} dia{s.interval > 1 ? 's' : ''}</p>
+                    <p className="text-xs text-amber-400/70">{INT_LABEL[s.interval]} â€” RevisÃ£o de {s.interval} dia{s.interval > 1 ? 's' : ''}</p>
                   </div>
                   <button onClick={() => markDone(s.topic.id, s.interval)}
                     className="flex items-center gap-1 text-xs bg-teal-600/20 border border-teal-500/30 text-teal-400 px-2.5 py-1 rounded-xl hover:bg-teal-600/40 transition active:scale-95">
@@ -647,7 +647,7 @@ function CalendarioRevisao({ topics, setTopics, storageKey }: {
         )}
         {groupedFuture.length > 0 && (
           <div className="bg-slate-800/40 rounded-2xl border border-slate-700/40 p-3">
-            <p className="text-[10px] font-bold text-slate-600 uppercase tracking-wider mb-1.5">Próximas revisões</p>
+            <p className="text-[10px] font-bold text-slate-600 uppercase tracking-wider mb-1.5">PrÃ³ximas revisÃµes</p>
             <div className="overflow-x-auto">
               <div className="min-w-[420px]">
                 <div className="grid grid-cols-[minmax(0,1fr)_54px_54px_54px_54px] items-center gap-1.5 px-2 pb-1 text-[9px] font-bold uppercase tracking-wider text-slate-600">
@@ -714,7 +714,7 @@ function CalendarioRevisao({ topics, setTopics, storageKey }: {
               <div key={t.id} className="flex items-center justify-between bg-slate-800/30 rounded-xl px-3 py-2 group">
                 <div>
                   <p className="text-xs text-slate-300 font-medium">{t.name}</p>
-                  <p className="text-[10px] text-slate-600">Início: {t.studiedAt}</p>
+                  <p className="text-[10px] text-slate-600">InÃ­cio: {t.studiedAt}</p>
                 </div>
                 <button onClick={() => remove(t.id)}
                   className="text-slate-700 hover:text-red-400 transition-colors opacity-0 group-hover:opacity-100">
@@ -728,16 +728,16 @@ function CalendarioRevisao({ topics, setTopics, storageKey }: {
       {topics.length === 0 && (
         <div className="text-center py-8 text-slate-700">
           <CalendarDays size={32} className="mx-auto mb-2 opacity-30" />
-          <p className="text-xs">Nenhum conteúdo cadastrado.</p>
+          <p className="text-xs">Nenhum conteÃºdo cadastrado.</p>
         </div>
       )}
     </div>
   )
 }
 
-/* ══════════════════════════════════════════════════════
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
    CARD ESTUDO DE HOJE
-   ══════════════════════════════════════════════════════ */
+   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 function EstudoHojeCard({ profile, onOpenSimulator, onOpenDailyStudy }: {
   profile: LocalProfile
   onOpenSimulator: () => void
@@ -752,7 +752,7 @@ function EstudoHojeCard({ profile, onOpenSimulator, onOpenDailyStudy }: {
     return acc
   }, { revisao: 0, reforco: 0, exploracao: 0 })
 
-  // Derivar os principais subtemas da sessão de hoje (máx 3, sem repetição)
+  // Derivar os principais subtemas da sessÃ£o de hoje (mÃ¡x 3, sem repetiÃ§Ã£o)
   const bank = getMergedQuestionBank()
   const topTemas: string[] = Array.from(
     new Set(
@@ -768,37 +768,37 @@ function EstudoHojeCard({ profile, onOpenSimulator, onOpenDailyStudy }: {
       <div className="flex items-start justify-between gap-4">
         <div>
           <p className="text-[10px] font-bold text-amber-400 uppercase tracking-wider mb-1">Plano adaptativo</p>
-          <h3 className="text-lg font-black text-white">🔥 Estudo de Hoje</h3>
+          <h3 className="text-lg font-black text-white">ðŸ”¥ Estudo de Hoje</h3>
           <p className="text-xs text-slate-400 mt-1">
-            {total} questões · cerca de {estimatedMinutes} min
+            {total} questÃµes Â· cerca de {estimatedMinutes} min
           </p>
         </div>
         <div className="text-right flex-shrink-0">
           <p className="text-2xl font-black text-white">{session.answeredCount}/{total}</p>
-          <p className="text-[10px] text-slate-500">{progress}% concluído</p>
+          <p className="text-[10px] text-slate-500">{progress}% concluÃ­do</p>
         </div>
       </div>
 
       <div className="grid grid-cols-3 gap-2 mt-4">
         <div className="rounded-xl bg-slate-900/50 border border-slate-700/50 px-3 py-2">
-          <p className="text-[10px] text-slate-500 font-bold uppercase">Revisão</p>
+          <p className="text-[10px] text-slate-500 font-bold uppercase">RevisÃ£o</p>
           <p className="text-lg font-black text-blue-300">{counts.revisao}</p>
         </div>
         <div className="rounded-xl bg-slate-900/50 border border-slate-700/50 px-3 py-2">
-          <p className="text-[10px] text-slate-500 font-bold uppercase">Reforço</p>
+          <p className="text-[10px] text-slate-500 font-bold uppercase">ReforÃ§o</p>
           <p className="text-lg font-black text-amber-300">{counts.reforco}</p>
         </div>
         <div className="rounded-xl bg-slate-900/50 border border-slate-700/50 px-3 py-2">
-          <p className="text-[10px] text-slate-500 font-bold uppercase">Exploração</p>
+          <p className="text-[10px] text-slate-500 font-bold uppercase">ExploraÃ§Ã£o</p>
           <p className="text-lg font-black text-teal-300">{counts.exploracao}</p>
         </div>
       </div>
 
-      {/* Você vai estudar hoje */}
+      {/* VocÃª vai estudar hoje */}
       {topTemas.length > 0 && !session.completed && (
         <div className="mt-3 pt-3 border-t border-amber-500/10">
           <p className="text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-1.5">
-            👉 Você vai estudar hoje:
+            ðŸ‘‰ VocÃª vai estudar hoje:
           </p>
           <div className="space-y-1">
             {topTemas.map(tema => (
@@ -814,8 +814,9 @@ function EstudoHojeCard({ profile, onOpenSimulator, onOpenDailyStudy }: {
       <div className="mt-4 flex gap-2">
         {session.completed ? (
           <>
-            <div className="flex-1 flex items-center justify-center gap-1.5 px-4 py-3 rounded-xl bg-green-500/10 border border-green-500/20 text-green-300 text-sm font-bold">
-              Sessão de hoje concluída ✓
+            <div className="flex-1 rounded-xl bg-green-500/10 border border-green-500/20 px-4 py-3 text-green-300">
+              <p className="text-sm font-bold">✓ SessÃ£o de hoje concluÃ­da</p>
+              <p className="text-xs text-green-200/80 mt-1">Volte amanhÃ£ â€” sua prÃ³xima sessÃ£o jÃ¡ estÃ¡ sendo preparada.</p>
             </div>
             <button onClick={onOpenSimulator}
               className="px-4 py-3 rounded-xl bg-slate-800 border border-slate-700 text-slate-300 text-sm font-bold hover:border-teal-500/40 transition-all">
@@ -825,7 +826,7 @@ function EstudoHojeCard({ profile, onOpenSimulator, onOpenDailyStudy }: {
         ) : (
           <button onClick={onOpenDailyStudy}
             className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-amber-500 text-white text-sm font-bold hover:bg-amber-600 transition-all active:scale-95">
-            {session.answeredCount > 0 ? 'Continuar estudo de hoje' : 'Começar estudo de hoje'} <ChevronRight size={15} />
+            {session.answeredCount > 0 ? 'Continuar estudo de hoje' : 'ComeÃ§ar estudo de hoje'} <ChevronRight size={15} />
           </button>
         )}
       </div>
@@ -833,9 +834,9 @@ function EstudoHojeCard({ profile, onOpenSimulator, onOpenDailyStudy }: {
   )
 }
 
-/* ══════════════════════════════════════════════════════
-   DEV: IMPORTAÇÃO DE CONTEÚDO (só em desenvolvimento)
-   ══════════════════════════════════════════════════════ */
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   DEV: IMPORTAÃ‡ÃƒO DE CONTEÃšDO (sÃ³ em desenvolvimento)
+   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 function DevStudyContentImport({ profile }: { profile: LocalProfile }) {
   const parsedExample = parseStudyContent(studyContentExample as StudyContentDocument, {
     startingQuestionId: 10000,
@@ -879,7 +880,7 @@ function DevStudyContentImport({ profile }: { profile: LocalProfile }) {
   }
 
   const importBovineReproductiveDiseasesModule = () => {
-    importStaticModule('doenças reprodutivas', bovineReproductiveDiseasesModule as StaticStudyModule)
+    importStaticModule('doenÃ§as reprodutivas', bovineReproductiveDiseasesModule as StaticStudyModule)
   }
 
   return (
@@ -889,7 +890,7 @@ function DevStudyContentImport({ profile }: { profile: LocalProfile }) {
           <p className="text-[10px] font-bold text-violet-300 uppercase tracking-wider">Dev/Teste de pipeline</p>
           <p className="text-sm font-bold text-white mt-0.5">Importar Anatomia do Reprodutor Masculino</p>
           <p className="text-xs text-slate-500 mt-1">
-            {parsedExample.questoes.length} questoes · {parsedExample.flashcards.length} flashcards · IDs {exampleQuestionIds.join(', ')}
+            {parsedExample.questoes.length} questoes Â· {parsedExample.flashcards.length} flashcards Â· IDs {exampleQuestionIds.join(', ')}
           </p>
         </div>
         <button onClick={importExample}
@@ -924,44 +925,44 @@ function DevStudyContentImport({ profile }: { profile: LocalProfile }) {
       )}
       <div className="mt-3 pt-3 border-t border-slate-700/50 flex items-center justify-between gap-3">
         <div>
-          <p className="text-xs font-bold text-slate-300">Módulo estático: ciclo estral</p>
-          <p className="text-[11px] text-slate-500">Importa 20 questões e 30 flashcards do JSON de aula.</p>
+          <p className="text-xs font-bold text-slate-300">MÃ³dulo estÃ¡tico: ciclo estral</p>
+          <p className="text-[11px] text-slate-500">Importa 20 questÃµes e 30 flashcards do JSON de aula.</p>
         </div>
         <button onClick={importEstralModule}
           className="px-3 py-2 rounded-xl bg-amber-600/80 text-white text-xs font-bold hover:bg-amber-600 transition active:scale-95">
-          Importar módulo ciclo estral
+          Importar mÃ³dulo ciclo estral
         </button>
       </div>
       <div className="mt-3 pt-3 border-t border-slate-700/50 flex items-center justify-between gap-3">
         <div>
-          <p className="text-xs font-bold text-slate-300">Módulo estático: doenças reprodutivas</p>
-          <p className="text-[11px] text-slate-500">Importa 15 questões e 25 flashcards do JSON de aula.</p>
+          <p className="text-xs font-bold text-slate-300">MÃ³dulo estÃ¡tico: doenÃ§as reprodutivas</p>
+          <p className="text-[11px] text-slate-500">Importa 15 questÃµes e 25 flashcards do JSON de aula.</p>
         </div>
         <button onClick={importBovineReproductiveDiseasesModule}
           className="px-3 py-2 rounded-xl bg-amber-600/80 text-white text-xs font-bold hover:bg-amber-600 transition active:scale-95">
-          Importar módulo doenças reprodutivas
+          Importar mÃ³dulo doenÃ§as reprodutivas
         </button>
       </div>
       {moduleImport && (
         <p className="text-[11px] text-green-300 mt-2">
-          Módulo {moduleImport.name} importado: {moduleImport.addedQuestions} questões novas, {moduleImport.skippedQuestions} questões duplicadas; {moduleImport.addedFlashcards} flashcards novos, {moduleImport.skippedFlashcards} flashcards duplicados.
+          MÃ³dulo {moduleImport.name} importado: {moduleImport.addedQuestions} questÃµes novas, {moduleImport.skippedQuestions} questÃµes duplicadas; {moduleImport.addedFlashcards} flashcards novos, {moduleImport.skippedFlashcards} flashcards duplicados.
         </p>
       )}
     </div>
   )
 }
 
-/* ══════════════════════════════════════════════════════
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
    HUB DASHBOARD
-   ══════════════════════════════════════════════════════ */
+   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 const DICAS = [
-  'Folículo dominante → estrogênio → cio. CL → progesterona → gestação.',
-  'PGF2α causa luteólise — D7 do Ovsynch. GnRH induz ovulação — D0 e D9.',
-  'Cérvix: vaca = anéis simples · porca = espiral · égua = roseta.',
-  'Ciclo estral: bovino ≈ 21d · suíno ≈ 21d · ovelha ≈ 17d.',
-  'Ovelha = dias curtos (outono). Égua = dias longos (primavera).',
-  'BEN pós-parto → ↓IGF-1 → anestro prolongado. ECC ideal: 3,0–3,5.',
-  'IATF = inseminação sem detecção de cio. 100% do lote no mesmo dia.',
+  'FolÃ­culo dominante â†’ estrogÃªnio â†’ cio. CL â†’ progesterona â†’ gestaÃ§Ã£o.',
+  'PGF2Î± causa luteÃ³lise â€” D7 do Ovsynch. GnRH induz ovulaÃ§Ã£o â€” D0 e D9.',
+  'CÃ©rvix: vaca = anÃ©is simples Â· porca = espiral Â· Ã©gua = roseta.',
+  'Ciclo estral: bovino â‰ˆ 21d Â· suÃ­no â‰ˆ 21d Â· ovelha â‰ˆ 17d.',
+  'Ovelha = dias curtos (outono). Ã‰gua = dias longos (primavera).',
+  'BEN pÃ³s-parto â†’ â†“IGF-1 â†’ anestro prolongado. ECC ideal: 3,0â€“3,5.',
+  'IATF = inseminaÃ§Ã£o sem detecÃ§Ã£o de cio. 100% do lote no mesmo dia.',
 ]
 const SHOW_STUDY_SEQUENCE = false
 
@@ -1020,16 +1021,16 @@ function DailyReviewCard({
     <div className="bg-gradient-to-br from-amber-500/10 to-slate-900/70 border border-amber-500/20 rounded-2xl p-4">
       <div className="flex items-start justify-between gap-3">
         <div>
-          <p className="text-xs font-bold text-amber-300 uppercase tracking-wider">📅 Revisão de Hoje</p>
+          <p className="text-xs font-bold text-amber-300 uppercase tracking-wider">ðŸ“… RevisÃ£o de Hoje</p>
           {allClear ? (
             <>
-              <p className="text-sm text-white font-semibold mt-1">Tudo em dia. Que tal resolver um caso clínico?</p>
-              <p className="text-xs text-slate-400 mt-1">Seus cards estão organizados por hoje, mas você ainda pode treinar raciocínio clínico.</p>
+              <p className="text-sm text-white font-semibold mt-1">Tudo em dia. Que tal resolver um caso clÃ­nico?</p>
+              <p className="text-xs text-slate-400 mt-1">Seus cards estÃ£o organizados por hoje, mas vocÃª ainda pode treinar raciocÃ­nio clÃ­nico.</p>
             </>
           ) : (
             <>
               <p className="text-sm text-white font-semibold mt-1">
-                Você tem {dueToday} {dueToday === 1 ? 'revisão' : 'revisões'} hoje
+                VocÃª tem {dueToday} {dueToday === 1 ? 'revisÃ£o' : 'revisÃµes'} hoje
               </p>
               <p className="text-xs text-slate-400 mt-1">
                 {pendingCases} {pendingCases === 1 ? 'caso para treinar' : 'casos para treinar'}
@@ -1038,7 +1039,7 @@ function DailyReviewCard({
           )}
         </div>
         <div className="text-right flex-shrink-0">
-          <p className="text-[10px] font-bold text-slate-500 uppercase tracking-wider">🔥 Sequência</p>
+          <p className="text-[10px] font-bold text-slate-500 uppercase tracking-wider">ðŸ”¥ SequÃªncia</p>
           <p className="text-lg font-black text-white mt-1">{streak} {streak === 1 ? 'dia' : 'dias'}</p>
           <p className="text-[11px] text-slate-400 mt-1 max-w-28">{streakMicrocopy(streak)}</p>
         </div>
@@ -1048,14 +1049,14 @@ function DailyReviewCard({
           onClick={onStartCase}
           className="mt-4 w-full px-3 py-2 rounded-xl bg-fuchsia-500/90 text-white text-sm font-bold hover:bg-fuchsia-400 transition active:scale-[0.99]"
         >
-          Resolver caso clínico
+          ComeÃ§ar raciocÃ­nio
         </button>
       ) : (
         <button
           onClick={onStartReview}
           className="mt-4 w-full px-3 py-2 rounded-xl bg-amber-500/90 text-slate-950 text-sm font-bold hover:bg-amber-400 transition active:scale-[0.99]"
         >
-          Começar revisão
+          Abrir flashcards
         </button>
       )}
     </div>
@@ -1094,7 +1095,7 @@ function ClinicalCasesSection({
     <div id="hub-clinical-cases">
       <div className="flex items-center gap-2 mb-3">
         <BookOpen size={14} className="text-fuchsia-400" />
-        <p className="text-xs font-bold text-slate-400 uppercase tracking-wider">🧠 Casos Clínicos</p>
+        <p className="text-xs font-bold text-slate-400 uppercase tracking-wider">ðŸ§  Casos ClÃ­nicos</p>
       </div>
       <div className="space-y-3">
         {CLINICAL_CASES.map(clinicalCase => {
@@ -1121,7 +1122,7 @@ function ClinicalCasesSection({
                     </span>
                     {caseCompleted && (
                       <span className="text-[11px] px-2 py-0.5 rounded-full bg-teal-500/15 border border-teal-500/25 text-teal-300">
-                        concluído
+                        concluÃ­do
                       </span>
                     )}
                   </div>
@@ -1141,16 +1142,16 @@ function ClinicalCasesSection({
                   className="mt-4 space-y-3"
                 >
                   <div className="rounded-xl border border-slate-800 bg-slate-950/40 p-3">
-                    <p className="text-[10px] font-bold text-slate-500 uppercase tracking-wider">1. Queixa + história</p>
+                    <p className="text-[10px] font-bold text-slate-500 uppercase tracking-wider">1. Queixa + histÃ³ria</p>
                     <p className="text-sm text-slate-200 mt-1">{clinicalCase.chiefComplaint}</p>
                     <p className="text-xs text-slate-400 mt-2 leading-relaxed">{clinicalCase.history}</p>
                   </div>
 
                   <div className="rounded-xl border border-slate-800 bg-slate-950/40 p-3">
-                    <p className="text-[10px] font-bold text-slate-500 uppercase tracking-wider">2. Exame físico</p>
+                    <p className="text-[10px] font-bold text-slate-500 uppercase tracking-wider">2. Exame fÃ­sico</p>
                     <ul className="mt-2 space-y-1.5">
                       {clinicalCase.physicalExam.map(item => (
-                        <li key={item} className="text-xs text-slate-300">• {item}</li>
+                        <li key={item} className="text-xs text-slate-300">â€¢ {item}</li>
                       ))}
                     </ul>
                   </div>
@@ -1159,13 +1160,13 @@ function ClinicalCasesSection({
                     <p className="text-[10px] font-bold text-slate-500 uppercase tracking-wider">3. Achados laboratoriais</p>
                     <ul className="mt-2 space-y-1.5">
                       {clinicalCase.labFindings.map(item => (
-                        <li key={item} className="text-xs text-slate-300">• {item}</li>
+                        <li key={item} className="text-xs text-slate-300">â€¢ {item}</li>
                       ))}
                     </ul>
                   </div>
 
                   <div className="rounded-xl border border-slate-800 bg-slate-950/40 p-3">
-                    <p className="text-[10px] font-bold text-slate-500 uppercase tracking-wider">4. Pergunta clínica</p>
+                    <p className="text-[10px] font-bold text-slate-500 uppercase tracking-wider">4. Pergunta clÃ­nica</p>
                     <p className="text-sm text-slate-200 mt-1">{clinicalCase.clinicalQuestion}</p>
                   </div>
 
@@ -1177,12 +1178,12 @@ function ClinicalCasesSection({
                       }}
                       className="min-h-[44px] w-full px-3 py-2 rounded-xl border border-teal-500/30 bg-teal-500/10 text-teal-300 text-xs font-bold hover:bg-teal-500/15 transition"
                     >
-                      Mostrar resolução
+                      Mostrar resoluÃ§Ã£o
                     </button>
                   ) : (
                     <div className="rounded-xl border border-teal-500/20 bg-teal-500/5 p-3 space-y-3">
                       <div>
-                        <p className="text-[10px] font-bold text-teal-300 uppercase tracking-wider">5. Diagnóstico</p>
+                        <p className="text-[10px] font-bold text-teal-300 uppercase tracking-wider">5. DiagnÃ³stico</p>
                         <p className="text-sm text-white mt-1">{clinicalCase.diagnosis}</p>
                       </div>
 
@@ -1190,13 +1191,13 @@ function ClinicalCasesSection({
                         <p className="text-[10px] font-bold text-teal-300 uppercase tracking-wider">Conduta</p>
                         <ul className="mt-2 space-y-1.5">
                           {ensureList(clinicalCase.conduct).map(item => (
-                            <li key={item} className="text-xs text-slate-200">• {item}</li>
+                            <li key={item} className="text-xs text-slate-200">â€¢ {item}</li>
                           ))}
                         </ul>
                       </div>
 
                       <div>
-                        <p className="text-[10px] font-bold text-teal-300 uppercase tracking-wider">Fármacos-chave</p>
+                        <p className="text-[10px] font-bold text-teal-300 uppercase tracking-wider">FÃ¡rmacos-chave</p>
                         <div className="flex flex-wrap gap-1.5 mt-2">
                           {clinicalCase.drugs.map(drug => (
                             <span
@@ -1225,11 +1226,11 @@ function ClinicalCasesSection({
                             : 'bg-slate-900 text-slate-600 border border-slate-800 cursor-not-allowed'
                         }`}
                       >
-                        Ver doença relacionada
+                        Ver doenÃ§a relacionada
                       </button>
                       {nextCase ? (
                         <div className="rounded-xl border border-fuchsia-500/20 bg-fuchsia-500/8 p-3">
-                          <p className="text-sm font-bold text-white">Quer tentar o próximo caso?</p>
+                          <p className="text-sm font-bold text-white">Quer tentar o prÃ³ximo caso?</p>
                           <p className="text-xs text-slate-400 mt-1">{nextCase.title}</p>
                           <button
                             type="button"
@@ -1239,13 +1240,13 @@ function ClinicalCasesSection({
                             }}
                             className="mt-3 min-h-[44px] w-full rounded-xl bg-fuchsia-500/90 px-3 py-2 text-xs font-bold text-white transition hover:bg-fuchsia-400"
                           >
-                            Abrir próximo caso
+                            Abrir prÃ³ximo caso
                           </button>
                         </div>
                       ) : (
                         <div className="rounded-xl border border-slate-700/70 bg-slate-900/50 p-3">
                           <p className="text-sm font-bold text-white">Bom trabalho.</p>
-                          <p className="text-xs text-slate-400 mt-1">Você concluiu os casos disponíveis por enquanto.</p>
+                          <p className="text-xs text-slate-400 mt-1">VocÃª concluiu os casos disponÃ­veis por enquanto.</p>
                         </div>
                       )}
                     </div>
@@ -1309,7 +1310,7 @@ function HubDashboard({ profile, topics, setTopics, stats, dailyHistory, topicsS
   return (
     <div className="p-5 space-y-5">
       <div>
-        <h2 className="text-xl font-bold text-white">Hub Acadêmico 🎓</h2>
+        <h2 className="text-xl font-bold text-white">InÃ­cio</h2>
         <p className="text-xs text-slate-500 mt-0.5">
           {new Date().toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit' })}
         </p>
@@ -1347,7 +1348,7 @@ function HubDashboard({ profile, topics, setTopics, stats, dailyHistory, topicsS
         <div>
           <div className="flex items-center gap-2 mb-2">
             <CalendarDays size={13} className="text-teal-400" />
-            <p className="text-xs font-bold text-slate-400 uppercase tracking-wider">Calendário</p>
+            <p className="text-xs font-bold text-slate-400 uppercase tracking-wider">CalendÃ¡rio</p>
           </div>
           <MiniCalendarioComHistorico topics={topics} storageKey={topicsStorageKey} dailyHistory={dailyHistory} />
         </div>
@@ -1355,7 +1356,7 @@ function HubDashboard({ profile, topics, setTopics, stats, dailyHistory, topicsS
           <div>
             <div className="flex items-center gap-2 mb-2">
               <Target size={13} className="text-teal-400" />
-              <p className="text-xs font-bold text-slate-400 uppercase tracking-wider">Sequência A1</p>
+              <p className="text-xs font-bold text-slate-400 uppercase tracking-wider">SequÃªncia A1</p>
             </div>
             <SequenciaEstudos storageKey={seqStorageKey} />
           </div>
@@ -1365,7 +1366,7 @@ function HubDashboard({ profile, topics, setTopics, stats, dailyHistory, topicsS
       <div>
         <div className="flex items-center gap-2 mb-3">
           <RotateCcw size={13} className="text-amber-400" />
-          <p className="text-xs font-bold text-slate-400 uppercase tracking-wider">Revisão Espaçada 1-7-30-90</p>
+          <p className="text-xs font-bold text-slate-400 uppercase tracking-wider">RevisÃ£o EspaÃ§ada 1-7-30-90</p>
         </div>
         <CalendarioRevisao topics={topics} setTopics={setTopics} storageKey={topicsStorageKey} />
       </div>
@@ -1375,13 +1376,13 @@ function HubDashboard({ profile, topics, setTopics, stats, dailyHistory, topicsS
   )
 }
 
-/* ══════════════════════════════════════════════════════
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
    TABS DO HUB
-   ══════════════════════════════════════════════════════ */
+   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 type HubTab = 'home' | 'simulador'
 
 const TABS: { id: HubTab; label: string; icon: React.ElementType }[] = [
-  { id: 'home',      label: 'Home',       icon: LayoutDashboard },
+  { id: 'home',      label: 'InÃ­cio',    icon: LayoutDashboard },
   { id: 'simulador', label: 'Simulador',  icon: ClipboardCheck  },
 ]
 
@@ -1404,7 +1405,7 @@ function HubContent({
   const [stats,  setStats]  = useState<QuizStats>(() => readJSON<QuizStats>(statsKey, { total: 0, correct: 0, hours: 0 }))
   const [dailyHistory, setDailyHistory] = useState<DailyStudyTrace[]>(() => readJSON<DailyStudyTrace[]>(histKey, []))
 
-  // Abrir simulador em modo diário (via EstudoHojeCard)
+  // Abrir simulador em modo diÃ¡rio (via EstudoHojeCard)
   const [pendingDailyLaunch, setPendingDailyLaunch] = useState(false)
 
   useEffect(() => {
@@ -1477,9 +1478,9 @@ function HubContent({
   )
 }
 
-/* ══════════════════════════════════════════════════════
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
    EXPORT PRINCIPAL
-   ══════════════════════════════════════════════════════ */
+   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 export default function HubPage({
   onOpenCases,
   onOpenReview,
@@ -1506,14 +1507,14 @@ export default function HubPage({
 
   if (!profile) {
     return (
-      <Gatekeeper pageTitle="Hub Acadêmico — RBC">
+      <Gatekeeper pageTitle="InÃ­cio â€” RBC">
         <ProfileSelector onSelect={handleProfileSelected} />
       </Gatekeeper>
     )
   }
 
   return (
-    <Gatekeeper pageTitle="Hub Acadêmico — RBC">
+    <Gatekeeper pageTitle="InÃ­cio â€” RBC">
       <div className="flex flex-col h-full">
         <HubContent
           key={profile.id}
@@ -1525,3 +1526,4 @@ export default function HubPage({
     </Gatekeeper>
   )
 }
+

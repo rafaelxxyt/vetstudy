@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+﻿import { useEffect, useMemo, useState } from 'react'
 import { motion } from 'framer-motion'
 import { ArrowLeft, BookOpen, CheckCircle2, Filter, Stethoscope } from 'lucide-react'
 import Gatekeeper from '../components/Gatekeeper'
@@ -148,9 +148,9 @@ function ensureList(value: string[] | string) {
 }
 
 function statusLabel(status: 'nao_iniciado' | 'in_progress' | 'completed') {
-  if (status === 'completed') return 'concluído'
+  if (status === 'completed') return 'concluÃ­do'
   if (status === 'in_progress') return 'em andamento'
-  return 'não iniciado'
+  return 'nÃ£o iniciado'
 }
 
 function statusBadgeClass(status: 'nao_iniciado' | 'in_progress' | 'completed') {
@@ -160,9 +160,9 @@ function statusBadgeClass(status: 'nao_iniciado' | 'in_progress' | 'completed') 
 }
 
 function difficultyLabel(value: ClinicalCase['difficulty']) {
-  if (value === 'facil') return 'fácil'
-  if (value === 'dificil') return 'difícil'
-  return 'média'
+  if (value === 'facil') return 'Iniciante'
+  if (value === 'dificil') return 'AvanÃ§ado'
+  return 'IntermediÃ¡rio'
 }
 
 function getCaseStatus(clinicalCase: ClinicalCase, progress: CaseProgressState | null, reviewedCases: string[]) {
@@ -175,7 +175,7 @@ function getCaseStatus(clinicalCase: ClinicalCase, progress: CaseProgressState |
 function getCaseActionLabel(status: 'nao_iniciado' | 'in_progress' | 'completed') {
   if (status === 'completed') return 'Revisar caso'
   if (status === 'in_progress') return 'Continuar caso'
-  return 'Iniciar caso'
+  return 'ComeÃ§ar raciocÃ­nio'
 }
 
 function scorePercent(score: number, total: number) {
@@ -328,13 +328,13 @@ function CasosContent({
             <span className="font-bold text-slate-100">Queixa:</span> {clinicalCase.chiefComplaint}
           </div>
           <div>
-            <span className="font-bold text-slate-100">História:</span> {clinicalCase.history}
+            <span className="font-bold text-slate-100">HistÃ³ria:</span> {clinicalCase.history}
           </div>
           <div>
-            <span className="font-bold text-slate-100">Exame:</span> {clinicalCase.physicalExam.slice(0, 3).join(' · ')}
+            <span className="font-bold text-slate-100">Exame:</span> {clinicalCase.physicalExam.slice(0, 3).join(' Â· ')}
           </div>
           <div>
-            <span className="font-bold text-slate-100">Labs:</span> {clinicalCase.labFindings.slice(0, 3).join(' · ')}
+            <span className="font-bold text-slate-100">Labs:</span> {clinicalCase.labFindings.slice(0, 3).join(' Â· ')}
           </div>
         </div>
 
@@ -349,10 +349,10 @@ function CasosContent({
         {showFullContext && (
           <div className="grid grid-cols-1 gap-3 text-xs">
             <div className="rounded-xl border border-slate-800 bg-slate-900/70 p-3">
-              <p className="font-bold text-slate-100">Exame físico completo</p>
+              <p className="font-bold text-slate-100">Exame fÃ­sico completo</p>
               <ul className="mt-2 space-y-1 text-slate-300">
                 {clinicalCase.physicalExam.map(item => (
-                  <li key={item}>• {item}</li>
+                  <li key={item}>â€¢ {item}</li>
                 ))}
               </ul>
             </div>
@@ -360,7 +360,7 @@ function CasosContent({
               <p className="font-bold text-slate-100">Achados laboratoriais completos</p>
               <ul className="mt-2 space-y-1 text-slate-300">
                 {clinicalCase.labFindings.map(item => (
-                  <li key={item}>• {item}</li>
+                  <li key={item}>â€¢ {item}</li>
                 ))}
               </ul>
             </div>
@@ -374,6 +374,10 @@ function CasosContent({
     const progress = getProgressForCase(clinicalCase)
     const status = getCaseStatus(clinicalCase, progress, reviewedCases)
     const actionLabel = getCaseActionLabel(status)
+    const stepCount = clinicalCase.steps?.length ?? 0
+    const scoreSummary = status === 'completed'
+      ? (typeof progress?.score === 'number' && stepCount > 0 ? `✓ ${progress.score}/${stepCount} etapas corretas` : 'concluído')
+      : null
 
     return (
       <div key={clinicalCase.id} className="rounded-2xl border border-slate-800 bg-slate-900/55 p-4">
@@ -397,6 +401,9 @@ function CasosContent({
                 {statusLabel(status)}
               </span>
             </div>
+            {scoreSummary && (
+              <p className="text-[11px] text-teal-300 mt-2 font-semibold">{scoreSummary}</p>
+            )}
           </div>
 
           <div className="grid grid-cols-1 gap-2 w-full sm:w-auto sm:min-w-[160px]">
@@ -445,13 +452,13 @@ function CasosContent({
           <div className="rounded-2xl border border-teal-500/20 bg-teal-500/5 p-4">
             <div className="flex items-center gap-2">
               <CheckCircle2 size={18} className="text-teal-300" />
-              <p className="text-lg font-bold text-white">Caso concluído</p>
+              <p className="text-lg font-bold text-white">Caso concluÃ­do</p>
             </div>
-            <p className="text-sm text-slate-300 mt-2">Você acertou {score} de {totalSteps} etapas.</p>
+            <p className="text-sm text-slate-300 mt-2">VocÃª acertou {score} de {totalSteps} etapas.</p>
             <div className="mt-3 h-2 rounded-full bg-slate-800 overflow-hidden">
               <div className="h-full rounded-full bg-teal-400 transition-all" style={{ width: `${percent}%` }} />
             </div>
-            <p className="text-xs text-slate-400 mt-3">Diagnóstico: <span className="text-white font-semibold">{clinicalCase.diagnosis}</span></p>
+            <p className="text-xs text-slate-400 mt-3">DiagnÃ³stico: <span className="text-white font-semibold">{clinicalCase.diagnosis}</span></p>
           </div>
 
           <div className="space-y-3">
@@ -499,7 +506,7 @@ function CasosContent({
                   : 'border border-slate-800 bg-slate-900 text-slate-600 cursor-not-allowed'
               }`}
             >
-              Ver doença relacionada
+              Ver doenÃ§a relacionada
             </button>
 
             {nextCaseId && (
@@ -508,7 +515,7 @@ function CasosContent({
                 onClick={() => setSelectedCaseId(nextCaseId)}
                 className="min-h-[44px] w-full rounded-xl bg-fuchsia-500/90 px-3 py-2 text-sm font-bold text-white transition hover:bg-fuchsia-400"
               >
-                Próximo caso
+                PrÃ³ximo caso
               </button>
             )}
           </div>
@@ -522,7 +529,7 @@ function CasosContent({
       <div className="space-y-4">
         <div className="rounded-xl border border-slate-800 bg-slate-950/40 p-3">
           <p className="text-[11px] font-bold text-fuchsia-300 uppercase tracking-wider">
-            Caso {String(clinicalCase.number).padStart(2, '0')} · Etapa {currentStepIndex + 1} de {clinicalCase.steps.length}
+            Caso {String(clinicalCase.number).padStart(2, '0')} Â· Etapa {currentStepIndex + 1} de {clinicalCase.steps.length}
           </p>
         </div>
 
@@ -620,7 +627,7 @@ function CasosContent({
                 }}
                 className="min-h-[44px] w-full rounded-xl bg-slate-800 px-3 py-2 text-sm font-bold text-white transition hover:border-teal-500/40 border border-slate-700"
               >
-                {currentStepIndex >= clinicalCase.steps.length - 1 ? 'Ver resultado do caso' : 'Próxima etapa'}
+                {currentStepIndex >= clinicalCase.steps.length - 1 ? 'Ver resultado do caso' : 'PrÃ³xima etapa'}
               </button>
             </div>
           )}
@@ -638,16 +645,16 @@ function CasosContent({
     return (
       <div className="space-y-3">
         <div className="rounded-xl border border-slate-800 bg-slate-950/40 p-3">
-          <p className="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Queixa + história</p>
+          <p className="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Queixa + histÃ³ria</p>
           <p className="text-sm text-slate-200 mt-1">{clinicalCase.chiefComplaint}</p>
           <p className="text-xs text-slate-400 mt-2 leading-relaxed">{clinicalCase.history}</p>
         </div>
 
         <div className="rounded-xl border border-slate-800 bg-slate-950/40 p-3">
-          <p className="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Exame físico</p>
+          <p className="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Exame fÃ­sico</p>
           <ul className="mt-2 space-y-1.5">
             {clinicalCase.physicalExam.map(item => (
-              <li key={item} className="text-xs text-slate-300">• {item}</li>
+              <li key={item} className="text-xs text-slate-300">â€¢ {item}</li>
             ))}
           </ul>
         </div>
@@ -656,21 +663,21 @@ function CasosContent({
           <p className="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Achados laboratoriais</p>
           <ul className="mt-2 space-y-1.5">
             {clinicalCase.labFindings.map(item => (
-              <li key={item} className="text-xs text-slate-300">• {item}</li>
+              <li key={item} className="text-xs text-slate-300">â€¢ {item}</li>
             ))}
           </ul>
         </div>
 
         <div className="rounded-xl border border-slate-800 bg-slate-950/40 p-3">
-          <p className="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Pergunta clínica</p>
+          <p className="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Pergunta clÃ­nica</p>
           <p className="text-sm text-slate-200 mt-1">{clinicalCase.clinicalQuestion}</p>
         </div>
 
         {!showResolution ? (
           <div className="rounded-xl border border-slate-800 bg-slate-950/40 p-3 space-y-3">
             <div>
-              <p className="text-sm font-bold text-white">Você já tem um diagnóstico em mente?</p>
-              <p className="text-xs text-slate-400 mt-1">Marque sua percepção antes de ver a resolução.</p>
+              <p className="text-sm font-bold text-white">VocÃª jÃ¡ tem um diagnÃ³stico em mente?</p>
+              <p className="text-xs text-slate-400 mt-1">Marque sua percepÃ§Ã£o antes de ver a resoluÃ§Ã£o.</p>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
@@ -718,7 +725,7 @@ function CasosContent({
                 }}
                 className="min-h-[44px] w-full rounded-xl border border-teal-500/30 bg-teal-500/10 px-3 py-2 text-sm font-bold text-teal-300 transition hover:bg-teal-500/15"
               >
-                Mostrar resolução
+                Mostrar resoluÃ§Ã£o
               </button>
             )}
           </div>
@@ -730,12 +737,12 @@ function CasosContent({
                 : 'border border-teal-500/25 bg-teal-500/10 text-teal-100'
             }`}>
               {selfEvaluation === 'errei'
-                ? 'Boa - esse é o momento que mais gera aprendizado.'
-                : 'Perfeito. Confirme seu raciocínio abaixo.'}
+                ? 'Boa - esse Ã© o momento que mais gera aprendizado.'
+                : 'Perfeito. Confirme seu raciocÃ­nio abaixo.'}
             </div>
 
             <div>
-              <p className="text-[10px] font-bold text-teal-300 uppercase tracking-wider">Diagnóstico</p>
+              <p className="text-[10px] font-bold text-teal-300 uppercase tracking-wider">DiagnÃ³stico</p>
               <p className="text-sm text-white mt-1">{clinicalCase.diagnosis}</p>
             </div>
 
@@ -743,13 +750,13 @@ function CasosContent({
               <p className="text-[10px] font-bold text-teal-300 uppercase tracking-wider">Conduta</p>
               <ul className="mt-2 space-y-1.5">
                 {ensureList(clinicalCase.conduct).map(item => (
-                  <li key={item} className="text-xs text-slate-200">• {item}</li>
+                  <li key={item} className="text-xs text-slate-200">â€¢ {item}</li>
                 ))}
               </ul>
             </div>
 
             <div>
-              <p className="text-[10px] font-bold text-teal-300 uppercase tracking-wider">Fármacos-chave</p>
+              <p className="text-[10px] font-bold text-teal-300 uppercase tracking-wider">FÃ¡rmacos-chave</p>
               <div className="flex flex-wrap gap-1.5 mt-2">
                 {clinicalCase.drugs.map(drug => (
                   <span key={drug} className="px-2 py-1 rounded-full bg-slate-800/80 border border-slate-700 text-[11px] text-slate-200">
@@ -785,7 +792,7 @@ function CasosContent({
                     : 'border border-slate-800 bg-slate-900 text-slate-600 cursor-not-allowed'
                 }`}
               >
-                Ver doença relacionada
+                Ver doenÃ§a relacionada
               </button>
 
               {nextCaseId && (
@@ -794,7 +801,7 @@ function CasosContent({
                   onClick={() => setSelectedCaseId(nextCaseId)}
                   className="min-h-[44px] w-full rounded-xl bg-fuchsia-500/90 px-3 py-2 text-sm font-bold text-white transition hover:bg-fuchsia-400"
                 >
-                  {nextCaseLabel ? 'Próximo caso' : 'Voltar aos casos'}
+                  {nextCaseLabel ? 'PrÃ³ximo caso' : 'Voltar aos casos'}
                 </button>
               )}
             </div>
@@ -860,9 +867,9 @@ function CasosContent({
       <div>
         <div className="flex items-center gap-2 mb-1">
           <BookOpen size={22} className="text-fuchsia-400" />
-          <h1 className="text-2xl font-bold text-white">Casos Clínicos</h1>
+          <h1 className="text-2xl font-bold text-white">Casos</h1>
         </div>
-        <p className="text-sm text-slate-400">Treino guiado de raciocínio clínico, um paciente por vez.</p>
+        <p className="text-sm text-slate-400">Treino guiado de raciocÃ­nio clÃ­nico, um paciente por vez.</p>
       </div>
 
       <div className="rounded-2xl border border-slate-800 bg-slate-900/55 p-3">
@@ -873,10 +880,10 @@ function CasosContent({
         <div className="flex flex-wrap gap-2">
           {[
             { id: 'todas', label: 'Todas' },
-            { id: 'cao', label: 'Cão' },
+            { id: 'cao', label: 'CÃ£o' },
             { id: 'bovino', label: 'Bovino' },
-            { id: 'nao_iniciados', label: 'Não iniciados' },
-            { id: 'concluidos', label: 'Concluídos' },
+            { id: 'nao_iniciados', label: 'NÃ£o iniciados' },
+            { id: 'concluidos', label: 'ConcluÃ­dos' },
           ].map(filter => (
             <button
               key={filter.id}
@@ -901,7 +908,7 @@ function CasosContent({
       {filteredCases.length === 0 && (
         <div className="rounded-2xl border border-slate-800 bg-slate-900/55 p-5 text-center">
           <p className="text-sm font-bold text-white">Nenhum caso encontrado</p>
-          <p className="text-xs text-slate-400 mt-1">Ajuste o filtro para ver outros casos disponíveis.</p>
+          <p className="text-xs text-slate-400 mt-1">Ajuste o filtro para ver outros casos disponÃ­veis.</p>
         </div>
       )}
     </div>
@@ -929,14 +936,14 @@ export default function CasosPage({
 
   if (!profile) {
     return (
-      <Gatekeeper pageTitle="Casos Clínicos - RBC">
+      <Gatekeeper pageTitle="Casos - RBC">
         <ProfileSelector onSelect={handleProfileSelected} />
       </Gatekeeper>
     )
   }
 
   return (
-    <Gatekeeper pageTitle="Casos Clínicos - RBC">
+    <Gatekeeper pageTitle="Casos - RBC">
       <CasosContent
         key={profile.id}
         profile={profile}
@@ -946,3 +953,4 @@ export default function CasosPage({
     </Gatekeeper>
   )
 }
+

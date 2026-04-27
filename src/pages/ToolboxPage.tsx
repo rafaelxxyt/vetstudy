@@ -1,4 +1,4 @@
-import { useState } from 'react'
+﻿import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Wrench, Calculator, Droplets, FlaskConical, AlertCircle, Search } from 'lucide-react'
 import db from '../data/central_db.json'
@@ -13,18 +13,18 @@ type LabTab = 'hematology' | 'biochemistry'
 const TOOLS = [
   { id: 'dose'   as Tool, label: 'Calculadora de Dose',   icon: Calculator,  color: 'text-teal-400',   activeClass: 'bg-teal-500/10 border-teal-500/25' },
   { id: 'fluido' as Tool, label: 'Fluidoterapia IV',      icon: Droplets,    color: 'text-blue-400',   activeClass: 'bg-blue-500/10 border-blue-500/25' },
-  { id: 'lab'    as Tool, label: 'Valores de Referência', icon: FlaskConical,color: 'text-purple-400', activeClass: 'bg-purple-500/10 border-purple-500/25' },
+  { id: 'lab'    as Tool, label: 'Valores de ReferÃªncia', icon: FlaskConical,color: 'text-purple-400', activeClass: 'bg-purple-500/10 border-purple-500/25' },
 ]
 
 const EQUINE_LAB = {
-  label: 'Equino', emoji: '🐎',
+  label: 'Equino', emoji: 'ðŸŽ',
   hematology: [
-    { param: 'Eritrócitos', unit: 'x10⁶/µL', min: 6.5,  max: 12.5 },
+    { param: 'EritrÃ³citos', unit: 'x10â¶/ÂµL', min: 6.5,  max: 12.5 },
     { param: 'Hemoglobina', unit: 'g/dL',     min: 11.0, max: 19.0 },
-    { param: 'Hematócrito', unit: '%',        min: 32.0, max: 53.0 },
-    { param: 'Leucócitos',  unit: 'x10³/µL',  min: 5.4,  max: 14.3 },
-    { param: 'Neutrófilos', unit: '%',        min: 35,   max: 75   },
-    { param: 'Plaquetas',   unit: 'x10³/µL',  min: 100,  max: 350  },
+    { param: 'HematÃ³crito', unit: '%',        min: 32.0, max: 53.0 },
+    { param: 'LeucÃ³citos',  unit: 'x10Â³/ÂµL',  min: 5.4,  max: 14.3 },
+    { param: 'NeutrÃ³filos', unit: '%',        min: 35,   max: 75   },
+    { param: 'Plaquetas',   unit: 'x10Â³/ÂµL',  min: 100,  max: 350  },
   ],
   biochemistry: [
     { param: 'ALT (TGP)',     unit: 'U/L',   min: 3,   max: 23  },
@@ -33,8 +33,8 @@ const EQUINE_LAB = {
     { param: 'Creatinina',    unit: 'mg/dL', min: 0.8, max: 2.0 },
     { param: 'Ureia',         unit: 'mg/dL', min: 10,  max: 24  },
     { param: 'Glicose',       unit: 'mg/dL', min: 60,  max: 100 },
-    { param: 'Proteínas Tot.',unit: 'g/dL',  min: 5.2, max: 7.9 },
-    { param: 'Fibrinogênio',  unit: 'mg/dL', min: 100, max: 400 },
+    { param: 'ProteÃ­nas Tot.',unit: 'g/dL',  min: 5.2, max: 7.9 },
+    { param: 'FibrinogÃªnio',  unit: 'mg/dL', min: 100, max: 400 },
   ],
 }
 
@@ -45,18 +45,18 @@ const ALL_SPECIES: Record<string, { label: string; emoji: string; hematology: { 
   equine: EQUINE_LAB,
 }
 
-/* ── Aviso Legal reutilizável ── */
+/* â”€â”€ Aviso Legal reutilizÃ¡vel â”€â”€ */
 const AvisoLegal = () => (
   <div className="flex items-start gap-2.5 bg-amber-500/10 border border-amber-500/25 rounded-2xl px-4 py-3 backdrop-blur-sm">
     <AlertCircle size={14} className="text-amber-400 flex-shrink-0 mt-0.5" />
     <p className="text-xs text-amber-300/80 leading-relaxed">
-      <span className="font-bold text-amber-400">⚠️ Uso orientativo e acadêmico.</span>{' '}
-      Imprescindível consulta à bula oficial e avaliação clínica individualizada antes de qualquer prescrição.
+      <span className="font-bold text-amber-400">âš ï¸ Uso orientativo e acadÃªmico.</span>{' '}
+      ImprescindÃ­vel consulta Ã  bula oficial e avaliaÃ§Ã£o clÃ­nica individualizada antes de qualquer prescriÃ§Ã£o.
     </p>
   </div>
 )
 
-/* ── Calculadora de Dose ── */
+/* â”€â”€ Calculadora de Dose â”€â”€ */
 function DoseCalc() {
   const [weight, setWeight] = useState('')
   const [dose,   setDose]   = useState('')
@@ -98,7 +98,7 @@ function DoseCalc() {
 
         <div>
           <label className="text-xs text-slate-400 font-semibold block mb-1.5">
-            Concentração do Produto <span className="text-slate-600 font-normal">(opcional)</span>
+            ConcentraÃ§Ã£o do Produto <span className="text-slate-600 font-normal">(opcional)</span>
           </label>
           <div className="flex items-center gap-2">
             <input type="number" min="0" placeholder="ex: 500" value={conc}
@@ -136,7 +136,7 @@ function DoseCalc() {
                 </div>
               ) : (
                 <div className="flex items-center">
-                  <p className="text-xs text-slate-600">Informe a concentração para calcular o volume</p>
+                  <p className="text-xs text-slate-600">Informe a concentraÃ§Ã£o para calcular o volume</p>
                 </div>
               )}
             </div>
@@ -147,7 +147,7 @@ function DoseCalc() {
   )
 }
 
-/* ── Fluidoterapia ── */
+/* â”€â”€ Fluidoterapia â”€â”€ */
 function FluidCalc() {
   const [species,  setSpecies]  = useState<'cao' | 'gato' | 'bovino' | 'equino'>('cao')
   const [weight,   setWeight]   = useState('')
@@ -164,7 +164,7 @@ function FluidCalc() {
     setResult({ deficit, manut, total: deficit + manut, rate: (deficit + manut) / h })
   }
 
-  const OPTS = [{ id: 'cao', label: 'Cão', emoji: '🐕' }, { id: 'gato', label: 'Gato', emoji: '🐈' }, { id: 'bovino', label: 'Bovino', emoji: '🐄' }, { id: 'equino', label: 'Equino', emoji: '🐎' }] as const
+  const OPTS = [{ id: 'cao', label: 'CÃ£o', emoji: 'ðŸ•' }, { id: 'gato', label: 'Gato', emoji: 'ðŸˆ' }, { id: 'bovino', label: 'Bovino', emoji: 'ðŸ„' }, { id: 'equino', label: 'Equino', emoji: 'ðŸŽ' }] as const
 
   return (
     <div className="max-w-lg mx-auto space-y-4">
@@ -172,7 +172,7 @@ function FluidCalc() {
 
       <div className="bg-slate-800/60 backdrop-blur-md rounded-2xl border border-slate-700/60 p-5 space-y-4">
         <div>
-          <p className="text-xs text-slate-400 font-semibold mb-2">Espécie</p>
+          <p className="text-xs text-slate-400 font-semibold mb-2">EspÃ©cie</p>
           <div className="flex gap-2 flex-wrap">
             {OPTS.map(s => (
               <button key={s.id} onClick={() => { setSpecies(s.id); setResult(null) }}
@@ -188,7 +188,7 @@ function FluidCalc() {
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
           {[
             { label: 'Peso', value: weight, set: setWeight, unit: 'kg', ph: '15' },
-            { label: 'Desidratação', value: dehydPct, set: setDehydPct, unit: '%', ph: '5' },
+            { label: 'DesidrataÃ§Ã£o', value: dehydPct, set: setDehydPct, unit: '%', ph: '5' },
             { label: 'Janela (h)', value: hours, set: setHours, unit: 'h', ph: '24' },
           ].map(f => (
             <div key={f.label}>
@@ -206,7 +206,7 @@ function FluidCalc() {
 
         <div className="bg-slate-900/40 rounded-xl p-3 flex gap-2 border border-slate-700/40">
           <AlertCircle size={13} className="text-slate-500 flex-shrink-0 mt-0.5" />
-          <p className="text-xs text-slate-500">Manutenção: {MANUT[species]} mL/kg/dia. Adicionar perdas contínuas (vômito, diarreia, lactação).</p>
+          <p className="text-xs text-slate-500">ManutenÃ§Ã£o: {MANUT[species]} mL/kg/dia. Adicionar perdas contÃ­nuas (vÃ´mito, diarreia, lactaÃ§Ã£o).</p>
         </div>
 
         <motion.button whileTap={{ scale: 0.97 }} onClick={calc}
@@ -222,10 +222,10 @@ function FluidCalc() {
             <p className="text-[10px] text-blue-400 font-bold uppercase tracking-widest mb-3">Plano de Fluidos</p>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               {[
-                { label: 'Déficit Hídrico', value: result.deficit.toFixed(0), unit: 'mL',   color: 'text-white' },
-                { label: 'Manutenção',      value: result.manut.toFixed(0),   unit: 'mL',   color: 'text-white' },
+                { label: 'DÃ©ficit HÃ­drico', value: result.deficit.toFixed(0), unit: 'mL',   color: 'text-white' },
+                { label: 'ManutenÃ§Ã£o',      value: result.manut.toFixed(0),   unit: 'mL',   color: 'text-white' },
                 { label: 'Volume Total',    value: result.total.toFixed(0),   unit: 'mL',   color: 'text-blue-200 font-black' },
-                { label: 'Taxa de Infusão', value: result.rate.toFixed(1),    unit: 'mL/h', color: 'text-blue-300 font-black' },
+                { label: 'Taxa de InfusÃ£o', value: result.rate.toFixed(1),    unit: 'mL/h', color: 'text-blue-300 font-black' },
               ].map(r => (
                 <div key={r.label} className="bg-slate-800/80 rounded-xl p-3 border border-slate-700/60">
                   <p className="text-[10px] text-slate-500 mb-1">{r.label}</p>
@@ -240,7 +240,7 @@ function FluidCalc() {
   )
 }
 
-/* ── Valores de Referência ── */
+/* â”€â”€ Valores de ReferÃªncia â”€â”€ */
 function LabRef() {
   const [species, setSpecies] = useState<LabSpecies>('dog')
   const [tab,     setTab]     = useState<LabTab>('hematology')
@@ -267,7 +267,7 @@ function LabRef() {
             className={`px-4 py-1.5 rounded-lg text-xs font-bold transition-all ${
               tab === t ? 'bg-purple-500/20 text-purple-300' : 'text-slate-500 hover:text-slate-300'
             }`}>
-            {t === 'hematology' ? '🩸 Hematologia' : '⚗️ Bioquímica'}
+            {t === 'hematology' ? 'ðŸ©¸ Hematologia' : 'âš—ï¸ BioquÃ­mica'}
           </button>
         ))}
       </div>
@@ -279,7 +279,7 @@ function LabRef() {
           className="overflow-x-auto">
           <div className="min-w-[36rem] bg-slate-800/80 backdrop-blur-md rounded-2xl border border-slate-700/80 overflow-hidden">
             <div className="grid grid-cols-4 px-5 py-2.5 bg-slate-700/50 text-[10px] font-black text-slate-500 uppercase tracking-wider border-b border-slate-700/60">
-              <span>Parâmetro</span><span className="text-center">Mín.</span><span className="text-center">Máx.</span><span className="text-center">Unidade</span>
+              <span>ParÃ¢metro</span><span className="text-center">MÃ­n.</span><span className="text-center">MÃ¡x.</span><span className="text-center">Unidade</span>
             </div>
             {data[tab].map((row, i) => (
               <div key={row.param} className={`grid grid-cols-4 px-5 py-3 text-sm ${i % 2 === 0 ? 'bg-slate-800' : 'bg-slate-800/40'} hover:bg-teal-500/5`}>
@@ -294,13 +294,13 @@ function LabRef() {
       </AnimatePresence>
 
       <p className="text-xs text-slate-600 text-center">
-        Fonte: Jain (2018) · Stockham & Scott (2019) · Thrall et al. (2022)
+        Fonte: Jain (2018) Â· Stockham & Scott (2019) Â· Thrall et al. (2022)
       </p>
     </div>
   )
 }
 
-/* ── Página principal ── */
+/* â”€â”€ PÃ¡gina principal â”€â”€ */
 export default function FerramentasPage({
   onNavigate,
 }: {
@@ -314,16 +314,16 @@ export default function FerramentasPage({
       <div className="mb-6">
         <div className="flex items-center gap-2 mb-1">
           <Wrench size={22} className="text-teal-400" />
-          <h1 className="text-2xl font-bold text-white">Central Clínica</h1>
+          <h1 className="text-2xl font-bold text-white">Consulta RÃ¡pida</h1>
         </div>
-        <p className="text-slate-400 text-sm">Busca rápida, calculadoras e referências para consulta prática</p>
+        <p className="text-slate-400 text-sm">Pesquise por doenÃ§a, fÃ¡rmaco, dose, sintoma ou protocolo.</p>
       </div>
 
       {profileId && (
         <div className="mb-8">
           <div className="flex items-center gap-2 mb-3">
             <Search size={14} className="text-teal-400" />
-            <p className="text-xs font-bold text-slate-400 uppercase tracking-wider">Busca Clínica</p>
+            <p className="text-xs font-bold text-slate-400 uppercase tracking-wider">Busca ClÃ­nica</p>
           </div>
           <GlobalClinicalSearch profileId={profileId} onNavigate={onNavigate} />
         </div>
@@ -355,3 +355,4 @@ export default function FerramentasPage({
     </div>
   )
 }
+

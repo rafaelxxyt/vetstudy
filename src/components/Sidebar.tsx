@@ -1,4 +1,4 @@
-import { useState } from 'react'
+﻿import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import {
   FlaskConical, BookOpen, Wrench, Brain,
@@ -6,7 +6,7 @@ import {
 } from 'lucide-react'
 import { isHubUnlocked } from './Gatekeeper'
 
-/* ─── Types ──────────────────────────────────────────── */
+/* â”€â”€â”€ Types â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 export type Page =
   | 'hub'
   | 'revisao'
@@ -20,14 +20,14 @@ export type Page =
 interface NavItem { id: Page; label: string; icon: React.ElementType }
 
 const ESTUDO: NavItem[] = [
-  { id: 'revisao',      label: 'Revisão',              icon: GraduationCap },
-  { id: 'casos',        label: 'Casos Clínicos',       icon: Brain         },
-  { id: 'mapas',        label: 'Mapas Mentais',        icon: BookOpen      },
+  { id: 'revisao',      label: 'Flashcards',           icon: GraduationCap },
+  { id: 'casos',        label: 'Casos',                icon: Brain         },
+  { id: 'mapas',        label: 'Resumos',              icon: BookOpen      },
 ]
 
 const CLINICA: NavItem[] = [
-  { id: 'doencas',      label: 'Doenças e Patologias', icon: BookOpen     },
-  { id: 'ferramentas',  label: 'Central Clínica',      icon: Wrench       },
+  { id: 'doencas',      label: 'DoenÃ§as e Patologias', icon: BookOpen     },
+  { id: 'ferramentas',  label: 'Consulta RÃ¡pida',      icon: Wrench       },
   { id: 'medicamentos', label: 'Medicamentos',         icon: FlaskConical },
   { id: 'vetnews',      label: 'VetNews',              icon: Newspaper    },
 ]
@@ -39,7 +39,7 @@ interface SidebarProps {
   onMobileClose: () => void
 }
 
-/* ─── Desktop collapse/expand button ────────────────── */
+/* â”€â”€â”€ Desktop collapse/expand button â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 function CollapseBtn({
   collapsed, onToggle,
 }: { collapsed: boolean; onToggle: () => void }) {
@@ -82,7 +82,7 @@ function CollapseBtn({
   )
 }
 
-/* ─── Shared section header ──────────────────────────── */
+/* â”€â”€â”€ Shared section header â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 function SectionLabel({ label, icon: Icon }: { label: string; icon?: React.ElementType }) {
   return (
     <div className="flex items-center gap-1.5 px-3 mb-1.5">
@@ -94,21 +94,21 @@ function SectionLabel({ label, icon: Icon }: { label: string; icon?: React.Eleme
   )
 }
 
-/* ─── Nav button ─────────────────────────────────────── */
+/* â”€â”€â”€ Nav button â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 function NavBtn({
   item, active, collapsed, drawerMode, onClick,
 }: {
   item:       NavItem
   active:     boolean
   collapsed:  boolean   // desktop collapsed icon-only mode
-  drawerMode: boolean   // mobile drawer — larger touch targets
+  drawerMode: boolean   // mobile drawer â€” larger touch targets
   onClick:    () => void
 }) {
   const Icon = item.icon
 
   // Vertical padding:
-  //   drawerMode  → py-3   = 24px padding → ~44-48px total (meets Apple HIG)
-  //   desktop     → py-2.5 = 20px padding → ~40px total (fine on desktop)
+  //   drawerMode  â†’ py-3   = 24px padding â†’ ~44-48px total (meets Apple HIG)
+  //   desktop     â†’ py-2.5 = 20px padding â†’ ~40px total (fine on desktop)
   const vertPad = drawerMode ? 'py-3' : 'py-2.5'
 
   return (
@@ -133,7 +133,7 @@ function NavBtn({
   )
 }
 
-/* ─── Hub button (has subtitle line) ────────────────── */
+/* â”€â”€â”€ Hub button (has subtitle line) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 function HubBtn({
   active, collapsed, drawerMode, hubUnlocked, onClick,
 }: {
@@ -144,12 +144,12 @@ function HubBtn({
   onClick:      () => void
 }) {
   const showLabel = drawerMode || !collapsed
-  const vertPad   = drawerMode ? 'py-3' : 'py-3'   // always py-3 — Hub is the primary CTA
+  const vertPad   = drawerMode ? 'py-3' : 'py-3'   // always py-3 â€” Hub is the primary CTA
 
   return (
     <button
       onClick={onClick}
-      title={!drawerMode && collapsed ? 'Hub Acadêmico' : undefined}
+      title={!drawerMode && collapsed ? 'InÃ­cio' : undefined}
       className={`w-full flex items-center gap-3 rounded-xl transition-all duration-150 ${
         !drawerMode && collapsed ? 'justify-center p-2.5' : `px-3 ${vertPad}`
       } ${
@@ -162,11 +162,11 @@ function HubBtn({
 
       {showLabel && (
         <div className="flex-1 text-left min-w-0">
-          <p className="text-sm font-semibold leading-tight">Hub Acadêmico</p>
+          <p className="text-sm font-semibold leading-tight">InÃ­cio</p>
           <p className="text-[10px] font-medium mt-0.5 leading-none">
             {hubUnlocked
-              ? <span className="text-teal-500">Início · Revisão · Simulador · Mapas</span>
-              : <span className="text-slate-600">Painel · Revisão · Simulador</span>
+              ? <span className="text-teal-500">InÃ­cio Â· Flashcards Â· Simulador Â· Resumos</span>
+              : <span className="text-slate-600">InÃ­cio Â· Flashcards Â· Simulador</span>
             }
           </p>
         </div>
@@ -174,18 +174,18 @@ function HubBtn({
 
       {showLabel && (
         hubUnlocked
-          ? <span className="text-teal-500 text-xs flex-shrink-0">✓</span>
-          : <span className="text-[11px] bg-slate-800/80 text-slate-500 px-1.5 py-0.5 rounded-md border border-slate-700 flex-shrink-0">🔒</span>
+          ? <span className="text-teal-500 text-xs flex-shrink-0">âœ“</span>
+          : <span className="text-[11px] bg-slate-800/80 text-slate-500 px-1.5 py-0.5 rounded-md border border-slate-700 flex-shrink-0">ðŸ”’</span>
       )}
     </button>
   )
 }
 
-/* ─── Shared nav structure ───────────────────────────────
+/* â”€â”€â”€ Shared nav structure â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
    Called as a plain function (not rendered as <NavContent />)
    to avoid React treating it as a new component type on each
    render of Sidebar, which would cause unnecessary remounts.
-──────────────────────────────────────────────────────── */
+â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 function renderNav({
   isDrawer,
   collapsed,
@@ -207,7 +207,7 @@ function renderNav({
 
   return (
     <>
-      {/* ── Drawer / sidebar header ─────────────────────── */}
+      {/* â”€â”€ Drawer / sidebar header â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
       <div className={`flex items-center border-b border-slate-800 h-16 flex-shrink-0 ${
         !isDrawer && collapsed ? 'justify-center px-2' : 'px-3 gap-3'
       }`}>
@@ -231,7 +231,7 @@ function renderNav({
           <CollapseBtn collapsed={collapsed} onToggle={onToggleCollapse} />
         )}
 
-        {/* Mobile drawer: close button — 44×44 tap target */}
+        {/* Mobile drawer: close button â€” 44Ã—44 tap target */}
         {isDrawer && (
           <button
             onClick={onMobileClose}
@@ -245,12 +245,12 @@ function renderNav({
         )}
       </div>
 
-      {/* ── Nav links ───────────────────────────────────── */}
+      {/* â”€â”€ Nav links â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
       <nav className="flex-1 px-2 py-3 space-y-4 overflow-y-auto">
 
-        {/* Hub Acadêmico */}
+        {/* Hub AcadÃªmico */}
         <section>
-          {showLabels && <SectionLabel label="Hub Acadêmico" icon={Shield} />}
+          {showLabels && <SectionLabel label="InÃ­cio" icon={Shield} />}
           <HubBtn
             active={activePage === 'hub'}
             collapsed={!isDrawer && collapsed}
@@ -274,9 +274,9 @@ function renderNav({
 
         <div className={`border-t border-slate-800 ${!isDrawer && collapsed ? 'mx-2' : 'mx-1'}`} />
 
-        {/* Central Clínica */}
+        {/* Central ClÃ­nica */}
         <section>
-          {showLabels && <SectionLabel label="Central Clínica" />}
+          {showLabels && <SectionLabel label="Consulta RÃ¡pida" />}
           <div className="space-y-0.5">
             {CLINICA.map(item => (
               <NavBtn
@@ -292,14 +292,14 @@ function renderNav({
         </section>
       </nav>
 
-      {/* ── Footer ──────────────────────────────────────── */}
+      {/* â”€â”€ Footer â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
       <div className="px-3 py-3 border-t border-slate-800 flex-shrink-0">
         {!isDrawer && collapsed
           ? <p className="text-[11px] font-black text-teal-400 text-center">R</p>
           : (
             <p className="text-[10px] text-slate-600 text-center">
               Criado por <span className="font-bold text-teal-400">RBC</span>
-              <span className="mx-1.5">·</span>
+              <span className="mx-1.5">Â·</span>
               <span className="text-slate-700">v5.2</span>
             </p>
           )
@@ -309,7 +309,7 @@ function renderNav({
   )
 }
 
-/* ─── Sidebar root ───────────────────────────────────── */
+/* â”€â”€â”€ Sidebar root â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 export default function Sidebar({
   activePage, onNavigate, mobileOpen, onMobileClose,
 }: SidebarProps) {
@@ -326,11 +326,11 @@ export default function Sidebar({
 
   return (
     <>
-      {/* ════════════════════════════════════════════════
+      {/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
           DESKTOP SIDEBAR  (md+)
           Static flex column, animated width on collapse.
           Completely unchanged from original behavior.
-      ════════════════════════════════════════════════ */}
+      â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */}
       <motion.aside
         animate={{ width: collapsed ? 64 : 256 }}
         transition={{ duration: 0.28, ease: [0.4, 0, 0.2, 1] }}
@@ -342,39 +342,39 @@ export default function Sidebar({
         {renderNav({ ...sharedProps, isDrawer: false, collapsed })}
       </motion.aside>
 
-      {/* ════════════════════════════════════════════════
+      {/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
           MOBILE DRAWER  (< md only)
 
-          ┌─ Positioning ──────────────────────────────┐
-          │  fixed inset-y-0 left-0  full-height, left │
-          │  z-50  above backdrop (z-40) & topbar (z-30)│
-          │  w-72  288 px — leaves ~30% visible on 375px│
-          └────────────────────────────────────────────┘
+          â”Œâ”€ Positioning â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
+          â”‚  fixed inset-y-0 left-0  full-height, left â”‚
+          â”‚  z-50  above backdrop (z-40) & topbar (z-30)â”‚
+          â”‚  w-72  288 px â€” leaves ~30% visible on 375pxâ”‚
+          â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
 
-          ┌─ Animation ────────────────────────────────┐
-          │  transition-transform duration-300          │
-          │  ease-in-out                                │
-          │  translate-x-0      → visible (open)        │
-          │  -translate-x-full  → off-screen (closed)   │
-          └────────────────────────────────────────────┘
+          â”Œâ”€ Animation â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
+          â”‚  transition-transform duration-300          â”‚
+          â”‚  ease-in-out                                â”‚
+          â”‚  translate-x-0      â†’ visible (open)        â”‚
+          â”‚  -translate-x-full  â†’ off-screen (closed)   â”‚
+          â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
 
-          ┌─ Why CSS transition, not framer-motion ────┐
-          │  Framer's layout animations conflict with   │
-          │  the desktop motion.aside width animation   │
-          │  when both are mounted. Pure CSS transition  │
-          │  on the mobile element avoids that conflict. │
-          └────────────────────────────────────────────┘
-      ════════════════════════════════════════════════ */}
+          â”Œâ”€ Why CSS transition, not framer-motion â”€â”€â”€â”€â”
+          â”‚  Framer's layout animations conflict with   â”‚
+          â”‚  the desktop motion.aside width animation   â”‚
+          â”‚  when both are mounted. Pure CSS transition  â”‚
+          â”‚  on the mobile element avoids that conflict. â”‚
+          â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+      â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */}
       <aside
         role="dialog"
         aria-modal="true"
-        aria-label="Menu de navegação"
+        aria-label="Menu de navegaÃ§Ã£o"
         className={[
           'md:hidden',
           'fixed inset-y-0 left-0 z-50',
           'w-72 flex flex-col',
           'bg-slate-900 border-r border-slate-800',
-          // Smooth slide — 280 ms matches backdrop fade
+          // Smooth slide â€” 280 ms matches backdrop fade
           'transition-transform duration-[280ms] ease-in-out',
           // Will-change hints to GPU for jank-free compositing
           'will-change-transform',
@@ -388,3 +388,4 @@ export default function Sidebar({
     </>
   )
 }
+
