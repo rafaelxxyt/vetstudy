@@ -2,41 +2,41 @@
   {
     "id": "caso-01",
     "number": 1,
-    "title": "Caso 01 - Cadela com PU/PD e secre?o vulvar",
-    "species": "C?o",
+    "title": "Caso 01 - Cadela com PU/PD e secreção vulvar",
+    "species": "Cão",
     "speciesEmoji": "🐶",
-    "category": "Reproduc?o",
+    "category": "Reprodução",
     "difficulty": "media",
     "estimatedTime": "2-4 min",
     "relatedDiseaseName": "Piometra Canina",
     "steps": [
       {
-        "id": "suspeita-cl?nica",
+        "id": "suspeita-clinica",
         "type": "single_choice",
-        "title": "Etapa 1 - Suspeita cl?nica",
-        "question": "Cadela inteira, em diestro, com PU/PD, apatia e secre?o vulvar purulenta. Qual ? a principal suspeita cl?nica?",
+        "title": "Etapa 1 - Suspeita clínica",
+        "question": "Cadela inteira, em diestro, com PU/PD, apatia e secreção vulvar purulenta. Qual é a principal suspeita clínica?",
         "options": [
           "Piometra",
-          "Endometrite pos-cio",
+          "Endometrite pós-cio",
           "Cistite bacteriana complicada",
-          "Mucopios em cervix aberta"
+          "Mucometra em cérvix aberta"
         ],
         "correctIndex": 0,
-        "explanation": "Cadela inteira no diestro com secre?o purulenta, toxemia e aumento uterino sugere fortemente piometra."
+        "explanation": "Cadela inteira no diestro com secreção purulenta, toxemia e aumento uterino sugere fortemente piometra."
       },
       {
-        "id": "achado-diagn?stico",
+        "id": "achado-diagnostico",
         "type": "single_choice",
-        "title": "Etapa 2 - Exame/achado diagn?stico",
-        "question": "Qual achado reforca mais o diagn?stico e ajuda na definic?o inicial do caso?",
+        "title": "Etapa 2 - Exame/achado diagnóstico",
+        "question": "Qual achado reforça mais o diagnóstico e ajuda na definição inicial do caso?",
         "options": [
           "Ultrassonografia com cornos uterinos distendidos",
           "Hemograma com neutrofilia e desvio",
           "Radiografia abdominal com massa tubular",
-          "Citologia vaginal compativel com diestro"
+          "Citologia vaginal compatível com diestro"
         ],
         "correctIndex": 0,
-        "explanation": "A ultrassonografia mostrando utero distendido com conteudo e um achado classico e muito util para confirmar a suspeita."
+        "explanation": "A ultrassonografia mostrando útero distendido com conteúdo é um achado clássico e muito útil para confirmar a suspeita."
       },
       {
         "id": "conduta-inicial",
@@ -44,58 +44,58 @@
         "title": "Etapa 3 - Conduta inicial",
         "question": "Qual conduta deve ser priorizada nas primeiras horas desse atendimento?",
         "options": [
-          "Fluidoterapia, antibiotico e preparo cirurgico",
-          "Antibiotico, monitorizac?o e reavaliac?o em horas",
+          "Fluidoterapia, antibiótico e preparo cirúrgico",
+          "Antibiótico, monitorização e reavaliação em horas",
           "Terapia hormonal e suporte intensivo",
-          "Analgesia, exames e observac?o hospitalar"
+          "Analgesia, exames e observação hospitalar"
         ],
         "correctIndex": 0,
-        "explanation": "Piometra e um quadro potencialmente toxemico. A prioridade e estabilizar e encaminhar para tratamento definitivo, em geral cirurgico."
+        "explanation": "Piometra é um quadro potencialmente toxêmico. A prioridade é estabilizar e encaminhar para tratamento definitivo, em geral cirúrgico."
       },
       {
         "id": "erro-critico",
         "type": "single_choice",
-        "title": "Etapa 4 - Erro critico",
+        "title": "Etapa 4 - Erro crítico",
         "question": "Qual seria um erro grave nesse caso?",
         "options": [
-          "Adiar estabilizac?o e cirurgia definitiva",
-          "Tentar manejo clinico sem estabilizac?o previa",
-          "Iniciar antibiotico sem definir plano definitivo",
-          "Postergar cirurgia ap?s melhora parcial"
+          "Adiar estabilização e cirurgia definitiva",
+          "Tentar manejo clínico sem estabilização prévia",
+          "Iniciar antibiótico sem definir plano definitivo",
+          "Postergar cirurgia após melhora parcial"
         ],
         "correctIndex": 0,
-        "explanation": "Atrasar a estabilizac?o e o tratamento definitivo aumenta o risco de sepse, choque e ruptura uterina."
+        "explanation": "Atrasar a estabilização e o tratamento definitivo aumenta o risco de sepse, choque e ruptura uterina."
       }
     ],
-    "chiefComplaint": "Cadela apatica com secre?o vulvar e aumento abdominal.",
-    "history": "Femea inteira, 8 anos, cerca de 6 semanas ap?s o cio. Tutor relata poliuria, polidipsia e queda progressiva do apetite ha 3 dias.",
+    "chiefComplaint": "Cadela apática com secreção vulvar e aumento abdominal.",
+    "history": "Fêmea inteira, 8 anos, cerca de 6 semanas após o cio. Tutor relata poliúria, polidipsia e queda progressiva do apetite há 3 dias.",
     "physicalExam": [
-      "Temperatura de 39,7 C",
+      "Temperatura de 39,7 °C",
       "Mucosas discretamente congestas",
-      "Desidratac?o moderada",
-      "Dor a palpac?o abdominal caudal",
-      "Secrec?o vaginal purulenta"
+      "Desidratação moderada",
+      "Dor à palpação abdominal caudal",
+      "Secreção vaginal purulenta"
     ],
     "labFindings": [
-      "Leucocitose neutrofilica com desvio a esquerda",
-      "Azotemia pre-renal leve",
-      "Ultrassonografia com cornos uterinos distendidos por conteudo ecogenico"
+      "Leucocitose neutrofílica com desvio à esquerda",
+      "Azotemia pré-renal leve",
+      "Ultrassonografia com cornos uterinos distendidos por conteúdo ecogênico"
     ],
-    "cl?nicalQuestion": "Qual o diagn?stico mais provavel e qual deve ser a conduta inicial mais segura?",
+    "clinicalQuestion": "Qual o diagnóstico mais provável e qual deve ser a conduta inicial mais segura?",
     "diagnosis": "Piometra aberta",
     "conduct": [
       "Estabilizar com fluidoterapia e analgesia",
       "Iniciar antibioticoterapia de amplo espectro",
-      "Programar ovariossalpingo-histerectomia ap?s estabilizac?o"
+      "Programar ovariossalpingo-histerectomia após estabilização"
     ],
     "drugs": ["Amoxicilina", "Enrofloxacina", "Meloxicam"],
-    "reasoning": "Cadela inteira no diestro, com secre?o purulenta, toxemia e utero aumentado na USG, sugere piometra. O tratamento definitivo costuma ser cirurgico ap?s estabilizac?o."
+    "reasoning": "Cadela inteira no diestro, com secreção purulenta, toxemia e útero aumentado na USG, sugere piometra. O tratamento definitivo costuma ser cirúrgico após estabilização."
   },
   {
     "id": "caso-02",
     "number": 2,
-    "title": "Caso 02 - Filhote com vomito e diarreia hemorr?gica",
-    "species": "C?o",
+    "title": "Caso 02 - Filhote com vômito e diarreia hemorrágica",
+    "species": "Cão",
     "speciesEmoji": "🐶",
     "category": "Infectologia",
     "difficulty": "media",
@@ -103,24 +103,24 @@
     "relatedDiseaseName": "Parvovirose Canina",
     "steps": [
       {
-        "id": "suspeita-cl?nica",
+        "id": "suspeita-clinica",
         "type": "single_choice",
-        "title": "Etapa 1 - Suspeita cl?nica",
-        "question": "Filhote n?o imunizado com vomito, diarreia hemorr?gica e apatia intensa. Qual ? a principal suspeita?",
+        "title": "Etapa 1 - Suspeita clínica",
+        "question": "Filhote não imunizado com vômito, diarreia hemorrágica e apatia intensa. Qual é a principal suspeita?",
         "options": [
           "Parvovirose canina",
-          "Coronavirus enterico canino",
-          "Gastroenterite hemorr?gica aguda",
-          "Giardiase grave"
+          "Coronavírus entérico canino",
+          "Gastroenterite hemorrágica aguda",
+          "Giardíase grave"
         ],
         "correctIndex": 0,
-        "explanation": "Enterite hemorr?gica aguda em filhote com vacinac?o incompleta e altamente sugestiva de parvovirose."
+        "explanation": "Enterite hemorrágica aguda em filhote com vacinação incompleta é altamente sugestiva de parvovirose."
       },
       {
-        "id": "achado-diagn?stico",
+        "id": "achado-diagnostico",
         "type": "single_choice",
-        "title": "Etapa 2 - Exame/achado diagn?stico",
-        "question": "Qual achado sustenta melhor o diagn?stico inicial desse caso?",
+        "title": "Etapa 2 - Exame/achado diagnóstico",
+        "question": "Qual achado sustenta melhor o diagnóstico inicial desse caso?",
         "options": [
           "Teste fecal positivo com leucopenia importante",
           "Teste fecal positivo com linfopenia marcada",
@@ -128,66 +128,66 @@
           "Espessamento intestinal com enterite difusa"
         ],
         "correctIndex": 0,
-        "explanation": "A combinac?o de teste fecal positivo e leucopenia marcante e muito compativel com parvovirose."
+        "explanation": "A combinação de teste fecal positivo e leucopenia marcante é muito compatível com parvovirose."
       },
       {
         "id": "conduta-inicial",
         "type": "single_choice",
         "title": "Etapa 3 - Conduta inicial",
-        "question": "Qual deve ser a prioridade terapeutica nas primeiras horas?",
+        "question": "Qual deve ser a prioridade terapêutica nas primeiras horas?",
         "options": [
-          "Fluidoterapia, antiemetico e suporte intensivo",
+          "Fluidoterapia, antiemético e suporte intensivo",
           "Fluidoterapia, analgesia e jejum monitorado",
-          "Antibiotico oral e alta com retorno curto",
-          "Internac?o breve e dieta enteral precoce"
+          "Antibiótico oral e alta com retorno curto",
+          "Internação breve e dieta enteral precoce"
         ],
         "correctIndex": 0,
-        "explanation": "O maior risco imediato e choque hipovolemico com sepse secundaria, entao suporte intensivo precoce e essencial."
+        "explanation": "O maior risco imediato é choque hipovolêmico com sepse secundária, então suporte intensivo precoce é essencial."
       },
       {
         "id": "erro-critico",
         "type": "single_choice",
-        "title": "Etapa 4 - Erro critico",
-        "question": "Qual ?rro piora mais o prognostico desse paciente?",
+        "title": "Etapa 4 - Erro crítico",
+        "question": "Qual erro piora mais o prognóstico desse paciente?",
         "options": [
-          "Retardar internac?o e reposic?o volêmica",
-          "Manter via oral apesar dos vomitos",
-          "Adiar cobertura para translocac?o bacteriana",
+          "Retardar internação e reposição volêmica",
+          "Manter via oral apesar dos vômitos",
+          "Adiar cobertura para translocação bacteriana",
           "Subestimar a necessidade de isolamento"
         ],
         "correctIndex": 0,
-        "explanation": "Atrasar reposic?o volêmica e suporte intensivo em parvovirose aumenta muito o risco de choque e complicacoes."
+        "explanation": "Atrasar reposição volêmica e suporte intensivo em parvovirose aumenta muito o risco de choque e complicações."
       }
     ],
-    "chiefComplaint": "Filhote com vomitos e diarreia intensa com sangue.",
-    "history": "Filhote de 4 meses, vacinac?o incompleta, com inicio agudo de apatia, anorexia e vomitos nas ultimas 24 horas.",
+    "chiefComplaint": "Filhote com vômitos e diarreia intensa com sangue.",
+    "history": "Filhote de 4 meses, vacinação incompleta, com início agudo de apatia, anorexia e vômitos nas últimas 24 horas.",
     "physicalExam": [
-      "Depressao intensa",
-      "Desidratac?o importante",
+      "Depressão intensa",
+      "Desidratação importante",
       "Dor abdominal difusa",
-      "Fezes hemorr?gicas com odor forte",
-      "Temperatura variavel entre febre e hipotermia"
+      "Fezes hemorrágicas com odor forte",
+      "Temperatura variável entre febre e hipotermia"
     ],
     "labFindings": [
       "Leucopenia marcante",
       "Hipoglicemia leve",
-      "Teste antigenico fecal positivo para parvovirus"
+      "Teste antigênico fecal positivo para parvovírus"
     ],
-    "cl?nicalQuestion": "Qual o diagn?stico mais provavel e qual deve ser a prioridade terapeutica nas primeiras horas?",
+    "clinicalQuestion": "Qual o diagnóstico mais provável e qual deve ser a prioridade terapêutica nas primeiras horas?",
     "diagnosis": "Parvovirose canina aguda",
     "conduct": [
-      "Correc?o agressiva da desidratac?o e dos disturbios eletroliticos",
-      "Antiemeticos e analgesia",
-      "Antibioticoterapia de cobertura para translocac?o bacteriana e suporte nutricional precoce"
+      "Correção agressiva da desidratação e dos distúrbios eletrolíticos",
+      "Antieméticos e analgesia",
+      "Antibioticoterapia de cobertura para translocação bacteriana e suporte nutricional precoce"
     ],
     "drugs": ["Maropitant", "Metronidazol", "Amoxicilina"],
-    "reasoning": "Filhote n?o imunizado com enterite hemorr?gica, leucopenia e teste positivo fecha um quadro tipico de parvovirose. O risco maior inicial e choque hipovolemico e sepse secundaria."
+    "reasoning": "Filhote não imunizado com enterite hemorrágica, leucopenia e teste positivo fecha um quadro típico de parvovirose. O risco maior inicial é choque hipovolêmico e sepse secundária."
   },
   {
     "id": "caso-03",
     "number": 3,
-    "title": "Caso 03 - C?o com febre, icter?cia e olig?ria",
-    "species": "C?o",
+    "title": "Caso 03 - Cão com febre, icterícia e oligúria",
+    "species": "Cão",
     "speciesEmoji": "🐶",
     "category": "Infectologia",
     "difficulty": "dificil",
@@ -195,10 +195,10 @@
     "relatedDiseaseName": "Leptospirose",
     "steps": [
       {
-        "id": "suspeita-cl?nica",
+        "id": "suspeita-clinica",
         "type": "single_choice",
-        "title": "Etapa 1 - Suspeita cl?nica",
-        "question": "C?o com febre, icter?cia, olig?ria e hist?rico de contato com ?gua contaminada. Qual sua principal suspeita?",
+        "title": "Etapa 1 - Suspeita clínica",
+        "question": "Cão com febre, icterícia, oligúria e histórico de contato com água contaminada. Qual sua principal suspeita?",
         "options": [
           "Erliquiose",
           "Leptospirose",
@@ -206,21 +206,21 @@
           "Colangio-hepatite bacteriana"
         ],
         "correctIndex": 1,
-        "explanation": "Febre, icter?cia, lesao renal e exposic?o a ?gua contaminada formam um quadro altamente sugestivo de leptospirose."
+        "explanation": "Febre, icterícia, lesão renal e exposição à água contaminada formam um quadro altamente sugestivo de leptospirose."
       },
       {
-        "id": "exame-diagn?stico",
+        "id": "exame-diagnostico",
         "type": "single_choice",
-        "title": "Etapa 2 - Exame diagn?stico",
-        "question": "Qual ?xame confirmat?rio voce solicita primeiro?",
+        "title": "Etapa 2 - Exame diagnóstico",
+        "question": "Qual exame confirmatório você solicita primeiro?",
         "options": [
           "Hemograma com perfil renal completo",
           "Teste MAT",
           "PCR para leptospira na urina",
-          "Urinalise com sedimento completo"
+          "Urinálise com sedimento completo"
         ],
         "correctIndex": 1,
-        "explanation": "O MAT e o exame confirmat?rio classico para leptospirose. Hemograma e bioquimica ajudam no suporte, mas n?o confirmam o agente."
+        "explanation": "O MAT é o exame confirmatório clássico para leptospirose. Hemograma e bioquímica ajudam no suporte, mas não confirmam o agente."
       },
       {
         "id": "conduta-inicial",
@@ -228,145 +228,145 @@
         "title": "Etapa 3 - Conduta inicial",
         "question": "Qual conduta deve ser priorizada nas primeiras horas?",
         "options": [
-          "Isolamento, suporte e antibiotico empirico",
-          "Fluidoterapia, coleta e ?guardar confirmac?o",
-          "Internac?o com suporte sem isolamento",
-          "Antibiotico oral e monitorizac?o ambulatorial"
+          "Isolamento, suporte e antibiótico empírico",
+          "Fluidoterapia, coleta e aguardar confirmação",
+          "Internação com suporte sem isolamento",
+          "Antibiótico oral e monitorização ambulatorial"
         ],
         "correctIndex": 0,
-        "explanation": "A prioridade e proteger a equipe, estabilizar o paciente e iniciar tratamento empirico sem esperar a confirmac?o sorologica."
+        "explanation": "A prioridade é proteger a equipe, estabilizar o paciente e iniciar tratamento empírico sem esperar a confirmação sorológica."
       },
       {
         "id": "erro-critico",
         "type": "single_choice",
-        "title": "Etapa 4 - Erro critico",
+        "title": "Etapa 4 - Erro crítico",
         "question": "O que seria um erro grave nesse caso?",
         "options": [
-          "Manipular urina sem protec?o",
-          "Atrasar isolamento ate a confirmac?o",
-          "Descartar biosseguranca na coleta de sangue",
+          "Manipular urina sem proteção",
+          "Atrasar isolamento até a confirmação",
+          "Descartar biossegurança na coleta de sangue",
           "Liberar o paciente sem orientar o tutor"
         ],
         "correctIndex": 0,
-        "explanation": "A urina pode eliminar leptospiras, entao manipular sem protec?o expoe a equipe a risco zoonotico importante."
+        "explanation": "A urina pode eliminar leptospiras, então manipular sem proteção expõe a equipe a risco zoonótico importante."
       }
     ],
-    "chiefComplaint": "C?o febril com vomitos, icter?cia e reduc?o do volume urinario.",
-    "history": "Animal com acesso a area alagada e possivel contato com ?gua contaminada. Evoluiu em 48 horas com apatia, vomitos e anorexia.",
+    "chiefComplaint": "Cão febril com vômitos, icterícia e redução do volume urinário.",
+    "history": "Animal com acesso a área alagada e possível contato com água contaminada. Evoluiu em 48 horas com apatia, vômitos e anorexia.",
     "physicalExam": [
-      "Febre de 40,1 C",
-      "Mucosas ictericas",
-      "Desidratac?o",
+      "Febre de 40,1 °C",
+      "Mucosas ictéricas",
+      "Desidratação",
       "Dor abdominal cranial",
-      "Halito uremico discreto"
+      "Hálito urêmico discreto"
     ],
     "labFindings": [
       "Azotemia importante",
       "Aumento de ALT e bilirrubinas",
       "Trombocitopenia moderada",
-      "Urinalise com proteinuria"
+      "Urinálise com proteinúria"
     ],
-    "cl?nicalQuestion": "Qual sindrome infecciosa deve ser priorizada e qual conduta protege o paciente e a equipe?",
+    "clinicalQuestion": "Qual síndrome infecciosa deve ser priorizada e qual conduta protege o paciente e a equipe?",
     "diagnosis": "Leptospirose com comprometimento renal e hepatobiliar",
     "conduct": [
-      "Isolamento e biosseguranca imediatos",
-      "Fluidoterapia com monitorizac?o renal",
-      "Iniciar antibioticoterapia e suporte antiemetico"
+      "Isolamento e biossegurança imediatos",
+      "Fluidoterapia com monitorização renal",
+      "Iniciar antibioticoterapia e suporte antiemético"
     ],
-    "drugs": ["Penicilina G Procaina", "Doxiciclina", "Maropitant"],
-    "reasoning": "Ictericia associada a azotemia, febre e exposic?o ambiental e altamente sugestiva de leptospirose. Alem do tratamento, a protec?o da equipe e parte da conduta."
+    "drugs": ["Penicilina G Procaína", "Doxiciclina", "Maropitant"],
+    "reasoning": "Icterícia associada à azotemia, febre e exposição ambiental é altamente sugestiva de leptospirose. Além do tratamento, a proteção da equipe é parte da conduta."
   },
   {
     "id": "caso-04",
     "number": 4,
-    "title": "Caso 04 - Vaca com queda brusca de produc?o e leite alterado",
+    "title": "Caso 04 - Vaca com queda brusca de produção e leite alterado",
     "species": "Bovino",
     "speciesEmoji": "🐄",
-    "category": "Cl?nica de Ruminantes",
+    "category": "Clínica de Ruminantes",
     "difficulty": "facil",
     "estimatedTime": "2-3 min",
     "relatedDiseaseName": "Mastite Bovina",
     "steps": [
       {
-        "id": "suspeita-cl?nica",
+        "id": "suspeita-clinica",
         "type": "single_choice",
-        "title": "Etapa 1 - Suspeita cl?nica",
-        "question": "Vaca em lactac?o com queda brusca de produc?o, quarto quente e leite com grumos. Qual ? a principal suspeita?",
+        "title": "Etapa 1 - Suspeita clínica",
+        "question": "Vaca em lactação com queda brusca de produção, quarto quente e leite com grumos. Qual é a principal suspeita?",
         "options": [
-          "Mastite cl?nica bovina",
-          "Congestao mamaria puerperal",
-          "Edema mamario pos-parto",
-          "Trauma de teto com infecc?o secundaria"
+          "Mastite clínica bovina",
+          "Congestão mamária puerperal",
+          "Edema mamário pós-parto",
+          "Trauma de teto com infecção secundária"
         ],
         "correctIndex": 0,
-        "explanation": "Alterac?o do leite associada a inflamac?o do quarto mamario caracteriza mastite cl?nica."
+        "explanation": "Alteração do leite associada à inflamação do quarto mamário caracteriza mastite clínica."
       },
       {
-        "id": "achado-diagn?stico",
+        "id": "achado-diagnostico",
         "type": "single_choice",
-        "title": "Etapa 2 - Exame/achado diagn?stico",
+        "title": "Etapa 2 - Exame/achado diagnóstico",
         "question": "Qual achado apoia melhor a suspeita e ajuda na abordagem inicial?",
         "options": [
           "CMT forte com caneca de fundo alterada",
           "Cultura do leite com agente contagioso",
-          "Contagem celular somatica elevada",
+          "Contagem celular somática elevada",
           "Exame do leite com grumos e pus"
         ],
         "correctIndex": 0,
-        "explanation": "CMT alterado e leite com grumos sao achados classicos que reforcam o diagn?stico de mastite."
+        "explanation": "CMT alterado e leite com grumos são achados clássicos que reforçam o diagnóstico de mastite."
       },
       {
         "id": "conduta-inicial",
         "type": "single_choice",
         "title": "Etapa 3 - Conduta inicial",
-        "question": "Qual conduta deve ser priorizada no inicio do manejo?",
+        "question": "Qual conduta deve ser priorizada no início do manejo?",
         "options": [
           "Esvaziar o quarto, tratar e monitorar",
-          "Ordenha frequente, anti-inflamatorio e suporte",
-          "Tratamento intramamario e repouso do quarto",
-          "Suporte sistemico e cultura antes do ajuste"
+          "Ordenha frequente, anti-inflamatório e suporte",
+          "Tratamento intramamário e repouso do quarto",
+          "Suporte sistêmico e cultura antes do ajuste"
         ],
         "correctIndex": 0,
-        "explanation": "A drenagem do leite alterado, o tratamento precoce e o suporte reduzem dano mamario e perdas produtivas."
+        "explanation": "A drenagem do leite alterado, o tratamento precoce e o suporte reduzem dano mamário e perdas produtivas."
       },
       {
         "id": "prognostico",
         "type": "single_choice",
-        "title": "Etapa 4 - Prognostico",
-        "question": "Qual fator mais melhora o prognostico funcional desse quarto mamario?",
+        "title": "Etapa 4 - Prognóstico",
+        "question": "Qual fator mais melhora o prognóstico funcional desse quarto mamário?",
         "options": [
-          "Intervenc?o precoce antes de maior dano",
-          "Ajuste rapido conforme resposta inicial",
-          "Identificac?o do agente e sensibilidade",
+          "Intervenção precoce antes de maior dano",
+          "Ajuste rápido conforme resposta inicial",
+          "Identificação do agente e sensibilidade",
           "Manejo correto da ordenha e higiene"
         ],
         "correctIndex": 0,
-        "explanation": "Quanto mais cedo o caso e reconhecido e tratado, menor a chance de dano permanente e descarte do quarto."
+        "explanation": "Quanto mais cedo o caso é reconhecido e tratado, menor a chance de dano permanente e descarte do quarto."
       }
     ],
-    "chiefComplaint": "Vaca recem-parida com queda de produc?o e quarto mamario quente.",
-    "history": "Vaca leiteira de alta produc?o, 20 dias pos-parto. Ordenhador observou leite com grumos e dor durante a ordenha.",
+    "chiefComplaint": "Vaca recém-parida com queda de produção e quarto mamário quente.",
+    "history": "Vaca leiteira de alta produção, 20 dias pós-parto. Ordenhador observou leite com grumos e dor durante a ordenha.",
     "physicalExam": [
-      "Quarto mamario aumentado de volume",
+      "Quarto mamário aumentado de volume",
       "Calor e dor local",
-      "Leite aquoso com coagulos",
+      "Leite aquoso com coágulos",
       "Febre discreta",
-      "Reduc?o do apetite"
+      "Redução do apetite"
     ],
     "labFindings": [
       "Teste da caneca positivo",
       "CMT fortemente positivo",
-      "Cultura do leite recomendada antes do ajuste fino do antibiotico"
+      "Cultura do leite recomendada antes do ajuste fino do antibiótico"
     ],
-    "cl?nicalQuestion": "Qual a conduta inicial mais apropriada para reduzir dano mamario e perdas produtivas?",
-    "diagnosis": "Mastite cl?nica bovina",
+    "clinicalQuestion": "Qual a conduta inicial mais apropriada para reduzir dano mamário e perdas produtivas?",
+    "diagnosis": "Mastite clínica bovina",
     "conduct": [
       "Esvaziamento frequente do quarto afetado",
-      "Antibiotico intramamario ou sistemico conforme gravidade",
-      "Suporte com anti-inflamatorio e hidratac?o quando necessario"
+      "Antibiótico intramamário ou sistêmico conforme gravidade",
+      "Suporte com anti-inflamatório e hidratação quando necessário"
     ],
     "drugs": ["Ceftiofur", "Meloxicam", "Ocitocina"],
-    "reasoning": "Alterac?o do leite associada a inflamac?o mamaria local caracteriza mastite cl?nica. O manejo rapido do quarto e o tratamento direcionado diminuem dano tecidual e descarte de leite."
+    "reasoning": "Alteração do leite associada à inflamação mamária local caracteriza mastite clínica. O manejo rápido do quarto e o tratamento direcionado diminuem dano tecidual e descarte de leite."
   },
   {
     "id": "caso-05",
@@ -374,38 +374,38 @@
     "title": "Caso 05 - Bovino com febre, anemia e urina escura",
     "species": "Bovino",
     "speciesEmoji": "🐄",
-    "category": "Cl?nica de Ruminantes",
+    "category": "Clínica de Ruminantes",
     "difficulty": "media",
     "estimatedTime": "2-4 min",
     "relatedDiseaseName": "Babesiose Bovina / Tristeza Parasitária",
     "steps": [
       {
-        "id": "suspeita-cl?nica",
+        "id": "suspeita-clinica",
         "type": "single_choice",
-        "title": "Etapa 1 - Suspeita cl?nica",
-        "question": "Bovino com febre alta, anemia, icter?cia e urina escura em area com carrapatos. Qual ? a principal suspeita?",
+        "title": "Etapa 1 - Suspeita clínica",
+        "question": "Bovino com febre alta, anemia, icterícia e urina escura em área com carrapatos. Qual é a principal suspeita?",
         "options": [
           "Babesiose bovina",
           "Anaplasmose bovina",
-          "Tristeza parasitaria mista",
-          "Hemoglobinuria bacilar"
+          "Tristeza parasitária mista",
+          "Hemoglobinúria bacilar"
         ],
         "correctIndex": 0,
-        "explanation": "Hemoglobinuria, anemia hemolitica e infestac?o por carrapatos tornam babesiose uma suspeita muito forte."
+        "explanation": "Hemoglobinúria, anemia hemolítica e infestação por carrapatos tornam babesiose uma suspeita muito forte."
       },
       {
-        "id": "achado-diagn?stico",
+        "id": "achado-diagnostico",
         "type": "single_choice",
-        "title": "Etapa 2 - Exame/achado diagn?stico",
+        "title": "Etapa 2 - Exame/achado diagnóstico",
         "question": "Qual achado laboratorial confirma melhor essa suspeita no contexto inicial?",
         "options": [
-          "Esfregaco com hemoparasitas intraeritrocitarios",
-          "Hematocrito baixo com bilirrubina alta",
+          "Esfregaço com hemoparasitas intraeritrocitários",
+          "Hematócrito baixo com bilirrubina alta",
           "Sorologia positiva para hemoparasitas",
-          "PCR sanguineo para babesia"
+          "PCR sanguíneo para Babesia"
         ],
         "correctIndex": 0,
-        "explanation": "A visualizac?o de hemoparasitas no esfregaco acelera a confirmac?o e orienta a decisao terapeutica."
+        "explanation": "A visualização de hemoparasitas no esfregaço acelera a confirmação e orienta a decisão terapêutica."
       },
       {
         "id": "conduta-inicial",
@@ -413,51 +413,51 @@
         "title": "Etapa 3 - Conduta inicial",
         "question": "Qual conduta deve ser priorizada nas primeiras horas?",
         "options": [
-          "Babesicida especifico e suporte intensivo",
-          "Babesicida, fluidoterapia e monitorizac?o",
+          "Babesicida específico e suporte intensivo",
+          "Babesicida, fluidoterapia e monitorização",
           "Suporte intensivo e repetir exame depois",
-          "Antimicrobiano de amplo espectro e observac?o"
+          "Antimicrobiano de amplo espectro e observação"
         ],
         "correctIndex": 0,
-        "explanation": "Babesiose pode evoluir rapido. O tratamento especifico precoce com suporte melhora muito o prognostico."
+        "explanation": "Babesiose pode evoluir rápido. O tratamento específico precoce com suporte melhora muito o prognóstico."
       },
       {
         "id": "erro-critico",
         "type": "single_choice",
-        "title": "Etapa 4 - Erro critico",
-        "question": "Qual ?rro traz maior risco nesse caso?",
+        "title": "Etapa 4 - Erro crítico",
+        "question": "Qual erro traz maior risco nesse caso?",
         "options": [
           "Atrasar tratamento na anemia progressiva",
           "Tratar sem avaliar gravidade da anemia",
-          "Adiar suporte ate confirmar no laboratorio",
+          "Adiar suporte até confirmar no laboratório",
           "Negligenciar controle de carrapatos no lote"
         ],
         "correctIndex": 0,
-        "explanation": "A demora no tratamento favorece agravamento da hemolise, hipoxia tecidual e piora rapida do quadro."
+        "explanation": "A demora no tratamento favorece agravamento da hemólise, hipóxia tecidual e piora rápida do quadro."
       }
     ],
-    "chiefComplaint": "Novilha com febre, mucosas palidas e urina avermelhada.",
-    "history": "Animal criado em area com alta infestac?o por carrapatos. Tutor percebeu prostrac?o acentuada e queda abrupta no consumo nas ultimas 24 horas.",
+    "chiefComplaint": "Novilha com febre, mucosas pálidas e urina avermelhada.",
+    "history": "Animal criado em área com alta infestação por carrapatos. Tutor percebeu prostração acentuada e queda abrupta no consumo nas últimas 24 horas.",
     "physicalExam": [
-      "Temperatura de 41 C",
+      "Temperatura de 41 °C",
       "Apatia intensa",
-      "Mucosas palidas a ictericas",
+      "Mucosas pálidas a ictéricas",
       "Taquicardia",
-      "Urina escura compativel com hemoglobinuria"
+      "Urina escura compatível com hemoglobinúria"
     ],
     "labFindings": [
-      "Hematocrito reduzido",
-      "Esfregaco sanguineo com hemoparasitas intra-eritrocitarios",
+      "Hematócrito reduzido",
+      "Esfregaço sanguíneo com hemoparasitas intraeritrocitários",
       "Bilirrubina aumentada"
     ],
-    "cl?nicalQuestion": "Qual hemoparasitose deve ser fortemente suspeitada e qual e a conduta de primeira linha?",
+    "clinicalQuestion": "Qual hemoparasitose deve ser fortemente suspeitada e qual é a conduta de primeira linha?",
     "diagnosis": "Babesiose bovina",
     "conduct": [
-      "Iniciar tratamento babesicida especifico",
+      "Iniciar tratamento babesicida específico",
       "Associar suporte com fluidoterapia e controle de estresse",
-      "Monitorar necessidade de transfusao nos casos de anemia critica"
+      "Monitorar necessidade de transfusão nos casos de anemia crítica"
     ],
     "drugs": ["Aceturato de Diminazeno - Berenil", "Doxiciclina"],
-    "reasoning": "Febre alta, anemia hemolitica, hemoglobinuria e carrapatos apontam para babesiose bovina. A confirmac?o no esfregaco acelera a decisao terapeutica e melhora o prognostico."
+    "reasoning": "Febre alta, anemia hemolítica, hemoglobinúria e carrapatos apontam para babesiose bovina. A confirmação no esfregaço acelera a decisão terapêutica e melhora o prognóstico."
   }
 ]
