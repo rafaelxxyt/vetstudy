@@ -1,0 +1,248 @@
+{
+  "disciplina": "Saúde de Animais de Produção",
+  "modulo": "Brucelose",
+  "module": "Brucelose",
+  "source": "faculdade",
+  "topics": [
+    {
+      "name": "Brucelose — agente etiológico",
+      "flashcards": [],
+      "questions": [
+        {
+          "id": 12001,
+          "tipo": "multipla_escolha",
+          "type": "faculdade",
+          "banca": "Faculdade",
+          "source": "faculdade",
+          "discipline": "Saúde de Animais de Produção",
+          "tema": "Saúde de Animais de Produção",
+          "subtema": "Brucelose — agente etiológico",
+          "dificuldade": "media",
+          "pergunta": "O gênero Brucella é composto por bactérias com características microbiológicas e de virulência bem definidas. Sobre o agente etiológico da brucelose, assinale a alternativa correta:",
+          "alternativas": {
+            "A": "São bacilos gram-positivos, aeróbios estritos, formadores de endósporos termorresistentes, encapsulados, com tropismo preferencial por eritrócitos circulantes, onde replicam ativamente causando hemólise intravascular progressiva.",
+            "B": "São cocobacilos gram-negativos, intracelulares facultativos, não formadores de esporos, sem cápsula convencional, com tropismo preferencial por células do sistema fagocítico mononuclear, onde sobrevivem inibindo a fusão fagossomo-lisossomo.",
+            "C": "São cocobacilos gram-negativos, extracelulares obrigatórios, produtores de exotoxinas proteicas com atividade hemolítica, sem capacidade de persistência intracelular, com tropismo preferencial por células epiteliais do trato urinário bovino.",
+            "D": "São bacilos gram-negativos, anaeróbios estritos, não formadores de esporos, encapsulados, com tropismo preferencial por hepatócitos bovinos, onde induzem necrose hepática focal e colangite obstrutiva como lesões anatomopatológicas primárias."
+          },
+          "correta": "B",
+          "explicacao": "Brucella spp. são cocobacilos gram-negativos, intracelulares facultativos, sem formação de esporos nem cápsula convencional. Sua principal estratégia de virulência é a sobrevivência dentro de fagócitos mononucleares, inibindo a fusão fagossomo-lisossomo e escapando da destruição imune. As demais opções erram na coloração de Gram, no metabolismo (anaeróbio), na formação de esporos ou ao descreverem mecanismos patogênicos de outros agentes.",
+          "needsReview": false
+        }
+      ]
+    },
+    {
+      "name": "Brucelose — função do LPS",
+      "flashcards": [],
+      "questions": [
+        {
+          "id": 12002,
+          "tipo": "multipla_escolha",
+          "type": "faculdade",
+          "banca": "Faculdade",
+          "source": "faculdade",
+          "discipline": "Saúde de Animais de Produção",
+          "tema": "Saúde de Animais de Produção",
+          "subtema": "Brucelose — função do LPS",
+          "dificuldade": "dificil",
+          "pergunta": "O lipopolissacarídeo (LPS) da Brucella desempenha papel central tanto na virulência bacteriana quanto no diagnóstico sorológico da brucelose. Sobre as funções do LPS nesse contexto, assinale a alternativa correta:",
+          "alternativas": {
+            "A": "O LPS rugoso (R-LPS) é o principal alvo dos anticorpos detectados nos testes sorológicos oficiais, sendo responsável pela reação cruzada com Yersinia enterocolitica O:9 nos testes de triagem, fato que justifica o uso de antígeno rugoso nas vacinas comerciais.",
+            "B": "O LPS liso (S-LPS) atua exclusivamente como endotoxina durante a bacteremia, causando febre e choque séptico, sem participação na resposta humoral protetora; os anticorpos sorológicos detectados nos testes oficiais são direcionados contra proteínas de membrana externa.",
+            "C": "O LPS rugoso (R-LPS) é responsável pela inibição da apoptose de neutrófilos infectados, garantindo a sobrevivência intracelular da bactéria; os testes sorológicos oficiais detectam anticorpos contra o polissacarídeo O do LPS liso somente em animais vacinados.",
+            "D": "O LPS liso (S-LPS) é o principal alvo dos anticorpos detectados nos testes sorológicos oficiais, funcionando também como fator de virulência ao inibir a ativação do complemento e impedir o reconhecimento bacteriano por receptores TLR4 dos macrófagos."
+          },
+          "correta": "D",
+          "explicacao": "O S-LPS (liso) é o principal antígeno-alvo dos anticorpos gerados tanto pela infecção natural quanto pela vacinação com B19, sendo o marcador sorológico detectado nos testes oficiais (AAT, SAL, FC, ELISA). Além disso, o S-LPS é fator de virulência importante, pois interfere no reconhecimento pelos receptores TLR4 e inibe a ativação do complemento, favorecendo a sobrevivência bacteriana. As demais opções atribuem ao LPS rugoso a função de alvo sorológico principal ou descrevem funções inconsistentes com a patogenia da Brucella.",
+          "needsReview": false
+        }
+      ]
+    },
+    {
+      "name": "Brucelose — espécies e hospedeiros",
+      "flashcards": [],
+      "questions": [
+        {
+          "id": 12003,
+          "tipo": "multipla_escolha",
+          "type": "faculdade",
+          "banca": "Faculdade",
+          "source": "faculdade",
+          "discipline": "Saúde de Animais de Produção",
+          "tema": "Saúde de Animais de Produção",
+          "subtema": "Brucelose — espécies e hospedeiros",
+          "dificuldade": "media",
+          "pergunta": "Diferentes espécies de Brucella afetam distintos hospedeiros, e algumas têm relevância particular para a saúde pública. Sobre a associação entre as espécies de Brucella, seus hospedeiros preferenciais e a importância zoonótica, assinale a alternativa correta:",
+          "alternativas": {
+            "A": "B. abortus acomete preferencialmente ovinos e caprinos e é a espécie de maior importância para a saúde humana por causar febre ondulante de alta mortalidade; B. melitensis tem como hospedeiro preferencial bovinos, enquanto B. suis acomete exclusivamente suínos selvagens.",
+            "B": "B. suis acomete preferencialmente bovinos e bubalinos e é considerada a espécie de maior importância para a saúde humana no Brasil por sua ampla distribuição nos rebanhos de corte; B. melitensis afeta exclusivamente pequenos ruminantes sem potencial de transmissão interespecífica.",
+            "C": "B. melitensis acomete preferencialmente ovinos e caprinos e é a espécie de maior importância para a saúde humana por sua elevada virulência e transmissibilidade; B. abortus tem como hospedeiro preferencial bovinos e bubalinos, enquanto B. canis afeta cães.",
+            "D": "B. canis acomete preferencialmente ovinos e bovinos e é a espécie de maior relevância zoonótica no Brasil rural por sua transmissão via aerossol em abatedouros; B. abortus tem como hospedeiro principal suínos domésticos, enquanto B. melitensis afeta exclusivamente caprinos leiteiros."
+          },
+          "correta": "C",
+          "explicacao": "B. melitensis, com hospedeiros preferenciais em ovinos e caprinos, é a espécie de maior importância para a saúde humana globalmente, por sua maior virulência e facilidade de transmissão ao homem. B. abortus acomete bovinos e bubalinos e é a principal espécie no contexto do PNCEBT no Brasil. B. canis afeta cães. As demais opções invertem os hospedeiros entre as espécies ou atribuem importância zoonótica prioritária equivocada à B. abortus ou B. suis.",
+          "needsReview": false
+        }
+      ]
+    },
+    {
+      "name": "Brucelose — perdas econômicas",
+      "flashcards": [],
+      "questions": [
+        {
+          "id": 12004,
+          "tipo": "multipla_escolha",
+          "type": "faculdade",
+          "banca": "Faculdade",
+          "source": "faculdade",
+          "discipline": "Saúde de Animais de Produção",
+          "tema": "Saúde de Animais de Produção",
+          "subtema": "Brucelose — perdas econômicas",
+          "dificuldade": "media",
+          "pergunta": "A brucelose bovina causa perdas econômicas significativas à bovinocultura brasileira. Sobre os principais impactos econômicos da doença nos rebanhos, assinale a alternativa correta:",
+          "alternativas": {
+            "A": "As perdas decorrem principalmente de abortos no terço final da gestação, nascimento de bezerros fracos ou natimortos, retenção de placenta, metrite, subfertilidade do rebanho, redução na produção de leite e restrições ao comércio de animais e derivados.",
+            "B": "As perdas decorrem principalmente de mortalidade elevada de bovinos adultos, redução na produção de carne em animais de engorda, custos com tratamento antibiótico do rebanho infectado e interdição temporária de propriedades pela vigilância sanitária.",
+            "C": "As perdas decorrem principalmente de artrite séptica em bovinos adultos, redução na taxa de concepção em touros infectados, mortalidade elevada em bezerros no primeiro mês de vida e custos com descontaminação de pastagens após foco confirmado.",
+            "D": "As perdas decorrem principalmente de lesões pulmonares fibrosantes em vacas lactantes, queda abrupta na produção leiteira por mastite brucélica, mortalidade de bezerros por septicemia neonatal e embargos de exportação de carne bovina in natura."
+          },
+          "correta": "A",
+          "explicacao": "As perdas econômicas da brucelose bovina concentram-se nos distúrbios reprodutivos: aborto no terço final da gestação (principal sinal clínico), retenção de placenta, metrite, subfertilidade temporária ou permanente e nascimento de bezerros debilitados. A redução da produção leiteira é consequência indireta desses eventos. Essas perdas são agravadas pelas restrições ao trânsito e ao comércio impostas pelo PNCEBT. As demais opções descrevem perdas inexistentes ou marginais na brucelose, como mortalidade de adultos, artrite séptica ou lesões pulmonares como sinais primários.",
+          "needsReview": false
+        }
+      ]
+    },
+    {
+      "name": "Brucelose — transmissão por monta natural",
+      "flashcards": [],
+      "questions": [
+        {
+          "id": 12005,
+          "tipo": "multipla_escolha",
+          "type": "faculdade",
+          "banca": "Faculdade",
+          "source": "faculdade",
+          "discipline": "Saúde de Animais de Produção",
+          "tema": "Saúde de Animais de Produção",
+          "subtema": "Brucelose — transmissão por monta natural",
+          "dificuldade": "dificil",
+          "pergunta": "A transmissão da brucelose bovina por monta natural é considerada epidemiologicamente improvável quando comparada a outras vias. O principal motivo que justifica essa baixa eficiência de transmissão é:",
+          "alternativas": {
+            "A": "A mucosa vaginal bovina produz anticorpos IgA secretores específicos contra B. abortus que neutralizam a bactéria durante o coito, impedindo a colonização do trato reprodutivo feminino mesmo em vacas soronegativas por via sistêmica.",
+            "B": "O pH ácido do ambiente vaginal bovino inativa rapidamente a B. abortus depositada pelo sêmen, destruindo a carga bacteriana antes que ela alcance o endométrio, mecanismo que explica a raridade de transmissão venérea mesmo em rebanhos com alta prevalência.",
+            "C": "O capsídeo glicoproteico que envolve a B. abortus no sêmen bovino impede sua adesão ao epitélio endometrial, de modo que a infecção por via venérea só ocorre quando há lesões prévias na mucosa uterina provocadas por outros agentes patogênicos.",
+            "D": "A concentração de B. abortus eliminada no sêmen de touros infectados é geralmente baixa e insuficiente para atingir o limiar infectante no trato reprodutivo feminino, ao contrário da via oral, na qual grandes volumes de secreções contaminadas do aborto são ingeridos."
+          },
+          "correta": "D",
+          "explicacao": "A transmissão por monta natural é improvável porque a carga bacteriana presente no sêmen de touros infectados raramente atinge a dose infectante necessária para estabelecer infecção no trato reprodutivo da fêmea. A principal via de transmissão é a oral ou conjuntival, pela ingestão ou contato com grandes quantidades de B. abortus presentes em fetos abortados, membranas fetais e líquidos uterinos. As demais opções descrevem mecanismos imunológicos ou físico-químicos não suportados pela literatura descrita no material.",
+          "needsReview": false
+        }
+      ]
+    },
+    {
+      "name": "Brucelose — eritritol e tropismo tecidual",
+      "flashcards": [],
+      "questions": [
+        {
+          "id": 12006,
+          "tipo": "multipla_escolha",
+          "type": "faculdade",
+          "banca": "Faculdade",
+          "source": "faculdade",
+          "discipline": "Saúde de Animais de Produção",
+          "tema": "Saúde de Animais de Produção",
+          "subtema": "Brucelose — eritritol e tropismo tecidual",
+          "dificuldade": "dificil",
+          "pergunta": "O eritritol desempenha papel determinante no tropismo tecidual da Brucella abortus em bovinos gestantes. Sobre a importância desse composto na patogenia e disseminação bacteriana, assinale a alternativa correta:",
+          "alternativas": {
+            "A": "O eritritol é uma proteína de superfície do trofoblasto bovino que atua como receptor de alta afinidade para o LPS da B. abortus, mediando a adesão bacteriana ao endométrio gravídico e explicando por que a infecção não se estabelece de forma eficiente em animais não gestantes.",
+            "B": "O eritritol é um álcool açúcar presente em alta concentração nos tecidos fetais bovinos e na placenta, funcionando como fonte de carbono preferencial para a B. abortus, o que explica o tropismo da bactéria pelo útero gestante e a consequente ocorrência de aborto como sinal clínico predominante.",
+            "C": "O eritritol é um metabólito produzido pelos próprios leucócitos bovinos durante a gestação que suprime a resposta imune celular uterina, criando um microambiente imunossupressor que favorece a replicação de B. abortus exclusivamente no segundo terço gestacional.",
+            "D": "O eritritol é um lipídeo de membrana presente em alta concentração nos macrófagos uterinos de vacas gestantes que inibe a fusão fagossomo-lisossomo, permitindo que a B. abortus replique intracelularmente sem ser destruída, fenômeno ausente em fêmeas não gestantes."
+          },
+          "correta": "B",
+          "explicacao": "O eritritol é um álcool açúcar (poliol) encontrado em concentrações elevadas nos cotilédones placentários e tecidos fetais bovinos. A B. abortus utiliza-o preferencialmente como fonte de carbono, o que direciona seu tropismo para o útero gestante e explica a multiplicação intensa nesse tecido e o consequente aborto. Esse mecanismo não ocorre com a mesma intensidade em animais não gestantes, cujos tecidos não apresentam acúmulo de eritritol. As demais opções atribuem ao eritritol funções proteicas, imunossupressoras ou lipídicas sem respaldo no material fornecido.",
+          "needsReview": false
+        }
+      ]
+    },
+    {
+      "name": "Brucelose — dinâmica dos testes oficiais",
+      "flashcards": [],
+      "questions": [
+        {
+          "id": 12007,
+          "tipo": "multipla_escolha",
+          "type": "faculdade",
+          "banca": "Faculdade",
+          "source": "faculdade",
+          "discipline": "Saúde de Animais de Produção",
+          "tema": "Saúde de Animais de Produção",
+          "subtema": "Brucelose — dinâmica dos testes oficiais",
+          "dificuldade": "dificil",
+          "pergunta": "O PNCEBT estabelece uma dinâmica oficial de testes sorológicos para brucelose em rebanhos bovinos, com prazos e responsabilidades definidos. Sobre essa dinâmica, assinale a alternativa correta:",
+          "alternativas": {
+            "A": "O teste de triagem (FC) deve ser realizado pelo serviço veterinário oficial público; animais reagentes são submetidos a reteste com AAT em até 15 dias no mesmo laboratório; animais positivos no reteste são vacinados com RB51 e reavaliados em 90 dias antes de qualquer decisão de abate.",
+            "B": "O teste confirmatório (ELISA de competição) deve ser realizado diretamente em todos os animais do rebanho sem triagem prévia; animais reagentes são submetidos a isolamento por 30 dias e retestados por FC; apenas animais com dois resultados positivos consecutivos são destinados ao abate sanitário.",
+            "C": "O teste de triagem (AAT ou SAL) deve ser realizado por médico veterinário credenciado pelo serviço oficial; animais reagentes são submetidos a teste confirmatório (FC ou ELISA) em até 30 dias; animais positivos confirmados são identificados e destinados ao abate sanitário, com novo teste do rebanho em 60 dias.",
+            "D": "O teste de triagem (AAT) pode ser realizado pelo próprio produtor após treinamento certificado; animais reagentes são encaminhados ao laboratório oficial para teste confirmatório por Western blot em até 45 dias; animais positivos são vacinados com B19 e monitorados por soroconversão a cada 6 meses."
+          },
+          "correta": "C",
+          "explicacao": "No PNCEBT, a triagem é feita com AAT (antígeno acidificado tamponado) ou SAL (soroaglutinação lenta), executada por médico veterinário credenciado pelo serviço oficial. Animais reagentes na triagem são submetidos ao teste confirmatório — fixação do complemento (FC) ou ELISA — com prazo de até 30 dias. Animais positivos confirmados são marcados e destinados ao abate sanitário, com reavaliação do rebanho em 60 dias. As demais opções atribuem a triagem à FC, permitem vacinação pós-diagnóstico, ou delegam a testagem ao produtor, todos procedimentos contrários à norma oficial.",
+          "needsReview": false
+        }
+      ]
+    },
+    {
+      "name": "Brucelose — vacinação B19 e RB51",
+      "flashcards": [],
+      "questions": [
+        {
+          "id": 12008,
+          "tipo": "multipla_escolha",
+          "type": "faculdade",
+          "banca": "Faculdade",
+          "source": "faculdade",
+          "discipline": "Saúde de Animais de Produção",
+          "tema": "Saúde de Animais de Produção",
+          "subtema": "Brucelose — vacinação B19 e RB51",
+          "dificuldade": "media",
+          "pergunta": "O PNCEBT prevê dois imunizantes para a brucelose bovina com indicações distintas. Sobre a vacinação, os responsáveis pela sua execução e as diferenças entre os imunizantes, assinale a alternativa correta:",
+          "alternativas": {
+            "A": "A vacinação com B19 e com RB51 é ato privativo do médico veterinário habilitado pelo serviço oficial; a B19 é indicada para bezerras de 3 a 8 meses e pode gerar anticorpos que interferem nos testes sorológicos; a RB51 é indicada para fêmeas adultas soronegativas e não interfere nos testes oficiais.",
+            "B": "Tanto a vacina B19 quanto a RB51 podem ser aplicadas pelo produtor rural certificado; a B19 é indicada para bezerras de 3 a 8 meses e pode interferir nos testes sorológicos oficiais, enquanto a RB51 é aplicada em fêmeas adultas soronegativas e não interfere nesses testes.",
+            "C": "A vacina B19 é aplicada exclusivamente pelo serviço veterinário oficial público em campanhas anuais; a RB51 é de aplicação privada pelo produtor, sendo indicada para fêmeas adultas positivas na triagem sorológica como protocolo de tratamento imunológico supervisionado.",
+            "D": "A vacina B19 é indicada para bezerras acima de 12 meses, sendo aplicada pelo médico veterinário autônomo sem necessidade de habilitação específica; a RB51 é indicada exclusivamente para machos de reposição em rebanhos com histórico recente de foco confirmado de brucelose."
+          },
+          "correta": "A",
+          "explicacao": "A vacinação contra brucelose no PNCEBT é ato privativo do médico veterinário habilitado pelo serviço oficial, não podendo ser realizada pelo produtor. A vacina B19 (cepa 19 viva atenuada) é indicada para bezerras entre 3 e 8 meses de idade; aplicada fora dessa faixa, pode gerar anticorpos persistentes que interferem nos testes sorológicos de triagem, gerando resultados falso-positivos. A RB51 (cepa rugosa) é indicada para fêmeas adultas soronegativas, pois não induz anticorpos detectáveis pelos testes oficiais baseados no S-LPS. As demais opções erram ao permitir aplicação pelo produtor, indicar vacinação de positivos ou alterar a faixa etária da B19.",
+          "needsReview": false
+        }
+      ]
+    }
+  ],
+  "meta": {
+    "topic": "Brucelose",
+    "discipline": "Saúde de Animais de Produção",
+    "totalQuestions": 8,
+    "language": "pt-BR",
+    "difficultyDistribution": {
+      "medium": 4,
+      "hard": 4
+    },
+    "correctIndexDistribution": {
+      "0": 2,
+      "1": 2,
+      "2": 2,
+      "3": 2
+    },
+    "correctIndexSequence": [1, 3, 2, 0, 3, 1, 2, 0],
+    "validationFlags": {
+      "obviousCorrectAnswer": false,
+      "shortOptionDetected": false,
+      "duplicatedLogic": false,
+      "allOfTheAboveUsed": false,
+      "noneOfTheAboveUsed": false
+    }
+  }
+}

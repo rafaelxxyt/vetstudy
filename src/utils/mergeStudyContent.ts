@@ -1,4 +1,5 @@
 ﻿import questionsData from '../data/questions.json'
+import { staticStudyModules } from '../data/modules'
 import type {
   Flashcard as ModuleFlashcard,
   Question as ModuleQuestion,
@@ -115,10 +116,24 @@ export function loadExtraQuestions(): ParsedQuestion[] {
   return readJSON<ParsedQuestion[]>(EXTRA_QUESTIONS_KEY, [])
 }
 
+function loadStaticModuleQuestions(): ParsedQuestion[] {
+  const staticIds = new Set<number>()
+
+  return staticStudyModules.flatMap(module => {
+    const { parsedContent } = staticModuleToParsedContent(module)
+    return parsedContent.questoes.filter(question => {
+      if (staticIds.has(question.id)) return false
+      staticIds.add(question.id)
+      return true
+    })
+  })
+}
+
 export function getMergedQuestionBank(): ParsedQuestion[] {
   const baseQuestions = questionsData.questoes as ParsedQuestion[]
-  const baseIds = new Set(baseQuestions.map(byId))
-  const extraQuestions = loadExtraQuestions().filter(question => !baseIds.has(question.id))
+  const staticQuestions = loadStaticModuleQuestions()
+  const knownIds = new Set([...baseQuestions, ...staticQuestions].map(byId))
+  const extraQuestions = loadExtraQuestions().filter(question => !knownIds.has(question.id))
   const extraIds = new Set<number>()
   const uniqueExtraQuestions = extraQuestions.filter(question => {
     if (extraIds.has(question.id)) return false
@@ -126,7 +141,7 @@ export function getMergedQuestionBank(): ParsedQuestion[] {
     return true
   })
 
-  return [...baseQuestions, ...uniqueExtraQuestions]
+  return [...baseQuestions, ...staticQuestions, ...uniqueExtraQuestions]
 }
 
 export function mergeStudyContent(content: ParsedStudyContent): MergeStudyContentResult {
