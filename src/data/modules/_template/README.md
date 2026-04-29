@@ -22,7 +22,8 @@ Use o nome canônico já aceito pelo app para evitar fragmentação nos filtros:
 
 - Flashcards: use prefixos exclusivos por módulo, por exemplo `fc_iatf_0001`.
 - Questões: use uma faixa numérica nova que ainda não exista no projeto.
-- Antes de criar um módulo novo, confira os IDs já usados nos arquivos de `src/data/modules/` e no banco base.
+- Termos clínicos: use prefixos estáveis, como `term_iatf_0001`.
+- Casos clínicos: use prefixos estáveis, como `case_iatf_0001`.
 
 ## Como manter qualidade consistente
 
@@ -30,4 +31,13 @@ Use o nome canônico já aceito pelo app para evitar fragmentação nos filtros:
 - Use alternativas plausíveis, sem distratores óbvios.
 - Faça flashcards com função, mecanismo ou consequência, e não cópia literal de slide.
 - Toda questão deve ter `explicacao` instrutiva.
+- Termos clínicos devem ser curtos, claros e úteis para consulta.
+- Casos clínicos devem mostrar contexto suficiente antes da resposta.
 - Tente calibrar dificuldade em torno de 30% fácil, 50% média e 20% difícil.
+
+## Campos opcionais novos
+
+- `clinicalTerms`: glossário clínico curto por tópico.
+- `clinicalCases`: casos clínicos estruturados por tópico.
+
+Esses blocos são opcionais. O app continua funcionando com apenas `flashcards` e `questions`.

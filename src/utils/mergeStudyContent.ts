@@ -1,4 +1,10 @@
-import questionsData from '../data/questions.json'
+﻿import questionsData from '../data/questions.json'
+import type {
+  Flashcard as ModuleFlashcard,
+  Question as ModuleQuestion,
+  StructuredStudyModule,
+  StudyModuleTopic,
+} from '../data/modules/types'
 import { getActiveProfileId, PROFILE_DATA_KEYS, profileStorageKey } from './profiles'
 import type { ParsedFlashcard, ParsedQuestion, ParsedStudyContent } from './parseStudyContent'
 
@@ -10,40 +16,10 @@ export interface MergeStudyContentResult {
   questoes: ParsedQuestion[]
 }
 
-export interface StaticModuleFlashcard {
-  id: string
-  pergunta: string
-  resposta: string
-  tema: string
-  subtema: string
-}
-
-export interface StaticModuleQuestion {
-  id: number
-  tipo: 'multipla_escolha'
-  banca: string
-  tema: string
-  subtema?: string
-  dificuldade: 'facil' | 'media' | 'dificil'
-  pergunta: string
-  alternativas: Record<'A' | 'B' | 'C' | 'D', string>
-  correta: 'A' | 'B' | 'C' | 'D'
-  explicacao: string
-}
-
-export interface StaticModuleTopic {
-  name: string
-  flashcards: StaticModuleFlashcard[]
-  questions: StaticModuleQuestion[]
-}
-
-export interface StaticStudyModule {
-  disciplina?: string
-  modulo?: string
-  module: string
-  source: string
-  topics: StaticModuleTopic[]
-}
+export type StaticModuleFlashcard = ModuleFlashcard
+export type StaticModuleQuestion = ModuleQuestion
+export type StaticModuleTopic = StudyModuleTopic
+export type StaticStudyModule = StructuredStudyModule
 
 export interface SaveFlashcardsResult {
   addedFlashcardIds: string[]
@@ -278,3 +254,4 @@ export function mergeStaticModule(
     fixedQuestionTemas: totalFixedQuestionTemas,
   }
 }
+

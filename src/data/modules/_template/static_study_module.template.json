@@ -33,6 +33,49 @@
           "correta": "A",
           "explicacao": "Explique por que a alternativa correta está certa e o que torna as outras menos adequadas."
         }
+      ],
+      "clinicalTerms": [
+        {
+          "id": "term_exemplo_0001",
+          "termo": "Termo clínico",
+          "explicacao": "Definição curta e útil para consulta rápida.",
+          "tema": "Reprodução Animal",
+          "subtema": "Nome do tópico"
+        }
+      ],
+      "clinicalCases": [
+        {
+          "id": "case_exemplo_0001",
+          "title": "Caso clínico exemplo",
+          "species": "Cão",
+          "category": "Reprodução Animal",
+          "chiefComplaint": "Queixa principal do paciente.",
+          "history": "Resumo da história clínica.",
+          "physicalExam": ["Achado 1"],
+          "labFindings": ["Achado laboratorial 1"],
+          "clinicalQuestion": "Qual a principal decisão clínica?",
+          "diagnosis": "Diagnóstico final",
+          "conduct": ["Conduta inicial"],
+          "drugs": ["Fármaco relacionado"],
+          "reasoning": "Resumo do raciocínio clínico.",
+          "relatedDiseaseName": "Doença relacionada",
+          "steps": [
+            {
+              "id": "step_1",
+              "type": "single_choice",
+              "title": "Etapa 1",
+              "question": "Qual é a melhor decisão inicial?",
+              "options": [
+                "Opção 1",
+                "Opção 2",
+                "Opção 3",
+                "Opção 4"
+              ],
+              "correctIndex": 0,
+              "explanation": "Explique o raciocínio correto desta etapa."
+            }
+          ]
+        }
       ]
     }
   ]
