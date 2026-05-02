@@ -10,6 +10,8 @@ import {
   Menu,
   X,
   Shield,
+  Moon,
+  Sun,
 } from 'lucide-react'
 import { isHubUnlocked } from './Gatekeeper'
 
@@ -22,6 +24,8 @@ export type Page =
   | 'doencas'
   | 'ferramentas'
   | 'vetnews'
+
+export type ThemeMode = 'dark' | 'light'
 
 interface NavItem {
   id: Page
@@ -50,6 +54,8 @@ interface SidebarProps {
   onNavigate: (page: Page) => void
   mobileOpen: boolean
   onMobileClose: () => void
+  theme: ThemeMode
+  onThemeChange: (theme: ThemeMode) => void
 }
 
 function CollapseBtn({
@@ -65,8 +71,8 @@ function CollapseBtn({
       title={collapsed ? 'Abrir menu' : 'Fechar menu'}
       className={`flex-shrink-0 rounded-xl transition-all ${
         collapsed
-          ? 'flex h-10 w-10 items-center justify-center bg-slate-800 text-slate-400 hover:bg-teal-500/20 hover:text-teal-400'
-          : 'ml-auto p-2 text-slate-500 hover:bg-slate-800 hover:text-teal-400'
+          ? 'flex h-10 w-10 items-center justify-center bg-neutral-800 text-neutral-400 hover:bg-primary-500/20 hover:text-primary-400'
+          : 'ml-auto p-2 text-neutral-500 hover:bg-neutral-800 hover:text-primary-400'
       }`}
     >
       <AnimatePresence mode="wait" initial={false}>
@@ -105,8 +111,8 @@ function SectionLabel({
 }) {
   return (
     <div className="mb-1.5 flex items-center gap-1.5 px-3">
-      {Icon && <Icon size={9} className="flex-shrink-0 text-teal-500" />}
-      <p className="select-none text-[9px] font-black uppercase tracking-widest text-slate-600">{label}</p>
+      {Icon && <Icon size={9} className="flex-shrink-0 text-primary-500" />}
+      <p className="select-none text-[9px] font-black uppercase tracking-widest text-neutral-600">{label}</p>
     </div>
   )
 }
@@ -135,8 +141,8 @@ function NavBtn({
         collapsed ? 'flex justify-center p-2.5' : `flex items-center gap-3 px-3 ${vertPad}`
       } ${
         active
-          ? 'border border-teal-500/25 bg-teal-500/15 text-teal-300'
-          : 'border border-transparent text-slate-500 hover:bg-slate-800 hover:text-slate-200'
+          ? 'border border-primary-500/25 bg-primary-500/15 text-primary-300'
+          : 'border border-transparent text-neutral-500 hover:bg-neutral-800 hover:text-neutral-200'
       }`}
     >
       <Icon size={16} className="flex-shrink-0" />
@@ -168,8 +174,8 @@ function HubBtn({
         !drawerMode && collapsed ? 'flex justify-center p-2.5' : 'flex items-center gap-3 px-3 py-3'
       } ${
         active
-          ? 'border border-teal-500/25 bg-teal-500/15 text-teal-300 shadow-sm shadow-teal-950'
-          : 'border border-transparent text-slate-500 hover:bg-slate-800 hover:text-slate-200'
+          ? 'border border-primary-500/25 bg-primary-500/15 text-primary-300 shadow-sm shadow-primary-950'
+          : 'border border-transparent text-neutral-500 hover:bg-neutral-800 hover:text-neutral-200'
       }`}
     >
       <GraduationCap size={16} className="flex-shrink-0" />
@@ -179,9 +185,9 @@ function HubBtn({
           <p className="text-sm font-semibold leading-tight">Início</p>
           <p className="mt-0.5 text-[10px] font-medium leading-none">
             {hubUnlocked ? (
-              <span className="text-teal-500">Início · Flashcards · Simulador · Resumos</span>
+              <span className="text-primary-500">Início · Flashcards · Simulador · Resumos</span>
             ) : (
-              <span className="text-slate-600">Início · Flashcards · Simulador</span>
+              <span className="text-neutral-600">Início · Flashcards · Simulador</span>
             )}
           </p>
         </div>
@@ -189,13 +195,55 @@ function HubBtn({
 
       {showLabel &&
         (hubUnlocked ? (
-          <span className="flex-shrink-0 text-xs text-teal-500">✓</span>
+          <span className="flex-shrink-0 text-xs text-primary-500">✓</span>
         ) : (
-          <span className="flex-shrink-0 rounded-md border border-slate-700 bg-slate-800/80 px-1.5 py-0.5 text-[11px] text-slate-500">
+          <span className="flex-shrink-0 rounded-md border border-neutral-700 bg-neutral-800/80 px-1.5 py-0.5 text-[11px] text-neutral-500">
             🔒
           </span>
         ))}
     </button>
+  )
+}
+
+function ThemeSwitcher({
+  theme,
+  onThemeChange,
+  compact,
+}: {
+  theme: ThemeMode
+  onThemeChange: (theme: ThemeMode) => void
+  compact: boolean
+}) {
+  const options: Array<{ id: ThemeMode; label: string; icon: React.ElementType; short: string }> = [
+    { id: 'dark', label: 'Escuro', icon: Moon, short: 'E' },
+    { id: 'light', label: 'Claro', icon: Sun, short: 'C' },
+  ]
+
+  return (
+    <section className="border-t border-neutral-800 px-2 py-3">
+      {!compact && <SectionLabel label="Tema" />}
+      <div className={`grid gap-1.5 ${compact ? 'grid-cols-1' : 'grid-cols-2'}`}>
+        {options.map(option => {
+          const Icon = option.icon
+          const active = theme === option.id
+          return (
+            <button
+              key={option.id}
+              onClick={() => onThemeChange(option.id)}
+              title={compact ? option.label : undefined}
+              className={`min-h-[40px] rounded-xl border px-2 py-2 text-xs font-semibold transition ${
+                active
+                  ? 'border-primary-500/35 bg-primary-500/15 text-primary-300'
+                  : 'border-neutral-800 bg-neutral-900 text-neutral-400 hover:border-neutral-700 hover:text-neutral-200'
+              } ${compact ? 'flex items-center justify-center' : 'flex items-center justify-center gap-1.5'}`}
+            >
+              <Icon size={14} />
+              <span>{compact ? option.short : option.label}</span>
+            </button>
+          )
+        })}
+      </div>
+    </section>
   )
 }
 
@@ -207,6 +255,8 @@ function renderNav({
   onNavigate,
   onMobileClose,
   onToggleCollapse,
+  theme,
+  onThemeChange,
 }: {
   isDrawer: boolean
   collapsed: boolean
@@ -215,6 +265,8 @@ function renderNav({
   onNavigate: (page: Page) => void
   onMobileClose: () => void
   onToggleCollapse: () => void
+  theme: ThemeMode
+  onThemeChange: (theme: ThemeMode) => void
 }) {
   const showLabels = isDrawer || !collapsed
   const navigate = (page: Page) => {
@@ -224,15 +276,15 @@ function renderNav({
 
   return (
     <>
-      <div className={`flex h-16 flex-shrink-0 items-center border-b border-slate-800 ${!isDrawer && collapsed ? 'justify-center px-2' : 'gap-3 px-3'}`}>
+      <div className={`flex h-16 flex-shrink-0 items-center border-b border-neutral-800 ${!isDrawer && collapsed ? 'justify-center px-2' : 'gap-3 px-3'}`}>
         {showLabels && (
           <div className="flex min-w-0 flex-1 items-center gap-3">
-            <div className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-teal-400 to-teal-600 shadow-lg shadow-teal-900/50">
-              <span className="text-xs font-black tracking-tight text-white">V5</span>
+            <div className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-primary-400 to-primary-600 shadow-lg shadow-primary-900/50">
+              <span className="text-xs font-black tracking-tight text-white">VF</span>
             </div>
             <div className="min-w-0 leading-tight">
-              <p className="text-sm font-bold text-white">VetStudy 5.0</p>
-              <p className="text-[10px] font-semibold text-teal-400">RBC Edition</p>
+              <p className="text-sm font-bold text-neutral-100">VetFoco</p>
+              <p className="text-[10px] font-semibold text-primary-400">Estudo Vet</p>
             </div>
           </div>
         )}
@@ -243,7 +295,7 @@ function renderNav({
           <button
             onClick={onMobileClose}
             aria-label="Fechar menu"
-            className="ml-auto flex h-11 w-11 items-center justify-center rounded-xl text-slate-500 transition-colors hover:bg-slate-800 hover:text-teal-400"
+            className="ml-auto flex h-11 w-11 items-center justify-center rounded-xl text-neutral-500 transition-colors hover:bg-neutral-800 hover:text-primary-400"
           >
             <X size={18} />
           </button>
@@ -310,6 +362,12 @@ function renderNav({
           </div>
         </section>
       </nav>
+
+      <ThemeSwitcher
+        theme={theme}
+        onThemeChange={onThemeChange}
+        compact={!isDrawer && collapsed}
+      />
     </>
   )
 }
@@ -319,13 +377,15 @@ export default function Sidebar({
   onNavigate,
   mobileOpen,
   onMobileClose,
+  theme,
+  onThemeChange,
 }: SidebarProps) {
   const [collapsed, setCollapsed] = useState(false)
   const hubUnlocked = isHubUnlocked()
 
   return (
     <>
-      <aside className="hidden h-screen border-r border-slate-800 bg-slate-900 md:flex md:w-72 md:flex-col">
+      <aside className="app-panel hidden h-screen border-r md:flex md:w-72 md:flex-col">
         {renderNav({
           isDrawer: false,
           collapsed,
@@ -334,6 +394,8 @@ export default function Sidebar({
           onNavigate,
           onMobileClose,
           onToggleCollapse: () => setCollapsed(value => !value),
+          theme,
+          onThemeChange,
         })}
       </aside>
 
@@ -343,14 +405,14 @@ export default function Sidebar({
             <motion.button
               type="button"
               aria-label="Fechar menu"
-              className="fixed inset-0 z-40 bg-slate-950/70 md:hidden"
+              className="app-overlay fixed inset-0 z-40 md:hidden"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={onMobileClose}
             />
             <motion.aside
-              className="fixed inset-y-0 left-0 z-50 flex w-80 max-w-[88vw] flex-col border-r border-slate-800 bg-slate-900 md:hidden"
+              className="app-panel fixed inset-y-0 left-0 z-50 flex w-80 max-w-[88vw] flex-col border-r md:hidden"
               initial={{ x: -320 }}
               animate={{ x: 0 }}
               exit={{ x: -320 }}
@@ -364,6 +426,8 @@ export default function Sidebar({
                 onNavigate,
                 onMobileClose,
                 onToggleCollapse: () => {},
+                theme,
+                onThemeChange,
               })}
             </motion.aside>
           </>
@@ -372,3 +436,5 @@ export default function Sidebar({
     </>
   )
 }
+
+

@@ -153,6 +153,10 @@ function sortAdaptativo(qs: Question[]): Question[] {
    ══════════════════════════════════════════════════════ */
 function shuffle<T>(arr:T[]):T[] { return [...arr].sort(()=>Math.random()-0.5) }
 
+function displayBrandLabel(value: string): string {
+  return value === 'VetStudy' ? 'VetFoco' : value
+}
+
 function isHit(q:Question, a:AnswerState):boolean {
   if (a===null) return false
   if (q.type==='mc')    return (a as number)===q.correct
@@ -614,7 +618,7 @@ function FilterPanel({ filters, setFilters, history, total }: {
             <button key={b} onClick={()=>syncFilters({ banca: b })}
               className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition-all border ${
                 filters.banca===b?'bg-primary-500/20 text-primary-300 border-primary-500/30':'bg-neutral-800 text-neutral-500 border-neutral-700/60 hover:text-neutral-300'
-              }`}>{b}</button>
+              }`}>{displayBrandLabel(b)}</button>
           ))}
         </div>
       </div>
@@ -904,7 +908,7 @@ function SimuladorContent({ profile }: { profile: LocalProfile }) {
               <div className="flex items-start gap-2.5">
                 {hit?<CheckCircle2 size={13} className="text-success-400 flex-shrink-0 mt-0.5"/>:<XCircle size={13} className="text-danger-400 flex-shrink-0 mt-0.5"/>}
                 <div>
-                  <p className="text-[10px] font-bold text-neutral-600 mb-0.5">Q{i+1} · {BADGE[q.type].label} · {q.banca}</p>
+                  <p className="text-[10px] font-bold text-neutral-600 mb-0.5">Q{i+1} · {BADGE[q.type].label} · {displayBrandLabel(q.banca)}</p>
                   <p className="text-xs text-neutral-300 font-medium mb-1">{q.type==='assoc'?q.instruction:q.question}</p>
                   <p className="text-xs text-neutral-500 leading-relaxed whitespace-pre-line">{q.explanation}</p>
                 </div>
@@ -935,7 +939,7 @@ function SimuladorContent({ profile }: { profile: LocalProfile }) {
           <div className="flex items-center gap-2">
             <ClipboardCheck size={17} className="text-primary-400"/>
             <span className="text-sm font-bold text-white">Simulador</span>
-            {q.banca&&<span className="text-[10px] text-neutral-600 bg-neutral-800 px-2 py-0.5 rounded-lg">{q.banca}</span>}
+            {q.banca&&<span className="text-[10px] text-neutral-600 bg-neutral-800 px-2 py-0.5 rounded-lg">{displayBrandLabel(q.banca)}</span>}
             {q.dificuldade&&<span className="text-[10px] text-neutral-600 bg-neutral-800 px-2 py-0.5 rounded-lg">{q.dificuldade}</span>}
           </div>
           <div className="flex items-center gap-2">

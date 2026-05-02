@@ -49,16 +49,21 @@ export default function Gatekeeper({ children, pageTitle = 'Início' }: Gatekeep
           initial={{ opacity: 0, scale: 0.96, y: 16 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           transition={{ duration: 0.22 }}
-          className="bg-slate-900/80 backdrop-blur-md rounded-3xl border border-slate-700/60 shadow-2xl shadow-black/40 p-8 max-w-sm w-full text-center"
+          className="app-panel w-full max-w-sm rounded-3xl p-8 text-center shadow-2xl shadow-black/20"
         >
-          <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-teal-500 to-teal-700 flex items-center justify-center mx-auto mb-4 shadow-lg shadow-teal-900/50">
+          <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary-500 to-primary-700 flex items-center justify-center mx-auto mb-4 shadow-lg shadow-primary-900/50">
             <Lock size={24} className="text-white" />
           </div>
 
-          <h2 className="text-lg font-bold text-white mb-1">{pageTitle}</h2>
-          <p className="text-xs text-slate-400 mb-6">
-            Área exclusiva · <span className="text-teal-400 font-semibold">RBC Academic</span>
-          </p>
+          <h2 className="mb-1 text-lg font-bold text-neutral-100">{pageTitle}</h2>
+          <div className="mb-6 space-y-1">
+            <p className="text-xs text-neutral-400">
+              Área exclusiva · <span className="text-primary-400 font-semibold">VetFoco</span>
+            </p>
+            <p className="text-xs text-neutral-500">
+              Estude com foco. Erre menos. Passe mais.
+            </p>
+          </div>
 
           <div className="relative mb-3">
             <input
@@ -67,14 +72,14 @@ export default function Gatekeeper({ children, pageTitle = 'Início' }: Gatekeep
               value={input}
               onChange={e => setInput(e.target.value)}
               onKeyDown={e => e.key === 'Enter' && attempt()}
-              className={`w-full px-4 py-3 pr-11 rounded-xl border bg-slate-800 text-sm text-slate-200 text-center tracking-widest font-mono outline-none transition ${
+              className={`app-input w-full rounded-xl px-4 py-3 pr-11 text-center text-sm tracking-widest font-mono outline-none transition ${
                 error
-                  ? 'border-red-500/50 focus:ring-2 focus:ring-red-500/30'
-                  : 'border-slate-700 focus:border-teal-500 focus:ring-2 focus:ring-teal-500/30'
+                  ? 'border-danger-500/50 focus:ring-2 focus:ring-danger-500/30'
+                  : 'border-neutral-700 focus:border-primary-500 focus:ring-2 focus:ring-primary-500/30'
               }`}
             />
             <button type="button" onClick={() => setShow(s => !s)}
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-500 hover:text-slate-300 transition-colors">
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-neutral-500 hover:text-neutral-300 transition-colors">
               {show ? <EyeOff size={15} /> : <Eye size={15} />}
             </button>
           </div>
@@ -82,7 +87,7 @@ export default function Gatekeeper({ children, pageTitle = 'Início' }: Gatekeep
           <AnimatePresence>
             {error && (
               <motion.div initial={{ opacity: 0, y: -4 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}
-                className="flex items-center justify-center gap-1.5 text-red-400 text-xs mb-3">
+                className="flex items-center justify-center gap-1.5 text-danger-400 text-xs mb-3">
                 <ShieldAlert size={12} />
                 <span>Senha incorreta.</span>
               </motion.div>
@@ -90,7 +95,7 @@ export default function Gatekeeper({ children, pageTitle = 'Início' }: Gatekeep
           </AnimatePresence>
 
           <button onClick={attempt}
-            className="w-full py-3 bg-teal-600 text-white rounded-xl text-sm font-bold hover:bg-teal-700 transition-colors shadow-lg shadow-teal-950/50 active:scale-95 flex items-center justify-center gap-2">
+            className="w-full py-3 bg-accent-500 text-white rounded-xl text-sm font-bold hover:bg-accent-600 transition-colors shadow-lg shadow-primary-950/50 active:scale-95 flex items-center justify-center gap-2">
             <ShieldCheck size={15} /> Acessar
           </button>
         </motion.div>
