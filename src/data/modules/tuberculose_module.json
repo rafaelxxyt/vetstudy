@@ -1,0 +1,219 @@
+{
+  "disciplina": "Saúde de Animais de Produção",
+  "modulo": "Tuberculose | PNCEBT",
+  "module": "Tuberculose | PNCEBT",
+  "source": "faculdade",
+  "topics": [
+    {
+      "name": "Tuberculose | PNCEBT",
+      "flashcards": [
+        {
+          "id": "fc_tuberculose_001",
+          "pergunta": "Qual o agente etiológico da tuberculose bovina e a qual complexo pertence?",
+          "resposta": "Mycobacterium bovis, pertencente ao Complexo Mycobacterium tuberculosis (CMTB). É um bacilo álcool-ácido resistente (BAAR), de crescimento lento, com parede celular rica em ácidos micólicos.",
+          "tema": "Saúde de Animais de Produção",
+          "subtema": "Tuberculose | PNCEBT",
+          "needsReview": false
+        },
+        {
+          "id": "fc_tuberculose_002",
+          "pergunta": "Por que M. bovis é considerado um patógeno intracelular de difícil eliminação pelo sistema imune?",
+          "resposta": "Porque inibe a fusão fagossomo-lisossomo dentro dos macrófagos, sobrevivendo e replicando-se intracelularmente mesmo após a fagocitose. Essa estratégia impede a ação das enzimas lisossomais e garante persistência crônica no hospedeiro.",
+          "tema": "Saúde de Animais de Produção",
+          "subtema": "Tuberculose | PNCEBT",
+          "needsReview": false
+        },
+        {
+          "id": "fc_tuberculose_003",
+          "pergunta": "O que é o granuloma tuberculoso (tubérculo) e como ele se forma?",
+          "resposta": "É a lesão anatomopatológica característica da tuberculose. Forma-se pela resposta imune celular (Th1): macrófagos que não destroem M. bovis diferenciam-se em células epitelioides e células gigantes de Langhans, formando o granuloma com necrose central caseosa. A calcificação distrófica pode ocorrer na cronicidade.",
+          "tema": "Saúde de Animais de Produção",
+          "subtema": "Tuberculose | PNCEBT",
+          "needsReview": false
+        },
+        {
+          "id": "fc_tuberculose_004",
+          "pergunta": "Quais são os principais sinais clínicos da tuberculose bovina na forma pulmonar crônica?",
+          "resposta": "Emagrecimento progressivo, tosse seca crônica que piora com exercício, dispneia, linfadenomegalia (submandibular, retrofaríngea, pré-escapular), queda na produção leiteira e febre vespertina. A doença pode permanecer inaparente por meses.",
+          "tema": "Saúde de Animais de Produção",
+          "subtema": "Tuberculose | PNCEBT",
+          "needsReview": false
+        },
+        {
+          "id": "fc_tuberculose_007",
+          "pergunta": "Quais as principais vias de transmissão de M. bovis ao ser humano?",
+          "resposta": "1) Digestiva: consumo de leite cru ou derivados não pasteurizados de vacas infectadas. 2) Aerógena: inalação de aerossóis em contato com animais doentes, carcaças ou material de abate. Grupos de risco: ordenhadores, trabalhadores rurais, veterinários e funcionários de abatedouros.",
+          "tema": "Saúde de Animais de Produção",
+          "subtema": "Tuberculose | PNCEBT",
+          "needsReview": false
+        },
+        {
+          "id": "fc_tuberculose_008",
+          "pergunta": "Por que a pasteurização do leite é eficaz contra M. bovis?",
+          "resposta": "Apesar da resistência da parede celular de M. bovis a muitos desinfetantes, o bacilo é sensível ao calor. A pasteurização (temperatura mínima de 72°C por 15 segundos no método HTST ou 63°C por 30 minutos no método lento) é suficiente para inativar M. bovis no leite, eliminando o risco de transmissão pela via digestiva.",
+          "tema": "Saúde de Animais de Produção",
+          "subtema": "Tuberculose | PNCEBT",
+          "needsReview": false
+        },
+        {
+          "id": "fc_tuberculose_010",
+          "pergunta": "Quais os principais impactos econômicos da tuberculose bovina?",
+          "resposta": "Restrições ao comércio internacional de bovinos e produtos de origem animal; condenação de carcaças e vísceras ao abate; queda na produção leiteira e no ganho de peso; custos com o programa de controle (PNCEBT); restrições ao trânsito de animais; e risco zoonótico com impacto em saúde pública.",
+          "tema": "Saúde de Animais de Produção",
+          "subtema": "Tuberculose | PNCEBT",
+          "needsReview": false
+        },
+        {
+          "id": "fc_tuberculose_011",
+          "pergunta": "O que caracteriza M. bovis como BAAR e qual a importância dessa propriedade no diagnóstico laboratorial?",
+          "resposta": "BAAR (Bacilo Álcool-Ácido Resistente): a parede celular rica em ácidos micólicos retém o corante fucsina mesmo após lavagem com álcool-ácido na coloração de Ziehl-Neelsen. Essa propriedade é a base do diagnóstico histopatológico e bacteriológico direto em amostras de lesões.",
+          "tema": "Saúde de Animais de Produção",
+          "subtema": "Tuberculose | PNCEBT",
+          "needsReview": false
+        },
+        {
+          "id": "fc_tuberculose_012",
+          "pergunta": "Por que a tuberculose bovina pode permanecer inaparente por longos períodos e qual o risco epidemiológico disso?",
+          "resposta": "M. bovis se replica lentamente e a doença progride de forma crônica. O sistema imune do hospedeiro controla parcialmente a infecção por meio de granulomas, sem eliminá-la. Animais inaparentes positivos ao teste de tuberculinização eliminam o bacilo pelo ar expirado, leite e secreções, representando importante fonte de infecção para o rebanho e para humanos sem que sinais clínicos alertem o produtor.",
+          "tema": "Saúde de Animais de Produção",
+          "subtema": "Tuberculose | PNCEBT",
+          "needsReview": false
+        }
+      ],
+      "questions": [
+        {
+          "id": 13001,
+          "tipo": "multipla_escolha",
+          "type": "faculdade",
+          "banca": "Faculdade",
+          "source": "faculdade",
+          "discipline": "Saúde de Animais de Produção",
+          "topic": "Tuberculose | PNCEBT",
+          "tema": "Saúde de Animais de Produção",
+          "subtema": "Tuberculose | PNCEBT",
+          "dificuldade": "media",
+          "pergunta": "O agente etiológico da tuberculose bovina pertence a um complexo micobacteriano com características tintoriais e de resistência ambiental bem definidas. Assinale a alternativa que descreve corretamente essas características:",
+          "alternativas": {
+            "A": "Mycobacterium bovis é um bacilo Gram-positivo formador de esporos, com elevada resistência a desinfetantes clorados, capaz de sobreviver por meses em pastagens úmidas e com capacidade de infectar humanos por via respiratória.",
+            "B": "Mycobacterium bovis é um bacilo álcool-ácido resistente (BAAR), não formador de esporos, de crescimento lento, com parede celular rica em ácidos micólicos que confere resistência a desinfetantes comuns e capacidade de sobrevivência prolongada no ambiente.",
+            "C": "Mycobacterium bovis é um cocobacilo Gram-negativo intracelular obrigatório, de crescimento rápido em meios convencionais, cuja parede celular glicoproteica o protege da destruição fagolisossomal e favorece a disseminação hematogênica precoce.",
+            "D": "Mycobacterium bovis é um bacilo Gram-negativo anaeróbio facultativo, produtor de exotoxinas proteicas termolábeis, com crescimento rápido em meios enriquecidos e resistência limitada a desinfetantes à base de iodo."
+          },
+          "correta": "B",
+          "explicacao": "M. bovis é um bacilo álcool-ácido resistente (BAAR), característica conferida pela parede celular rica em ácidos micólicos e ceras. Não forma esporos, tem crescimento extremamente lento (semanas em meios especiais como Löwenstein-Jensen) e sobrevive prolongadamente no ambiente, especialmente em locais úmidos e sombreados. Não é Gram-positivo convencional nem Gram-negativo — a coloração de Ziehl-Neelsen é o método padrão.",
+          "needsReview": false
+        },
+        {
+          "id": 13002,
+          "tipo": "multipla_escolha",
+          "type": "faculdade",
+          "banca": "Faculdade",
+          "source": "faculdade",
+          "discipline": "Saúde de Animais de Produção",
+          "topic": "Tuberculose | PNCEBT",
+          "tema": "Saúde de Animais de Produção",
+          "subtema": "Tuberculose | PNCEBT",
+          "dificuldade": "media",
+          "pergunta": "A tuberculose bovina gera impactos simultâneos na saúde animal, na saúde pública e na economia. Assinale a alternativa que melhor representa o conjunto desses impactos:",
+          "alternativas": {
+            "A": "Os principais problemas são a alta mortalidade de bovinos adultos, a destruição de carcaças inteiras ao abate e a ocorrência de surtos agudos em humanos por ingestão de carne mal cozida, sem impacto relevante sobre o comércio internacional.",
+            "B": "Os principais problemas são restrições ao comércio internacional de bovinos e produtos de origem animal, condenação de carcaças ao abate, queda na produção leiteira, risco zoonótico para humanos (principalmente por leite cru) e custos com o programa de controle e erradicação.",
+            "C": "Os principais problemas são surtos respiratórios agudos em bezerros com alta mortalidade, contaminação de pastagens por aerossóis infecciosos e transmissão exclusivamente por via venérea em touros, sem impacto relevante na produção leiteira.",
+            "D": "Os principais problemas são restrições ao trânsito estadual de bovinos, redução na eficiência reprodutiva de vacas gestantes, lesões articulares progressivas em animais adultos e transmissão zoonótica exclusivamente por via cutânea em trabalhadores rurais."
+          },
+          "correta": "B",
+          "explicacao": "A tuberculose bovina impacta simultaneamente: (1) saúde animal — emagrecimento progressivo, queda na produção, condenação de vísceras e carcaças; (2) saúde pública — zoonose transmitida principalmente por leite cru não pasteurizado e por via aerógena em trabalhadores; (3) economia — restrições ao comércio internacional, custos com o PNCEBT e perdas ao abate.",
+          "needsReview": false
+        },
+        {
+          "id": 13003,
+          "tipo": "multipla_escolha",
+          "type": "faculdade",
+          "banca": "Faculdade",
+          "source": "faculdade",
+          "discipline": "Saúde de Animais de Produção",
+          "topic": "Tuberculose | PNCEBT",
+          "tema": "Saúde de Animais de Produção",
+          "subtema": "Tuberculose | PNCEBT",
+          "dificuldade": "dificil",
+          "pergunta": "A formação de granulomas caseosos é a marca anatomopatológica da tuberculose bovina. Qual sequência descreve corretamente a patogenia dessa lesão?",
+          "alternativas": {
+            "A": "M. bovis penetra por via respiratória, é fagocitado por neutrófilos que sofrem apoptose imediata, liberando conteúdo enzimático que liquefaz o tecido pulmonar e origina cavitações com necrose liquefativa, sem formação de granuloma organizado.",
+            "B": "M. bovis penetra preferencialmente por via digestiva, replica-se no epitélio intestinal e dissemina-se por via linfática até os pulmões, onde induz resposta Th2 com produção de IgE e formação de granulomas eosinofílicos sem necrose central.",
+            "C": "M. bovis é fagocitado por macrófagos alveolares, mas inibe a fusão fagossomo-lisossomo e replica-se intracelularmente; a resposta imune celular (Th1) recruta macrófagos adicionais que se diferenciam em células epitelioides e células gigantes, formando granuloma com necrose central caseosa.",
+            "D": "M. bovis penetra por via cutânea, é transportado por células dendríticas até linfonodos regionais, onde induz resposta humoral intensa com deposição de imunocomplexos; a ativação do complemento origina necrose fibrinoide central com calcificação periférica imediata."
+          },
+          "correta": "C",
+          "explicacao": "A via de infecção principal é a respiratória (aerógena). M. bovis sobrevive dentro de macrófagos alveolares ao inibir a fusão fagossomo-lisossomo. A resposta imune celular mediada por linfócitos Th1 recruta macrófagos que se diferenciam em células epitelioides e células gigantes de Langhans, formando o granuloma tuberculoso (tubérculo). A necrose central caseosa resulta da hipersensibilidade do tipo IV e da morte celular por citocinas pró-inflamatórias.",
+          "needsReview": false
+        },
+        {
+          "id": 13004,
+          "tipo": "multipla_escolha",
+          "type": "faculdade",
+          "banca": "Faculdade",
+          "source": "faculdade",
+          "discipline": "Saúde de Animais de Produção",
+          "topic": "Tuberculose | PNCEBT",
+          "tema": "Saúde de Animais de Produção",
+          "subtema": "Tuberculose | PNCEBT",
+          "dificuldade": "media",
+          "pergunta": "Os sinais clínicos da tuberculose bovina variam conforme a forma de apresentação da doença. Assinale a alternativa que descreve corretamente o quadro clínico mais frequentemente observado:",
+          "alternativas": {
+            "A": "A forma aguda é a mais comum, cursando com febre alta, dispneia intensa, hemoptise e morte em 7 a 14 dias; a forma crônica é rara e caracteriza-se por artrite progressiva e edema de membros, sem comprometimento pulmonar relevante.",
+            "B": "A doença cursa tipicamente com emagrecimento progressivo, tosse crônica, dispneia, linfadenomegalia, queda na produção leiteira e aumento progressivo da temperatura corporal ao final do dia; os sinais são insidiosos e a doença pode permanecer inaparente por longos períodos.",
+            "C": "Os sinais clínicos predominantes são diarreia crônica com sangue, icterícia, distensão abdominal e linfadenomegalia mesentérica; a forma pulmonar ocorre exclusivamente em bezerros menores de seis meses e nunca em bovinos adultos.",
+            "D": "A tuberculose bovina cursa obrigatoriamente com sinais neurológicos como ataxia e opistótono, febre intermitente e lesões cutâneas ulcerativas em face e pescoço; a forma pulmonar é considerada rara e de pouco valor diagnóstico no campo."
+          },
+          "correta": "B",
+          "explicacao": "A tuberculose bovina é predominantemente crônica e insidiosa. Os sinais mais frequentes são emagrecimento progressivo apesar de alimentação adequada, tosse seca crônica que piora com exercício, dispneia, linfadenomegalia (especialmente submandibular e retrofaríngea), redução na produção leiteira e fraqueza geral. A febre vespertina (temperatura elevada ao final do dia) é descrita. Muitos animais permanecem inaparentes por meses a anos, representando importante risco epidemiológico.",
+          "needsReview": false
+        },
+        {
+          "id": 13007,
+          "tipo": "multipla_escolha",
+          "type": "faculdade",
+          "banca": "Faculdade",
+          "source": "faculdade",
+          "discipline": "Saúde de Animais de Produção",
+          "topic": "Tuberculose | PNCEBT",
+          "tema": "Saúde de Animais de Produção",
+          "subtema": "Tuberculose | PNCEBT",
+          "dificuldade": "media",
+          "pergunta": "A tuberculose bovina é uma zoonose de relevância para trabalhadores rurais e consumidores. Sobre as principais vias de transmissão de M. bovis ao ser humano, assinale a alternativa correta:",
+          "alternativas": {
+            "A": "A principal via de transmissão ao humano é a cutânea, pelo contato com urina e fezes de bovinos infectados durante limpeza de instalações; a via aerógena é considerada de baixo risco mesmo em ordenhadores e trabalhadores de abatedouro.",
+            "B": "A principal via de transmissão ao humano é a vetorial, por meio de moscas hematófagas que transferem M. bovis de bovinos infectados para a pele humana durante a ordenha; a pasteurização do leite não reduz significativamente o risco de infecção oral.",
+            "C": "As principais vias de transmissão ao humano são a digestiva, pelo consumo de leite cru ou derivados não pasteurizados de animais infectados, e a aerógena, pelo contato próximo com bovinos doentes ou material de abate contaminado; trabalhadores rurais, ordenhadores e funcionários de abatedouros são os grupos de maior risco.",
+            "D": "A principal via de transmissão ao humano é a transplacentária, com risco elevado para gestantes que trabalham em propriedades com foco ativo; a via digestiva é relevante apenas em crianças menores de dois anos, sendo a pasteurização ineficaz contra M. bovis por sua resistência térmica."
+          },
+          "correta": "C",
+          "explicacao": "M. bovis transmite-se ao humano principalmente por duas vias: (1) digestiva — consumo de leite cru ou queijos frescos não pasteurizados de vacas infectadas; (2) aerógena — inalação de aerossóis em contato próximo com animais doentes, em abatedouros ou durante necropsias. A pasteurização é eficaz na eliminação do bacilo. Trabalhadores rurais, ordenhadores, veterinários e funcionários de abatedouros constituem o grupo de maior risco ocupacional.",
+          "needsReview": false
+        },
+        {
+          "id": 13009,
+          "tipo": "multipla_escolha",
+          "type": "faculdade",
+          "banca": "Faculdade",
+          "source": "faculdade",
+          "discipline": "Saúde de Animais de Produção",
+          "topic": "Tuberculose | PNCEBT",
+          "tema": "Saúde de Animais de Produção",
+          "subtema": "Tuberculose | PNCEBT",
+          "dificuldade": "media",
+          "pergunta": "Um bovino adulto em bom escore corporal apresenta tosse crônica, linfadenomegalia submandibular e queda gradual na produção leiteira há três meses. Ao abate, são encontrados nódulos caseosos com calcificação central nos linfonodos bronquiais e no parênquima pulmonar. A lesão descrita é compatível com qual processo patológico?",
+          "alternativas": {
+            "A": "Pneumonia fibrinosa aguda por Mannheimia haemolytica, caracterizada por consolidação lobar e deposição de fibrina na pleura visceral, sem formação de granulomas calcificados.",
+            "B": "Linfossarcoma bovino associado ao vírus da leucose enzoótica bovina, com infiltração linfoide difusa de múltiplos órgãos, incluindo linfonodos, abomaso e coração, sem necrose central caseosa.",
+            "C": "Granuloma tuberculoso (tubérculo) por Mycobacterium bovis, com necrose central caseosa e calcificação distrófica progressiva, resultante de hipersensibilidade do tipo IV e resposta imune celular cronicamente ativada.",
+            "D": "Abscesso pulmonar por Trueperella pyogenes, com necrose liquefativa central, cápsula fibrosa espessa e ausência de calcificação, associado a pneumonia por aspiração em animais com disfagia."
+          },
+          "correta": "C",
+          "explicacao": "Nódulos caseosos com calcificação central em linfonodos bronquiais e parênquima pulmonar são a lesão anatomopatológica clássica da tuberculose bovina por M. bovis. A necrose caseosa resulta da resposta imune celular (Th1) cronicamente ativada e da hipersensibilidade do tipo IV; a calcificação distrófica é sequela da necrose tecidual crônica. O quadro clínico descrito (tosse, linfadenomegalia, queda de produção) é plenamente compatível.",
+          "needsReview": false
+        }
+      ]
+    }
+  ]
+}

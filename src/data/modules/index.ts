@@ -1,4 +1,5 @@
 import bruceloseModule from './brucelose_module.json'
+import tuberculoseModule from './tuberculose_module.json'
 import type { StructuredStudyModule } from './types'
 
 export * from './types'
@@ -7,6 +8,7 @@ export * from './pipeline'
 
 export const staticStudyModules: StructuredStudyModule[] = [
   bruceloseModule as StructuredStudyModule,
+  tuberculoseModule as StructuredStudyModule,
 ]
 
-export { bruceloseModule }
+export { bruceloseModule, tuberculoseModule }
