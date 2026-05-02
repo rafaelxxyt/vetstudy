@@ -162,14 +162,37 @@ function isHit(q:Question, a:AnswerState):boolean {
 }
 
 const BADGE = {
-  mc:    { label:'Múltipla Escolha',   cls:'bg-teal-500/10 text-teal-400 border-teal-500/20' },
-  vf:    { label:'Verdadeiro / Falso', cls:'bg-purple-500/10 text-purple-400 border-purple-500/20' },
-  assoc: { label:'Associação',         cls:'bg-amber-500/10 text-amber-400 border-amber-500/20' },
+  mc:    { label:'Múltipla Escolha',   cls:'bg-primary-500/10 text-primary-400 border-primary-500/20' },
+  vf:    { label:'Verdadeiro / Falso', cls:'bg-primary-500/10 text-primary-400 border-primary-500/20' },
+  assoc: { label:'Associação',         cls:'bg-warning-500/10 text-warning-400 border-warning-500/20' },
 }
 
-const BANCAS   = ['Todas','Faculdade','Vunesp','FCC','Cebraspe','Outros']
-const MATERIAS = ['Todas','Reprodução Animal','Anatomia Reprodutiva','Clínica de Ruminantes','Clínica de Pequenos','Farmacologia Veterinária']
-const DIFS     = ['Todas','facil','media','dificil'] as const
+const ALL_BANCA_OPTION = 'Todas'
+const ALL_MATERIA_OPTION = 'Todas'
+const ALL_TOPICO_OPTION = 'Todos'
+const ALL_SUBTEMA_OPTION = 'Todos'
+const MIN_SUBTEMA_QUESTIONS = 5
+const MIN_VISIBLE_SUBTEMAS = 2
+const BANCA_PRIORITY = ['Faculdade', 'Vunesp', 'FCC', 'Cebraspe', 'Outros', 'VetStudy']
+const MATERIA_PRIORITY = [
+  'Reprodução Animal',
+  'Anatomia Reprodutiva',
+  'Clínica de Ruminantes',
+  'Clínica de Pequenos',
+  'Farmacologia Veterinária',
+  'Saúde de Animais de Produção',
+  'Clínica de Equídeos',
+]
+const TOPICO_PRIORITY = [
+  'Brucelose | PNCEBT',
+  'Tuberculose | PNCEBT',
+  'AIE',
+  'Mormo',
+  'PNSE / PNCEBT',
+  'PNCEBT',
+  'PNSE',
+]
+const DIFS = ['Todas','facil','media','dificil'] as const
 type DifFilter = typeof DIFS[number]
 
 /* ══════════════════════════════════════════════════════
@@ -184,12 +207,12 @@ function MCQ({ q, answer, onAnswer }: { q:MC; answer:number|null; onAnswer:(i:nu
         return (
           <button key={i} onClick={()=>onAnswer(i)} disabled={answered}
             className={`w-full text-left px-4 py-3.5 rounded-2xl border text-sm font-medium transition-all active:scale-[0.98] ${
-              right?'bg-green-500/15 border-green-500/40 text-green-300':
-              wrong?'bg-red-500/15 border-red-500/40 text-red-300':
-              sel?'bg-teal-500/15 border-teal-500/40 text-teal-300':
-              'bg-slate-800 border-slate-700/60 text-slate-300 hover:border-teal-500/40 hover:bg-slate-700/50'
+              right?'bg-success-500/15 border-success-500/40 text-success-300':
+              wrong?'bg-danger-500/15 border-danger-500/40 text-danger-300':
+              sel?'bg-primary-500/15 border-primary-500/40 text-primary-300':
+              'bg-neutral-800 border-neutral-700/60 text-neutral-300 hover:border-primary-500/40 hover:bg-neutral-700/50'
             } ${answered&&!sel&&!right?'opacity-40':''}`}>
-            <span className="inline-flex items-center justify-center w-6 h-6 rounded-lg bg-slate-700/60 text-xs font-bold mr-3">
+            <span className="inline-flex items-center justify-center w-6 h-6 rounded-lg bg-neutral-700/60 text-xs font-bold mr-3">
               {String.fromCharCode(65+i)}
             </span>{opt}
           </button>
@@ -211,10 +234,10 @@ function VFQ({ q, answer, onAnswer }: { q:VF; answer:boolean|null; onAnswer:(v:b
         return (
           <button key={String(val)} onClick={()=>onAnswer(val)} disabled={answered}
             className={`py-6 rounded-2xl border text-base font-black transition-all active:scale-[0.97] ${
-              right?'bg-green-500/15 border-green-500/40 text-green-300':
-              wrong?'bg-red-500/15 border-red-500/40 text-red-300':
-              sel?'bg-teal-500/15 border-teal-500/40 text-teal-300':
-              'bg-slate-800 border-slate-700/60 text-slate-400 hover:border-teal-500/40 hover:text-white'
+              right?'bg-success-500/15 border-success-500/40 text-success-300':
+              wrong?'bg-danger-500/15 border-danger-500/40 text-danger-300':
+              sel?'bg-primary-500/15 border-primary-500/40 text-primary-300':
+              'bg-neutral-800 border-neutral-700/60 text-neutral-400 hover:border-primary-500/40 hover:text-white'
             } ${answered&&!sel?'opacity-40':''}`}>
             {val?'✓  VERDADEIRO':'✗  FALSO'}
           </button>
@@ -247,42 +270,42 @@ function AssocQ({ q, answer, onAnswer }: { q:ASSOC; answer:number[]|null; onAnsw
   const ok=(li:number)=>answered&&p[li]===q.pairs[li]
   const ko=(li:number)=>answered&&p[li]!==undefined&&p[li]!==q.pairs[li]
 
-  const lClass=(li:number)=>ok(li)?'bg-teal-500/15 border-teal-500/40 text-teal-300':
-    ko(li)?'bg-red-500/15 border-red-500/40 text-red-300':
-    selLeft===li?'bg-teal-500/25 border-teal-400 text-teal-200 scale-[1.02]':
-    conn[li]!==undefined?'bg-teal-500/10 border-teal-600/30 text-teal-400':
-    'bg-slate-800 border-slate-700/60 text-slate-300 hover:border-slate-500'
+  const lClass=(li:number)=>ok(li)?'bg-primary-500/15 border-primary-500/40 text-primary-300':
+    ko(li)?'bg-danger-500/15 border-danger-500/40 text-danger-300':
+    selLeft===li?'bg-primary-500/25 border-primary-400 text-primary-200 scale-[1.02]':
+    conn[li]!==undefined?'bg-primary-500/10 border-primary-600/30 text-primary-400':
+    'bg-neutral-800 border-neutral-700/60 text-neutral-300 hover:border-neutral-500'
   const rClass=(ri:number)=>{
     const li=Object.entries(p as Record<number,number>).find(([,v])=>v===ri)?.[0]
-    if (li!==undefined&&answered) return ok(Number(li))?'bg-teal-500/15 border-teal-500/40 text-teal-300':'bg-red-500/15 border-red-500/40 text-red-300'
-    if (usedRight.includes(ri)&&!answered) return 'bg-teal-500/10 border-teal-600/30 text-teal-400 opacity-60'
-    if (selLeft!==null&&!usedRight.includes(ri)) return 'bg-slate-700/60 border-teal-600/50 text-slate-200 hover:bg-teal-500/20'
-    return 'bg-slate-800 border-slate-700/60 text-slate-400'
+    if (li!==undefined&&answered) return ok(Number(li))?'bg-primary-500/15 border-primary-500/40 text-primary-300':'bg-danger-500/15 border-danger-500/40 text-danger-300'
+    if (usedRight.includes(ri)&&!answered) return 'bg-primary-500/10 border-primary-600/30 text-primary-400 opacity-60'
+    if (selLeft!==null&&!usedRight.includes(ri)) return 'bg-neutral-700/60 border-primary-600/50 text-neutral-200 hover:bg-primary-500/20'
+    return 'bg-neutral-800 border-neutral-700/60 text-neutral-400'
   }
 
   return (
     <div className="space-y-3">
       {!answered && (
-        <div className="flex items-start gap-2 bg-slate-800/60 border border-slate-700/40 rounded-xl px-3 py-2.5">
-          <ArrowRight size={13} className="text-teal-400 flex-shrink-0 mt-0.5" />
-          <p className="text-xs text-slate-400">
+        <div className="flex items-start gap-2 bg-neutral-800/60 border border-neutral-700/40 rounded-xl px-3 py-2.5">
+          <ArrowRight size={13} className="text-primary-400 flex-shrink-0 mt-0.5" />
+          <p className="text-xs text-neutral-400">
             {selLeft===null?'Toque em um item da COLUNA A para selecionar.':`"${q.left[selLeft]}" selecionado → toque no item da COLUNA B.`}
           </p>
         </div>
       )}
       <div className="grid grid-cols-2 gap-3">
         <div className="space-y-2">
-          <p className="text-[9px] font-black text-slate-600 uppercase text-center">Coluna A</p>
+          <p className="text-[9px] font-black text-neutral-600 uppercase text-center">Coluna A</p>
           {q.left.map((item,li)=>(
             <button key={li} onClick={()=>clickLeft(li)} disabled={answered}
               className={`w-full px-3 py-3.5 rounded-xl border text-xs font-semibold text-center transition-all active:scale-[0.97] ${lClass(li)}`}>
               {item}
-              {answered&&<span className="ml-1.5">{ok(li)?<CheckCircle2 size={12} className="inline text-green-400"/>:<XCircle size={12} className="inline text-red-400"/>}</span>}
+              {answered&&<span className="ml-1.5">{ok(li)?<CheckCircle2 size={12} className="inline text-success-400"/>:<XCircle size={12} className="inline text-danger-400"/>}</span>}
             </button>
           ))}
         </div>
         <div className="space-y-2">
-          <p className="text-[9px] font-black text-slate-600 uppercase text-center">Coluna B</p>
+          <p className="text-[9px] font-black text-neutral-600 uppercase text-center">Coluna B</p>
           {q.right.map((item,ri)=>(
             <button key={ri} onClick={()=>clickRight(ri)} disabled={answered||(usedRight.includes(ri)&&selLeft===null)}
               className={`w-full px-3 py-3.5 rounded-xl border text-[11px] font-medium text-center transition-all active:scale-[0.97] ${rClass(ri)}`}>
@@ -293,7 +316,7 @@ function AssocQ({ q, answer, onAnswer }: { q:ASSOC; answer:number[]|null; onAnsw
       </div>
       {!answered&&Object.keys(conn).length>0&&(
         <button onClick={()=>{setConn({});setSelLeft(null)}}
-          className="flex items-center gap-1.5 mx-auto text-xs text-slate-600 hover:text-slate-300 transition-colors py-1 px-2 rounded-lg hover:bg-slate-800">
+          className="flex items-center gap-1.5 mx-auto text-xs text-neutral-600 hover:text-neutral-300 transition-colors py-1 px-2 rounded-lg hover:bg-neutral-800">
           <RotateCcw size={11}/> Limpar
         </button>
       )}
@@ -307,6 +330,8 @@ function AssocQ({ q, answer, onAnswer }: { q:ASSOC; answer:number[]|null; onAnsw
 interface FilterState {
   banca:       string
   materia:     string
+  topico:      string
+  subtema:     string
   tipo:        'todas' | 'mc' | 'vf' | 'assoc'
   dificuldade: DifFilter
   refazer:     'normal' | 'erradas' | 'acertadas' | 'reforco'
@@ -320,6 +345,166 @@ interface QuizSession {
   filters: FilterState
 }
 
+function normalizeText(value: string): string {
+  return value
+    .toLocaleLowerCase('pt-BR')
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/\s+/g, ' ')
+    .trim()
+}
+
+function compareWithPriority(a: string, b: string, priority: string[]): number {
+  const ai = priority.indexOf(a)
+  const bi = priority.indexOf(b)
+
+  if (ai !== -1 || bi !== -1) {
+    if (ai === -1) return 1
+    if (bi === -1) return -1
+    return ai - bi
+  }
+
+  return a.localeCompare(b, 'pt-BR')
+}
+
+function uniqueSortedOptions(values: string[], priority: string[] = []): string[] {
+  return [...new Set(values.map(value => value.trim()).filter(Boolean))]
+    .sort((a, b) => compareWithPriority(a, b, priority))
+}
+
+function getQuestionSubtema(question: Pick<Question, 'materia' | 'subtema'>): string {
+  return question.subtema.trim() || question.materia.trim()
+}
+
+function getQuestionTopico(question: Pick<Question, 'materia' | 'subtema'>): string {
+  const subtema = getQuestionSubtema(question)
+  const normalized = normalizeText(subtema)
+
+  if (!subtema) return question.materia.trim()
+  if (subtema.includes('|')) return subtema
+  if (normalized.includes('brucelose')) return 'Brucelose | PNCEBT'
+  if (normalized.includes('tuberculose')) return 'Tuberculose | PNCEBT'
+  if (normalized.includes('anemia infecciosa equina') || normalized === 'aie' || normalized.includes('(aie)')) return 'AIE'
+  if (normalized.includes('mormo')) return 'Mormo'
+  if (normalized.includes('pnse') && normalized.includes('pncebt')) return 'PNSE / PNCEBT'
+  if (normalized.includes('pncebt')) return 'PNCEBT'
+  if (normalized.includes('pnse')) return 'PNSE'
+
+  return subtema
+}
+
+function applyBaseFilters(
+  questions: Question[],
+  filters: Pick<FilterState, 'banca' | 'materia' | 'topico' | 'subtema'>,
+): Question[] {
+  let qs = [...questions]
+
+  if (filters.banca !== ALL_BANCA_OPTION) {
+    qs = qs.filter(q => q.banca === filters.banca)
+  }
+
+  if (filters.materia !== ALL_MATERIA_OPTION) {
+    qs = qs.filter(q => q.materia === filters.materia)
+  }
+
+  if (filters.topico !== ALL_TOPICO_OPTION) {
+    qs = qs.filter(q => getQuestionTopico(q) === filters.topico)
+  }
+
+  if (filters.subtema !== ALL_SUBTEMA_OPTION) {
+    qs = qs.filter(q => getQuestionSubtema(q) === filters.subtema)
+  }
+
+  return qs
+}
+
+function getAvailableBancas(questions: Question[] = ALL_QUESTIONS): string[] {
+  return [ALL_BANCA_OPTION, ...uniqueSortedOptions(questions.map(q => q.banca), BANCA_PRIORITY)]
+}
+
+function getAvailableMaterias(questions: Question[], banca: string): string[] {
+  const scopedQuestions = banca === ALL_BANCA_OPTION
+    ? questions
+    : questions.filter(q => q.banca === banca)
+
+  return [ALL_MATERIA_OPTION, ...uniqueSortedOptions(scopedQuestions.map(q => q.materia), MATERIA_PRIORITY)]
+}
+
+function getAvailableTopicos(questions: Question[], banca: string, materia: string): string[] {
+  const scopedQuestions = applyBaseFilters(questions, {
+    banca,
+    materia,
+    topico: ALL_TOPICO_OPTION,
+    subtema: ALL_SUBTEMA_OPTION,
+  })
+  const groupedTopicos = scopedQuestions
+    .map(question => ({
+      topico: getQuestionTopico(question),
+      subtema: getQuestionSubtema(question),
+    }))
+    .filter(({ topico, subtema }) => topico.includes('|') || topico !== subtema || TOPICO_PRIORITY.includes(topico))
+    .map(({ topico }) => topico)
+
+  return [ALL_TOPICO_OPTION, ...uniqueSortedOptions(groupedTopicos, TOPICO_PRIORITY)]
+}
+
+function getAvailableSubtemas(questions: Question[], banca: string, materia: string, topico: string): string[] {
+  const scopedQuestions = applyBaseFilters(questions, {
+    banca,
+    materia,
+    topico,
+    subtema: ALL_SUBTEMA_OPTION,
+  })
+  const subtemaCounts = new Map<string, number>()
+
+  scopedQuestions.forEach(question => {
+    const subtema = getQuestionSubtema(question)
+    subtemaCounts.set(subtema, (subtemaCounts.get(subtema) ?? 0) + 1)
+  })
+
+  return uniqueSortedOptions(
+    [...subtemaCounts.entries()]
+      .filter(([, count]) => count >= MIN_SUBTEMA_QUESTIONS)
+      .map(([subtema]) => subtema),
+  )
+}
+
+function shouldShowSubtemaSection(subtemas: string[]): boolean {
+  return subtemas.length >= MIN_VISIBLE_SUBTEMAS
+}
+
+function getEffectiveFilters(filters: FilterState): FilterState {
+  const next = normalizeFilters(filters)
+  const availableSubtemas = getAvailableSubtemas(ALL_QUESTIONS, next.banca, next.materia, next.topico)
+
+  if (
+    !shouldShowSubtemaSection(availableSubtemas)
+    || (next.subtema !== ALL_SUBTEMA_OPTION && !availableSubtemas.includes(next.subtema))
+  ) {
+    next.subtema = ALL_SUBTEMA_OPTION
+  }
+
+  return next
+}
+
+function normalizeFilters(raw?: Partial<FilterState> | null): FilterState {
+  const tipo = raw?.tipo === 'mc' || raw?.tipo === 'vf' || raw?.tipo === 'assoc' ? raw.tipo : 'todas'
+  const dificuldade = DIFS.includes(raw?.dificuldade as DifFilter) ? raw?.dificuldade as DifFilter : 'Todas'
+  const refazer = raw?.refazer === 'erradas' || raw?.refazer === 'acertadas' || raw?.refazer === 'reforco'
+    ? raw.refazer
+    : 'normal'
+
+  return {
+    banca: typeof raw?.banca === 'string' && raw.banca.trim() ? raw.banca : ALL_BANCA_OPTION,
+    materia: typeof raw?.materia === 'string' && raw.materia.trim() ? raw.materia : ALL_MATERIA_OPTION,
+    topico: typeof raw?.topico === 'string' && raw.topico.trim() ? raw.topico : ALL_TOPICO_OPTION,
+    subtema: typeof raw?.subtema === 'string' && raw.subtema.trim() ? raw.subtema : ALL_SUBTEMA_OPTION,
+    tipo,
+    dificuldade,
+    refazer,
+  }
+}
+
 function questionsFromIds(ids: number[]): Question[] | null {
   const qs = ids.map(id => ALL_QUESTIONS.find(q => q.qid === id))
   return qs.every(Boolean) ? qs as Question[] : null
@@ -329,7 +514,7 @@ function loadQuizSession(): QuizSession | null {
   const session = loadProfileJSON<QuizSession | null>(LS_SESSION, null)
   if (!session || !Array.isArray(session.questionIds) || !Array.isArray(session.answers)) return null
   if (!questionsFromIds(session.questionIds)) return null
-  return session
+  return { ...session, filters: normalizeFilters(session.filters) }
 }
 
 function clearQuizSession() {
@@ -354,9 +539,9 @@ function getDailyQuestions(session: TodaySession): Question[] | null {
 }
 
 const ORIGEM_LABEL: Record<TodaySessionQuestion['origem'], { text: string; cls: string }> = {
-  revisao: { text: '📅 Revisão pendente', cls: 'bg-blue-500/10 text-blue-300 border-blue-500/20' },
-  reforco: { text: '⚡ Você errou antes', cls: 'bg-amber-500/10 text-amber-300 border-amber-500/20' },
-  exploracao: { text: '🆕 Conteúdo novo', cls: 'bg-teal-500/10 text-teal-300 border-teal-500/20' },
+  revisao: { text: '📅 Revisão pendente', cls: 'bg-primary-500/10 text-primary-300 border-primary-500/20' },
+  reforco: { text: '⚡ Você errou antes', cls: 'bg-warning-500/10 text-warning-300 border-warning-500/20' },
+  exploracao: { text: '🆕 Conteúdo novo', cls: 'bg-primary-500/10 text-primary-300 border-primary-500/20' },
 }
 
 function FilterPanel({ filters, setFilters, history, total }: {
@@ -366,29 +551,54 @@ function FilterPanel({ filters, setFilters, history, total }: {
   const acertadas    = history.filter(h=>h.correct).length
   const respostas    = loadRespostas()
   const pontosFracos = calcWeakTopicStats().filter(t => t.taxa >= 0.4).slice(0, 2)
+  const bancaOptions = getAvailableBancas()
+  const materiaOptions = getAvailableMaterias(ALL_QUESTIONS, filters.banca)
+  const topicoOptions = getAvailableTopicos(ALL_QUESTIONS, filters.banca, filters.materia)
+  const availableSubtemas = getAvailableSubtemas(ALL_QUESTIONS, filters.banca, filters.materia, filters.topico)
+  const showSubtemaSection = shouldShowSubtemaSection(availableSubtemas)
+  const subtemaOptions = showSubtemaSection ? [ALL_SUBTEMA_OPTION, ...availableSubtemas] : []
+
+  const syncFilters = (partial: Partial<FilterState>) => {
+    const next = normalizeFilters({ ...filters, ...partial })
+    const nextMaterias = getAvailableMaterias(ALL_QUESTIONS, next.banca)
+    if (!nextMaterias.includes(next.materia)) next.materia = ALL_MATERIA_OPTION
+
+    const nextTopicos = getAvailableTopicos(ALL_QUESTIONS, next.banca, next.materia)
+    if (!nextTopicos.includes(next.topico)) next.topico = ALL_TOPICO_OPTION
+
+    const nextSubtemas = getAvailableSubtemas(ALL_QUESTIONS, next.banca, next.materia, next.topico)
+    if (
+      !shouldShowSubtemaSection(nextSubtemas)
+      || (next.subtema !== ALL_SUBTEMA_OPTION && !nextSubtemas.includes(next.subtema))
+    ) {
+      next.subtema = ALL_SUBTEMA_OPTION
+    }
+
+    setFilters(next)
+  }
 
   return (
-    <div className="bg-slate-800/60 backdrop-blur-md rounded-2xl border border-slate-700/60 p-4 space-y-4">
+    <div className="bg-neutral-800/60 backdrop-blur-md rounded-2xl border border-neutral-700/60 p-4 space-y-4">
       <div className="flex items-center gap-2">
-        <Filter size={14} className="text-teal-400" />
+        <Filter size={14} className="text-primary-400" />
         <p className="text-sm font-bold text-white">Filtros Avançados</p>
       </div>
 
       {/* ── Pontos Fracos (aparece quando há histórico suficiente) ── */}
       {pontosFracos.length > 0 && (
-        <div className="bg-red-500/8 border border-red-500/20 rounded-xl px-3.5 py-3">
-          <p className="text-[10px] font-bold text-red-400 uppercase tracking-wider mb-1.5 flex items-center gap-1">
+        <div className="bg-danger-500/8 border border-danger-500/20 rounded-xl px-3.5 py-3">
+          <p className="text-[10px] font-bold text-danger-400 uppercase tracking-wider mb-1.5 flex items-center gap-1">
             <span>⚡</span> Você está errando mais em:
           </p>
           <div className="space-y-1.5">
             {pontosFracos.map(t => (
               <div key={t.label} className="flex items-center justify-between gap-3">
-                <span className="text-xs text-slate-300 flex-1 truncate">{t.label}</span>
+                <span className="text-xs text-neutral-300 flex-1 truncate">{t.label}</span>
                 <div className="flex items-center gap-2 flex-shrink-0">
-                  <div className="w-16 h-1.5 bg-slate-700 rounded-full overflow-hidden">
-                    <div className="h-full bg-red-400 rounded-full transition-all" style={{width:`${Math.round(t.taxa*100)}%`}} />
+                  <div className="w-16 h-1.5 bg-neutral-700 rounded-full overflow-hidden">
+                    <div className="h-full bg-danger-400 rounded-full transition-all" style={{width:`${Math.round(t.taxa*100)}%`}} />
                   </div>
-                  <span className="text-[10px] text-red-400 font-bold w-8 text-right">{Math.round(t.taxa*100)}%</span>
+                  <span className="text-[10px] text-danger-400 font-bold w-8 text-right">{Math.round(t.taxa*100)}%</span>
                 </div>
               </div>
             ))}
@@ -398,12 +608,12 @@ function FilterPanel({ filters, setFilters, history, total }: {
 
       {/* Banca */}
       <div>
-        <p className="text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-2">Banca</p>
+        <p className="text-[10px] font-bold text-neutral-500 uppercase tracking-wider mb-2">Banca</p>
         <div className="flex flex-wrap gap-1.5">
-          {BANCAS.map(b=>(
-            <button key={b} onClick={()=>setFilters({...filters,banca:b})}
+          {bancaOptions.map(b=>(
+            <button key={b} onClick={()=>syncFilters({ banca: b })}
               className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition-all border ${
-                filters.banca===b?'bg-teal-500/20 text-teal-300 border-teal-500/30':'bg-slate-800 text-slate-500 border-slate-700/60 hover:text-slate-300'
+                filters.banca===b?'bg-primary-500/20 text-primary-300 border-primary-500/30':'bg-neutral-800 text-neutral-500 border-neutral-700/60 hover:text-neutral-300'
               }`}>{b}</button>
           ))}
         </div>
@@ -411,25 +621,53 @@ function FilterPanel({ filters, setFilters, history, total }: {
 
       {/* Matéria */}
       <div>
-        <p className="text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-2">Matéria</p>
+        <p className="text-[10px] font-bold text-neutral-500 uppercase tracking-wider mb-2">Matéria / Disciplina</p>
         <div className="flex flex-wrap gap-1.5">
-          {MATERIAS.map(m=>(
-            <button key={m} onClick={()=>setFilters({...filters,materia:m})}
+          {materiaOptions.map(m=>(
+            <button key={m} onClick={()=>syncFilters({ materia: m })}
               className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition-all border ${
-                filters.materia===m?'bg-blue-500/20 text-blue-300 border-blue-500/30':'bg-slate-800 text-slate-500 border-slate-700/60 hover:text-slate-300'
+                filters.materia===m?'bg-primary-500/20 text-primary-300 border-primary-500/30':'bg-neutral-800 text-neutral-500 border-neutral-700/60 hover:text-neutral-300'
               }`}>{m}</button>
           ))}
         </div>
       </div>
 
+      {/* Tópico */}
+      <div>
+        <p className="text-[10px] font-bold text-neutral-500 uppercase tracking-wider mb-2">Tópico</p>
+        <div className="flex flex-wrap gap-1.5">
+          {topicoOptions.map(topico=>(
+            <button key={topico} onClick={()=>syncFilters({ topico })}
+              className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition-all border ${
+                filters.topico===topico?'bg-primary-500/20 text-primary-300 border-primary-500/30':'bg-neutral-800 text-neutral-500 border-neutral-700/60 hover:text-neutral-300'
+              }`}>{topico}</button>
+          ))}
+        </div>
+      </div>
+
+      {/* Subtema */}
+      {showSubtemaSection && (
+        <div>
+          <p className="text-[10px] font-bold text-neutral-500 uppercase tracking-wider mb-2">Subtema</p>
+          <div className="flex flex-wrap gap-1.5">
+            {subtemaOptions.map(subtema=>(
+              <button key={subtema} onClick={()=>syncFilters({ subtema })}
+                className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition-all border ${
+                  filters.subtema===subtema?'bg-primary-500/20 text-primary-300 border-primary-500/30':'bg-neutral-800 text-neutral-500 border-neutral-700/60 hover:text-neutral-300'
+                }`}>{subtema}</button>
+            ))}
+          </div>
+        </div>
+      )}
+
       {/* Tipo */}
       <div>
-        <p className="text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-2">Tipo</p>
+        <p className="text-[10px] font-bold text-neutral-500 uppercase tracking-wider mb-2">Tipo</p>
         <div className="flex gap-1.5 flex-wrap">
           {([['todas','Todas'],['mc','Múltipla Escolha'],['vf','V/F'],['assoc','Colunas']] as const).map(([k,l])=>(
-            <button key={k} onClick={()=>setFilters({...filters,tipo:k})}
+            <button key={k} onClick={()=>syncFilters({ tipo: k })}
               className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition-all border ${
-                filters.tipo===k?'bg-purple-500/20 text-purple-300 border-purple-500/30':'bg-slate-800 text-slate-500 border-slate-700/60 hover:text-slate-300'
+                filters.tipo===k?'bg-primary-500/20 text-primary-300 border-primary-500/30':'bg-neutral-800 text-neutral-500 border-neutral-700/60 hover:text-neutral-300'
               }`}>{l}</button>
           ))}
         </div>
@@ -437,12 +675,12 @@ function FilterPanel({ filters, setFilters, history, total }: {
 
       {/* Dificuldade */}
       <div>
-        <p className="text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-2">Dificuldade</p>
+        <p className="text-[10px] font-bold text-neutral-500 uppercase tracking-wider mb-2">Dificuldade</p>
         <div className="flex gap-1.5 flex-wrap">
           {([['Todas','Todas'],['facil','Fácil'],['media','Média'],['dificil','Difícil']] as const).map(([k,l])=>(
-            <button key={k} onClick={()=>setFilters({...filters,dificuldade:k as DifFilter})}
+            <button key={k} onClick={()=>syncFilters({ dificuldade: k as DifFilter })}
               className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition-all border ${
-                filters.dificuldade===k?'bg-amber-500/20 text-amber-300 border-amber-500/30':'bg-slate-800 text-slate-500 border-slate-700/60 hover:text-slate-300'
+                filters.dificuldade===k?'bg-warning-500/20 text-warning-300 border-warning-500/30':'bg-neutral-800 text-neutral-500 border-neutral-700/60 hover:text-neutral-300'
               }`}>{l}</button>
           ))}
         </div>
@@ -450,42 +688,42 @@ function FilterPanel({ filters, setFilters, history, total }: {
 
       {/* Modo de Estudo */}
       <div>
-        <p className="text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-2">Modo de Estudo</p>
+        <p className="text-[10px] font-bold text-neutral-500 uppercase tracking-wider mb-2">Modo de Estudo</p>
         <div className="flex gap-2 flex-wrap">
-          <button onClick={()=>setFilters({...filters,refazer:'reforco'})}
+          <button onClick={()=>syncFilters({ refazer: 'reforco' })}
             className={`flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-bold border transition-all ${
-              filters.refazer==='reforco'?'bg-violet-500/20 text-violet-300 border-violet-500/30':'bg-slate-800 text-slate-500 border-slate-700/60 hover:text-violet-400'
+              filters.refazer==='reforco'?'bg-primary-500/20 text-primary-300 border-primary-500/30':'bg-neutral-800 text-neutral-500 border-neutral-700/60 hover:text-primary-400'
             }`}>
             ⚡ Reforço Inteligente
           </button>
-          <button onClick={()=>setFilters({...filters,refazer:'erradas'})} disabled={erradas===0}
+          <button onClick={()=>syncFilters({ refazer: 'erradas' })} disabled={erradas===0}
             className={`flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-bold border transition-all disabled:opacity-30 ${
-              filters.refazer==='erradas'?'bg-red-500/20 text-red-300 border-red-500/30':'bg-slate-800 text-slate-500 border-slate-700/60 hover:text-red-400'
+              filters.refazer==='erradas'?'bg-danger-500/20 text-danger-300 border-danger-500/30':'bg-neutral-800 text-neutral-500 border-neutral-700/60 hover:text-danger-400'
             }`}>
             <XCircle size={12}/> Só Erradas ({erradas})
           </button>
-          <button onClick={()=>setFilters({...filters,refazer:'acertadas'})} disabled={acertadas===0}
+          <button onClick={()=>syncFilters({ refazer: 'acertadas' })} disabled={acertadas===0}
             className={`flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-bold border transition-all disabled:opacity-30 ${
-              filters.refazer==='acertadas'?'bg-green-500/20 text-green-300 border-green-500/30':'bg-slate-800 text-slate-500 border-slate-700/60 hover:text-green-400'
+              filters.refazer==='acertadas'?'bg-success-500/20 text-success-300 border-success-500/30':'bg-neutral-800 text-neutral-500 border-neutral-700/60 hover:text-success-400'
             }`}>
             <CheckCircle2 size={12}/> Só Acertadas ({acertadas})
           </button>
-          <button onClick={()=>setFilters({...filters,refazer:'normal'})}
+          <button onClick={()=>syncFilters({ refazer: 'normal' })}
             className={`px-3 py-2 rounded-xl text-xs font-bold border transition-all ${
-              filters.refazer==='normal'?'bg-slate-600 text-white border-slate-500':'bg-slate-800 text-slate-500 border-slate-700/60 hover:text-slate-300'
+              filters.refazer==='normal'?'bg-neutral-600 text-white border-neutral-500':'bg-neutral-800 text-neutral-500 border-neutral-700/60 hover:text-neutral-300'
             }`}>Todas</button>
         </div>
         {filters.refazer==='reforco' && (
-          <p className="text-[10px] text-violet-400/70 mt-1.5 pl-1">
+          <p className="text-[10px] text-primary-400/70 mt-1.5 pl-1">
             Prioriza: erros recentes → nunca respondidas → acertos antigos
           </p>
         )}
       </div>
 
-      <div className="border-t border-slate-700/50 pt-3 flex items-center justify-between">
-        <p className="text-xs text-slate-500">{total} questão{total!==1?'s':''} disponível{total!==1?'is':''}</p>
+      <div className="border-t border-neutral-700/50 pt-3 flex items-center justify-between">
+        <p className="text-xs text-neutral-500">{total} questão{total!==1?'s':''} disponível{total!==1?'is':''}</p>
         {respostas.length > 0 && (
-          <p className="text-[10px] text-slate-600">{respostas.length} respondida{respostas.length!==1?'s':''} no histórico</p>
+          <p className="text-[10px] text-neutral-600">{respostas.length} respondida{respostas.length!==1?'s':''} no histórico</p>
         )}
       </div>
     </div>
@@ -496,24 +734,21 @@ function FilterPanel({ filters, setFilters, history, total }: {
    SIMULADOR PRINCIPAL
    ══════════════════════════════════════════════════════ */
 function SimuladorContent({ profile }: { profile: LocalProfile }) {
-  const defaultFilters: FilterState = {
-    banca:'Todas', materia:'Todas', tipo:'todas', dificuldade:'Todas', refazer:'normal'
-  }
+  const defaultFilters: FilterState = normalizeFilters()
   const initialDailySession = hasDailyLaunch(profile.id) ? loadTodaySession(profile.id) : null
   const initialDailyQuestions = initialDailySession ? getDailyQuestions(initialDailySession) : null
   const startsDailyMode = Boolean(initialDailySession && initialDailyQuestions && !initialDailySession.completed)
   const [savedSession, setSavedSession] = useState<QuizSession | null>(() => loadQuizSession())
   const [showFilters, setShowFilters] = useState(false)
-  const [filters, setFilters] = useState<FilterState>(() => savedSession?.filters ?? defaultFilters)
+  const [filters, setFilters] = useState<FilterState>(() => getEffectiveFilters(normalizeFilters(savedSession?.filters ?? defaultFilters)))
   const [history, setHistory] = useState<QHistory[]>(()=>loadProfileJSON<QHistory[]>(LS_HISTORY,[]))
   const [dailyMode, setDailyMode] = useState(startsDailyMode)
   const [dailySession, setDailySession] = useState<TodaySession | null>(() => startsDailyMode ? initialDailySession : null)
   const [dailyStartAnsweredCount] = useState(()=>startsDailyMode && initialDailySession ? initialDailySession.answeredCount : 0)
 
   const getFiltered = ():Question[] => {
-    let qs=[...ALL_QUESTIONS]
-    if (filters.banca!=='Todas')       qs=qs.filter(q=>q.banca===filters.banca)
-    if (filters.materia!=='Todas')     qs=qs.filter(q=>q.materia===filters.materia)
+    const effectiveFilters = getEffectiveFilters(filters)
+    let qs = applyBaseFilters(ALL_QUESTIONS, effectiveFilters)
     if (filters.tipo!=='todas')        qs=qs.filter(q=>q.type===filters.tipo)
     if (filters.dificuldade!=='Todas') qs=qs.filter(q=>q.dificuldade===filters.dificuldade)
     if (filters.refazer==='erradas') {
@@ -561,7 +796,7 @@ function SimuladorContent({ profile }: { profile: LocalProfile }) {
     const restoredAnswers=savedQuestions.map((_,i)=>session.answers[i] ?? null)
     setQuestions(savedQuestions); setAnswers(restoredAnswers)
     setIndex(Math.max(0,Math.min(session.index,savedQuestions.length-1)))
-    setFilters(session.filters); setSubmit(false); setStarted(true)
+    setFilters(getEffectiveFilters(normalizeFilters(session.filters))); setSubmit(false); setStarted(true)
     setStartTime(session.startTime || Date.now()); setShowFilters(false)
   }
 
@@ -622,21 +857,21 @@ function SimuladorContent({ profile }: { profile: LocalProfile }) {
       <div className="flex items-center justify-between">
         <div>
           <h2 className="text-xl font-bold text-white flex items-center gap-2">
-            <ClipboardCheck size={20} className="text-teal-400"/> Simulador de Prova
+            <ClipboardCheck size={20} className="text-primary-400"/> Simulador de Prova
           </h2>
-          <p className="text-xs text-slate-400 mt-1">Reprodução Animal A1 · UNISUL 2025/2</p>
+          <p className="text-xs text-neutral-400 mt-1">Reprodução Animal A1 · UNISUL 2025/2</p>
         </div>
-        {started&&<button onClick={()=>setShowFilters(false)} className="text-xs text-slate-500 hover:text-slate-300 transition-colors">← Voltar</button>}
+        {started&&<button onClick={()=>setShowFilters(false)} className="text-xs text-neutral-500 hover:text-neutral-300 transition-colors">← Voltar</button>}
       </div>
       <FilterPanel filters={filters} setFilters={setFilters} history={history} total={getFiltered().length}/>
       {savedSession&&!started&&(
         <button onClick={restoreSavedSession}
-          className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-slate-800 border border-teal-500/30 text-teal-300 rounded-2xl text-sm font-bold hover:bg-teal-500/10 transition-colors active:scale-95">
+          className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-neutral-800 border border-primary-500/30 text-primary-300 rounded-2xl text-sm font-bold hover:bg-primary-500/10 transition-colors active:scale-95">
           Continuar de onde parei <ChevronRight size={16}/>
         </button>
       )}
       <button onClick={applyAndStart} disabled={getFiltered().length===0}
-        className="w-full flex items-center justify-center gap-2 px-6 py-4 bg-teal-600 text-white rounded-2xl font-bold hover:bg-teal-700 transition-colors shadow-lg shadow-teal-950/50 active:scale-95 disabled:opacity-40">
+        className="w-full flex items-center justify-center gap-2 px-6 py-4 bg-accent-500 text-white rounded-2xl font-bold hover:bg-accent-600 transition-colors shadow-lg shadow-primary-950/50 active:scale-95 disabled:opacity-40">
         {started?'🔄 Reiniciar com estes filtros':'Iniciar Simulado'} <ChevronRight size={18}/>
       </button>
       <div className="flex gap-2 flex-wrap justify-center">
@@ -653,11 +888,11 @@ function SimuladorContent({ profile }: { profile: LocalProfile }) {
     <div className="p-5 max-w-2xl mx-auto">
       <div className="text-center mb-6">
         <h2 className="text-2xl font-bold text-white mb-3">Resultado Final</h2>
-        <div className={`text-6xl font-black mb-2 ${score/questions.length>=0.6?'text-green-400':'text-red-400'}`}>
+        <div className={`text-6xl font-black mb-2 ${score/questions.length>=0.6?'text-success-400':'text-danger-400'}`}>
           {score}/{questions.length}
         </div>
-        <p className="text-slate-400">{Math.round(score/questions.length*100)}% de aproveitamento</p>
-        <p className={`text-sm mt-1 font-bold ${score/questions.length>=0.7?'text-green-400':score/questions.length>=0.6?'text-amber-400':'text-red-400'}`}>
+        <p className="text-neutral-400">{Math.round(score/questions.length*100)}% de aproveitamento</p>
+        <p className={`text-sm mt-1 font-bold ${score/questions.length>=0.7?'text-success-400':score/questions.length>=0.6?'text-warning-400':'text-danger-400'}`}>
           {score/questions.length>=0.7?'🎓 Excelente!':score/questions.length>=0.6?'✅ Aprovado':'📖 Estudar mais'}
         </p>
       </div>
@@ -665,13 +900,13 @@ function SimuladorContent({ profile }: { profile: LocalProfile }) {
         {questions.map((q,i)=>{
           const hit=isHit(q,answers[i])
           return (
-            <div key={i} className={`rounded-2xl p-3.5 border ${hit?'bg-green-500/5 border-green-500/20':'bg-red-500/5 border-red-500/20'}`}>
+            <div key={i} className={`rounded-2xl p-3.5 border ${hit?'bg-success-500/5 border-success-500/20':'bg-danger-500/5 border-danger-500/20'}`}>
               <div className="flex items-start gap-2.5">
-                {hit?<CheckCircle2 size={13} className="text-green-400 flex-shrink-0 mt-0.5"/>:<XCircle size={13} className="text-red-400 flex-shrink-0 mt-0.5"/>}
+                {hit?<CheckCircle2 size={13} className="text-success-400 flex-shrink-0 mt-0.5"/>:<XCircle size={13} className="text-danger-400 flex-shrink-0 mt-0.5"/>}
                 <div>
-                  <p className="text-[10px] font-bold text-slate-600 mb-0.5">Q{i+1} · {BADGE[q.type].label} · {q.banca}</p>
-                  <p className="text-xs text-slate-300 font-medium mb-1">{q.type==='assoc'?q.instruction:q.question}</p>
-                  <p className="text-xs text-slate-500 leading-relaxed whitespace-pre-line">{q.explanation}</p>
+                  <p className="text-[10px] font-bold text-neutral-600 mb-0.5">Q{i+1} · {BADGE[q.type].label} · {q.banca}</p>
+                  <p className="text-xs text-neutral-300 font-medium mb-1">{q.type==='assoc'?q.instruction:q.question}</p>
+                  <p className="text-xs text-neutral-500 leading-relaxed whitespace-pre-line">{q.explanation}</p>
                 </div>
               </div>
             </div>
@@ -680,11 +915,11 @@ function SimuladorContent({ profile }: { profile: LocalProfile }) {
       </div>
       <div className="flex gap-3">
         <button onClick={()=>{setShowFilters(true);setSubmit(false)}}
-          className="flex-1 flex items-center justify-center gap-2 px-4 py-3 bg-slate-800 border border-slate-700 text-slate-300 rounded-2xl text-sm font-bold hover:border-teal-500/40 transition-all active:scale-95">
+          className="flex-1 flex items-center justify-center gap-2 px-4 py-3 bg-neutral-800 border border-neutral-700 text-neutral-300 rounded-2xl text-sm font-bold hover:border-primary-500/40 transition-all active:scale-95">
           <Filter size={14}/> Filtrar
         </button>
         <button onClick={applyAndStart}
-          className="flex-1 flex items-center justify-center gap-2 px-4 py-3 bg-teal-600 text-white rounded-2xl text-sm font-bold hover:bg-teal-700 transition-all active:scale-95">
+          className="flex-1 flex items-center justify-center gap-2 px-4 py-3 bg-accent-500 text-white rounded-2xl text-sm font-bold hover:bg-accent-600 transition-all active:scale-95">
           <RotateCcw size={14}/> Novo Simulado
         </button>
       </div>
@@ -698,52 +933,52 @@ function SimuladorContent({ profile }: { profile: LocalProfile }) {
       <div className="mb-4">
         <div className="flex items-center justify-between mb-2">
           <div className="flex items-center gap-2">
-            <ClipboardCheck size={17} className="text-teal-400"/>
+            <ClipboardCheck size={17} className="text-primary-400"/>
             <span className="text-sm font-bold text-white">Simulador</span>
-            {q.banca&&<span className="text-[10px] text-slate-600 bg-slate-800 px-2 py-0.5 rounded-lg">{q.banca}</span>}
-            {q.dificuldade&&<span className="text-[10px] text-slate-600 bg-slate-800 px-2 py-0.5 rounded-lg">{q.dificuldade}</span>}
+            {q.banca&&<span className="text-[10px] text-neutral-600 bg-neutral-800 px-2 py-0.5 rounded-lg">{q.banca}</span>}
+            {q.dificuldade&&<span className="text-[10px] text-neutral-600 bg-neutral-800 px-2 py-0.5 rounded-lg">{q.dificuldade}</span>}
           </div>
           <div className="flex items-center gap-2">
             {dailyLabel&&<span className={`text-[10px] font-bold px-2 py-0.5 rounded-full border ${dailyLabel.cls}`}>{dailyLabel.text}</span>}
             <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full border ${badge.cls}`}>{badge.label}</span>
             {!dailyMode&&(
-              <button onClick={()=>setShowFilters(true)} className="p-1.5 text-slate-500 hover:text-teal-400 hover:bg-slate-800 rounded-lg transition-colors">
+              <button onClick={()=>setShowFilters(true)} className="p-1.5 text-neutral-500 hover:text-primary-400 hover:bg-neutral-800 rounded-lg transition-colors">
                 <Filter size={14}/>
               </button>
             )}
           </div>
         </div>
         <div className="flex items-center justify-between mb-2">
-          <span className="text-xs text-slate-500 tabular-nums">Q {index+1} / {questions.length}</span>
+          <span className="text-xs text-neutral-500 tabular-nums">Q {index+1} / {questions.length}</span>
           <div className="flex gap-1 flex-wrap justify-end max-w-[200px]">
             {questions.map((_,i)=>(
               <button key={i} onClick={()=>setIndex(i)}
                 className={`w-5 h-5 rounded text-[9px] font-bold transition-all ${
-                  i===index?'bg-teal-500 text-white':
-                  answers[i]!==null?(isHit(questions[i],answers[i])?'bg-green-500/30 text-green-400':'bg-red-500/30 text-red-400'):
-                  'bg-slate-700 text-slate-500'}`}>{i+1}
+                  i===index?'bg-primary-500 text-white':
+                  answers[i]!==null?(isHit(questions[i],answers[i])?'bg-success-500/30 text-success-400':'bg-danger-500/30 text-danger-400'):
+                  'bg-neutral-700 text-neutral-500'}`}>{i+1}
               </button>
             ))}
           </div>
         </div>
-        <div className="h-1.5 bg-slate-800 rounded-full overflow-hidden">
-          <motion.div className="h-full bg-teal-500 rounded-full"
+        <div className="h-1.5 bg-neutral-800 rounded-full overflow-hidden">
+          <motion.div className="h-full bg-primary-500 rounded-full"
             animate={{width:`${((index+1)/questions.length)*100}%`}} transition={{duration:0.3}}/>
         </div>
       </div>
 
       <AnimatePresence mode="wait">
         <motion.div key={index} initial={{opacity:0,x:20}} animate={{opacity:1,x:0}} exit={{opacity:0,x:-20}} transition={{duration:0.16}} className="space-y-4">
-          <div className="bg-slate-800/60 backdrop-blur-md rounded-2xl p-5 border border-slate-700/80">
+          <div className="bg-neutral-800/60 backdrop-blur-md rounded-2xl p-5 border border-neutral-700/80">
             {/* Breadcrumb de identidade do conteúdo */}
             {(q.materia || q.subtema) && (
-              <p className="text-[10px] text-slate-500 mb-2.5 flex items-center gap-1 font-medium">
+              <p className="text-[10px] text-neutral-500 mb-2.5 flex items-center gap-1 font-medium">
                 <span>📚</span>
                 <span>{q.materia}</span>
                 {q.subtema && q.subtema !== q.materia && (
                   <>
-                    <span className="text-slate-700">›</span>
-                    <span className="text-slate-400">{q.subtema}</span>
+                    <span className="text-neutral-700">›</span>
+                    <span className="text-neutral-400">{q.subtema}</span>
                   </>
                 )}
               </p>
@@ -761,17 +996,17 @@ function SimuladorContent({ profile }: { profile: LocalProfile }) {
           {answered&&(
             <motion.div initial={{opacity:0,y:6}} animate={{opacity:1,y:0}}
               className={`rounded-2xl p-4 border backdrop-blur-sm ${
-                isHit(q,answers[index])?'bg-green-500/10 border-green-500/20':'bg-red-500/10 border-red-500/20'}`}>
+                isHit(q,answers[index])?'bg-success-500/10 border-success-500/20':'bg-danger-500/10 border-danger-500/20'}`}>
               <div className="flex items-start gap-2.5">
                 {isHit(q,answers[index])
-                  ?<CheckCircle2 size={14} className="text-green-400 flex-shrink-0 mt-0.5"/>
-                  :<XCircle     size={14} className="text-red-400 flex-shrink-0 mt-0.5"/>}
-                <p className="text-sm text-slate-400 leading-relaxed whitespace-pre-line flex-1">{q.explanation}</p>
+                  ?<CheckCircle2 size={14} className="text-success-400 flex-shrink-0 mt-0.5"/>
+                  :<XCircle     size={14} className="text-danger-400 flex-shrink-0 mt-0.5"/>}
+                <p className="text-sm text-neutral-400 leading-relaxed whitespace-pre-line flex-1">{q.explanation}</p>
               </div>
               {/* Botão Chutei — só aparece em erros */}
               {!isHit(q,answers[index]) && (
                 <button onClick={()=>updateResposta(q.qid,'chute')}
-                  className="mt-3 flex items-center gap-1.5 text-[11px] text-amber-400/70 hover:text-amber-400 transition-colors px-2 py-1 rounded-lg hover:bg-amber-500/10 border border-transparent hover:border-amber-500/20">
+                  className="mt-3 flex items-center gap-1.5 text-[11px] text-warning-400/70 hover:text-warning-400 transition-colors px-2 py-1 rounded-lg hover:bg-warning-500/10 border border-transparent hover:border-warning-500/20">
                   🎲 Chutei esta resposta
                 </button>
               )}
@@ -780,17 +1015,17 @@ function SimuladorContent({ profile }: { profile: LocalProfile }) {
 
           <div className="flex justify-between pt-1 pb-4">
             <button onClick={()=>setIndex(i=>Math.max(0,i-1))} disabled={index===0}
-              className="flex items-center gap-1.5 px-4 py-2.5 bg-slate-800 border border-slate-700 text-slate-400 rounded-xl text-sm font-semibold hover:text-white disabled:opacity-30 transition-all active:scale-95">
+              className="flex items-center gap-1.5 px-4 py-2.5 bg-neutral-800 border border-neutral-700 text-neutral-400 rounded-xl text-sm font-semibold hover:text-white disabled:opacity-30 transition-all active:scale-95">
               <ChevronRight size={13} className="rotate-180"/> Anterior
             </button>
             {index<questions.length-1?(
               <button onClick={()=>setIndex(i=>i+1)} disabled={!answered}
-                className="flex items-center gap-1.5 px-4 py-2.5 bg-teal-600 text-white rounded-xl text-sm font-bold hover:bg-teal-700 disabled:opacity-40 transition-all active:scale-95">
+                className="flex items-center gap-1.5 px-4 py-2.5 bg-accent-500 text-white rounded-xl text-sm font-bold hover:bg-accent-600 disabled:opacity-40 transition-all active:scale-95">
                 Próxima <ChevronRight size={13}/>
               </button>
             ):(
               <button onClick={finishQuiz} disabled={dailyMode ? !dailySession?.completed : answers.some(a=>a===null)}
-                className="flex items-center gap-1.5 px-4 py-2.5 bg-amber-500 text-white rounded-xl text-sm font-bold hover:bg-amber-600 disabled:opacity-40 transition-all active:scale-95">
+                className="flex items-center gap-1.5 px-4 py-2.5 bg-accent-500 text-white rounded-xl text-sm font-bold hover:bg-accent-600 disabled:opacity-40 transition-all active:scale-95">
                 Finalizar <Award size={13}/>
               </button>
             )}
@@ -809,7 +1044,7 @@ export default function SimuladorPage() {
       {profile ? (
         <SimuladorContent key={profile.id} profile={profile} />
       ) : (
-        <div className="p-5 max-w-xl mx-auto text-center text-sm text-slate-500">
+        <div className="p-5 max-w-xl mx-auto text-center text-sm text-neutral-500">
           Selecione um perfil local para usar o simulador.
         </div>
       )}
