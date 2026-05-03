@@ -72,6 +72,61 @@ function normalizeForMatch(value: string) {
     .replace(/[\u0300-\u036f]/g, '')
 }
 
+const ESTRAL_MODULE_KEY = normalizeForMatch('Ciclo Estral e Reprodução Animal')
+
+const CURATED_STATIC_QUESTION_SKIPS = new Map<number, string>([
+  [9001, 'Coberto pelo banco base em estro, estrogênio e receptividade sexual.'],
+  [9002, 'Coberto pelo banco base em anestro pós-parto e balanço energético negativo.'],
+  [9004, 'Coberto pelo banco base em detecção de cio e janela de maior fertilidade.'],
+  [9006, 'Coberto pelo banco base na sequência das fases do ciclo estral.'],
+  [9009, 'Coberto pelo banco base em diestro, corpo lúteo funcional e progesterona alta.'],
+  [9010, 'Coberto pelo banco base em luteólise fisiológica por PGF2α.'],
+  [9013, 'Coberto pelo banco base em pico de LH e ovulação.'],
+  [9014, 'Coberto pelo banco base em estrogênio e manifestação de cio.'],
+  [9015, 'Coberto pelo banco base em progesterona do diestro e inibição de novo cio.'],
+  [9016, 'Coberto pelo banco base em duração média do ciclo estral bovino.'],
+  [9017, 'Coberto pelo banco base em sazonalidade de dias curtos na ovelha.'],
+])
+
+const CURATED_STATIC_FLASHCARD_SKIPS = new Map<string, string>([
+  ['fc_estral_0003', 'Duplica sinais de estro já cobertos nos cards antigos.'],
+  ['fc_estral_0004', 'Duplica visão geral de anestro já coberta no deck atual.'],
+  ['fc_estral_0005', 'Duplica corpo lúteo e progesterona após ovulação.'],
+  ['fc_estral_0006', 'Duplica importância prática da detecção de cio.'],
+  ['fc_estral_0009', 'Duplica a ordem das fases do ciclo estral.'],
+  ['fc_estral_0011', 'Duplica o estro como fase mais visível no campo.'],
+  ['fc_estral_0013', 'Duplica o papel do diestro e da progesterona.'],
+  ['fc_estral_0014', 'Duplica a leitura de progesterona alta no diestro.'],
+  ['fc_estral_0015', 'Duplica luteólise por ausência de reconhecimento da gestação.'],
+  ['fc_estral_0019', 'Duplica estrogênio alto e sinais de cio.'],
+  ['fc_estral_0020', 'Duplica progesterona após ovulação.'],
+  ['fc_estral_0021', 'Duplica o efeito da PGF2α sobre o corpo lúteo.'],
+  ['fc_estral_0028', 'Duplica sazonalidade da égua já presente no deck atual.'],
+  ['fc_estral_0029', 'Duplica sazonalidade de ovelhas e cabras já presente no deck atual.'],
+])
+
+function shouldSkipCuratedQuestionId(questionId: number) {
+  return CURATED_STATIC_QUESTION_SKIPS.has(questionId)
+}
+
+function shouldSkipCuratedFlashcardId(flashcardId: string) {
+  return CURATED_STATIC_FLASHCARD_SKIPS.has(flashcardId)
+}
+
+function getStaticModuleSkipIds(content: StaticStudyModule) {
+  if (normalizeForMatch(content.module) !== ESTRAL_MODULE_KEY) {
+    return {
+      questionIds: new Set<number>(),
+      flashcardIds: new Set<string>(),
+    }
+  }
+
+  return {
+    questionIds: new Set(CURATED_STATIC_QUESTION_SKIPS.keys()),
+    flashcardIds: new Set(CURATED_STATIC_FLASHCARD_SKIPS.keys()),
+  }
+}
+
 function normalizeQuestionTema(tema: unknown) {
   if (typeof tema !== 'string') return DEFAULT_QUESTION_TEMA
 
@@ -129,7 +184,9 @@ function repairStoredExtraQuestionTemas(moduleQuestions: ParsedQuestion[]) {
 }
 
 export function loadExtraQuestions(): ParsedQuestion[] {
-  return readJSON<ParsedQuestion[]>(EXTRA_QUESTIONS_KEY, [])
+  return readJSON<ParsedQuestion[]>(EXTRA_QUESTIONS_KEY, []).filter(
+    question => !shouldSkipCuratedQuestionId(question.id)
+  )
 }
 
 function loadStaticModuleQuestions(): ParsedQuestion[] {
@@ -198,7 +255,7 @@ export function mergeStudyContent(content: ParsedStudyContent): MergeStudyConten
   const nextExtra = [...existingExtra]
 
   content.questoes.forEach(question => {
-    if (baseIds.has(question.id) || existingExtraIds.has(question.id)) {
+    if (shouldSkipCuratedQuestionId(question.id) || baseIds.has(question.id) || existingExtraIds.has(question.id)) {
       skippedQuestionIds.push(question.id)
       return
     }
@@ -219,7 +276,9 @@ export function mergeStudyContent(content: ParsedStudyContent): MergeStudyConten
 }
 
 export function loadProfileFlashcards(profileId: string): ParsedFlashcard[] {
-  return readJSON<ParsedFlashcard[]>(profileStorageKey(profileId, PROFILE_DATA_KEYS.flashcards), [])
+  return readJSON<ParsedFlashcard[]>(profileStorageKey(profileId, PROFILE_DATA_KEYS.flashcards), []).filter(
+    card => !shouldSkipCuratedFlashcardId(card.id)
+  )
 }
 
 export function saveProfileFlashcards(profileId: string, flashcards: ParsedFlashcard[]): SaveFlashcardsResult {
@@ -231,7 +290,7 @@ export function saveProfileFlashcards(profileId: string, flashcards: ParsedFlash
   const next = [...existing]
 
   flashcards.forEach(card => {
-    if (existingIds.has(card.id)) {
+    if (shouldSkipCuratedFlashcardId(card.id) || existingIds.has(card.id)) {
       skippedFlashcardIds.push(card.id)
       return
     }
@@ -267,6 +326,7 @@ function staticModuleToParsedContent(content: StaticStudyModule): { parsedConten
   const firstTopic = content.topics[0]
   const fallbackTema = firstTopic?.questions[0]?.tema ?? firstTopic?.flashcards[0]?.tema ?? content.module
   const moduleTema = getModuleTema(content, fallbackTema)
+  const skipIds = getStaticModuleSkipIds(content)
 
   const parsedContent: ParsedStudyContent = {
     topics: content.topics.map(topic => ({
@@ -276,7 +336,9 @@ function staticModuleToParsedContent(content: StaticStudyModule): { parsedConten
       subtema: topic.name,
     })),
     flashcards: content.topics.flatMap(topic =>
-      topic.flashcards.map(card => ({
+      topic.flashcards
+        .filter(card => !skipIds.flashcardIds.has(card.id))
+        .map(card => ({
         id: card.id,
         tag: card.subtema || topic.name,
         front: card.pergunta,
@@ -286,7 +348,9 @@ function staticModuleToParsedContent(content: StaticStudyModule): { parsedConten
       }))
     ),
     questoes: content.topics.flatMap(topic =>
-      topic.questions.map(question => {
+      topic.questions
+        .filter(question => !skipIds.questionIds.has(question.id))
+        .map(question => {
         const normalizedTema = getModuleTema(content, question.tema)
         if (normalizedTema !== question.tema) fixedQuestionTemas += 1
 
