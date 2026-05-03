@@ -479,6 +479,23 @@ function shouldShowSubtemaSection(subtemas: string[]): boolean {
 
 function getEffectiveFilters(filters: FilterState): FilterState {
   const next = normalizeFilters(filters)
+  const availableMaterias = getAvailableMaterias(ALL_QUESTIONS, next.banca)
+  if (!availableMaterias.includes(next.materia)) next.materia = ALL_MATERIA_OPTION
+
+  if (next.materia === ALL_MATERIA_OPTION) {
+    next.topico = ALL_TOPICO_OPTION
+    next.subtema = ALL_SUBTEMA_OPTION
+    return next
+  }
+
+  const availableTopicos = getAvailableTopicos(ALL_QUESTIONS, next.banca, next.materia)
+  if (!availableTopicos.includes(next.topico)) next.topico = ALL_TOPICO_OPTION
+
+  if (next.topico === ALL_TOPICO_OPTION) {
+    next.subtema = ALL_SUBTEMA_OPTION
+    return next
+  }
+
   const availableSubtemas = getAvailableSubtemas(ALL_QUESTIONS, next.banca, next.materia, next.topico)
 
   if (
@@ -559,135 +576,24 @@ function FilterPanel({ filters, setFilters, history, total }: {
   const materiaOptions = getAvailableMaterias(ALL_QUESTIONS, filters.banca)
   const topicoOptions = getAvailableTopicos(ALL_QUESTIONS, filters.banca, filters.materia)
   const availableSubtemas = getAvailableSubtemas(ALL_QUESTIONS, filters.banca, filters.materia, filters.topico)
-  const showSubtemaSection = shouldShowSubtemaSection(availableSubtemas)
+  const hasSpecificMateria = filters.materia !== ALL_MATERIA_OPTION
+  const hasSpecificTopico = filters.topico !== ALL_TOPICO_OPTION
+  const showTopicoSection = hasSpecificMateria && topicoOptions.length > 1
+  const canShowSubtemaSection = shouldShowSubtemaSection(availableSubtemas)
+  const showSubtemaSection = showTopicoSection && hasSpecificTopico && canShowSubtemaSection
   const subtemaOptions = showSubtemaSection ? [ALL_SUBTEMA_OPTION, ...availableSubtemas] : []
+  const activeAdvancedFilters = (filters.tipo !== 'todas' ? 1 : 0) + (filters.dificuldade !== 'Todas' ? 1 : 0)
+  const [showAdvancedFilters, setShowAdvancedFilters] = useState(false)
 
   const syncFilters = (partial: Partial<FilterState>) => {
-    const next = normalizeFilters({ ...filters, ...partial })
-    const nextMaterias = getAvailableMaterias(ALL_QUESTIONS, next.banca)
-    if (!nextMaterias.includes(next.materia)) next.materia = ALL_MATERIA_OPTION
-
-    const nextTopicos = getAvailableTopicos(ALL_QUESTIONS, next.banca, next.materia)
-    if (!nextTopicos.includes(next.topico)) next.topico = ALL_TOPICO_OPTION
-
-    const nextSubtemas = getAvailableSubtemas(ALL_QUESTIONS, next.banca, next.materia, next.topico)
-    if (
-      !shouldShowSubtemaSection(nextSubtemas)
-      || (next.subtema !== ALL_SUBTEMA_OPTION && !nextSubtemas.includes(next.subtema))
-    ) {
-      next.subtema = ALL_SUBTEMA_OPTION
-    }
-
-    setFilters(next)
+    setFilters(getEffectiveFilters({ ...filters, ...partial }))
   }
 
   return (
     <div className="bg-neutral-800/60 backdrop-blur-md rounded-2xl border border-neutral-700/60 p-4 space-y-4">
       <div className="flex items-center gap-2">
         <Filter size={14} className="text-primary-400" />
-        <p className="app-text-primary text-sm font-bold">Filtros Avançados</p>
-      </div>
-
-      {/* ── Pontos Fracos (aparece quando há histórico suficiente) ── */}
-      {pontosFracos.length > 0 && (
-        <div className="bg-danger-500/8 border border-danger-500/20 rounded-xl px-3.5 py-3">
-          <p className="text-[10px] font-bold text-danger-400 uppercase tracking-wider mb-1.5 flex items-center gap-1">
-            <span>⚡</span> Você está errando mais em:
-          </p>
-          <div className="space-y-1.5">
-            {pontosFracos.map(t => (
-              <div key={t.label} className="flex items-center justify-between gap-3">
-                <span className="text-xs text-neutral-300 flex-1 truncate">{t.label}</span>
-                <div className="flex items-center gap-2 flex-shrink-0">
-                  <div className="w-16 h-1.5 bg-neutral-700 rounded-full overflow-hidden">
-                    <div className="h-full bg-danger-400 rounded-full transition-all" style={{width:`${Math.round(t.taxa*100)}%`}} />
-                  </div>
-                  <span className="text-[10px] text-danger-400 font-bold w-8 text-right">{Math.round(t.taxa*100)}%</span>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      )}
-
-      {/* Banca */}
-      <div>
-        <p className="text-[10px] font-bold text-neutral-500 uppercase tracking-wider mb-2">Banca</p>
-        <div className="flex flex-wrap gap-1.5">
-          {bancaOptions.map(b=>(
-            <button key={b} onClick={()=>syncFilters({ banca: b })}
-              className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition-all border ${
-                filters.banca===b?'bg-primary-500/20 text-primary-300 border-primary-500/30':'bg-neutral-800 text-neutral-500 border-neutral-700/60 hover:text-neutral-300'
-              }`}>{displayBrandLabel(b)}</button>
-          ))}
-        </div>
-      </div>
-
-      {/* Matéria */}
-      <div>
-        <p className="text-[10px] font-bold text-neutral-500 uppercase tracking-wider mb-2">Matéria / Disciplina</p>
-        <div className="flex flex-wrap gap-1.5">
-          {materiaOptions.map(m=>(
-            <button key={m} onClick={()=>syncFilters({ materia: m })}
-              className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition-all border ${
-                filters.materia===m?'bg-primary-500/20 text-primary-300 border-primary-500/30':'bg-neutral-800 text-neutral-500 border-neutral-700/60 hover:text-neutral-300'
-              }`}>{m}</button>
-          ))}
-        </div>
-      </div>
-
-      {/* Tópico */}
-      <div>
-        <p className="text-[10px] font-bold text-neutral-500 uppercase tracking-wider mb-2">Tópico</p>
-        <div className="flex flex-wrap gap-1.5">
-          {topicoOptions.map(topico=>(
-            <button key={topico} onClick={()=>syncFilters({ topico })}
-              className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition-all border ${
-                filters.topico===topico?'bg-primary-500/20 text-primary-300 border-primary-500/30':'bg-neutral-800 text-neutral-500 border-neutral-700/60 hover:text-neutral-300'
-              }`}>{topico}</button>
-          ))}
-        </div>
-      </div>
-
-      {/* Subtema */}
-      {showSubtemaSection && (
-        <div>
-          <p className="text-[10px] font-bold text-neutral-500 uppercase tracking-wider mb-2">Subtema</p>
-          <div className="flex flex-wrap gap-1.5">
-            {subtemaOptions.map(subtema=>(
-              <button key={subtema} onClick={()=>syncFilters({ subtema })}
-                className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition-all border ${
-                  filters.subtema===subtema?'bg-primary-500/20 text-primary-300 border-primary-500/30':'bg-neutral-800 text-neutral-500 border-neutral-700/60 hover:text-neutral-300'
-                }`}>{subtema}</button>
-            ))}
-          </div>
-        </div>
-      )}
-
-      {/* Tipo */}
-      <div>
-        <p className="text-[10px] font-bold text-neutral-500 uppercase tracking-wider mb-2">Tipo</p>
-        <div className="flex gap-1.5 flex-wrap">
-          {([['todas','Todas'],['mc','Múltipla Escolha'],['vf','V/F'],['assoc','Colunas']] as const).map(([k,l])=>(
-            <button key={k} onClick={()=>syncFilters({ tipo: k })}
-              className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition-all border ${
-                filters.tipo===k?'bg-primary-500/20 text-primary-300 border-primary-500/30':'bg-neutral-800 text-neutral-500 border-neutral-700/60 hover:text-neutral-300'
-              }`}>{l}</button>
-          ))}
-        </div>
-      </div>
-
-      {/* Dificuldade */}
-      <div>
-        <p className="text-[10px] font-bold text-neutral-500 uppercase tracking-wider mb-2">Dificuldade</p>
-        <div className="flex gap-1.5 flex-wrap">
-          {([['Todas','Todas'],['facil','Fácil'],['media','Média'],['dificil','Difícil']] as const).map(([k,l])=>(
-            <button key={k} onClick={()=>syncFilters({ dificuldade: k as DifFilter })}
-              className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition-all border ${
-                filters.dificuldade===k?'bg-warning-500/20 text-warning-300 border-warning-500/30':'bg-neutral-800 text-neutral-500 border-neutral-700/60 hover:text-neutral-300'
-              }`}>{l}</button>
-          ))}
-        </div>
+        <p className="app-text-primary text-sm font-bold">Filtros do Simulado</p>
       </div>
 
       {/* Modo de Estudo */}
@@ -721,6 +627,134 @@ function FilterPanel({ filters, setFilters, history, total }: {
           <p className="text-[10px] text-primary-400/70 mt-1.5 pl-1">
             Prioriza: erros recentes → nunca respondidas → acertos antigos
           </p>
+        )}
+      </div>
+
+      {/* Banca */}
+      <div>
+        <p className="text-[10px] font-bold text-neutral-500 uppercase tracking-wider mb-2">Banca</p>
+        <div className="flex flex-wrap gap-1.5">
+          {bancaOptions.map(b=>(
+            <button key={b} onClick={()=>syncFilters({ banca: b })}
+              className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition-all border ${
+                filters.banca===b?'bg-primary-500/20 text-primary-300 border-primary-500/30':'bg-neutral-800 text-neutral-500 border-neutral-700/60 hover:text-neutral-300'
+              }`}>{displayBrandLabel(b)}</button>
+          ))}
+        </div>
+      </div>
+
+      {/* Matéria */}
+      <div>
+        <p className="text-[10px] font-bold text-neutral-500 uppercase tracking-wider mb-2">Matéria / Disciplina</p>
+        <div className="flex flex-wrap gap-1.5">
+          {materiaOptions.map(m=>(
+            <button key={m} onClick={()=>syncFilters({ materia: m })}
+              className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition-all border ${
+                filters.materia===m?'bg-primary-500/20 text-primary-300 border-primary-500/30':'bg-neutral-800 text-neutral-500 border-neutral-700/60 hover:text-neutral-300'
+              }`}>{m}</button>
+          ))}
+        </div>
+        {!hasSpecificMateria && (
+          <p className="mt-1.5 pl-1 text-[10px] text-neutral-600">
+            Escolha uma matéria para ver tópicos específicos.
+          </p>
+        )}
+      </div>
+
+      {/* Tópico */}
+      {showTopicoSection && (
+        <div>
+          <p className="text-[10px] font-bold text-neutral-500 uppercase tracking-wider mb-2">Tópico</p>
+          <div className="flex flex-wrap gap-1.5">
+            {topicoOptions.map(topico=>(
+              <button key={topico} onClick={()=>syncFilters({ topico })}
+                className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition-all border ${
+                  filters.topico===topico?'bg-primary-500/20 text-primary-300 border-primary-500/30':'bg-neutral-800 text-neutral-500 border-neutral-700/60 hover:text-neutral-300'
+                }`}>{topico}</button>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* Subtema */}
+      {showSubtemaSection && (
+        <div>
+          <p className="text-[10px] font-bold text-neutral-500 uppercase tracking-wider mb-2">Subtema</p>
+          <div className="flex flex-wrap gap-1.5">
+            {subtemaOptions.map(subtema=>(
+              <button key={subtema} onClick={()=>syncFilters({ subtema })}
+                className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition-all border ${
+                  filters.subtema===subtema?'bg-primary-500/20 text-primary-300 border-primary-500/30':'bg-neutral-800 text-neutral-500 border-neutral-700/60 hover:text-neutral-300'
+                }`}>{subtema}</button>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* ── Pontos Fracos (aparece quando há histórico suficiente) ── */}
+      {pontosFracos.length > 0 && (
+        <div className="bg-danger-500/8 border border-danger-500/20 rounded-xl px-3.5 py-3">
+          <p className="text-[10px] font-bold text-danger-400 uppercase tracking-wider mb-1.5 flex items-center gap-1">
+            <span>⚡</span> Você está errando mais em:
+          </p>
+          <div className="space-y-1.5">
+            {pontosFracos.map(t => (
+              <div key={t.label} className="flex items-center justify-between gap-3">
+                <span className="text-xs text-neutral-300 flex-1 truncate">{t.label}</span>
+                <div className="flex items-center gap-2 flex-shrink-0">
+                  <div className="w-16 h-1.5 bg-neutral-700 rounded-full overflow-hidden">
+                    <div className="h-full bg-danger-400 rounded-full transition-all" style={{width:`${Math.round(t.taxa*100)}%`}} />
+                  </div>
+                  <span className="text-[10px] text-danger-400 font-bold w-8 text-right">{Math.round(t.taxa*100)}%</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      <div className="border-t border-neutral-700/50 pt-3 space-y-3">
+        <button
+          type="button"
+          onClick={() => setShowAdvancedFilters(v => !v)}
+          className="flex w-full items-center justify-between rounded-xl border border-neutral-700/60 bg-neutral-900/70 px-3 py-2 text-left transition-colors hover:border-neutral-600 hover:bg-neutral-900"
+        >
+          <span className="text-xs font-bold text-neutral-300">
+            {showAdvancedFilters ? '−' : '+'} Filtros avançados
+          </span>
+          {activeAdvancedFilters > 0 && (
+            <span className="rounded-full border border-primary-500/20 bg-primary-500/10 px-2 py-0.5 text-[10px] font-bold text-primary-300">
+              {activeAdvancedFilters} ativo{activeAdvancedFilters !== 1 ? 's' : ''}
+            </span>
+          )}
+        </button>
+
+        {showAdvancedFilters && (
+          <div className="space-y-4">
+            <div>
+              <p className="text-[10px] font-bold text-neutral-500 uppercase tracking-wider mb-2">Tipo</p>
+              <div className="flex gap-1.5 flex-wrap">
+                {([['todas','Todas'],['mc','Múltipla Escolha'],['vf','V/F'],['assoc','Colunas']] as const).map(([k,l])=>(
+                  <button key={k} onClick={()=>syncFilters({ tipo: k })}
+                    className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition-all border ${
+                      filters.tipo===k?'bg-primary-500/20 text-primary-300 border-primary-500/30':'bg-neutral-800 text-neutral-500 border-neutral-700/60 hover:text-neutral-300'
+                    }`}>{l}</button>
+                ))}
+              </div>
+            </div>
+
+            <div>
+              <p className="text-[10px] font-bold text-neutral-500 uppercase tracking-wider mb-2">Dificuldade</p>
+              <div className="flex gap-1.5 flex-wrap">
+                {([['Todas','Todas'],['facil','Fácil'],['media','Média'],['dificil','Difícil']] as const).map(([k,l])=>(
+                  <button key={k} onClick={()=>syncFilters({ dificuldade: k as DifFilter })}
+                    className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition-all border ${
+                      filters.dificuldade===k?'bg-warning-500/20 text-warning-300 border-warning-500/30':'bg-neutral-800 text-neutral-500 border-neutral-700/60 hover:text-neutral-300'
+                    }`}>{l}</button>
+                ))}
+              </div>
+            </div>
+          </div>
         )}
       </div>
 
