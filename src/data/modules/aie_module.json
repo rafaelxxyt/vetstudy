@@ -1,0 +1,153 @@
+{
+  "disciplina": "Clínica de Equídeos",
+  "modulo": "Anemia Infecciosa Equina (AIE)",
+  "module": "Anemia Infecciosa Equina (AIE)",
+  "source": "Material-base fornecido pelo usuário",
+  "topics": [
+    {
+      "name": "Roteiro de estudo da AIE",
+      "flashcards": [
+        {
+          "id": "fc_aie_0001",
+          "pergunta": "Qual doença é o foco deste módulo?",
+          "resposta": "O material trabalha Anemia Infecciosa Equina (AIE). O restante do roteiro gira em torno desse tema.",
+          "tema": "Clínica de Equídeos",
+          "subtema": "Anemia Infecciosa Equina (AIE)",
+          "needsReview": true
+        },
+        {
+          "id": "fc_aie_0002",
+          "pergunta": "Qual programa oficial aparece no roteiro sobre AIE?",
+          "resposta": "O roteiro cita o PNSS. O material pede revisar seu objetivo e as estratégias usadas pelo programa.",
+          "tema": "Clínica de Equídeos",
+          "subtema": "Anemia Infecciosa Equina (AIE)",
+          "needsReview": true
+        },
+        {
+          "id": "fc_aie_0003",
+          "pergunta": "Qual família viral é mencionada no estudo da AIE?",
+          "resposta": "O texto cita a família Retroviridae. O material pede explicar a patogenia dos vírus desse grupo.",
+          "tema": "Clínica de Equídeos",
+          "subtema": "Anemia Infecciosa Equina (AIE)",
+          "needsReview": true
+        },
+        {
+          "id": "fc_aie_0004",
+          "pergunta": "Qual método diagnóstico é citado de forma explícita?",
+          "resposta": "O roteiro menciona a imunodifusão em gel de agar (IDGA). O aluno deve revisar como esse diagnóstico funciona.",
+          "tema": "Clínica de Equídeos",
+          "subtema": "Anemia Infecciosa Equina (AIE)",
+          "needsReview": true
+        },
+        {
+          "id": "fc_aie_0005",
+          "pergunta": "Quais procedimentos de confirmação aparecem no material?",
+          "resposta": "O roteiro cita contraprova e reteste. Esses termos aparecem juntos no bloco de diagnóstico da AIE.",
+          "tema": "Clínica de Equídeos",
+          "subtema": "Anemia Infecciosa Equina (AIE)",
+          "needsReview": true
+        },
+        {
+          "id": "fc_aie_0006",
+          "pergunta": "Qual documento de trânsito é apontado como importante?",
+          "resposta": "O material destaca a GTA e o controle de trânsito. O foco é entender sua importância no contexto da AIE.",
+          "tema": "Clínica de Equídeos",
+          "subtema": "Anemia Infecciosa Equina (AIE)",
+          "needsReview": true
+        }
+      ],
+      "questions": [
+        {
+          "id": 9701,
+          "tipo": "multipla_escolha",
+          "banca": "VetStudy",
+          "tema": "Clínica de Equídeos",
+          "subtema": "Anemia Infecciosa Equina (AIE)",
+          "dificuldade": "facil",
+          "pergunta": "Ao revisar o roteiro, qual item está diretamente ligado ao programa sanitário oficial citado para AIE?",
+          "alternativas": {
+            "A": "Objetivo do PNSS e estratégias do programa",
+            "B": "Descrição do IDGA e sua leitura técnica",
+            "C": "Importância da GTA no controle de trânsito",
+            "D": "Patogenia dos vírus da família Retroviridae"
+          },
+          "correta": "A",
+          "explicacao": "A opção correta é a que menciona objetivo e estratégias do PNSS, porque esse é o bloco do roteiro voltado ao programa sanitário oficial. IDGA, GTA e Retroviridae aparecem no material, mas em seções diagnóstica, de trânsito e de agente viral.",
+          "needsReview": true
+        },
+        {
+          "id": 9702,
+          "tipo": "multipla_escolha",
+          "banca": "VetStudy",
+          "tema": "Clínica de Equídeos",
+          "subtema": "Anemia Infecciosa Equina (AIE)",
+          "dificuldade": "facil",
+          "pergunta": "Qual alternativa corresponde ao ponto do roteiro voltado ao agente e à patogenia viral da AIE?",
+          "alternativas": {
+            "A": "Sinais clínicos mais observados em equídeos",
+            "B": "Função do diagnóstico diferencial nos casos negativos",
+            "C": "Agente etiológico e Retroviridae",
+            "D": "GTA e controle oficial de trânsito"
+          },
+          "correta": "C",
+          "explicacao": "A alternativa correta reúne os dois trechos do material que tratam do agente etiológico e da patogenia dos vírus da família Retroviridae. As outras opções pertencem a blocos diferentes do mesmo roteiro: sinais clínicos, diagnóstico diferencial e controle de trânsito.",
+          "needsReview": true
+        },
+        {
+          "id": 9703,
+          "tipo": "multipla_escolha",
+          "banca": "VetStudy",
+          "tema": "Clínica de Equídeos",
+          "subtema": "Anemia Infecciosa Equina (AIE)",
+          "dificuldade": "facil",
+          "pergunta": "Dentro do roteiro fornecido, qual combinação pertence ao bloco de diagnóstico da AIE?",
+          "alternativas": {
+            "A": "IDGA, contraprova e reteste",
+            "B": "PNSS, GTA e controle de trânsito",
+            "C": "Transmissão, sinais clínicos e trânsito",
+            "D": "Agente viral, patogenia e PNSS"
+          },
+          "correta": "A",
+          "explicacao": "A combinação correta é IDGA, contraprova e reteste, porque esses três pontos aparecem no trecho do roteiro dedicado à investigação diagnóstica. As outras alternativas misturam assuntos reais do material, mas de blocos diferentes.",
+          "needsReview": true
+        },
+        {
+          "id": 9704,
+          "tipo": "multipla_escolha",
+          "banca": "VetStudy",
+          "tema": "Clínica de Equídeos",
+          "subtema": "Anemia Infecciosa Equina (AIE)",
+          "dificuldade": "media",
+          "pergunta": "Se o aluno quiser revisar apenas a etapa posterior a um resultado positivo em uma propriedade, qual tópico do roteiro ele deve procurar?",
+          "alternativas": {
+            "A": "Procedimento segundo o PNSS após positivo",
+            "B": "Diagnóstico diferencial em caso negativo",
+            "C": "Formas de transmissão do vírus da AIE",
+            "D": "Sinais clínicos observados nos equídeos"
+          },
+          "correta": "A",
+          "explicacao": "A resposta correta é o procedimento segundo o PNSS após um resultado positivo, porque o material traz exatamente essa pergunta. As outras alternativas também pertencem ao roteiro, mas tratam de diagnóstico diferencial, transmissão e manifestações clínicas.",
+          "needsReview": true
+        },
+        {
+          "id": 9705,
+          "tipo": "multipla_escolha",
+          "banca": "VetStudy",
+          "tema": "Clínica de Equídeos",
+          "subtema": "Anemia Infecciosa Equina (AIE)",
+          "dificuldade": "media",
+          "pergunta": "Qual alternativa reúne os dois tópicos do roteiro mais diretamente ligados ao controle de movimentação animal na AIE?",
+          "alternativas": {
+            "A": "Agente etiológico e patogenia viral",
+            "B": "IDGA e contraprova laboratorial",
+            "C": "PNSS e procedimento pós-positivo",
+            "D": "GTA e controle de trânsito"
+          },
+          "correta": "D",
+          "explicacao": "A alternativa correta é GTA e controle de trânsito, porque o material destaca explicitamente esse documento e a regulação da movimentação animal. As outras opções também aparecem no roteiro, mas estão ligadas a agente viral, diagnóstico e procedimento sanitário.",
+          "needsReview": true
+        }
+      ]
+    }
+  ]
+}

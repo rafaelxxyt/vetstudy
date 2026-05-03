@@ -9,14 +9,14 @@
       "flashcards": [
         {
           "id": "fc_bovrep_0001",
-          "pergunta": "Por que brucelose no rebanho � um alerta sanit�rio?",
+          "pergunta": "Por que brucelose no rebanho é um alerta sanitário?",
           "resposta": "Porque causa aborto, retenção de placenta e risco para pessoas. Controlar protege reprodução e saúde pública.",
           "tema": "Doenças Reprodutivas em Bovinos",
           "subtema": "Infecções reprodutivas importantes"
         },
         {
           "id": "fc_bovrep_0002",
-          "pergunta": "Por que a brucelose exige controle sanit�rio rigoroso?",
+          "pergunta": "Por que a brucelose exige controle sanitário rigoroso?",
           "resposta": "Ela se espalha por restos de parto, aborto e secreções. Controlar evita perdas reprodutivas e risco humano.",
           "tema": "Doenças Reprodutivas em Bovinos",
           "subtema": "Infecções reprodutivas importantes"
@@ -30,7 +30,7 @@
         },
         {
           "id": "fc_bovrep_0004",
-          "pergunta": "Por que �gua contaminada aumenta risco de leptospirose?",
+          "pergunta": "Por que água contaminada aumenta risco de leptospirose?",
           "resposta": "Leptospiras sobrevivem em ambientes úmidos e entram por mucosas ou pele lesada. Isso facilita surtos no rebanho.",
           "tema": "Doenças Reprodutivas em Bovinos",
           "subtema": "Infecções reprodutivas importantes"
@@ -65,7 +65,7 @@
           "tema": "Doenças Reprodutivas em Bovinos",
           "subtema": "Infecções reprodutivas importantes",
           "dificuldade": "media",
-          "pergunta": "Em um rebanho com abortos no ter�o final da gesta��o, reten��o de placenta e risco ocupacional para trabalhadores, qual doen�a deve estar entre as principais suspeitas?",
+          "pergunta": "Em um rebanho com abortos no terço final da gestação, retenção de placenta e risco ocupacional para trabalhadores, qual doença deve estar entre as principais suspeitas?",
           "alternativas": {
             "A": "Brucelose bovina.",
             "B": "Hipocalcemia puerperal.",
@@ -82,7 +82,7 @@
           "tema": "Doenças Reprodutivas em Bovinos",
           "subtema": "Infecções reprodutivas importantes",
           "dificuldade": "media",
-          "pergunta": "A ocorr�ncia de repeti��o de cio e morte embrion�ria em vacas cobertas por touros pode sugerir uma enfermidade ven�rea. Qual agente � classicamente envolvido?",
+          "pergunta": "A ocorrência de repetição de cio e morte embrionária em vacas cobertas por touros pode sugerir uma enfermidade venérea. Qual agente é classicamente envolvido?",
           "alternativas": {
             "A": "Campylobacter fetus venerealis.",
             "B": "Clostridium chauvoei.",
@@ -99,7 +99,7 @@
           "tema": "Doenças Reprodutivas em Bovinos",
           "subtema": "Infecções reprodutivas importantes",
           "dificuldade": "media",
-          "pergunta": "Em propriedades com �reas alagadas, presen�a de roedores e abortos espor�dicos, qual enfermidade deve ser considerada no diagn�stico diferencial?",
+          "pergunta": "Em propriedades com áreas alagadas, presença de roedores e abortos esporádicos, qual enfermidade deve ser considerada no diagnóstico diferencial?",
           "alternativas": {
             "A": "Leptospirose.",
             "B": "Timpanismo espumoso.",
@@ -140,35 +140,35 @@
         },
         {
           "id": "fc_bovrep_0009",
-          "pergunta": "O que acontece se h� morte embrion�ria precoce?",
+          "pergunta": "O que acontece se há morte embrionária precoce?",
           "resposta": "A gestação se perde antes de ser notada. Na prática, aparece como retorno ao cio ou baixa prenhez.",
           "tema": "Doenças Reprodutivas em Bovinos",
           "subtema": "Abortamento e perdas gestacionais"
         },
         {
           "id": "fc_bovrep_0010",
-          "pergunta": "Por que a fase da gesta��o muda o efeito da BVD?",
+          "pergunta": "Por que a fase da gestação muda o efeito da BVD?",
           "resposta": "Porque o feto responde diferente conforme a idade. Pode haver morte embrionária, aborto ou bezerro PI.",
           "tema": "Doenças Reprodutivas em Bovinos",
           "subtema": "Abortamento e perdas gestacionais"
         },
         {
           "id": "fc_bovrep_0011",
-          "pergunta": "Por que bezerros persistentemente infectados por BVD s�o perigosos?",
+          "pergunta": "Por que bezerros persistentemente infectados por BVD são perigosos?",
           "resposta": "Eles eliminam vírus continuamente. Assim mantêm a infecção circulando no rebanho.",
           "tema": "Doenças Reprodutivas em Bovinos",
           "subtema": "Abortamento e perdas gestacionais"
         },
         {
           "id": "fc_bovrep_0012",
-          "pergunta": "Por que neosporose pode parecer um problema de fam�lia?",
+          "pergunta": "Por que neosporose pode parecer um problema de família?",
           "resposta": "Porque pode passar da vaca para o feto. Assim, abortos podem se repetir em linhagens do rebanho.",
           "tema": "Doenças Reprodutivas em Bovinos",
           "subtema": "Abortamento e perdas gestacionais"
         },
         {
           "id": "fc_bovrep_0013",
-          "pergunta": "Por que c�es importam no controle da neosporose?",
+          "pergunta": "Por que cães importam no controle da neosporose?",
           "resposta": "Eles podem eliminar oocistos no ambiente. Evitar contato com placenta e ração reduz risco.",
           "tema": "Doenças Reprodutivas em Bovinos",
           "subtema": "Abortamento e perdas gestacionais"
@@ -233,7 +233,7 @@
           "tema": "Doenças Reprodutivas em Bovinos",
           "subtema": "Abortamento e perdas gestacionais",
           "dificuldade": "media",
-          "pergunta": "Na investiga��o de aborto bovino, qual conduta aumenta a chance de diagn�stico correto?",
+          "pergunta": "Na investigação de aborto bovino, qual conduta aumenta a chance de diagnóstico correto?",
           "alternativas": {
             "A": "Coletar placenta, feto e histórico do lote.",
             "B": "Descartar todo material antes da avaliação.",
@@ -250,42 +250,42 @@
       "flashcards": [
         {
           "id": "fc_bovrep_0014",
-          "pergunta": "O que acontece se a metrite p�s-parto n�o � controlada?",
+          "pergunta": "O que acontece se a metrite pós-parto não é controlada?",
           "resposta": "O útero demora a se recuperar e a vaca pode demorar a emprenhar. Também pode haver piora clínica.",
           "tema": "Doenças Reprodutivas em Bovinos",
           "subtema": "Doenças uterinas e pós-parto"
         },
         {
           "id": "fc_bovrep_0015",
-          "pergunta": "Por que reten��o de placenta aumenta risco de metrite?",
+          "pergunta": "Por que retenção de placenta aumenta risco de metrite?",
           "resposta": "O tecido retido facilita crescimento bacteriano no útero. Isso atrasa involução e prejudica nova prenhez.",
           "tema": "Doenças Reprodutivas em Bovinos",
           "subtema": "Doenças uterinas e pós-parto"
         },
         {
           "id": "fc_bovrep_0016",
-          "pergunta": "Por que endometrite cl�nica reduz fertilidade?",
+          "pergunta": "Por que endometrite clínica reduz fertilidade?",
           "resposta": "Ela mantém o endométrio inflamado e com secreção anormal. O útero fica menos adequado para o embrião.",
           "tema": "Doenças Reprodutivas em Bovinos",
           "subtema": "Doenças uterinas e pós-parto"
         },
         {
           "id": "fc_bovrep_0017",
-          "pergunta": "Por que endometrite subcl�nica � dif�cil de perceber?",
+          "pergunta": "Por que endometrite subclínica é difícil de perceber?",
           "resposta": "Pode não ter secreção evidente. Mesmo assim, inflama o útero e reduz a chance de prenhez.",
           "tema": "Doenças Reprodutivas em Bovinos",
           "subtema": "Doenças uterinas e pós-parto"
         },
         {
           "id": "fc_bovrep_0018",
-          "pergunta": "Por que parto dif�cil aumenta risco de doen�a uterina?",
+          "pergunta": "Por que parto difícil aumenta risco de doença uterina?",
           "resposta": "A distocia causa trauma e mais manipulação. Isso facilita contaminação e inflamação do útero.",
           "tema": "Doenças Reprodutivas em Bovinos",
           "subtema": "Doenças uterinas e pós-parto"
         },
         {
           "id": "fc_bovrep_0019",
-          "pergunta": "Por que cetose e balan�o energ�tico negativo pioram fertilidade?",
+          "pergunta": "Por que cetose e balanço energético negativo pioram fertilidade?",
           "resposta": "Reduzem defesa e atividade hormonal pós-parto. A vaca demora mais a ciclar e emprenhar.",
           "tema": "Doenças Reprodutivas em Bovinos",
           "subtema": "Doenças uterinas e pós-parto"
@@ -350,42 +350,42 @@
       "flashcards": [
         {
           "id": "fc_bovrep_0020",
-          "pergunta": "Por que hist�rico do lote � essencial no diagn�stico reprodutivo?",
+          "pergunta": "Por que histórico do lote é essencial no diagnóstico reprodutivo?",
           "resposta": "Mostra padrão de aborto, retorno ao cio e vacinação. Isso direciona os exames certos.",
           "tema": "Doenças Reprodutivas em Bovinos",
           "subtema": "Diagnóstico, controle e prevenção"
         },
         {
           "id": "fc_bovrep_0021",
-          "pergunta": "Por que guardar placenta e feto abortado ajuda no diagn�stico?",
+          "pergunta": "Por que guardar placenta e feto abortado ajuda no diagnóstico?",
           "resposta": "Eles carregam pistas do agente ou da lesão. Sem esse material, a causa do aborto fica mais difícil.",
           "tema": "Doenças Reprodutivas em Bovinos",
           "subtema": "Diagnóstico, controle e prevenção"
         },
         {
           "id": "fc_bovrep_0022",
-          "pergunta": "Por que quarentena protege a reprodu��o do rebanho?",
+          "pergunta": "Por que quarentena protege a reprodução do rebanho?",
           "resposta": "Evita entrada silenciosa de agentes infecciosos. Animais novos devem ser testados antes de misturar.",
           "tema": "Doenças Reprodutivas em Bovinos",
           "subtema": "Diagnóstico, controle e prevenção"
         },
         {
           "id": "fc_bovrep_0023",
-          "pergunta": "Por que vacina��o sozinha n�o resolve todo problema reprodutivo?",
+          "pergunta": "Por que vacinação sozinha não resolve todo problema reprodutivo?",
           "resposta": "Ela reduz risco, mas não substitui diagnóstico, biossegurança e manejo. O controle precisa ser combinado.",
           "tema": "Doenças Reprodutivas em Bovinos",
           "subtema": "Diagnóstico, controle e prevenção"
         },
         {
           "id": "fc_bovrep_0024",
-          "pergunta": "Por que examinar touros � importante?",
+          "pergunta": "Por que examinar touros é importante?",
           "resposta": "Touros podem transmitir doenças venéreas e reduzir prenhez do lote. Testes evitam espalhar o problema.",
           "tema": "Doenças Reprodutivas em Bovinos",
           "subtema": "Diagnóstico, controle e prevenção"
         },
         {
           "id": "fc_bovrep_0025",
-          "pergunta": "O que acontece se n�o houver biosseguran�a em aborto?",
+          "pergunta": "O que acontece se não houver biossegurança em aborto?",
           "resposta": "Secreções, placenta e fetos podem espalhar agentes. Isso aumenta risco para animais e pessoas.",
           "tema": "Doenças Reprodutivas em Bovinos",
           "subtema": "Diagnóstico, controle e prevenção"
@@ -399,7 +399,7 @@
           "tema": "Doenças Reprodutivas em Bovinos",
           "subtema": "Diagnóstico, controle e prevenção",
           "dificuldade": "media",
-          "pergunta": "Qual medida � mais adequada para reduzir a entrada de doen�as reprodutivas em um rebanho fechado?",
+          "pergunta": "Qual medida é mais adequada para reduzir a entrada de doenças reprodutivas em um rebanho fechado?",
           "alternativas": {
             "A": "Quarentena e testes em animais introduzidos.",
             "B": "Mistura imediata dos animais recém-comprados.",
@@ -433,7 +433,7 @@
           "tema": "Doenças Reprodutivas em Bovinos",
           "subtema": "Diagnóstico, controle e prevenção",
           "dificuldade": "media",
-          "pergunta": "Ap�s aborto bovino, qual pr�tica reduz risco de transmiss�o e melhora a investiga��o?",
+          "pergunta": "Após aborto bovino, qual prática reduz risco de transmissão e melhora a investigação?",
           "alternativas": {
             "A": "Isolar a área, usar proteção e coletar material.",
             "B": "Permitir acesso livre de cães e aves.",

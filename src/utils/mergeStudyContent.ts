@@ -1,4 +1,4 @@
-﻿import questionsData from '../data/questions.json'
+import questionsData from '../data/questions.json'
 import { staticStudyModules } from '../data/modules'
 import type {
   Flashcard as ModuleFlashcard,
@@ -60,6 +60,10 @@ function byId(question: { id: number }) {
   return question.id
 }
 
+function byFlashcardId(card: { id: string }) {
+  return card.id
+}
+
 function normalizeForMatch(value: string) {
   return value
     .trim()
@@ -85,6 +89,18 @@ function normalizeQuestionTema(tema: unknown) {
   if (normalized.includes('farmacologia')) return 'Farmacologia Veterinária'
 
   return trimmed
+}
+
+function getModuleTema(content: StaticStudyModule, fallbackTema?: unknown) {
+  if (typeof content.disciplina === 'string' && content.disciplina.trim()) {
+    return content.disciplina.trim()
+  }
+
+  if (typeof fallbackTema === 'string' && fallbackTema.trim()) {
+    return normalizeQuestionTema(fallbackTema)
+  }
+
+  return normalizeQuestionTema(content.module)
 }
 
 function repairStoredExtraQuestionTemas(moduleQuestions: ParsedQuestion[]) {
@@ -129,6 +145,19 @@ function loadStaticModuleQuestions(): ParsedQuestion[] {
   })
 }
 
+function loadStaticModuleFlashcards(): ParsedFlashcard[] {
+  const staticIds = new Set<string>()
+
+  return staticStudyModules.flatMap(module => {
+    const { parsedContent } = staticModuleToParsedContent(module)
+    return parsedContent.flashcards.filter(card => {
+      if (staticIds.has(card.id)) return false
+      staticIds.add(card.id)
+      return true
+    })
+  })
+}
+
 export function getMergedQuestionBank(): ParsedQuestion[] {
   const baseQuestions = questionsData.questoes as ParsedQuestion[]
   const staticQuestions = loadStaticModuleQuestions()
@@ -142,6 +171,22 @@ export function getMergedQuestionBank(): ParsedQuestion[] {
   })
 
   return [...baseQuestions, ...staticQuestions, ...uniqueExtraQuestions]
+}
+
+export function getMergedFlashcardBank(profileId?: string | null): ParsedFlashcard[] {
+  const staticFlashcards = loadStaticModuleFlashcards()
+  if (!profileId) return staticFlashcards
+
+  const knownIds = new Set(staticFlashcards.map(byFlashcardId))
+  const profileFlashcards = loadProfileFlashcards(profileId).filter(card => !knownIds.has(card.id))
+  const extraIds = new Set<string>()
+  const uniqueProfileFlashcards = profileFlashcards.filter(card => {
+    if (extraIds.has(card.id)) return false
+    extraIds.add(card.id)
+    return true
+  })
+
+  return [...staticFlashcards, ...uniqueProfileFlashcards]
 }
 
 export function mergeStudyContent(content: ParsedStudyContent): MergeStudyContentResult {
@@ -216,11 +261,18 @@ export function mergeStudyContentForProfile(
 
 function staticModuleToParsedContent(content: StaticStudyModule): { parsedContent: ParsedStudyContent; fixedQuestionTemas: number } {
   let fixedQuestionTemas = 0
+  const moduleLabel = typeof content.modulo === 'string' && content.modulo.trim()
+    ? content.modulo.trim()
+    : content.module
+  const firstTopic = content.topics[0]
+  const fallbackTema = firstTopic?.questions[0]?.tema ?? firstTopic?.flashcards[0]?.tema ?? content.module
+  const moduleTema = getModuleTema(content, fallbackTema)
+
   const parsedContent: ParsedStudyContent = {
     topics: content.topics.map(topic => ({
       id: `module-${content.module}-${topic.name}`,
-      name: `${content.module} - ${topic.name}`,
-      tema: content.module,
+      name: `${moduleLabel} - ${topic.name}`,
+      tema: moduleTema,
       subtema: topic.name,
     })),
     flashcards: content.topics.flatMap(topic =>
@@ -229,13 +281,13 @@ function staticModuleToParsedContent(content: StaticStudyModule): { parsedConten
         tag: card.subtema || topic.name,
         front: card.pergunta,
         back: card.resposta,
-        tema: card.tema,
+        tema: moduleTema,
         subtema: card.subtema || topic.name,
       }))
     ),
     questoes: content.topics.flatMap(topic =>
       topic.questions.map(question => {
-        const normalizedTema = normalizeQuestionTema(question.tema)
+        const normalizedTema = getModuleTema(content, question.tema)
         if (normalizedTema !== question.tema) fixedQuestionTemas += 1
 
         return {

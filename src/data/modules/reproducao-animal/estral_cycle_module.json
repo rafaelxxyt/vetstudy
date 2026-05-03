@@ -9,56 +9,56 @@
       "flashcards": [
         {
           "id": "fc_estral_0001",
-          "pergunta": "O que o ciclo estral faz no corpo da f�mea?",
+          "pergunta": "O que o ciclo estral faz no corpo da fêmea?",
           "resposta": "Organiza cio, ovulação e preparo do útero. Isso permite prever o melhor momento para reprodução.",
           "tema": "Ciclo Estral e Reprodução Animal",
           "subtema": "Fundamentos do ciclo reprodutivo"
         },
         {
           "id": "fc_estral_0002",
-          "pergunta": "Por que o ciclo estral � diferente do ciclo menstrual?",
+          "pergunta": "Por que o ciclo estral é diferente do ciclo menstrual?",
           "resposta": "No estral, a fêmea aceita monta só no estro. Isso concentra a reprodução perto da ovulação.",
           "tema": "Ciclo Estral e Reprodução Animal",
           "subtema": "Fundamentos do ciclo reprodutivo"
         },
         {
           "id": "fc_estral_0003",
-          "pergunta": "O que mostra que a f�mea est� em estro?",
+          "pergunta": "O que mostra que a fêmea está em estro?",
           "resposta": "Ela aceita monta por efeito do estrogênio. Esse sinal indica ovulação próxima.",
           "tema": "Ciclo Estral e Reprodução Animal",
           "subtema": "Fundamentos do ciclo reprodutivo"
         },
         {
           "id": "fc_estral_0004",
-          "pergunta": "O que acontece se a f�mea entra em anestro?",
+          "pergunta": "O que acontece se a fêmea entra em anestro?",
           "resposta": "Ela para de ciclar e não mostra cio regular. Isso reduz as chances de cobertura ou IA no período.",
           "tema": "Ciclo Estral e Reprodução Animal",
           "subtema": "Fundamentos do ciclo reprodutivo"
         },
         {
           "id": "fc_estral_0005",
-          "pergunta": "O que o corpo l�teo faz ap�s a ovula��o?",
+          "pergunta": "O que o corpo lúteo faz após a ovulação?",
           "resposta": "Produz progesterona para preparar o útero. Sem ele, a gestação inicial não se sustenta bem.",
           "tema": "Ciclo Estral e Reprodução Animal",
           "subtema": "Fundamentos do ciclo reprodutivo"
         },
         {
           "id": "fc_estral_0006",
-          "pergunta": "Por que detectar cio corretamente melhora a reprodu��o?",
+          "pergunta": "Por que detectar cio corretamente melhora a reprodução?",
           "resposta": "Ajuda a inseminar perto da ovulação. Isso aumenta a chance de concepção e reduz perdas de manejo.",
           "tema": "Ciclo Estral e Reprodução Animal",
           "subtema": "Fundamentos do ciclo reprodutivo"
         },
         {
           "id": "fc_estral_0007",
-          "pergunta": "O que muda no manejo de uma f�mea poli�strica?",
+          "pergunta": "O que muda no manejo de uma fêmea poliéstrica?",
           "resposta": "Ela repete ciclos em sequência. Isso cria várias oportunidades de cobertura ou IA.",
           "tema": "Ciclo Estral e Reprodução Animal",
           "subtema": "Fundamentos do ciclo reprodutivo"
         },
         {
           "id": "fc_estral_0008",
-          "pergunta": "Por que o eixo hipot�lamo-hip�fise-gonadal � importante?",
+          "pergunta": "Por que o eixo hipotálamo-hipófise-gonadal é importante?",
           "resposta": "Ele coordena GnRH, FSH, LH e ovário. Sem esse comando, folículo, ovulação e corpo lúteo perdem ritmo.",
           "tema": "Ciclo Estral e Reprodução Animal",
           "subtema": "Fundamentos do ciclo reprodutivo"
@@ -87,7 +87,7 @@
           "banca": "VetStudy",
           "tema": "Ciclo Estral e Reprodução Animal",
           "dificuldade": "media",
-          "pergunta": "Uma vaca com aus�ncia prolongada de cio ap�s o parto pode estar em anestro p�s-parto. Qual fator frequentemente contribui para esse quadro?",
+          "pergunta": "Uma vaca com ausência prolongada de cio após o parto pode estar em anestro pós-parto. Qual fator frequentemente contribui para esse quadro?",
           "alternativas": {
             "A": "Balanço energético negativo intenso.",
             "B": "Excesso isolado de estrogênio folicular.",
@@ -103,7 +103,7 @@
           "banca": "VetStudy",
           "tema": "Ciclo Estral e Reprodução Animal",
           "dificuldade": "media",
-          "pergunta": "A forma��o do corpo l�teo ocorre ap�s qual evento fisiol�gico?",
+          "pergunta": "A formação do corpo lúteo ocorre após qual evento fisiológico?",
           "alternativas": {
             "A": "Luteólise uterina.",
             "B": "Ovulação folicular.",
@@ -166,21 +166,21 @@
         },
         {
           "id": "fc_estral_0011",
-          "pergunta": "Por que o estro � a fase mais vis�vel no campo?",
+          "pergunta": "Por que o estro é a fase mais visível no campo?",
           "resposta": "Porque a fêmea mostra cio e aceita monta. Isso indica que a ovulação está próxima.",
           "tema": "Ciclo Estral e Reprodução Animal",
           "subtema": "Fases do ciclo estral"
         },
         {
           "id": "fc_estral_0012",
-          "pergunta": "O que acontece logo ap�s o estro?",
+          "pergunta": "O que acontece logo após o estro?",
           "resposta": "Começa o metaestro, com formação do corpo lúteo. O ciclo muda de estrogênio para progesterona.",
           "tema": "Ciclo Estral e Reprodução Animal",
           "subtema": "Fases do ciclo estral"
         },
         {
           "id": "fc_estral_0013",
-          "pergunta": "O que o diestro faz pela poss�vel gesta��o?",
+          "pergunta": "O que o diestro faz pela possível gestação?",
           "resposta": "Mantém corpo lúteo e progesterona altos. Isso deixa o útero preparado e reduz novo cio.",
           "tema": "Ciclo Estral e Reprodução Animal",
           "subtema": "Fases do ciclo estral"
@@ -194,7 +194,7 @@
         },
         {
           "id": "fc_estral_0015",
-          "pergunta": "O que acontece se n�o houver reconhecimento da gesta��o?",
+          "pergunta": "O que acontece se não houver reconhecimento da gestação?",
           "resposta": "A PGF2α causa luteólise no fim do diestro. A progesterona cai e um novo ciclo pode começar.",
           "tema": "Ciclo Estral e Reprodução Animal",
           "subtema": "Fases do ciclo estral"
@@ -223,7 +223,7 @@
           "banca": "VetStudy",
           "tema": "Ciclo Estral e Reprodução Animal",
           "dificuldade": "media",
-          "pergunta": "Durante o proestro, qual altera��o � mais esperada?",
+          "pergunta": "Durante o proestro, qual alteração é mais esperada?",
           "alternativas": {
             "A": "Crescimento folicular e aumento de estrogênio.",
             "B": "Máxima progesterona por corpo lúteo maduro.",
@@ -295,7 +295,7 @@
         },
         {
           "id": "fc_estral_0017",
-          "pergunta": "O que o FSH faz nos fol�culos?",
+          "pergunta": "O que o FSH faz nos folículos?",
           "resposta": "Estimula crescimento e recrutamento folicular. Sem ele, o ovário não prepara bem o folículo dominante.",
           "tema": "Ciclo Estral e Reprodução Animal",
           "subtema": "Hormônios reprodutivos"
@@ -309,21 +309,21 @@
         },
         {
           "id": "fc_estral_0019",
-          "pergunta": "Por que estrog�nio alto causa sinais de cio?",
+          "pergunta": "Por que estrogênio alto causa sinais de cio?",
           "resposta": "Ele muda comportamento e trato reprodutivo. Assim a fêmea fica receptiva perto da ovulação.",
           "tema": "Ciclo Estral e Reprodução Animal",
           "subtema": "Hormônios reprodutivos"
         },
         {
           "id": "fc_estral_0020",
-          "pergunta": "O que a progesterona faz ap�s a ovula��o?",
+          "pergunta": "O que a progesterona faz após a ovulação?",
           "resposta": "Prepara o útero e bloqueia novo cio. Isso protege a fase lútea e a gestação inicial.",
           "tema": "Ciclo Estral e Reprodução Animal",
           "subtema": "Hormônios reprodutivos"
         },
         {
           "id": "fc_estral_0021",
-          "pergunta": "O que a PGF2� faz com o corpo l�teo?",
+          "pergunta": "O que a PGF2α faz com o corpo lúteo?",
           "resposta": "Causa luteólise e derruba progesterona. Isso reinicia o ciclo quando não há gestação.",
           "tema": "Ciclo Estral e Reprodução Animal",
           "subtema": "Hormônios reprodutivos"
@@ -445,21 +445,21 @@
         },
         {
           "id": "fc_estral_0026",
-          "pergunta": "O que diferencia o ciclo da �gua no manejo?",
+          "pergunta": "O que diferencia o ciclo da égua no manejo?",
           "resposta": "O ciclo fica perto de 21 dias, mas o estro costuma ser mais longo. Isso muda o acompanhamento da cobertura.",
           "tema": "Ciclo Estral e Reprodução Animal",
           "subtema": "Ciclo por espécie"
         },
         {
           "id": "fc_estral_0027",
-          "pergunta": "Por que a ovelha � lembrada como ciclo de 17 dias?",
+          "pergunta": "Por que a ovelha é lembrada como ciclo de 17 dias?",
           "resposta": "Esse intervalo orienta retorno ao cio na estação reprodutiva. Ajuda a planejar repasse e cobertura.",
           "tema": "Ciclo Estral e Reprodução Animal",
           "subtema": "Ciclo por espécie"
         },
         {
           "id": "fc_estral_0028",
-          "pergunta": "Por que a �gua cicla mais em dias longos?",
+          "pergunta": "Por que a égua cicla mais em dias longos?",
           "resposta": "Mais luz reduz o freio da melatonina. Por isso a atividade reprodutiva aumenta na primavera e verão.",
           "tema": "Ciclo Estral e Reprodução Animal",
           "subtema": "Ciclo por espécie"
@@ -518,7 +518,7 @@
           "banca": "VetStudy",
           "tema": "Ciclo Estral e Reprodução Animal",
           "dificuldade": "media",
-          "pergunta": "A �gua tende a apresentar maior atividade c�clica em qual condi��o ambiental?",
+          "pergunta": "A égua tende a apresentar maior atividade cíclica em qual condição ambiental?",
           "alternativas": {
             "A": "Dias longos, como primavera e verão.",
             "B": "Dias curtos, como inverno rigoroso.",
