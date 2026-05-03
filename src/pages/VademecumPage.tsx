@@ -28,23 +28,23 @@ export default function VademecumPage() {
       {/* Header */}
       <div className="mb-6">
         <div className="flex items-center gap-2 mb-1">
-          <FlaskConical size={22} className="text-teal-400" />
+          <FlaskConical size={22} className="text-primary-400" />
           <h1 className="text-2xl font-bold text-white">Vademecum PRO</h1>
         </div>
-        <p className="text-slate-400 text-sm">
+        <p className="text-neutral-400 text-sm">
           {db.drugs.length} fármacos · doses por espécie · mecanismo e contraindicações
         </p>
       </div>
 
       {/* Search */}
       <div className="relative mb-6">
-        <Search size={17} className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 pointer-events-none" />
+        <Search size={17} className="absolute left-4 top-1/2 -translate-y-1/2 text-neutral-500 pointer-events-none" />
         <input
           type="text"
           placeholder="Buscar fármaco ou tag... ex: AINE, opioide, reprodução"
           value={query}
           onChange={e => setQuery(e.target.value)}
-          className="w-full pl-11 pr-4 py-3 bg-slate-800 border border-slate-700 rounded-2xl text-sm text-slate-200 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-teal-500/50 focus:border-teal-500 transition"
+          className="w-full pl-11 pr-4 py-3 bg-neutral-800 border border-neutral-700 rounded-2xl text-sm text-neutral-200 placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-primary-500/50 focus:border-primary-500 transition"
         />
       </div>
 
@@ -60,19 +60,19 @@ export default function VademecumPage() {
                 onClick={() => select(drug)}
                 className={`w-full text-left px-4 py-3 rounded-xl border text-sm transition-all ${
                   active
-                    ? 'bg-teal-500/20 text-teal-300 border-teal-500/40 shadow-sm'
-                    : 'bg-slate-800/60 text-slate-400 border-slate-700/60 hover:border-teal-600/40 hover:text-slate-200'
+                    ? 'bg-primary-500/20 text-primary-300 border-primary-500/40 shadow-sm'
+                    : 'bg-neutral-800/60 text-neutral-400 border-neutral-700/60 hover:border-primary-600/40 hover:text-neutral-200'
                 }`}
               >
                 <p className="font-semibold truncate">{drug.name}</p>
-                <p className={`text-xs mt-0.5 truncate ${active ? 'text-teal-400/70' : 'text-slate-600'}`}>
+                <p className={`text-xs mt-0.5 truncate ${active ? 'text-primary-400/70' : 'text-neutral-600'}`}>
                   {drug.category}
                 </p>
               </motion.button>
             )
           })}
           {filtered.length === 0 && (
-            <p className="text-sm text-slate-500 px-2 py-3">Nenhum resultado.</p>
+            <p className="text-sm text-neutral-500 px-2 py-3">Nenhum resultado.</p>
           )}
         </div>
 
@@ -88,14 +88,14 @@ export default function VademecumPage() {
               className="space-y-3"
             >
               {/* Header Card */}
-              <div className="bg-slate-800 rounded-2xl p-5 border border-slate-700/80">
+              <div className="bg-neutral-800 rounded-2xl p-5 border border-neutral-700/80">
                 <div className="flex items-start gap-3 mb-3">
-                  <div className="w-10 h-10 rounded-xl bg-teal-500/15 flex items-center justify-center flex-shrink-0">
-                    <Pill size={19} className="text-teal-400" />
+                  <div className="w-10 h-10 rounded-xl bg-primary-500/15 flex items-center justify-center flex-shrink-0">
+                    <Pill size={19} className="text-primary-400" />
                   </div>
                   <div className="flex-1">
                     <h2 className="text-lg font-bold text-white">{selected.name}</h2>
-                    <span className="text-xs bg-teal-500/10 text-teal-400 border border-teal-500/20 px-2.5 py-0.5 rounded-full font-medium">
+                    <span className="text-xs bg-primary-500/10 text-primary-400 border border-primary-500/20 px-2.5 py-0.5 rounded-full font-medium">
                       {selected.category}
                     </span>
                   </div>
@@ -103,13 +103,13 @@ export default function VademecumPage() {
                 {/* Tags */}
                 <div className="flex flex-wrap gap-1.5 mb-3">
                   {selected.tags.map(tag => (
-                    <span key={tag} className="inline-flex items-center gap-1 text-[10px] bg-slate-700/60 text-slate-400 px-2 py-0.5 rounded-full">
+                    <span key={tag} className="inline-flex items-center gap-1 text-[10px] bg-neutral-700/60 text-neutral-400 px-2 py-0.5 rounded-full">
                       <Tag size={9} />
                       {tag}
                     </span>
                   ))}
                 </div>
-                <p className="text-sm text-slate-400 leading-relaxed">{selected.mechanism}</p>
+                <p className="text-sm text-neutral-400 leading-relaxed">{selected.mechanism}</p>
               </div>
 
               {/* Species Accordion */}
@@ -118,24 +118,24 @@ export default function VademecumPage() {
                   const open   = expanded === sp.name
                   const danger = sp.dose.startsWith('⚠️')
                   return (
-                    <div key={sp.name} className="bg-slate-800 rounded-2xl border border-slate-700/80 overflow-hidden">
+                    <div key={sp.name} className="bg-neutral-800 rounded-2xl border border-neutral-700/80 overflow-hidden">
                       <button
-                        className="w-full flex items-center justify-between px-5 py-3.5 hover:bg-slate-700/40 transition-colors"
+                        className="w-full flex items-center justify-between px-5 py-3.5 hover:bg-neutral-700/40 transition-colors"
                         onClick={() => setExpanded(open ? null : sp.name)}
                       >
                         <div className="flex items-center gap-3">
                           <span className="text-xl leading-none">{sp.emoji}</span>
-                          <span className="font-semibold text-slate-200 text-sm">{sp.name}</span>
+                          <span className="font-semibold text-neutral-200 text-sm">{sp.name}</span>
                           <span className={`text-xs font-bold px-2.5 py-0.5 rounded-full border ${
                             danger
-                              ? 'bg-red-500/10 text-red-400 border-red-500/20'
-                              : 'bg-teal-500/10 text-teal-400 border-teal-500/20'
+                              ? 'bg-danger-500/10 text-danger-400 border-danger-500/20'
+                              : 'bg-primary-500/10 text-primary-400 border-primary-500/20'
                           }`}>
                             {sp.dose}
                           </span>
                         </div>
                         <motion.div animate={{ rotate: open ? 180 : 0 }} transition={{ duration: 0.2 }}>
-                          <ChevronDown size={15} className="text-slate-500" />
+                          <ChevronDown size={15} className="text-neutral-500" />
                         </motion.div>
                       </button>
 
@@ -149,18 +149,18 @@ export default function VademecumPage() {
                             transition={{ duration: 0.22, ease: [0.4, 0, 0.2, 1] }}
                             className="overflow-hidden"
                           >
-                            <div className="px-5 pb-4 pt-3 border-t border-slate-700/50 grid grid-cols-3 gap-4">
+                            <div className="px-5 pb-4 pt-3 border-t border-neutral-700/50 grid grid-cols-3 gap-4">
                               <div>
-                                <p className="text-xs text-slate-500 font-medium mb-1">Via</p>
-                                <p className="text-sm font-semibold text-slate-200">{sp.route}</p>
+                                <p className="text-xs text-neutral-500 font-medium mb-1">Via</p>
+                                <p className="text-sm font-semibold text-neutral-200">{sp.route}</p>
                               </div>
                               <div>
-                                <p className="text-xs text-slate-500 font-medium mb-1">Intervalo</p>
-                                <p className="text-sm font-semibold text-slate-200">{sp.interval}</p>
+                                <p className="text-xs text-neutral-500 font-medium mb-1">Intervalo</p>
+                                <p className="text-sm font-semibold text-neutral-200">{sp.interval}</p>
                               </div>
                               <div>
-                                <p className="text-xs text-slate-500 font-medium mb-1">Observação</p>
-                                <p className="text-sm text-slate-400 leading-relaxed">{sp.notes}</p>
+                                <p className="text-xs text-neutral-500 font-medium mb-1">Observação</p>
+                                <p className="text-sm text-neutral-400 leading-relaxed">{sp.notes}</p>
                               </div>
                             </div>
                           </motion.div>
@@ -172,15 +172,15 @@ export default function VademecumPage() {
               </div>
 
               {/* Contraindications */}
-              <div className="bg-red-950/30 rounded-2xl p-4 border border-red-500/20">
+              <div className="bg-danger-950/30 rounded-2xl p-4 border border-danger-500/20">
                 <div className="flex items-center gap-2 mb-2.5">
-                  <AlertCircle size={15} className="text-red-400 flex-shrink-0" />
-                  <p className="text-sm font-semibold text-red-400">Contraindicações</p>
+                  <AlertCircle size={15} className="text-danger-400 flex-shrink-0" />
+                  <p className="text-sm font-semibold text-danger-400">Contraindicações</p>
                 </div>
                 <ul className="space-y-1.5">
                   {selected.contraindications.map(c => (
-                    <li key={c} className="text-sm text-red-300/80 flex items-start gap-2">
-                      <span className="mt-2 w-1.5 h-1.5 rounded-full bg-red-500/60 flex-shrink-0" />
+                    <li key={c} className="text-sm text-danger-300/80 flex items-start gap-2">
+                      <span className="mt-2 w-1.5 h-1.5 rounded-full bg-danger-500/60 flex-shrink-0" />
                       {c}
                     </li>
                   ))}

@@ -1,4 +1,4 @@
-﻿import { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import {
   ClipboardCheck, CalendarDays,
@@ -113,12 +113,12 @@ function saveJSON(key: string, val: unknown) {
 
 const INTERVALS = [1, 7, 30, 90]
 const INT_LABEL: Record<number, string> = { 1: 'R1', 7: 'R7', 30: 'R30', 90: 'R90' }
-const INT_COLOR: Record<number, string> = { 1: 'bg-yellow-400', 7: 'bg-orange-400', 30: 'bg-red-400', 90: 'bg-red-500' }
+const INT_COLOR: Record<number, string> = { 1: 'bg-warning-400', 7: 'bg-warning-400', 30: 'bg-danger-400', 90: 'bg-danger-500' }
 const DAY_BG: Record<number, string> = {
-  1: 'bg-yellow-400/25 text-yellow-100 border-yellow-400/30',
-  7: 'bg-orange-400/25 text-orange-100 border-orange-400/30',
-  30: 'bg-red-400/25 text-red-100 border-red-400/30',
-  90: 'bg-red-500/30 text-red-100 border-red-500/40',
+  1: 'bg-warning-400/25 text-warning-100 border-warning-400/30',
+  7: 'bg-warning-400/25 text-warning-100 border-warning-400/30',
+  30: 'bg-danger-400/25 text-danger-100 border-danger-400/30',
+  90: 'bg-danger-500/30 text-danger-100 border-danger-500/40',
 }
 
 function dueReviewCount(topics: Topic[], date = todayISO()) {
@@ -129,8 +129,8 @@ function calendarDayClass(dots: { interval: number }[], hasStudy = false) {
   if (dots.some(d => d.interval >= 30)) return DAY_BG[30]
   if (dots.some(d => d.interval === 7)) return DAY_BG[7]
   if (dots.some(d => d.interval === 1)) return DAY_BG[1]
-  if (hasStudy) return 'bg-slate-700/70 text-slate-100 border-slate-600/70'
-  return 'bg-slate-800/45 text-slate-500 border-slate-800/60'
+  if (hasStudy) return 'bg-neutral-700/70 text-neutral-100 border-neutral-600/70'
+  return 'bg-neutral-800/45 text-neutral-500 border-neutral-800/60'
 }
 
 function MiniCalendario({ topics, storageKey: _sk }: { topics: Topic[]; storageKey: string }) {
@@ -158,19 +158,19 @@ function MiniCalendario({ topics, storageKey: _sk }: { topics: Topic[]; storageK
   const selectedItems = selectedDay ? (dotMap[selectedDay] || []) : []
 
   return (
-    <div className="bg-slate-800/60 backdrop-blur-md rounded-2xl border border-slate-700/60 p-4">
+    <div className="bg-neutral-800/60 backdrop-blur-md rounded-2xl border border-neutral-700/60 p-4">
       <div className="flex items-center justify-between mb-3">
-        <button onClick={prevMonth} className="p-1 text-slate-500 hover:text-teal-400 transition-colors rounded-lg hover:bg-slate-700/50">
+        <button onClick={prevMonth} className="p-1 text-neutral-500 hover:text-primary-400 transition-colors rounded-lg hover:bg-neutral-700/50">
           <ChevronLeft size={14} />
         </button>
-        <p className="text-xs font-bold text-slate-300 capitalize">{monthName}</p>
-        <button onClick={nextMonth} className="p-1 text-slate-500 hover:text-teal-400 transition-colors rounded-lg hover:bg-slate-700/50">
+        <p className="text-xs font-bold text-neutral-300 capitalize">{monthName}</p>
+        <button onClick={nextMonth} className="p-1 text-neutral-500 hover:text-primary-400 transition-colors rounded-lg hover:bg-neutral-700/50">
           <ChevronRight size={14} />
         </button>
       </div>
       <div className="grid grid-cols-7 mb-1">
         {['D','S','T','Q','Q','S','S'].map((d, i) => (
-          <div key={i} className="text-center text-[9px] font-bold text-slate-600 py-1">{d}</div>
+          <div key={i} className="text-center text-[9px] font-bold text-neutral-600 py-1">{d}</div>
         ))}
       </div>
       <div className="grid grid-cols-7 gap-0.5">
@@ -185,9 +185,9 @@ function MiniCalendario({ topics, storageKey: _sk }: { topics: Topic[]; storageK
           return (
             <button key={day} onClick={() => setSelectedDay(iso === selectedDay ? null : iso)}
               className={`relative flex flex-col items-center py-1.5 rounded-lg border transition-all ${calendarDayClass(dots)} ${
-                isSel ? 'ring-1 ring-teal-400/70' :
+                isSel ? 'ring-1 ring-primary-400/70' :
                 isToday ? 'ring-1 ring-white/30 font-bold' :
-                'hover:border-slate-500/70'
+                'hover:border-neutral-500/70'
               }`}>
               <span className="text-[11px] leading-none">{day}</span>
               {dots.length > 0 && (
@@ -202,31 +202,31 @@ function MiniCalendario({ topics, storageKey: _sk }: { topics: Topic[]; storageK
         })}
       </div>
       {selectedDay && (
-        <motion.div initial={{ opacity: 0, y: 4 }} animate={{ opacity: 1, y: 0 }} className="mt-3 border-t border-slate-700/50 pt-3">
-          <p className="text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-2">
+        <motion.div initial={{ opacity: 0, y: 4 }} animate={{ opacity: 1, y: 0 }} className="mt-3 border-t border-neutral-700/50 pt-3">
+          <p className="text-[10px] font-bold text-neutral-500 uppercase tracking-wider mb-2">
             {selectedDay === today ? '📅 Hoje' : formatDateBR(selectedDay)}
           </p>
           {selectedItems.length === 0
-            ? <p className="text-xs text-slate-600 italic">Nenhuma revisão agendada.</p>
+            ? <p className="text-xs text-neutral-600 italic">Nenhuma revisão agendada.</p>
             : selectedItems.map((item, i) => (
                 <div key={i} className="flex items-center gap-2 py-1">
                   <span className={`w-2 h-2 rounded-full flex-shrink-0 ${INT_COLOR[item.interval]}`} />
-                  <p className="text-xs text-slate-300 flex-1 truncate">{item.name}</p>
-                  <span className="text-[9px] text-slate-600 font-mono">{INT_LABEL[item.interval]}</span>
+                  <p className="text-xs text-neutral-300 flex-1 truncate">{item.name}</p>
+                  <span className="text-[9px] text-neutral-600 font-mono">{INT_LABEL[item.interval]}</span>
                 </div>
               ))
           }
         </motion.div>
       )}
-      <div className="flex gap-3 mt-3 pt-2 border-t border-slate-700/30 flex-wrap">
+      <div className="flex gap-3 mt-3 pt-2 border-t border-neutral-700/30 flex-wrap">
         <div className="flex items-center gap-1">
-          <span className="w-2 h-2 rounded-full bg-slate-700" />
-          <span className="text-[9px] text-slate-600">Sem atividade</span>
+          <span className="w-2 h-2 rounded-full bg-neutral-700" />
+          <span className="text-[9px] text-neutral-600">Sem atividade</span>
         </div>
         {INTERVALS.map(d => (
           <div key={d} className="flex items-center gap-1">
             <span className={`w-2 h-2 rounded-full ${INT_COLOR[d]}`} />
-            <span className="text-[9px] text-slate-600">{INT_LABEL[d]}</span>
+            <span className="text-[9px] text-neutral-600">{INT_LABEL[d]}</span>
           </div>
         ))}
       </div>
@@ -267,19 +267,19 @@ function MiniCalendarioComHistorico({ topics, storageKey, dailyHistory }: {
   const hasTrace = (iso: string) => studyDates.has(iso)
 
   return (
-    <div className="bg-slate-800/60 backdrop-blur-md rounded-2xl border border-slate-700/60 p-4">
+    <div className="bg-neutral-800/60 backdrop-blur-md rounded-2xl border border-neutral-700/60 p-4">
       <div className="flex items-center justify-between mb-3">
-        <button onClick={prevMonth} className="p-1 text-slate-500 hover:text-teal-400 transition-colors rounded-lg hover:bg-slate-700/50">
+        <button onClick={prevMonth} className="p-1 text-neutral-500 hover:text-primary-400 transition-colors rounded-lg hover:bg-neutral-700/50">
           <ChevronLeft size={14} />
         </button>
-        <p className="text-xs font-bold text-slate-300 capitalize">{monthName}</p>
-        <button onClick={nextMonth} className="p-1 text-slate-500 hover:text-teal-400 transition-colors rounded-lg hover:bg-slate-700/50">
+        <p className="text-xs font-bold text-neutral-300 capitalize">{monthName}</p>
+        <button onClick={nextMonth} className="p-1 text-neutral-500 hover:text-primary-400 transition-colors rounded-lg hover:bg-neutral-700/50">
           <ChevronRight size={14} />
         </button>
       </div>
       <div className="grid grid-cols-7 mb-1">
         {['D','S','T','Q','Q','S','S'].map((d, i) => (
-          <div key={i} className="text-center text-[9px] font-bold text-slate-600 py-1">{d}</div>
+          <div key={i} className="text-center text-[9px] font-bold text-neutral-600 py-1">{d}</div>
         ))}
       </div>
       <div className="grid grid-cols-7 gap-0.5">
@@ -294,12 +294,12 @@ function MiniCalendarioComHistorico({ topics, storageKey, dailyHistory }: {
           return (
             <button key={day} onClick={() => setSelectedDay(iso === selectedDay ? null : iso)}
               className={`relative flex flex-col items-center py-1.5 rounded-lg border transition-all ${calendarDayClass(dots, hasTrace(iso))} ${
-                isSel ? 'ring-1 ring-teal-400/70' :
+                isSel ? 'ring-1 ring-primary-400/70' :
                 isToday ? 'ring-1 ring-white/30 font-bold' :
-                'hover:border-slate-500/70'
+                'hover:border-neutral-500/70'
               }`}>
               <span className="text-[11px] leading-none">{day}</span>
-              {hasTrace(iso) && <span title="Estudo de Hoje concluído" className="absolute top-1 right-1 w-1.5 h-1.5 rounded-full bg-teal-400" />}
+              {hasTrace(iso) && <span title="Estudo de Hoje concluído" className="absolute top-1 right-1 w-1.5 h-1.5 rounded-full bg-primary-400" />}
               {dots.length > 0 && (
                 <div className="flex gap-0.5 mt-0.5">
                   {dots.slice(0, 2).map((d, di) => (
@@ -312,34 +312,34 @@ function MiniCalendarioComHistorico({ topics, storageKey, dailyHistory }: {
         })}
       </div>
       {selectedDay && (
-        <motion.div initial={{ opacity: 0, y: 4 }} animate={{ opacity: 1, y: 0 }} className="mt-3 border-t border-slate-700/50 pt-3">
-          <p className="text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-2">
+        <motion.div initial={{ opacity: 0, y: 4 }} animate={{ opacity: 1, y: 0 }} className="mt-3 border-t border-neutral-700/50 pt-3">
+          <p className="text-[10px] font-bold text-neutral-500 uppercase tracking-wider mb-2">
             {selectedDay === today ? 'Hoje' : formatDateBR(selectedDay)}
           </p>
           {!selectedTrace && selectedDots.length === 0 && (
-            <p className="text-xs text-slate-600 italic">Nenhum estudo ou revisão neste dia.</p>
+            <p className="text-xs text-neutral-600 italic">Nenhum estudo ou revisão neste dia.</p>
           )}
           {selectedTrace && (
             <div className="mb-2">
-              <p className="text-xs font-bold text-slate-300 mb-2">Você estudou neste dia:</p>
+              <p className="text-xs font-bold text-neutral-300 mb-2">Você estudou neste dia:</p>
               <div className="flex gap-3 mb-2">
                 <div className="text-center">
-                  <p className="text-sm font-black text-white">{selectedTrace.types.questoes}</p>
-                  <p className="text-[9px] text-slate-600">Questões</p>
+                  <p className="text-sm font-black text-neutral-50">{selectedTrace.types.questoes}</p>
+                  <p className="text-[9px] text-neutral-600">Questões</p>
                 </div>
                 <div className="text-center">
-                  <p className="text-sm font-black text-blue-300">{selectedTrace.origins.revisao}</p>
-                  <p className="text-[9px] text-slate-600">Revisão</p>
+                  <p className="text-sm font-black text-primary-300">{selectedTrace.origins.revisao}</p>
+                  <p className="text-[9px] text-neutral-600">Revisão</p>
                 </div>
                 <div className="text-center">
-                  <p className="text-sm font-black text-amber-300">{selectedTrace.origins.reforco}</p>
-                  <p className="text-[9px] text-slate-600">Reforço</p>
+                  <p className="text-sm font-black text-warning-300">{selectedTrace.origins.reforco}</p>
+                  <p className="text-[9px] text-neutral-600">Reforço</p>
                 </div>
               </div>
               {selectedTrace.topics.length > 0 && (
                 <div className="flex flex-wrap gap-1">
                   {selectedTrace.topics.slice(0, 4).map(t => (
-                    <span key={t} className="text-[10px] bg-slate-700/60 text-slate-400 px-2 py-0.5 rounded-full">{t}</span>
+                    <span key={t} className="text-[10px] bg-neutral-700/60 text-neutral-400 px-2 py-0.5 rounded-full">{t}</span>
                   ))}
                 </div>
               )}
@@ -347,31 +347,31 @@ function MiniCalendarioComHistorico({ topics, storageKey, dailyHistory }: {
           )}
           {selectedDots.length > 0 && (
             <div>
-              <p className="text-[10px] text-slate-600 uppercase font-bold mb-1">Revisões agendadas</p>
+              <p className="text-[10px] text-neutral-600 uppercase font-bold mb-1">Revisões agendadas</p>
               {selectedDots.map((item, i) => (
                 <div key={i} className="flex items-center gap-2 py-0.5">
                   <span className={`w-2 h-2 rounded-full flex-shrink-0 ${INT_COLOR[item.interval]}`} />
-                  <p className="text-xs text-slate-300 flex-1 truncate">{item.name}</p>
-                  <span className="text-[9px] text-slate-600 font-mono">{INT_LABEL[item.interval]}</span>
+                  <p className="text-xs text-neutral-300 flex-1 truncate">{item.name}</p>
+                  <span className="text-[9px] text-neutral-600 font-mono">{INT_LABEL[item.interval]}</span>
                 </div>
               ))}
             </div>
           )}
         </motion.div>
       )}
-      <div className="flex gap-4 mt-3 pt-2 border-t border-slate-700/30 flex-wrap">
+      <div className="flex gap-4 mt-3 pt-2 border-t border-neutral-700/30 flex-wrap">
         <div className="flex items-center gap-1">
-          <span className="w-1.5 h-1.5 rounded-full bg-slate-700" />
-          <span className="text-[9px] text-slate-600">Sem atividade</span>
+          <span className="w-1.5 h-1.5 rounded-full bg-neutral-700" />
+          <span className="text-[9px] text-neutral-600">Sem atividade</span>
         </div>
         <div className="flex items-center gap-1">
-          <span className="w-1.5 h-1.5 rounded-full bg-teal-400" />
-          <span className="text-[9px] text-slate-600">Estudo</span>
+          <span className="w-1.5 h-1.5 rounded-full bg-primary-400" />
+          <span className="text-[9px] text-neutral-600">Estudo</span>
         </div>
         {INTERVALS.map(d => (
           <div key={d} className="flex items-center gap-1">
             <span className={`w-1.5 h-1.5 rounded-full ${INT_COLOR[d]}`} />
-            <span className="text-[9px] text-slate-600">{INT_LABEL[d]}</span>
+            <span className="text-[9px] text-neutral-600">{INT_LABEL[d]}</span>
           </div>
         ))}
       </div>
@@ -386,42 +386,42 @@ function PerformanceCharts({ stats }: { stats: QuizStats }) {
 
   return (
     <div className="grid grid-cols-3 gap-3">
-      <div className="bg-slate-800/60 backdrop-blur-md rounded-2xl border border-slate-700/60 p-4">
-        <p className="text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-2">Total de Questões</p>
-        <p className="text-3xl font-black text-white">{stats.total}</p>
+      <div className="bg-neutral-800/60 backdrop-blur-md rounded-2xl border border-neutral-700/60 p-4">
+        <p className="text-[10px] font-bold text-neutral-500 uppercase tracking-wider mb-2">Total de Questões</p>
+        <p className="text-3xl font-black text-neutral-50">{stats.total}</p>
         <div className="flex gap-2 mt-2">
-          <span className="text-[10px] text-green-400">✓ {stats.correct}</span>
-          <span className="text-[10px] text-red-400">✕ {wrong}</span>
+          <span className="text-[10px] text-success-400">✓ {stats.correct}</span>
+          <span className="text-[10px] text-danger-400">✕ {wrong}</span>
         </div>
-        <div className="h-1.5 bg-slate-700 rounded-full mt-2 overflow-hidden">
-          <div className="h-full bg-gradient-to-r from-green-500 to-teal-400 rounded-full transition-all duration-700"
+        <div className="h-1.5 bg-neutral-700 rounded-full mt-2 overflow-hidden">
+          <div className="h-full bg-gradient-to-r from-success-500 to-primary-400 rounded-full transition-all duration-700"
             style={{ width: `${pct}%` }} />
         </div>
       </div>
-      <div className="bg-slate-800/60 backdrop-blur-md rounded-2xl border border-slate-700/60 p-4 flex flex-col items-center">
-        <p className="text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-2 self-start">% Acertos</p>
+      <div className="bg-neutral-800/60 backdrop-blur-md rounded-2xl border border-neutral-700/60 p-4 flex flex-col items-center">
+        <p className="text-[10px] font-bold text-neutral-500 uppercase tracking-wider mb-2 self-start">% Acertos</p>
         <div className="relative w-16 h-16 my-1" style={{
-          background: `conic-gradient(#14b8a6 0deg ${pizzaDeg}deg, #1e293b ${pizzaDeg}deg 360deg)`,
+          background: `conic-gradient(var(--primary) 0deg ${pizzaDeg}deg, var(--border) ${pizzaDeg}deg 360deg)`,
           borderRadius: '50%',
         }}>
-          <div className="absolute inset-2 rounded-full bg-slate-800/90 flex items-center justify-center">
-            <span className="text-xs font-black text-white">{pct}%</span>
+          <div className="absolute inset-2 rounded-full bg-neutral-800/90 flex items-center justify-center">
+            <span className="text-xs font-black text-neutral-50">{pct}%</span>
           </div>
         </div>
-        <p className={`text-[10px] font-semibold mt-1 ${pct >= 70 ? 'text-green-400' : pct >= 50 ? 'text-amber-400' : 'text-red-400'}`}>
+        <p className={`text-[10px] font-semibold mt-1 ${pct >= 70 ? 'text-success-400' : pct >= 50 ? 'text-warning-400' : 'text-danger-400'}`}>
           {pct >= 70 ? 'Ótimo!' : pct >= 50 ? 'Regular' : 'Estudar mais'}
         </p>
       </div>
-      <div className="bg-slate-800/60 backdrop-blur-md rounded-2xl border border-slate-700/60 p-4">
-        <p className="text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-2">Horas Estudadas</p>
-        <p className="text-3xl font-black text-white">{stats.hours.toFixed(1)}<span className="text-sm text-slate-500 ml-1">h</span></p>
+      <div className="bg-neutral-800/60 backdrop-blur-md rounded-2xl border border-neutral-700/60 p-4">
+        <p className="text-[10px] font-bold text-neutral-500 uppercase tracking-wider mb-2">Horas Estudadas</p>
+        <p className="text-3xl font-black text-neutral-50">{stats.hours.toFixed(1)}<span className="text-sm text-neutral-500 ml-1">h</span></p>
         <div className="flex items-end gap-1 mt-3 h-6">
           {[0.3, 0.7, 0.5, 1, 0.8, 0.6, stats.hours > 0 ? Math.min(1, stats.hours / 4) : 0.2].map((h, i) => (
-            <div key={i} className="flex-1 rounded-sm bg-teal-500/30 transition-all duration-500"
+            <div key={i} className="flex-1 rounded-sm bg-primary-500/30 transition-all duration-500"
               style={{ height: `${h * 100}%` }} />
           ))}
         </div>
-        <p className="text-[9px] text-slate-600 mt-1">últimos 7 dias</p>
+        <p className="text-[9px] text-neutral-600 mt-1">últimos 7 dias</p>
       </div>
     </div>
   )
@@ -458,16 +458,16 @@ function SequenciaEstudos({ storageKey }: { storageKey: string }) {
   const totalPct    = Math.round((totalDone / totalTarget) * 100)
 
   return (
-    <div className="bg-slate-800/60 backdrop-blur-md rounded-2xl border border-slate-700/60 p-4">
+    <div className="bg-neutral-800/60 backdrop-blur-md rounded-2xl border border-neutral-700/60 p-4">
       <div className="flex items-center justify-between mb-3">
         <div className="flex items-center gap-2">
-          <Play size={14} className="text-teal-400" />
-          <p className="text-sm font-bold text-white">Sequência de Estudos</p>
+          <Play size={14} className="text-primary-400" />
+          <p className="text-sm font-bold text-neutral-50">Sequência de Estudos</p>
         </div>
-        <span className="text-xs text-slate-500">{fmtMin(totalDone)} / {fmtMin(totalTarget)} · {totalPct}%</span>
+        <span className="text-xs text-neutral-500">{fmtMin(totalDone)} / {fmtMin(totalTarget)} · {totalPct}%</span>
       </div>
-      <div className="h-1.5 bg-slate-700 rounded-full mb-4 overflow-hidden">
-        <motion.div className="h-full bg-gradient-to-r from-teal-500 to-teal-400 rounded-full"
+      <div className="h-1.5 bg-neutral-700 rounded-full mb-4 overflow-hidden">
+        <motion.div className="h-full bg-gradient-to-r from-primary-500 to-primary-400 rounded-full"
           animate={{ width: `${totalPct}%` }} transition={{ duration: 0.5 }} />
       </div>
       <div className="space-y-3">
@@ -478,27 +478,27 @@ function SequenciaEstudos({ storageKey }: { storageKey: string }) {
             <div key={item.id} className="group">
               <div className="flex items-center justify-between mb-1">
                 <div className="flex items-center gap-2">
-                  <div className={`w-3.5 h-3.5 rounded-full border-2 flex-shrink-0 ${done ? 'bg-teal-500 border-teal-500' : 'border-slate-600'}`}>
-                    {done && <CheckCircle2 size={10} className="text-white m-auto" />}
+                  <div className={`w-3.5 h-3.5 rounded-full border-2 flex-shrink-0 ${done ? 'bg-primary-500 border-primary-500' : 'border-neutral-600'}`}>
+                    {done && <CheckCircle2 size={10} className="text-neutral-50 m-auto" />}
                   </div>
-                  <p className={`text-xs font-medium ${done ? 'line-through text-slate-500' : 'text-slate-300'}`}>
+                  <p className={`text-xs font-medium ${done ? 'line-through text-neutral-500' : 'text-neutral-300'}`}>
                     {item.name}
                   </p>
                 </div>
                 <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
                   <button onClick={() => addMin(item.id, -15)}
-                    className="text-[10px] w-5 h-5 rounded bg-slate-700 text-slate-400 hover:text-white flex items-center justify-center">−</button>
-                  <span className="text-[10px] text-slate-500 w-14 text-center font-mono">
+                    className="text-[10px] w-5 h-5 rounded bg-neutral-700 text-neutral-400 hover:text-neutral-50 flex items-center justify-center">−</button>
+                  <span className="text-[10px] text-neutral-500 w-14 text-center font-mono">
                     {fmtMin(item.doneMin)}/{fmtMin(item.targetMin)}
                   </span>
                   <button onClick={() => addMin(item.id, 15)}
-                    className="text-[10px] w-5 h-5 rounded bg-teal-600/50 text-teal-300 hover:bg-teal-600 flex items-center justify-center">+</button>
+                    className="text-[10px] w-5 h-5 rounded bg-primary-600/50 text-primary-300 hover:bg-accent-600 flex items-center justify-center">+</button>
                 </div>
-                {!done && <span className="text-[10px] text-slate-600 group-hover:hidden font-mono">{fmtMin(item.targetMin)}</span>}
+                {!done && <span className="text-[10px] text-neutral-600 group-hover:hidden font-mono">{fmtMin(item.targetMin)}</span>}
               </div>
-              <div className="h-1 bg-slate-700/60 rounded-full overflow-hidden">
+              <div className="h-1 bg-neutral-700/60 rounded-full overflow-hidden">
                 <motion.div
-                  className={`h-full rounded-full ${done ? 'bg-teal-500' : 'bg-teal-600/70'}`}
+                  className={`h-full rounded-full ${done ? 'bg-primary-500' : 'bg-primary-600/70'}`}
                   animate={{ width: `${pct}%` }} transition={{ duration: 0.4 }} />
               </div>
             </div>
@@ -563,28 +563,28 @@ function CalendarioRevisao({ topics, setTopics, storageKey }: {
         <input type="text" value={newTopic} onChange={e => setNewTopic(e.target.value)}
           onKeyDown={e => e.key === 'Enter' && add()}
           placeholder="ex: Ciclo Estral, PGF2α, Piometra Canina..."
-          className="flex-1 px-4 py-2.5 bg-slate-800/60 border border-slate-700 rounded-xl text-sm text-slate-200 placeholder-slate-600 focus:outline-none focus:ring-2 focus:ring-teal-500/40 focus:border-teal-500 transition"
+          className="flex-1 px-4 py-2.5 bg-neutral-800/60 border border-neutral-700 rounded-xl text-sm text-neutral-200 placeholder-neutral-600 focus:outline-none focus:ring-2 focus:ring-primary-500/40 focus:border-primary-500 transition"
         />
         <button onClick={add}
-          className="px-4 py-2.5 bg-teal-600 text-white rounded-xl font-bold hover:bg-teal-700 transition active:scale-95 flex items-center gap-1.5 text-sm">
+          className="px-4 py-2.5 bg-accent-500 text-white rounded-xl font-bold hover:bg-accent-600 transition active:scale-95 flex items-center gap-1.5 text-sm">
           <Plus size={14} /> Estudei
         </button>
       </div>
         {dueToday.length > 0 && (
-          <div className="bg-amber-500/10 border border-amber-500/20 rounded-2xl p-3">
-            <p className="text-[10px] font-bold text-amber-400 uppercase tracking-wider mb-1.5 flex items-center gap-1">
+          <div className="bg-warning-500/10 border border-warning-500/20 rounded-2xl p-3">
+            <p className="text-[10px] font-bold text-warning-400 uppercase tracking-wider mb-1.5 flex items-center gap-1">
               <RotateCcw size={11} /> Revisar hoje · {dueToday.length} item{dueToday.length > 1 ? 's' : ''}
             </p>
             <div className="space-y-1.5">
               {dueToday.map(s => (
                 <div key={`${s.topic.id}-${s.interval}`}
-                  className="flex items-center justify-between gap-3 bg-slate-800/50 rounded-xl px-3 py-2">
+                  className="flex items-center justify-between gap-3 bg-neutral-800/50 rounded-xl px-3 py-2">
                   <div className="min-w-0">
-                    <p className="text-sm font-semibold text-slate-200">{s.topic.name}</p>
-                    <p className="text-xs text-amber-400/70">{INT_LABEL[s.interval]} · Revisão de {s.interval} dia{s.interval > 1 ? 's' : ''}</p>
+                    <p className="text-sm font-semibold text-neutral-200">{s.topic.name}</p>
+                    <p className="text-xs text-warning-400/70">{INT_LABEL[s.interval]} · Revisão de {s.interval} dia{s.interval > 1 ? 's' : ''}</p>
                   </div>
                   <button onClick={() => markDone(s.topic.id, s.interval)}
-                    className="flex items-center gap-1 text-xs bg-teal-600/20 border border-teal-500/30 text-teal-400 px-2.5 py-1 rounded-xl hover:bg-teal-600/40 transition active:scale-95">
+                    className="flex items-center gap-1 text-xs bg-primary-600/20 border border-primary-500/30 text-primary-400 px-2.5 py-1 rounded-xl hover:bg-accent-600/40 transition active:scale-95">
                     <CheckCircle2 size={12} /> Feito
                   </button>
                 </div>
@@ -593,27 +593,27 @@ function CalendarioRevisao({ topics, setTopics, storageKey }: {
           </div>
         )}
         {groupedFuture.length > 0 && (
-          <div className="bg-slate-800/40 rounded-2xl border border-slate-700/40 p-3">
-            <p className="text-[10px] font-bold text-slate-600 uppercase tracking-wider mb-1.5">Próximas revisões</p>
+          <div className="bg-neutral-800/40 rounded-2xl border border-neutral-700/40 p-3">
+            <p className="text-[10px] font-bold text-neutral-600 uppercase tracking-wider mb-1.5">Próximas revisões</p>
             <div className="overflow-x-auto">
               <div className="min-w-[420px]">
-                <div className="grid grid-cols-[minmax(0,1fr)_54px_54px_54px_54px] items-center gap-1.5 px-2 pb-1 text-[9px] font-bold uppercase tracking-wider text-slate-600">
+                <div className="grid grid-cols-[minmax(0,1fr)_54px_54px_54px_54px] items-center gap-1.5 px-2 pb-1 text-[9px] font-bold uppercase tracking-wider text-neutral-600">
                   <span>Conteúdo</span>
                   {INTERVALS.map(interval => <span key={interval} className="text-center">{INT_LABEL[interval]}</span>)}
                 </div>
-                <div className="divide-y divide-slate-700/40 rounded-xl border border-slate-700/35 overflow-hidden">
+                <div className="divide-y divide-neutral-700/40 rounded-xl border border-neutral-700/35 overflow-hidden">
                   {groupedFuture.map(row => (
-                    <div key={row.topic.id} className="grid grid-cols-[minmax(0,1fr)_54px_54px_54px_54px] items-center gap-1.5 bg-slate-800/30 px-2 py-1">
-                      <span className="text-xs text-slate-300 truncate">{row.topic.name}</span>
+                    <div key={row.topic.id} className="grid grid-cols-[minmax(0,1fr)_54px_54px_54px_54px] items-center gap-1.5 bg-neutral-800/30 px-2 py-1">
+                      <span className="text-xs text-neutral-300 truncate">{row.topic.name}</span>
                       {row.reviews.map(review => {
                         const pending = review.dueDate > today
                         const isNext = row.nextInterval === review.interval
                         return (
                           <span key={review.interval}
                             className={`justify-self-center rounded-md px-1.5 py-0.5 text-[10px] font-mono ${
-                              !pending ? 'text-slate-700 bg-slate-800/70' :
-                              isNext ? 'text-slate-950 bg-teal-300 font-bold' :
-                              'text-slate-500 bg-slate-700/40'
+                              !pending ? 'text-neutral-700 bg-neutral-800/70' :
+                              isNext ? 'text-neutral-950 bg-primary-300 font-bold' :
+                              'text-neutral-500 bg-neutral-700/40'
                             }`}>
                             {pending ? formatDateBR(review.dueDate) : '--'}
                           </span>
@@ -628,27 +628,27 @@ function CalendarioRevisao({ topics, setTopics, storageKey }: {
       )}
         {topics.length > 0 && (
           <div>
-            <p className="text-[10px] font-bold text-slate-600 uppercase tracking-wider mb-1.5 flex items-center gap-1">
+            <p className="text-[10px] font-bold text-neutral-600 uppercase tracking-wider mb-1.5 flex items-center gap-1">
               <BookOpen size={10} /> Cadastrado ({topics.length})
             </p>
             <div className="overflow-x-auto">
               <div className="min-w-[440px]">
-                <div className="grid grid-cols-[minmax(0,1fr)_58px_58px_58px_58px_24px] items-center gap-1.5 px-3 pb-1 text-[9px] font-bold uppercase tracking-wider text-slate-600">
+                <div className="grid grid-cols-[minmax(0,1fr)_58px_58px_58px_58px_24px] items-center gap-1.5 px-3 pb-1 text-[9px] font-bold uppercase tracking-wider text-neutral-600">
                   <span>Conteúdo</span>
                   {INTERVALS.map(d => <span key={d} className="text-center">D{d}</span>)}
                   <span />
                 </div>
-                <div className="divide-y divide-slate-700/35 rounded-xl border border-slate-700/35 overflow-hidden">
+                <div className="divide-y divide-neutral-700/35 rounded-xl border border-neutral-700/35 overflow-hidden">
                   {topics.map(t => (
-                    <div key={t.id} className="grid grid-cols-[minmax(0,1fr)_58px_58px_58px_58px_24px] items-center gap-1.5 bg-slate-800/30 px-3 py-1.5 group">
-                      <p className="text-xs text-slate-300 font-medium truncate">{t.name}</p>
+                    <div key={t.id} className="grid grid-cols-[minmax(0,1fr)_58px_58px_58px_58px_24px] items-center gap-1.5 bg-neutral-800/30 px-3 py-1.5 group">
+                      <p className="text-xs text-neutral-300 font-medium truncate">{t.name}</p>
                       {INTERVALS.map(d => (
-                        <span key={d} className={`justify-self-center rounded-md px-1.5 py-0.5 text-[10px] font-mono text-slate-950 ${INT_COLOR[d]}`}>
+                        <span key={d} className={`justify-self-center rounded-md px-1.5 py-0.5 text-[10px] font-mono text-neutral-950 ${INT_COLOR[d]}`}>
                           {formatDateBR(addDays(t.studiedAt, d))}
                         </span>
                       ))}
                     <button onClick={() => remove(t.id)}
-                      className="text-slate-700 hover:text-red-400 transition-colors opacity-0 group-hover:opacity-100">
+                      className="text-neutral-700 hover:text-danger-400 transition-colors opacity-0 group-hover:opacity-100">
                       <Trash2 size={12} />
                     </button>
                   </div>
@@ -658,13 +658,13 @@ function CalendarioRevisao({ topics, setTopics, storageKey }: {
           </div>
           <div className="hidden" aria-hidden="true">
             {topics.map(t => (
-              <div key={t.id} className="flex items-center justify-between bg-slate-800/30 rounded-xl px-3 py-2 group">
+              <div key={t.id} className="flex items-center justify-between bg-neutral-800/30 rounded-xl px-3 py-2 group">
                 <div>
-                  <p className="text-xs text-slate-300 font-medium">{t.name}</p>
-                  <p className="text-[10px] text-slate-600">Início: {t.studiedAt}</p>
+                  <p className="text-xs text-neutral-300 font-medium">{t.name}</p>
+                  <p className="text-[10px] text-neutral-600">Início: {t.studiedAt}</p>
                 </div>
                 <button onClick={() => remove(t.id)}
-                  className="text-slate-700 hover:text-red-400 transition-colors opacity-0 group-hover:opacity-100">
+                  className="text-neutral-700 hover:text-danger-400 transition-colors opacity-0 group-hover:opacity-100">
                   <Trash2 size={12} />
                 </button>
               </div>
@@ -673,7 +673,7 @@ function CalendarioRevisao({ topics, setTopics, storageKey }: {
         </div>
       )}
       {topics.length === 0 && (
-        <div className="text-center py-8 text-slate-700">
+        <div className="text-center py-8 text-neutral-700">
           <CalendarDays size={32} className="mx-auto mb-2 opacity-30" />
           <p className="text-xs">Nenhum conteúdo cadastrado.</p>
         </div>
@@ -708,46 +708,46 @@ function EstudoHojeCard({ profile, onOpenSimulator, onOpenDailyStudy }: {
   ).slice(0, 3)
 
   return (
-    <div className="bg-gradient-to-br from-amber-500/15 via-slate-800/80 to-teal-500/10 border border-amber-500/20 rounded-2xl p-4 backdrop-blur-sm">
+    <div className="bg-gradient-to-br from-warning-500/15 via-neutral-800/80 to-primary-500/10 border border-warning-500/20 rounded-2xl p-4 backdrop-blur-sm">
       <div className="flex items-start justify-between gap-4">
         <div>
-          <p className="text-[10px] font-bold text-amber-400 uppercase tracking-wider mb-1">Plano adaptativo</p>
-          <h3 className="text-lg font-black text-white">🔥 Estudo de Hoje</h3>
-          <p className="text-xs text-slate-400 mt-1">
+          <p className="text-[10px] font-bold text-warning-400 uppercase tracking-wider mb-1">Plano adaptativo</p>
+          <h3 className="text-lg font-black text-neutral-50">🔥 Estudo de Hoje</h3>
+          <p className="text-xs text-neutral-400 mt-1">
             {total} questões · cerca de {estimatedMinutes} min
           </p>
         </div>
         <div className="text-right flex-shrink-0">
-          <p className="text-2xl font-black text-white">{session.answeredCount}/{total}</p>
-          <p className="text-[10px] text-slate-500">{progress}% concluído</p>
+          <p className="text-2xl font-black text-neutral-50">{session.answeredCount}/{total}</p>
+          <p className="text-[10px] text-neutral-500">{progress}% concluído</p>
         </div>
       </div>
 
       <div className="grid grid-cols-3 gap-2 mt-4">
-        <div className="rounded-xl bg-slate-900/50 border border-slate-700/50 px-3 py-2">
-          <p className="text-[10px] text-slate-500 font-bold uppercase">Revisão</p>
-          <p className="text-lg font-black text-blue-300">{counts.revisao}</p>
+        <div className="rounded-xl bg-neutral-900/50 border border-neutral-700/50 px-3 py-2">
+          <p className="text-[10px] text-neutral-500 font-bold uppercase">Revisão</p>
+          <p className="text-lg font-black text-primary-300">{counts.revisao}</p>
         </div>
-        <div className="rounded-xl bg-slate-900/50 border border-slate-700/50 px-3 py-2">
-          <p className="text-[10px] text-slate-500 font-bold uppercase">Reforço</p>
-          <p className="text-lg font-black text-amber-300">{counts.reforco}</p>
+        <div className="rounded-xl bg-neutral-900/50 border border-neutral-700/50 px-3 py-2">
+          <p className="text-[10px] text-neutral-500 font-bold uppercase">Reforço</p>
+          <p className="text-lg font-black text-warning-300">{counts.reforco}</p>
         </div>
-        <div className="rounded-xl bg-slate-900/50 border border-slate-700/50 px-3 py-2">
-          <p className="text-[10px] text-slate-500 font-bold uppercase">Exploração</p>
-          <p className="text-lg font-black text-teal-300">{counts.exploracao}</p>
+        <div className="rounded-xl bg-neutral-900/50 border border-neutral-700/50 px-3 py-2">
+          <p className="text-[10px] text-neutral-500 font-bold uppercase">Exploração</p>
+          <p className="text-lg font-black text-primary-300">{counts.exploracao}</p>
         </div>
       </div>
 
       {/* Você vai estudar hoje */}
       {topTemas.length > 0 && !session.completed && (
-        <div className="mt-3 pt-3 border-t border-amber-500/10">
-          <p className="text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-1.5">
+        <div className="mt-3 pt-3 border-t border-warning-500/10">
+          <p className="text-[10px] font-bold text-neutral-500 uppercase tracking-wider mb-1.5">
             👉 Você vai estudar hoje:
           </p>
           <div className="space-y-1">
             {topTemas.map(tema => (
-              <p key={tema} className="text-xs text-slate-300 flex items-center gap-1.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-amber-400/70 flex-shrink-0" />
+              <p key={tema} className="text-xs text-neutral-300 flex items-center gap-1.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-warning-400/70 flex-shrink-0" />
                 {tema}
               </p>
             ))}
@@ -758,18 +758,18 @@ function EstudoHojeCard({ profile, onOpenSimulator, onOpenDailyStudy }: {
       <div className="mt-4 flex gap-2">
         {session.completed ? (
           <>
-            <div className="flex-1 rounded-xl bg-green-500/10 border border-green-500/20 px-4 py-3 text-green-300">
+            <div className="flex-1 rounded-xl bg-success-500/10 border border-success-500/20 px-4 py-3 text-success-300">
               <p className="text-sm font-bold">✓ Sessão de hoje concluída</p>
-              <p className="text-xs text-green-200/80 mt-1">Volte amanhã — sua próxima sessão já está sendo preparada.</p>
+              <p className="text-xs text-success-200/80 mt-1">Volte amanhã — sua próxima sessão já está sendo preparada.</p>
             </div>
             <button onClick={onOpenSimulator}
-              className="px-4 py-3 rounded-xl bg-slate-800 border border-slate-700 text-slate-300 text-sm font-bold hover:border-teal-500/40 transition-all">
+              className="px-4 py-3 rounded-xl bg-neutral-800 border border-neutral-700 text-neutral-300 text-sm font-bold hover:border-primary-500/40 transition-all">
               Treino livre
             </button>
           </>
         ) : (
           <button onClick={onOpenDailyStudy}
-            className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-amber-500 text-white text-sm font-bold hover:bg-amber-600 transition-all active:scale-95">
+            className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-accent-500 text-white text-sm font-bold hover:bg-accent-600 transition-all active:scale-95">
             {session.answeredCount > 0 ? 'Continuar estudo de hoje' : 'Começar estudo de hoje'} <ChevronRight size={15} />
           </button>
         )}
@@ -824,67 +824,67 @@ function DevStudyContentImport({ profile }: { profile: LocalProfile }) {
   }
 
   return (
-    <div className="bg-slate-900/70 border border-dashed border-violet-500/40 rounded-2xl p-4">
+    <div className="bg-neutral-900/70 border border-dashed border-primary-500/40 rounded-2xl p-4">
       <div className="flex items-start justify-between gap-3">
         <div>
-          <p className="text-[10px] font-bold text-violet-300 uppercase tracking-wider">Dev/Teste de pipeline</p>
+          <p className="text-[10px] font-bold text-primary-300 uppercase tracking-wider">Dev/Teste de pipeline</p>
           <p className="text-sm font-bold text-white mt-0.5">Importar Anatomia do Reprodutor Masculino</p>
-          <p className="text-xs text-slate-500 mt-1">
+          <p className="text-xs text-neutral-500 mt-1">
             {parsedExample.questoes.length} questões · {parsedExample.flashcards.length} flashcards · IDs {exampleQuestionIds.join(', ')}
           </p>
         </div>
         <button onClick={importExample}
-          className="px-3 py-2 rounded-xl bg-violet-600/80 text-white text-xs font-bold hover:bg-violet-600 transition active:scale-95">
+          className="px-3 py-2 rounded-xl bg-accent-500/90 text-white text-xs font-bold hover:bg-accent-600 transition active:scale-95">
           Importar exemplo
         </button>
       </div>
       <div className="grid grid-cols-3 gap-2 mt-3">
-        <div className="rounded-xl bg-slate-800/70 border border-slate-700/60 px-3 py-2">
-          <p className="text-[10px] text-slate-500 font-bold uppercase">Simulador</p>
-          <p className={`text-xs font-bold ${status.inMergedBank ? 'text-green-300' : 'text-slate-500'}`}>
+        <div className="rounded-xl bg-neutral-800/70 border border-neutral-700/60 px-3 py-2">
+          <p className="text-[10px] text-neutral-500 font-bold uppercase">Simulador</p>
+          <p className={`text-xs font-bold ${status.inMergedBank ? 'text-success-300' : 'text-neutral-500'}`}>
             {status.inMergedBank ? 'Banco combinado OK' : 'Ainda não importado'}
           </p>
         </div>
-        <div className="rounded-xl bg-slate-800/70 border border-slate-700/60 px-3 py-2">
-          <p className="text-[10px] text-slate-500 font-bold uppercase">Estudo de Hoje</p>
-          <p className={`text-xs font-bold ${status.inMergedBank ? 'text-green-300' : 'text-slate-500'}`}>
+        <div className="rounded-xl bg-neutral-800/70 border border-neutral-700/60 px-3 py-2">
+          <p className="text-[10px] text-neutral-500 font-bold uppercase">Estudo de Hoje</p>
+          <p className={`text-xs font-bold ${status.inMergedBank ? 'text-success-300' : 'text-neutral-500'}`}>
             {status.inMergedBank ? 'Elegível no motor' : 'Pendente'}
           </p>
         </div>
-        <div className="rounded-xl bg-slate-800/70 border border-slate-700/60 px-3 py-2">
-          <p className="text-[10px] text-slate-500 font-bold uppercase">Flashcards</p>
-          <p className={`text-xs font-bold ${status.savedFlashcards ? 'text-green-300' : 'text-slate-500'}`}>
+        <div className="rounded-xl bg-neutral-800/70 border border-neutral-700/60 px-3 py-2">
+          <p className="text-[10px] text-neutral-500 font-bold uppercase">Flashcards</p>
+          <p className={`text-xs font-bold ${status.savedFlashcards ? 'text-success-300' : 'text-neutral-500'}`}>
             {status.savedFlashcards ? `${status.flashcardTotal} no perfil` : 'Pendente'}
           </p>
         </div>
       </div>
       {lastImport && (
-        <p className="text-[11px] text-slate-500 mt-2">
+        <p className="text-[11px] text-neutral-500 mt-2">
           Última importação: {lastImport.added} novas questões, {lastImport.skipped} ignoradas por ID duplicado. Banco combinado: {status.mergedTotal} questões.
         </p>
       )}
-      <div className="mt-3 pt-3 border-t border-slate-700/50 flex items-center justify-between gap-3">
+      <div className="mt-3 pt-3 border-t border-neutral-700/50 flex items-center justify-between gap-3">
         <div>
-          <p className="text-xs font-bold text-slate-300">Módulo estático: ciclo estral</p>
-          <p className="text-[11px] text-slate-500">Importa 20 questões e 30 flashcards do JSON de aula.</p>
+          <p className="text-xs font-bold text-neutral-300">Módulo estático: ciclo estral</p>
+          <p className="text-[11px] text-neutral-500">Importa 20 questões e 30 flashcards do JSON de aula.</p>
         </div>
         <button onClick={importEstralModule}
-          className="px-3 py-2 rounded-xl bg-amber-600/80 text-white text-xs font-bold hover:bg-amber-600 transition active:scale-95">
+          className="px-3 py-2 rounded-xl bg-accent-500/90 text-white text-xs font-bold hover:bg-accent-600 transition active:scale-95">
           Importar módulo ciclo estral
         </button>
       </div>
-      <div className="mt-3 pt-3 border-t border-slate-700/50 flex items-center justify-between gap-3">
+      <div className="mt-3 pt-3 border-t border-neutral-700/50 flex items-center justify-between gap-3">
         <div>
-          <p className="text-xs font-bold text-slate-300">Módulo estático: doenças reprodutivas</p>
-          <p className="text-[11px] text-slate-500">Importa 15 questões e 25 flashcards do JSON de aula.</p>
+          <p className="text-xs font-bold text-neutral-300">Módulo estático: doenças reprodutivas</p>
+          <p className="text-[11px] text-neutral-500">Importa 15 questões e 25 flashcards do JSON de aula.</p>
         </div>
         <button onClick={importBovineReproductiveDiseasesModule}
-          className="px-3 py-2 rounded-xl bg-amber-600/80 text-white text-xs font-bold hover:bg-amber-600 transition active:scale-95">
+          className="px-3 py-2 rounded-xl bg-accent-500/90 text-white text-xs font-bold hover:bg-accent-600 transition active:scale-95">
           Importar módulo doenças reprodutivas
         </button>
       </div>
       {moduleImport && (
-        <p className="text-[11px] text-green-300 mt-2">
+        <p className="text-[11px] text-success-300 mt-2">
           Módulo {moduleImport.name} importado: {moduleImport.addedQuestions} questões novas, {moduleImport.skippedQuestions} questões duplicadas; {moduleImport.addedFlashcards} flashcards novos, {moduleImport.skippedFlashcards} flashcards duplicados.
         </p>
       )}
@@ -917,43 +917,43 @@ function DailyReviewCard({
 }) {
   const allClear = dueToday === 0 && pendingCases === 0
   return (
-    <div className="bg-gradient-to-br from-amber-500/10 to-slate-900/70 border border-amber-500/20 rounded-2xl p-4">
+    <div className="bg-gradient-to-br from-warning-500/10 to-neutral-900/70 border border-warning-500/20 rounded-2xl p-4">
       <div className="flex items-start justify-between gap-3">
         <div>
-          <p className="text-xs font-bold text-amber-300 uppercase tracking-wider">📅 Revisão de Hoje</p>
+          <p className="text-xs font-bold text-warning-300 uppercase tracking-wider">📅 Revisão de Hoje</p>
           {allClear ? (
             <>
-              <p className="text-sm text-white font-semibold mt-1">Tudo em dia. Que tal resolver um caso clínico?</p>
-              <p className="text-xs text-slate-400 mt-1">Seus cards estão organizados por hoje, mas você ainda pode treinar raciocínio clínico.</p>
+              <p className="text-sm text-neutral-50 font-semibold mt-1">Tudo em dia. Que tal resolver um caso clínico?</p>
+              <p className="text-xs text-neutral-400 mt-1">Seus cards estão organizados por hoje, mas você ainda pode treinar raciocínio clínico.</p>
             </>
           ) : (
             <>
-              <p className="text-sm text-white font-semibold mt-1">
+              <p className="text-sm text-neutral-50 font-semibold mt-1">
                 Você tem {dueToday} {dueToday === 1 ? 'revisão' : 'revisões'} hoje
               </p>
-              <p className="text-xs text-slate-400 mt-1">
+              <p className="text-xs text-neutral-400 mt-1">
                 {pendingCases} {pendingCases === 1 ? 'caso para treinar' : 'casos para treinar'}
               </p>
             </>
           )}
         </div>
         <div className="text-right flex-shrink-0">
-          <p className="text-[10px] font-bold text-slate-500 uppercase tracking-wider">🔥 Sequência</p>
-          <p className="text-lg font-black text-white mt-1">{streak} {streak === 1 ? 'dia' : 'dias'}</p>
-          <p className="text-[11px] text-slate-400 mt-1 max-w-28">{streakMicrocopy(streak)}</p>
+          <p className="text-[10px] font-bold text-neutral-500 uppercase tracking-wider">🔥 Sequência</p>
+          <p className="text-lg font-black text-neutral-50 mt-1">{streak} {streak === 1 ? 'dia' : 'dias'}</p>
+          <p className="text-[11px] text-neutral-400 mt-1 max-w-28">{streakMicrocopy(streak)}</p>
         </div>
       </div>
       {allClear ? (
         <button
           onClick={onStartCase}
-          className="mt-4 w-full px-3 py-2 rounded-xl bg-fuchsia-500/90 text-white text-sm font-bold hover:bg-fuchsia-400 transition active:scale-[0.99]"
+          className="mt-4 w-full px-3 py-2 rounded-xl bg-accent-500/90 text-white text-sm font-bold hover:bg-accent-400 transition active:scale-[0.99]"
         >
           Começar raciocínio
         </button>
       ) : (
         <button
           onClick={onStartReview}
-          className="mt-4 w-full px-3 py-2 rounded-xl bg-amber-500/90 text-slate-950 text-sm font-bold hover:bg-amber-400 transition active:scale-[0.99]"
+          className="mt-4 w-full px-3 py-2 rounded-xl bg-accent-500 text-white text-sm font-bold hover:bg-accent-600 transition active:scale-[0.99]"
         >
           Abrir flashcards
         </button>
@@ -997,8 +997,8 @@ function HubDashboard({ profile, topics, setTopics, stats, dailyHistory, topicsS
   return (
     <div className="p-5 space-y-5">
       <div>
-        <h2 className="text-xl font-bold text-white">Início</h2>
-        <p className="text-xs text-slate-500 mt-0.5">
+        <h2 className="text-xl font-bold text-neutral-100">Início</h2>
+        <p className="text-xs text-neutral-500 mt-0.5">
           {new Date().toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit' })}
         </p>
       </div>
@@ -1011,13 +1011,13 @@ function HubDashboard({ profile, topics, setTopics, stats, dailyHistory, topicsS
         onStartCase={onStartCase}
       />
 
-      <div className="bg-gradient-to-br from-teal-500/15 to-slate-800/80 border border-teal-500/20 rounded-2xl p-4 flex items-start gap-3 backdrop-blur-sm">
-        <div className="w-8 h-8 rounded-xl bg-teal-500/20 flex items-center justify-center flex-shrink-0">
-          <Lightbulb size={15} className="text-teal-400" />
+      <div className="flex items-start gap-3 rounded-2xl border border-primary-500/20 bg-gradient-to-br from-primary-500/15 to-neutral-800/80 p-4 backdrop-blur-sm">
+        <div className="w-8 h-8 rounded-xl bg-primary-500/20 flex items-center justify-center flex-shrink-0">
+          <Lightbulb size={15} className="text-primary-400" />
         </div>
         <div>
-          <p className="text-[10px] font-bold text-teal-400 uppercase tracking-wider">Conceito do Dia</p>
-          <p className="text-sm text-slate-300 leading-relaxed mt-0.5">{dica}</p>
+          <p className="text-[10px] font-bold text-primary-400 uppercase tracking-wider">Conceito do Dia</p>
+          <p className="text-sm text-neutral-300 leading-relaxed mt-0.5">{dica}</p>
         </div>
       </div>
 
@@ -1025,8 +1025,8 @@ function HubDashboard({ profile, topics, setTopics, stats, dailyHistory, topicsS
 
       <div>
         <div className="flex items-center gap-2 mb-3">
-          <BarChart3 size={14} className="text-teal-400" />
-          <p className="text-xs font-bold text-slate-400 uppercase tracking-wider">Performance</p>
+          <BarChart3 size={14} className="text-primary-400" />
+          <p className="text-xs font-bold text-neutral-400 uppercase tracking-wider">Performance</p>
         </div>
         <PerformanceCharts stats={stats} />
       </div>
@@ -1034,16 +1034,16 @@ function HubDashboard({ profile, topics, setTopics, stats, dailyHistory, topicsS
       <div className={SHOW_STUDY_SEQUENCE ? 'grid grid-cols-2 gap-4' : 'grid grid-cols-1 gap-4'}>
         <div>
           <div className="flex items-center gap-2 mb-2">
-            <CalendarDays size={13} className="text-teal-400" />
-            <p className="text-xs font-bold text-slate-400 uppercase tracking-wider">Calendário</p>
+            <CalendarDays size={13} className="text-primary-400" />
+            <p className="text-xs font-bold text-neutral-400 uppercase tracking-wider">Calendário</p>
           </div>
           <MiniCalendarioComHistorico topics={topics} storageKey={topicsStorageKey} dailyHistory={dailyHistory} />
         </div>
         {SHOW_STUDY_SEQUENCE && (
           <div>
             <div className="flex items-center gap-2 mb-2">
-              <Target size={13} className="text-teal-400" />
-              <p className="text-xs font-bold text-slate-400 uppercase tracking-wider">Sequência A1</p>
+              <Target size={13} className="text-primary-400" />
+              <p className="text-xs font-bold text-neutral-400 uppercase tracking-wider">Sequência A1</p>
             </div>
             <SequenciaEstudos storageKey={seqStorageKey} />
           </div>
@@ -1052,8 +1052,8 @@ function HubDashboard({ profile, topics, setTopics, stats, dailyHistory, topicsS
 
       <div>
         <div className="flex items-center gap-2 mb-3">
-          <RotateCcw size={13} className="text-amber-400" />
-          <p className="text-xs font-bold text-slate-400 uppercase tracking-wider">Revisão Espaçada 1-7-30-90</p>
+          <RotateCcw size={13} className="text-warning-400" />
+          <p className="text-xs font-bold text-neutral-400 uppercase tracking-wider">Revisão Espaçada 1-7-30-90</p>
         </div>
         <CalendarioRevisao topics={topics} setTopics={setTopics} storageKey={topicsStorageKey} />
       </div>
@@ -1115,19 +1115,19 @@ function HubContent({
 
   return (
     <div className="flex flex-col h-full">
-      <div className="flex items-center gap-1 px-4 py-2.5 border-b border-slate-800 bg-slate-900/70 backdrop-blur-sm flex-shrink-0">
+      <div className="flex items-center gap-1 px-4 py-2.5 border-b border-neutral-800 bg-neutral-900/70 backdrop-blur-sm flex-shrink-0">
         {TABS.map(({ id, label, icon: Icon }) => (
           <button key={id} onClick={() => setTab(id)}
             className={`flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold transition-all ${
               tab === id
-                ? 'bg-teal-500/20 text-teal-300 border border-teal-500/30'
-                : 'text-slate-500 hover:text-slate-300 hover:bg-slate-800'
+                ? 'bg-primary-500/20 text-primary-300 border border-primary-500/30'
+                : 'text-neutral-500 hover:text-neutral-300 hover:bg-neutral-800'
             }`}>
             <Icon size={13} />{label}
           </button>
         ))}
         <button onClick={() => { lockHub(); window.location.reload() }}
-          className="ml-auto text-[10px] text-slate-700 hover:text-slate-500 px-2 py-1 rounded-lg hover:bg-slate-800 transition-colors">
+          className="ml-auto text-[10px] text-neutral-700 hover:text-neutral-500 px-2 py-1 rounded-lg hover:bg-neutral-800 transition-colors">
           Sair
         </button>
       </div>
@@ -1201,3 +1201,4 @@ export default function HubPage({
     </Gatekeeper>
   )
 }
+

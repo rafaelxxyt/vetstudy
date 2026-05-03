@@ -102,9 +102,9 @@ function statusLabel(status: CaseStatus) {
 }
 
 function statusBadgeClass(status: CaseStatus) {
-  if (status === 'completed') return 'border-teal-500/25 bg-teal-500/15 text-teal-300'
-  if (status === 'in_progress') return 'border-amber-500/25 bg-amber-500/15 text-amber-300'
-  return 'border-slate-700 bg-slate-800/80 text-slate-400'
+  if (status === 'completed') return 'border-primary-500/25 bg-primary-500/15 text-primary-300'
+  if (status === 'in_progress') return 'border-warning-500/25 bg-warning-500/15 text-warning-300'
+  return 'border-neutral-700 bg-neutral-800/80 text-neutral-400'
 }
 
 function normalizeProgress(clinicalCase: ClinicalCase, progress: CaseProgressState | null) {
@@ -157,35 +157,35 @@ function CaseListCard({
         : null
 
   return (
-    <div className="rounded-2xl border border-slate-800 bg-slate-900/55 p-4">
+    <div className="rounded-2xl border border-neutral-800 bg-neutral-900/55 p-4">
       <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
         <div className="min-w-0">
           <p className="text-sm font-bold text-white">{clinicalCase.title}</p>
           <div className="mt-2 flex flex-wrap gap-1.5">
-            <span className="rounded-full border border-slate-700 bg-slate-800/80 px-2 py-0.5 text-[11px] text-slate-300">
+            <span className="rounded-full border border-neutral-700 bg-neutral-800/80 px-2 py-0.5 text-[11px] text-neutral-300">
               {clinicalCase.speciesEmoji} {clinicalCase.species}
             </span>
-            <span className="rounded-full border border-slate-700 bg-slate-800/80 px-2 py-0.5 text-[11px] text-slate-300">
+            <span className="rounded-full border border-neutral-700 bg-neutral-800/80 px-2 py-0.5 text-[11px] text-neutral-300">
               {clinicalCase.category}
             </span>
-            <span className="rounded-full border border-slate-700 bg-slate-800/80 px-2 py-0.5 text-[11px] text-slate-300">
+            <span className="rounded-full border border-neutral-700 bg-neutral-800/80 px-2 py-0.5 text-[11px] text-neutral-300">
               {difficultyLabel(clinicalCase.difficulty)}
             </span>
-            <span className="rounded-full border border-slate-700 bg-slate-800/80 px-2 py-0.5 text-[11px] text-slate-300">
+            <span className="rounded-full border border-neutral-700 bg-neutral-800/80 px-2 py-0.5 text-[11px] text-neutral-300">
               {clinicalCase.estimatedTime}
             </span>
             <span className={`rounded-full border px-2 py-0.5 text-[11px] ${statusBadgeClass(status)}`}>
               {statusText}
             </span>
           </div>
-          {scoreSummary && <p className="mt-2 text-[11px] font-semibold text-teal-300">{scoreSummary}</p>}
+          {scoreSummary && <p className="mt-2 text-[11px] font-semibold text-primary-300">{scoreSummary}</p>}
         </div>
 
         <div className="grid w-full grid-cols-1 gap-2 sm:w-auto sm:min-w-[180px]">
           <button
             type="button"
             onClick={onOpen}
-            className="min-h-[44px] w-full rounded-xl bg-fuchsia-500/90 px-3 py-2 text-sm font-bold text-white transition hover:bg-fuchsia-400"
+            className="min-h-[44px] w-full rounded-xl bg-accent-500/90 px-3 py-2 text-sm font-bold text-white transition hover:bg-accent-400"
           >
             {getCaseActionLabel(status)}
           </button>
@@ -193,7 +193,7 @@ function CaseListCard({
             <button
               type="button"
               onClick={onReset}
-              className="min-h-[44px] w-full rounded-xl border border-slate-700 bg-slate-900/70 px-3 py-2 text-sm font-bold text-slate-200 transition hover:border-fuchsia-500/30"
+              className="min-h-[44px] w-full rounded-xl border border-neutral-700 bg-neutral-900/70 px-3 py-2 text-sm font-bold text-neutral-200 transition hover:border-accent-500/30"
             >
               Refazer caso
             </button>
@@ -292,38 +292,38 @@ function CasosContent({
     const expanded = expandedContextByCase[clinicalCase.id] ?? false
 
     return (
-      <div className="space-y-3 rounded-2xl border border-slate-800 bg-slate-950/40 p-4">
+      <div className="space-y-3 rounded-2xl border border-neutral-800 bg-neutral-950/40 p-4">
         <div className="flex items-center gap-2">
-          <Stethoscope size={15} className="text-slate-300" />
+          <Stethoscope size={15} className="text-neutral-300" />
           <p className="text-sm font-bold text-white">Resumo do paciente</p>
         </div>
 
-        <div className="space-y-2 text-xs text-slate-300">
-          <div><span className="font-bold text-slate-100">Queixa:</span> {clinicalCase.chiefComplaint}</div>
-          <div><span className="font-bold text-slate-100">História:</span> {clinicalCase.history}</div>
-          <div><span className="font-bold text-slate-100">Exame:</span> {clinicalCase.physicalExam.slice(0, 3).join(' · ')}</div>
-          <div><span className="font-bold text-slate-100">Labs:</span> {clinicalCase.labFindings.slice(0, 3).join(' · ')}</div>
+        <div className="space-y-2 text-xs text-neutral-300">
+          <div><span className="font-bold text-neutral-100">Queixa:</span> {clinicalCase.chiefComplaint}</div>
+          <div><span className="font-bold text-neutral-100">História:</span> {clinicalCase.history}</div>
+          <div><span className="font-bold text-neutral-100">Exame:</span> {clinicalCase.physicalExam.slice(0, 3).join(' · ')}</div>
+          <div><span className="font-bold text-neutral-100">Labs:</span> {clinicalCase.labFindings.slice(0, 3).join(' · ')}</div>
         </div>
 
         <button
           type="button"
           onClick={() => setExpandedContextByCase(current => ({ ...current, [clinicalCase.id]: !expanded }))}
-          className="min-h-[44px] w-full rounded-xl border border-slate-700 bg-slate-900/70 px-3 py-2 text-sm font-bold text-slate-200 transition hover:border-fuchsia-500/30"
+          className="min-h-[44px] w-full rounded-xl border border-neutral-700 bg-neutral-900/70 px-3 py-2 text-sm font-bold text-neutral-200 transition hover:border-accent-500/30"
         >
           {expanded ? 'Ocultar detalhes' : 'Ver detalhes completos'}
         </button>
 
         {expanded && (
           <div className="grid grid-cols-1 gap-3 text-xs">
-            <div className="rounded-xl border border-slate-800 bg-slate-900/70 p-3">
-              <p className="font-bold text-slate-100">Exame físico completo</p>
-              <ul className="mt-2 space-y-1 text-slate-300">
+            <div className="rounded-xl border border-neutral-800 bg-neutral-900/70 p-3">
+              <p className="font-bold text-neutral-100">Exame físico completo</p>
+              <ul className="mt-2 space-y-1 text-neutral-300">
                 {clinicalCase.physicalExam.map(item => <li key={item}>• {item}</li>)}
               </ul>
             </div>
-            <div className="rounded-xl border border-slate-800 bg-slate-900/70 p-3">
-              <p className="font-bold text-slate-100">Achados laboratoriais completos</p>
-              <ul className="mt-2 space-y-1 text-slate-300">
+            <div className="rounded-xl border border-neutral-800 bg-neutral-900/70 p-3">
+              <p className="font-bold text-neutral-100">Achados laboratoriais completos</p>
+              <ul className="mt-2 space-y-1 text-neutral-300">
                 {clinicalCase.labFindings.map(item => <li key={item}>• {item}</li>)}
               </ul>
             </div>
@@ -351,16 +351,16 @@ function CasosContent({
 
       return (
         <div className="space-y-4">
-          <div className="rounded-2xl border border-teal-500/20 bg-teal-500/5 p-4">
+          <div className="rounded-2xl border border-primary-500/20 bg-primary-500/5 p-4">
             <div className="flex items-center gap-2">
-              <CheckCircle2 size={18} className="text-teal-300" />
+              <CheckCircle2 size={18} className="text-primary-300" />
               <p className="text-lg font-bold text-white">Caso concluído</p>
             </div>
-            <p className="mt-2 text-sm text-slate-300">Você acertou {score} de {totalSteps} etapas.</p>
-            <div className="mt-3 h-2 overflow-hidden rounded-full bg-slate-800">
-              <div className="h-full rounded-full bg-teal-400" style={{ width: `${percent}%` }} />
+            <p className="mt-2 text-sm text-neutral-300">Você acertou {score} de {totalSteps} etapas.</p>
+            <div className="mt-3 h-2 overflow-hidden rounded-full bg-neutral-800">
+              <div className="h-full rounded-full bg-primary-400" style={{ width: `${percent}%` }} />
             </div>
-            <p className="mt-3 text-xs text-slate-400">
+            <p className="mt-3 text-xs text-neutral-400">
               Diagnóstico: <span className="font-semibold text-white">{clinicalCase.diagnosis}</span>
             </p>
           </div>
@@ -373,16 +373,16 @@ function CasosContent({
               const correctAnswer = step.options[step.correctIndex]
 
               return (
-                <div key={step.id} className="rounded-2xl border border-slate-800 bg-slate-950/40 p-4">
+                <div key={step.id} className="rounded-2xl border border-neutral-800 bg-neutral-950/40 p-4">
                   <div className="flex items-center gap-2">
-                    <span className={`inline-flex h-5 min-w-5 items-center justify-center rounded-full text-[10px] font-bold ${isCorrect ? 'bg-teal-500/15 text-teal-300' : 'bg-amber-500/15 text-amber-300'}`}>
+                    <span className={`inline-flex h-5 min-w-5 items-center justify-center rounded-full text-[10px] font-bold ${isCorrect ? 'bg-primary-500/15 text-primary-300' : 'bg-warning-500/15 text-warning-300'}`}>
                       {index + 1}
                     </span>
                     <p className="text-sm font-bold text-white">{step.title}</p>
                   </div>
-                  <p className="mt-2 text-xs text-slate-400">Sua resposta: {userAnswer}</p>
-                  <p className="mt-1 text-xs text-slate-400">Resposta correta: {correctAnswer}</p>
-                  <p className={`mt-2 text-xs ${isCorrect ? 'text-teal-200' : 'text-amber-200'}`}>{step.explanation}</p>
+                  <p className="mt-2 text-xs text-neutral-400">Sua resposta: {userAnswer}</p>
+                  <p className="mt-1 text-xs text-neutral-400">Resposta correta: {correctAnswer}</p>
+                  <p className={`mt-2 text-xs ${isCorrect ? 'text-primary-200' : 'text-warning-200'}`}>{step.explanation}</p>
                 </div>
               )
             })}
@@ -393,7 +393,7 @@ function CasosContent({
               <button
                 type="button"
                 onClick={() => setSelectedCaseId(nextCaseId)}
-                className="min-h-[44px] w-full rounded-xl bg-fuchsia-500/90 px-3 py-2 text-sm font-bold text-white transition hover:bg-fuchsia-400"
+                className="min-h-[44px] w-full rounded-xl bg-accent-500/90 px-3 py-2 text-sm font-bold text-white transition hover:bg-accent-400"
               >
                 Próximo caso
               </button>
@@ -406,8 +406,8 @@ function CasosContent({
               disabled={!relatedDiseaseId}
               className={`min-h-[44px] w-full rounded-xl px-3 py-2 text-sm font-bold transition ${
                 relatedDiseaseId
-                  ? 'border border-slate-700 bg-slate-800 text-white hover:border-teal-500/40'
-                  : 'cursor-not-allowed border border-slate-800 bg-slate-900 text-slate-600'
+                  ? 'border border-neutral-700 bg-neutral-800 text-white hover:border-primary-500/40'
+                  : 'cursor-not-allowed border border-neutral-800 bg-neutral-900 text-neutral-600'
               }`}
             >
               Ver doença relacionada
@@ -415,7 +415,7 @@ function CasosContent({
             <button
               type="button"
               onClick={() => resetCase(clinicalCase)}
-              className="min-h-[44px] w-full rounded-xl px-3 py-2 text-sm font-semibold text-slate-400 transition hover:text-slate-200"
+              className="min-h-[44px] w-full rounded-xl px-3 py-2 text-sm font-semibold text-neutral-400 transition hover:text-neutral-200"
             >
               Refazer caso
             </button>
@@ -428,17 +428,17 @@ function CasosContent({
 
     return (
       <div className="space-y-4">
-        <div className="rounded-xl border border-slate-800 bg-slate-950/40 p-3">
-          <p className="text-[11px] font-bold uppercase tracking-wider text-fuchsia-300">
+        <div className="rounded-xl border border-neutral-800 bg-neutral-950/40 p-3">
+          <p className="text-[11px] font-bold uppercase tracking-wider text-accent-300">
             Caso {String(clinicalCase.number).padStart(2, '0')} · Etapa {currentStepIndex + 1} de {totalSteps}
           </p>
         </div>
 
         {renderPatientSummary(clinicalCase)}
 
-        <div className="space-y-3 rounded-2xl border border-slate-800 bg-slate-950/40 p-4">
+        <div className="space-y-3 rounded-2xl border border-neutral-800 bg-neutral-950/40 p-4">
           <div>
-            <p className="text-[10px] font-bold uppercase tracking-wider text-slate-500">{currentStep.title}</p>
+            <p className="text-[10px] font-bold uppercase tracking-wider text-neutral-500">{currentStep.title}</p>
             <p className="mt-1 text-sm font-bold text-white">{currentStep.question}</p>
           </div>
 
@@ -446,11 +446,11 @@ function CasosContent({
             {currentStep.options.map((option, index) => {
               const isPicked = selectedOption === index
               const isAnswered = confirmedAnswer !== null
-              let optionClass = 'border border-slate-700 bg-slate-900/70 text-slate-200 hover:border-fuchsia-500/30'
-              if (!isAnswered && isPicked) optionClass = 'border border-fuchsia-400/40 bg-fuchsia-500/15 text-fuchsia-100'
-              if (isAnswered && index === confirmedAnswer && index === currentStep.correctIndex) optionClass = 'border border-teal-400/40 bg-teal-500/15 text-teal-100'
-              if (isAnswered && index === confirmedAnswer && index !== currentStep.correctIndex) optionClass = 'border border-amber-400/40 bg-amber-500/15 text-amber-100'
-              if (isAnswered && index === currentStep.correctIndex) optionClass = 'border border-teal-400/25 bg-teal-500/8 text-teal-100'
+              let optionClass = 'border border-neutral-700 bg-neutral-900/70 text-neutral-200 hover:border-accent-500/30'
+              if (!isAnswered && isPicked) optionClass = 'border border-accent-400/40 bg-accent-500/15 text-accent-100'
+              if (isAnswered && index === confirmedAnswer && index === currentStep.correctIndex) optionClass = 'border border-primary-400/40 bg-primary-500/15 text-primary-100'
+              if (isAnswered && index === confirmedAnswer && index !== currentStep.correctIndex) optionClass = 'border border-warning-400/40 bg-warning-500/15 text-warning-100'
+              if (isAnswered && index === currentStep.correctIndex) optionClass = 'border border-primary-400/25 bg-primary-500/8 text-primary-100'
 
               return (
                 <button
@@ -484,7 +484,7 @@ function CasosContent({
                   score: nextScore,
                 })
               }}
-              className="min-h-[44px] w-full rounded-xl bg-fuchsia-500/90 px-3 py-2 text-sm font-bold text-white transition hover:bg-fuchsia-400 disabled:opacity-40"
+              className="min-h-[44px] w-full rounded-xl bg-accent-500/90 px-3 py-2 text-sm font-bold text-white transition hover:bg-accent-400 disabled:opacity-40"
             >
               Confirmar resposta
             </button>
@@ -492,8 +492,8 @@ function CasosContent({
             <div className="space-y-3">
               <div className={`rounded-xl px-3 py-2 text-xs ${
                 confirmedAnswer === currentStep.correctIndex
-                  ? 'border border-teal-500/25 bg-teal-500/10 text-teal-100'
-                  : 'border border-amber-500/25 bg-amber-500/10 text-amber-100'
+                  ? 'border border-primary-500/25 bg-primary-500/10 text-primary-100'
+                  : 'border border-warning-500/25 bg-warning-500/10 text-warning-100'
               }`}>
                 <p className="font-bold">{confirmedAnswer === currentStep.correctIndex ? 'Correto' : 'Cuidado'}</p>
                 <p className="mt-1">{currentStep.explanation}</p>
@@ -520,7 +520,7 @@ function CasosContent({
                     score,
                   })
                 }}
-                className="min-h-[44px] w-full rounded-xl border border-slate-700 bg-slate-800 px-3 py-2 text-sm font-bold text-white transition hover:border-teal-500/40"
+                className="min-h-[44px] w-full rounded-xl border border-neutral-700 bg-neutral-800 px-3 py-2 text-sm font-bold text-white transition hover:border-primary-500/40"
               >
                 {currentStepIndex >= totalSteps - 1 ? 'Ver resultado do caso' : 'Próxima etapa'}
               </button>
@@ -538,53 +538,53 @@ function CasosContent({
 
     return (
       <div className="space-y-3">
-        <div className="rounded-xl border border-slate-800 bg-slate-950/40 p-3">
-          <p className="text-[10px] font-bold uppercase tracking-wider text-slate-500">Queixa + história</p>
-          <p className="mt-1 text-sm text-slate-200">{clinicalCase.chiefComplaint}</p>
-          <p className="mt-2 text-xs text-slate-400">{clinicalCase.history}</p>
+        <div className="rounded-xl border border-neutral-800 bg-neutral-950/40 p-3">
+          <p className="text-[10px] font-bold uppercase tracking-wider text-neutral-500">Queixa + história</p>
+          <p className="mt-1 text-sm text-neutral-200">{clinicalCase.chiefComplaint}</p>
+          <p className="mt-2 text-xs text-neutral-400">{clinicalCase.history}</p>
         </div>
 
-        <div className="rounded-xl border border-slate-800 bg-slate-950/40 p-3">
-          <p className="text-[10px] font-bold uppercase tracking-wider text-slate-500">Exame físico</p>
-          <ul className="mt-2 space-y-1 text-xs text-slate-300">
+        <div className="rounded-xl border border-neutral-800 bg-neutral-950/40 p-3">
+          <p className="text-[10px] font-bold uppercase tracking-wider text-neutral-500">Exame físico</p>
+          <ul className="mt-2 space-y-1 text-xs text-neutral-300">
             {clinicalCase.physicalExam.map(item => <li key={item}>• {item}</li>)}
           </ul>
         </div>
 
-        <div className="rounded-xl border border-slate-800 bg-slate-950/40 p-3">
-          <p className="text-[10px] font-bold uppercase tracking-wider text-slate-500">Achados laboratoriais</p>
-          <ul className="mt-2 space-y-1 text-xs text-slate-300">
+        <div className="rounded-xl border border-neutral-800 bg-neutral-950/40 p-3">
+          <p className="text-[10px] font-bold uppercase tracking-wider text-neutral-500">Achados laboratoriais</p>
+          <ul className="mt-2 space-y-1 text-xs text-neutral-300">
             {clinicalCase.labFindings.map(item => <li key={item}>• {item}</li>)}
           </ul>
         </div>
 
-        <div className="rounded-xl border border-slate-800 bg-slate-950/40 p-3">
-          <p className="text-[10px] font-bold uppercase tracking-wider text-slate-500">Pergunta clínica</p>
+        <div className="rounded-xl border border-neutral-800 bg-neutral-950/40 p-3">
+          <p className="text-[10px] font-bold uppercase tracking-wider text-neutral-500">Pergunta clínica</p>
           <p className="mt-1 text-sm font-bold text-white">{clinicalCase.clinicalQuestion}</p>
         </div>
 
         {!selfEvaluation ? (
-          <div className="space-y-3 rounded-2xl border border-slate-800 bg-slate-950/40 p-4">
+          <div className="space-y-3 rounded-2xl border border-neutral-800 bg-neutral-950/40 p-4">
             <p className="text-sm font-bold text-white">📋 Leia o caso acima, forme um diagnóstico e só então marque:</p>
             <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
               <button
                 type="button"
                 onClick={() => setSelfEvaluationByCase(current => ({ ...current, [clinicalCase.id]: 'acertei' }))}
-                className="min-h-[44px] w-full rounded-xl border border-teal-500/25 bg-teal-500/10 px-3 py-2 text-sm font-bold text-teal-200"
+                className="min-h-[44px] w-full rounded-xl border border-primary-500/25 bg-primary-500/10 px-3 py-2 text-sm font-bold text-primary-200"
               >
                 Acertei
               </button>
               <button
                 type="button"
                 onClick={() => setSelfEvaluationByCase(current => ({ ...current, [clinicalCase.id]: 'errei' }))}
-                className="min-h-[44px] w-full rounded-xl border border-amber-500/25 bg-amber-500/10 px-3 py-2 text-sm font-bold text-amber-200"
+                className="min-h-[44px] w-full rounded-xl border border-warning-500/25 bg-warning-500/10 px-3 py-2 text-sm font-bold text-warning-200"
               >
                 Errei
               </button>
             </div>
           </div>
         ) : (
-          <div className="space-y-3 rounded-2xl border border-slate-800 bg-slate-950/40 p-4">
+          <div className="space-y-3 rounded-2xl border border-neutral-800 bg-neutral-950/40 p-4">
             <button
               type="button"
               onClick={() => {
@@ -596,31 +596,31 @@ function CasosContent({
                   selfEvaluation,
                 })
               }}
-              className="min-h-[44px] w-full rounded-xl bg-fuchsia-500/90 px-3 py-2 text-sm font-bold text-white transition hover:bg-fuchsia-400"
+              className="min-h-[44px] w-full rounded-xl bg-accent-500/90 px-3 py-2 text-sm font-bold text-white transition hover:bg-accent-400"
             >
               Mostrar resolução
             </button>
 
             {showResolution && (
-              <div className="space-y-3 rounded-xl border border-teal-500/20 bg-teal-500/5 p-4">
+              <div className="space-y-3 rounded-xl border border-primary-500/20 bg-primary-500/5 p-4">
                 <p className="text-sm font-bold text-white">{selfEvaluation === 'errei' ? 'Boa — esse é o momento que mais gera aprendizado.' : 'Perfeito. Confirme seu raciocínio abaixo.'}</p>
-                <p className="text-xs text-slate-300"><span className="font-bold text-teal-300">Diagnóstico:</span> {clinicalCase.diagnosis}</p>
+                <p className="text-xs text-neutral-300"><span className="font-bold text-primary-300">Diagnóstico:</span> {clinicalCase.diagnosis}</p>
                 <div>
-                  <p className="text-xs font-bold uppercase tracking-wider text-teal-300">Conduta</p>
-                  <ul className="mt-2 space-y-1 text-xs text-slate-200">
+                  <p className="text-xs font-bold uppercase tracking-wider text-primary-300">Conduta</p>
+                  <ul className="mt-2 space-y-1 text-xs text-neutral-200">
                     {ensureList(clinicalCase.conduct).map(item => <li key={item}>• {item}</li>)}
                   </ul>
                 </div>
-                <div className="rounded-xl border border-fuchsia-500/20 bg-fuchsia-500/10 p-3">
-                  <p className="text-xs font-bold uppercase tracking-wider text-fuchsia-200">Por que isso importa?</p>
-                  <p className="mt-2 text-xs leading-relaxed text-slate-200">{clinicalCase.reasoning}</p>
+                <div className="rounded-xl border border-accent-500/20 bg-accent-500/10 p-3">
+                  <p className="text-xs font-bold uppercase tracking-wider text-accent-200">Por que isso importa?</p>
+                  <p className="mt-2 text-xs leading-relaxed text-neutral-200">{clinicalCase.reasoning}</p>
                 </div>
                 <div className="grid grid-cols-1 gap-2 sm:grid-cols-3">
                   {relatedDiseaseId && (
                     <button
                       type="button"
                       onClick={() => onOpenDisease?.(relatedDiseaseId)}
-                      className="min-h-[44px] w-full rounded-xl border border-slate-700 bg-slate-800 px-3 py-2 text-sm font-bold text-white transition hover:border-teal-500/40"
+                      className="min-h-[44px] w-full rounded-xl border border-neutral-700 bg-neutral-800 px-3 py-2 text-sm font-bold text-white transition hover:border-primary-500/40"
                     >
                       Ver doença relacionada
                     </button>
@@ -629,7 +629,7 @@ function CasosContent({
                     <button
                       type="button"
                       onClick={() => setSelectedCaseId(nextCaseId)}
-                      className="min-h-[44px] w-full rounded-xl bg-fuchsia-500/90 px-3 py-2 text-sm font-bold text-white transition hover:bg-fuchsia-400"
+                      className="min-h-[44px] w-full rounded-xl bg-accent-500/90 px-3 py-2 text-sm font-bold text-white transition hover:bg-accent-400"
                     >
                       Próximo caso
                     </button>
@@ -637,7 +637,7 @@ function CasosContent({
                   <button
                     type="button"
                     onClick={() => resetCase(clinicalCase)}
-                    className="min-h-[44px] w-full rounded-xl px-3 py-2 text-sm font-semibold text-slate-400 transition hover:text-slate-200"
+                    className="min-h-[44px] w-full rounded-xl px-3 py-2 text-sm font-semibold text-neutral-400 transition hover:text-neutral-200"
                   >
                     Refazer caso
                   </button>
@@ -654,10 +654,10 @@ function CasosContent({
     <div className="mx-auto max-w-5xl p-4 sm:p-6 md:p-8">
       <div className="mb-6">
         <div className="mb-1 flex items-center gap-2">
-          <Stethoscope size={22} className="text-fuchsia-400" />
+          <Stethoscope size={22} className="text-accent-400" />
           <h1 className="text-2xl font-bold text-white">🧠 Casos Clínicos</h1>
         </div>
-        <p className="text-sm text-slate-400">Treino guiado de raciocínio clínico com foco em decisão prática.</p>
+        <p className="text-sm text-neutral-400">Treino guiado de raciocínio clínico com foco em decisão prática.</p>
       </div>
 
       {selectedCase ? (
@@ -665,21 +665,21 @@ function CasosContent({
           <button
             type="button"
             onClick={() => setSelectedCaseId(null)}
-            className="inline-flex min-h-[44px] items-center gap-2 rounded-xl border border-slate-700 bg-slate-900/70 px-4 py-2 text-sm font-semibold text-slate-200 transition hover:border-fuchsia-500/30"
+            className="inline-flex min-h-[44px] items-center gap-2 rounded-xl border border-neutral-700 bg-neutral-900/70 px-4 py-2 text-sm font-semibold text-neutral-200 transition hover:border-accent-500/30"
           >
             <ArrowLeft size={15} /> Voltar aos casos
           </button>
 
-          <div className="rounded-2xl border border-slate-800 bg-slate-900/55 p-4">
+          <div className="rounded-2xl border border-neutral-800 bg-neutral-900/55 p-4">
             <div className="flex flex-wrap items-center gap-2">
               <p className="text-lg font-bold text-white">{selectedCase.title}</p>
-              <span className="rounded-full border border-slate-700 bg-slate-800/80 px-2 py-0.5 text-[11px] text-slate-300">
+              <span className="rounded-full border border-neutral-700 bg-neutral-800/80 px-2 py-0.5 text-[11px] text-neutral-300">
                 {selectedCase.speciesEmoji} {selectedCase.species}
               </span>
-              <span className="rounded-full border border-slate-700 bg-slate-800/80 px-2 py-0.5 text-[11px] text-slate-300">
+              <span className="rounded-full border border-neutral-700 bg-neutral-800/80 px-2 py-0.5 text-[11px] text-neutral-300">
                 {difficultyLabel(selectedCase.difficulty)}
               </span>
-              <span className="rounded-full border border-slate-700 bg-slate-800/80 px-2 py-0.5 text-[11px] text-slate-300">
+              <span className="rounded-full border border-neutral-700 bg-neutral-800/80 px-2 py-0.5 text-[11px] text-neutral-300">
                 {selectedCase.estimatedTime}
               </span>
             </div>
@@ -703,8 +703,8 @@ function CasosContent({
                 onClick={() => setCaseFilter(item.id)}
                 className={`rounded-xl border px-3 py-2 text-xs font-bold transition ${
                   caseFilter === item.id
-                    ? 'border-fuchsia-500/30 bg-fuchsia-500/15 text-fuchsia-200'
-                    : 'border-slate-700 bg-slate-900/60 text-slate-400 hover:text-slate-200'
+                    ? 'border-accent-500/30 bg-accent-500/15 text-accent-200'
+                    : 'border-neutral-700 bg-neutral-900/60 text-neutral-400 hover:text-neutral-200'
                 }`}
               >
                 {item.label}
@@ -755,7 +755,7 @@ export default function CasosPage({
     return (
       <Gatekeeper pageTitle="Casos">
         <div className="mx-auto max-w-3xl p-4 sm:p-6 md:p-8">
-          <p className="mb-4 text-sm text-slate-400">
+          <p className="mb-4 text-sm text-neutral-400">
             Seus estudos são salvos por perfil. Escolha ou crie um para continuar.
           </p>
           <ProfileSelector onSelect={handleProfileSelect} />

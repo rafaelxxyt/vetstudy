@@ -50,23 +50,23 @@ export default function EnciclopediaPage() {
       {/* Header */}
       <div className="mb-6">
         <div className="flex items-center gap-2 mb-1">
-          <BookOpen size={22} className="text-teal-400" />
+          <BookOpen size={22} className="text-primary-400" />
           <h1 className="text-2xl font-bold text-white">Enciclopédia Clínica</h1>
         </div>
-        <p className="text-slate-400 text-sm">
+        <p className="text-neutral-400 text-sm">
           {db.diseases.length} doenças · etiologia, diagnóstico e protocolos de tratamento
         </p>
       </div>
 
       {/* Search */}
       <div className="relative mb-6">
-        <Search size={17} className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 pointer-events-none" />
+        <Search size={17} className="absolute left-4 top-1/2 -translate-y-1/2 text-neutral-500 pointer-events-none" />
         <input
           type="text"
           placeholder="Buscar doença, espécie ou tag... ex: bovino, zoonose, cirurgia"
           value={query}
           onChange={e => setQuery(e.target.value)}
-          className="w-full pl-11 pr-4 py-3 bg-slate-800 border border-slate-700 rounded-2xl text-sm text-slate-200 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-teal-500/50 focus:border-teal-500 transition"
+          className="w-full pl-11 pr-4 py-3 bg-neutral-800 border border-neutral-700 rounded-2xl text-sm text-neutral-200 placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-primary-500/50 focus:border-primary-500 transition"
         />
       </div>
 
@@ -82,22 +82,22 @@ export default function EnciclopediaPage() {
                 onClick={() => select(d)}
                 className={`w-full text-left px-4 py-3 rounded-xl border text-sm transition-all ${
                   active
-                    ? 'bg-teal-500/20 text-teal-300 border-teal-500/40'
-                    : 'bg-slate-800/60 text-slate-400 border-slate-700/60 hover:border-teal-600/40 hover:text-slate-200'
+                    ? 'bg-primary-500/20 text-primary-300 border-primary-500/40'
+                    : 'bg-neutral-800/60 text-neutral-400 border-neutral-700/60 hover:border-primary-600/40 hover:text-neutral-200'
                 }`}
               >
                 <div className="flex items-center gap-2 mb-0.5">
                   <span className="text-base leading-none">{d.emoji}</span>
                   <p className="font-semibold truncate text-xs">{d.name}</p>
                 </div>
-                <p className={`text-[10px] truncate ${active ? 'text-teal-400/70' : 'text-slate-600'}`}>
+                <p className={`text-[10px] truncate ${active ? 'text-primary-400/70' : 'text-neutral-600'}`}>
                   {d.species} · {d.category.split('/')[0].trim()}
                 </p>
               </motion.button>
             )
           })}
           {filtered.length === 0 && (
-            <p className="text-sm text-slate-500 px-2 py-3">Nenhum resultado.</p>
+            <p className="text-sm text-neutral-500 px-2 py-3">Nenhum resultado.</p>
           )}
         </div>
 
@@ -113,22 +113,22 @@ export default function EnciclopediaPage() {
               className="space-y-3"
             >
               {/* Hero Card */}
-              <div className="bg-slate-800 rounded-2xl p-5 border border-slate-700/80">
+              <div className="bg-neutral-800 rounded-2xl p-5 border border-neutral-700/80">
                 <div className="flex items-start gap-4">
                   <span className="text-4xl">{selected.emoji}</span>
                   <div className="flex-1">
                     <h2 className="text-xl font-bold text-white leading-tight">{selected.name}</h2>
                     <div className="flex flex-wrap gap-2 mt-2">
-                      <span className="text-xs bg-teal-500/10 text-teal-400 border border-teal-500/20 px-2.5 py-0.5 rounded-full font-medium">
+                      <span className="text-xs bg-primary-500/10 text-primary-400 border border-primary-500/20 px-2.5 py-0.5 rounded-full font-medium">
                         {selected.species}
                       </span>
-                      <span className="text-xs bg-slate-700 text-slate-400 px-2.5 py-0.5 rounded-full">
+                      <span className="text-xs bg-neutral-700 text-neutral-400 px-2.5 py-0.5 rounded-full">
                         {selected.category}
                       </span>
                     </div>
                     <div className="flex flex-wrap gap-1.5 mt-2">
                       {selected.tags.slice(0, 5).map(tag => (
-                        <span key={tag} className="inline-flex items-center gap-1 text-[10px] bg-slate-700/60 text-slate-500 px-2 py-0.5 rounded-full">
+                        <span key={tag} className="inline-flex items-center gap-1 text-[10px] bg-neutral-700/60 text-neutral-500 px-2 py-0.5 rounded-full">
                           <Tag size={8} />{tag}
                         </span>
                       ))}
@@ -139,7 +139,7 @@ export default function EnciclopediaPage() {
                 {selected.classification && (
                   <div className="mt-3 flex flex-wrap gap-2">
                     {selected.classification.map(c => (
-                      <span key={c} className="text-[11px] bg-amber-500/10 text-amber-400 border border-amber-500/20 px-2.5 py-0.5 rounded-full font-medium">
+                      <span key={c} className="text-[11px] bg-warning-500/10 text-warning-400 border border-warning-500/20 px-2.5 py-0.5 rounded-full font-medium">
                         {c}
                       </span>
                     ))}
@@ -158,8 +158,8 @@ export default function EnciclopediaPage() {
                       onClick={() => setSection(active ? null : label)}
                       className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold transition-all ${
                         active
-                          ? 'bg-teal-500/20 text-teal-300 border border-teal-500/30'
-                          : 'bg-slate-800 text-slate-500 border border-slate-700/60 hover:text-slate-300'
+                          ? 'bg-primary-500/20 text-primary-300 border border-primary-500/30'
+                          : 'bg-neutral-800 text-neutral-500 border border-neutral-700/60 hover:text-neutral-300'
                       }`}
                     >
                       <Icon size={11} />
@@ -178,11 +178,11 @@ export default function EnciclopediaPage() {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0 }}
                     transition={{ duration: 0.15 }}
-                    className="bg-slate-800 rounded-2xl p-5 border border-slate-700/80"
+                    className="bg-neutral-800 rounded-2xl p-5 border border-neutral-700/80"
                   >
                     <div className="flex items-center gap-2 mb-3">
-                      {(() => { const Icon = SECTION_ICONS[section] ?? ChevronRight; return <Icon size={16} className="text-teal-400" /> })()}
-                      <h3 className="font-semibold text-slate-200 text-sm">{section}</h3>
+                      {(() => { const Icon = SECTION_ICONS[section] ?? ChevronRight; return <Icon size={16} className="text-primary-400" /> })()}
+                      <h3 className="font-semibold text-neutral-200 text-sm">{section}</h3>
                     </div>
                     {(() => {
                       const sec = sections.find(s => s.label === section)
@@ -191,15 +191,15 @@ export default function EnciclopediaPage() {
                         return (
                           <ul className="space-y-2">
                             {(sec.content as string[]).map((item, i) => (
-                              <li key={i} className="flex items-start gap-2.5 text-sm text-slate-400">
-                                <span className="mt-2 w-1.5 h-1.5 rounded-full bg-teal-500/50 flex-shrink-0" />
+                              <li key={i} className="flex items-start gap-2.5 text-sm text-neutral-400">
+                                <span className="mt-2 w-1.5 h-1.5 rounded-full bg-primary-500/50 flex-shrink-0" />
                                 {item}
                               </li>
                             ))}
                           </ul>
                         )
                       }
-                      return <p className="text-sm text-slate-400 leading-relaxed">{sec.content as string}</p>
+                      return <p className="text-sm text-neutral-400 leading-relaxed">{sec.content as string}</p>
                     })()}
                   </motion.div>
                 )}

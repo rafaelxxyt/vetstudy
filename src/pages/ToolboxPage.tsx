@@ -11,9 +11,9 @@ type LabSpecies = 'dog' | 'cat' | 'bovine' | 'equine'
 type LabTab = 'hematology' | 'biochemistry'
 
 const TOOLS = [
-  { id: 'dose' as Tool, label: 'Calculadora de Dose', icon: Calculator, color: 'text-teal-400', activeClass: 'bg-teal-500/10 border-teal-500/25' },
-  { id: 'fluido' as Tool, label: 'Fluidoterapia IV', icon: Droplets, color: 'text-blue-400', activeClass: 'bg-blue-500/10 border-blue-500/25' },
-  { id: 'lab' as Tool, label: 'Valores de Referência', icon: FlaskConical, color: 'text-purple-400', activeClass: 'bg-purple-500/10 border-purple-500/25' },
+  { id: 'dose' as Tool, label: 'Calculadora de Dose', icon: Calculator, color: 'text-primary-400', activeClass: 'bg-primary-500/10 border-primary-500/25' },
+  { id: 'fluido' as Tool, label: 'Fluidoterapia IV', icon: Droplets, color: 'text-primary-400', activeClass: 'bg-primary-500/10 border-primary-500/25' },
+  { id: 'lab' as Tool, label: 'Valores de Referência', icon: FlaskConical, color: 'text-primary-400', activeClass: 'bg-primary-500/10 border-primary-500/25' },
 ]
 
 const EQUINE_LAB = {
@@ -56,10 +56,10 @@ const ALL_SPECIES: Record<
 
 function AvisoLegal() {
   return (
-    <div className="flex items-start gap-2.5 rounded-2xl border border-amber-500/25 bg-amber-500/10 px-4 py-3 backdrop-blur-sm">
-      <AlertCircle size={14} className="mt-0.5 flex-shrink-0 text-amber-400" />
-      <p className="text-xs leading-relaxed text-amber-300/80">
-        <span className="font-bold text-amber-400">⚠️ Uso orientativo e acadêmico.</span>{' '}
+    <div className="flex items-start gap-2.5 rounded-2xl border border-warning-500/25 bg-warning-500/10 px-4 py-3 backdrop-blur-sm">
+      <AlertCircle size={14} className="mt-0.5 flex-shrink-0 text-warning-400" />
+      <p className="text-xs leading-relaxed text-warning-300/80">
+        <span className="font-bold text-warning-400">⚠️ Uso orientativo e acadêmico.</span>{' '}
         Imprescindível consulta à bula oficial e avaliação clínica individualizada antes de qualquer prescrição.
       </p>
     </div>
@@ -86,14 +86,14 @@ function DoseCalc() {
     <div className="mx-auto max-w-lg space-y-4">
       <AvisoLegal />
 
-      <div className="space-y-4 rounded-2xl border border-slate-700/60 bg-slate-800/60 p-5 backdrop-blur-md">
+      <div className="space-y-4 rounded-2xl border border-neutral-700/60 bg-neutral-800/60 p-5 backdrop-blur-md">
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           {[
             { label: 'Peso do animal', value: weight, set: setWeight, ph: 'ex: 15', unit: 'kg' },
             { label: 'Dose prescrita', value: dose, set: setDose, ph: 'ex: 25', unit: 'mg/kg' },
           ].map(field => (
             <div key={field.label}>
-              <label className="mb-1.5 block text-xs font-semibold text-slate-400">{field.label}</label>
+              <label className="mb-1.5 block text-xs font-semibold text-neutral-400">{field.label}</label>
               <div className="flex items-center gap-2">
                 <input
                   type="number"
@@ -104,17 +104,17 @@ function DoseCalc() {
                     field.set(event.target.value)
                     setResult(null)
                   }}
-                  className="flex-1 rounded-xl border border-slate-700 bg-slate-900/60 px-3 py-2.5 text-sm text-slate-200 placeholder-slate-600 transition focus:border-teal-500 focus:outline-none focus:ring-2 focus:ring-teal-500/40"
+                  className="flex-1 rounded-xl border border-neutral-700 bg-neutral-900/60 px-3 py-2.5 text-sm text-neutral-200 placeholder-neutral-600 transition focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-500/40"
                 />
-                <span className="w-12 flex-shrink-0 font-mono text-xs text-slate-500">{field.unit}</span>
+                <span className="w-12 flex-shrink-0 font-mono text-xs text-neutral-500">{field.unit}</span>
               </div>
             </div>
           ))}
         </div>
 
         <div>
-          <label className="mb-1.5 block text-xs font-semibold text-slate-400">
-            Concentração do produto <span className="font-normal text-slate-600">(opcional)</span>
+          <label className="mb-1.5 block text-xs font-semibold text-neutral-400">
+            Concentração do produto <span className="font-normal text-neutral-600">(opcional)</span>
           </label>
           <div className="flex items-center gap-2">
             <input
@@ -126,16 +126,16 @@ function DoseCalc() {
                 setConc(event.target.value)
                 setResult(null)
               }}
-              className="flex-1 rounded-xl border border-slate-700 bg-slate-900/60 px-3 py-2.5 text-sm text-slate-200 placeholder-slate-600 transition focus:border-teal-500 focus:outline-none focus:ring-2 focus:ring-teal-500/40"
+              className="flex-1 rounded-xl border border-neutral-700 bg-neutral-900/60 px-3 py-2.5 text-sm text-neutral-200 placeholder-neutral-600 transition focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-500/40"
             />
-            <span className="w-12 flex-shrink-0 font-mono text-xs text-slate-500">mg/mL</span>
+            <span className="w-12 flex-shrink-0 font-mono text-xs text-neutral-500">mg/mL</span>
           </div>
         </div>
 
         <motion.button
           whileTap={{ scale: 0.97 }}
           onClick={calc}
-          className="flex w-full items-center justify-center gap-2 rounded-xl bg-teal-600 py-3 text-sm font-bold text-white transition-colors hover:bg-teal-700"
+          className="flex w-full items-center justify-center gap-2 rounded-xl bg-primary-600 py-3 text-sm font-bold text-white transition-colors hover:bg-accent-600"
         >
           <Calculator size={15} /> Calcular
         </motion.button>
@@ -147,28 +147,28 @@ function DoseCalc() {
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0 }}
-            className="rounded-2xl border border-teal-500/25 bg-teal-500/10 p-5 backdrop-blur-md"
+            className="rounded-2xl border border-primary-500/25 bg-primary-500/10 p-5 backdrop-blur-md"
           >
-            <p className="mb-3 text-[10px] font-bold uppercase tracking-widest text-teal-400">Resultado</p>
+            <p className="mb-3 text-[10px] font-bold uppercase tracking-widest text-primary-400">Resultado</p>
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
               <div>
-                <p className="mb-1 text-xs text-slate-500">Dose total</p>
+                <p className="mb-1 text-xs text-neutral-500">Dose total</p>
                 <p className="text-3xl font-black text-white">
                   {result.total.toFixed(1)}
-                  <span className="ml-1.5 text-sm text-slate-400">mg</span>
+                  <span className="ml-1.5 text-sm text-neutral-400">mg</span>
                 </p>
               </div>
               {result.vol !== null ? (
                 <div>
-                  <p className="mb-1 text-xs text-slate-500">Volume final</p>
-                  <p className="text-3xl font-black text-teal-300">
+                  <p className="mb-1 text-xs text-neutral-500">Volume final</p>
+                  <p className="text-3xl font-black text-primary-300">
                     {result.vol.toFixed(2)}
-                    <span className="ml-1.5 text-sm text-slate-400">mL</span>
+                    <span className="ml-1.5 text-sm text-neutral-400">mL</span>
                   </p>
                 </div>
               ) : (
                 <div className="flex items-center">
-                  <p className="text-xs text-slate-600">Informe a concentração para calcular o volume.</p>
+                  <p className="text-xs text-neutral-600">Informe a concentração para calcular o volume.</p>
                 </div>
               )}
             </div>
@@ -208,9 +208,9 @@ function FluidCalc() {
     <div className="mx-auto max-w-lg space-y-4">
       <AvisoLegal />
 
-      <div className="space-y-4 rounded-2xl border border-slate-700/60 bg-slate-800/60 p-5 backdrop-blur-md">
+      <div className="space-y-4 rounded-2xl border border-neutral-700/60 bg-neutral-800/60 p-5 backdrop-blur-md">
         <div>
-          <p className="mb-2 text-xs font-semibold text-slate-400">Espécie</p>
+          <p className="mb-2 text-xs font-semibold text-neutral-400">Espécie</p>
           <div className="flex flex-wrap gap-2">
             {OPTS.map(option => (
               <button
@@ -221,8 +221,8 @@ function FluidCalc() {
                 }}
                 className={`rounded-xl border px-3 py-2 text-xs font-semibold transition-all ${
                   species === option.id
-                    ? 'border-blue-500/30 bg-blue-500/20 text-blue-300'
-                    : 'border-slate-700 bg-slate-900/60 text-slate-500 hover:text-slate-300'
+                    ? 'border-primary-500/30 bg-primary-500/20 text-primary-300'
+                    : 'border-neutral-700 bg-neutral-900/60 text-neutral-500 hover:text-neutral-300'
                 }`}
               >
                 {option.emoji} {option.label}
@@ -238,7 +238,7 @@ function FluidCalc() {
             { label: 'Janela (h)', value: hours, set: setHours, unit: 'h', ph: '24' },
           ].map(field => (
             <div key={field.label}>
-              <label className="mb-1.5 block text-xs font-semibold text-slate-400">{field.label}</label>
+              <label className="mb-1.5 block text-xs font-semibold text-neutral-400">{field.label}</label>
               <div className="flex items-center gap-1.5">
                 <input
                   type="number"
@@ -249,17 +249,17 @@ function FluidCalc() {
                     field.set(event.target.value)
                     setResult(null)
                   }}
-                  className="min-w-0 flex-1 rounded-xl border border-slate-700 bg-slate-900/60 px-3 py-2.5 text-sm text-slate-200 placeholder-slate-600 transition focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/40"
+                  className="min-w-0 flex-1 rounded-xl border border-neutral-700 bg-neutral-900/60 px-3 py-2.5 text-sm text-neutral-200 placeholder-neutral-600 transition focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-500/40"
                 />
-                <span className="font-mono text-xs text-slate-500">{field.unit}</span>
+                <span className="font-mono text-xs text-neutral-500">{field.unit}</span>
               </div>
             </div>
           ))}
         </div>
 
-        <div className="flex gap-2 rounded-xl border border-slate-700/40 bg-slate-900/40 p-3">
-          <AlertCircle size={13} className="mt-0.5 flex-shrink-0 text-slate-500" />
-          <p className="text-xs text-slate-500">
+        <div className="flex gap-2 rounded-xl border border-neutral-700/40 bg-neutral-900/40 p-3">
+          <AlertCircle size={13} className="mt-0.5 flex-shrink-0 text-neutral-500" />
+          <p className="text-xs text-neutral-500">
             Manutenção: {MANUT[species]} mL/kg/dia. Adicionar perdas contínuas (vômito, diarreia, lactação).
           </p>
         </div>
@@ -267,7 +267,7 @@ function FluidCalc() {
         <motion.button
           whileTap={{ scale: 0.97 }}
           onClick={calc}
-          className="flex w-full items-center justify-center gap-2 rounded-xl bg-blue-600 py-3 text-sm font-bold text-white transition-colors hover:bg-blue-700"
+          className="flex w-full items-center justify-center gap-2 rounded-xl bg-primary-600 py-3 text-sm font-bold text-white transition-colors hover:bg-accent-600"
         >
           <Droplets size={15} /> Calcular plano
         </motion.button>
@@ -279,21 +279,21 @@ function FluidCalc() {
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0 }}
-            className="rounded-2xl border border-blue-500/25 bg-blue-500/10 p-5 backdrop-blur-md"
+            className="rounded-2xl border border-primary-500/25 bg-primary-500/10 p-5 backdrop-blur-md"
           >
-            <p className="mb-3 text-[10px] font-bold uppercase tracking-widest text-blue-400">Plano de fluidos</p>
+            <p className="mb-3 text-[10px] font-bold uppercase tracking-widest text-primary-400">Plano de fluidos</p>
             <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
               {[
                 { label: 'Déficit hídrico', value: result.deficit.toFixed(0), unit: 'mL', color: 'text-white' },
                 { label: 'Manutenção', value: result.manut.toFixed(0), unit: 'mL', color: 'text-white' },
-                { label: 'Volume total', value: result.total.toFixed(0), unit: 'mL', color: 'text-blue-200 font-black' },
-                { label: 'Taxa de infusão', value: result.rate.toFixed(1), unit: 'mL/h', color: 'text-blue-300 font-black' },
+                { label: 'Volume total', value: result.total.toFixed(0), unit: 'mL', color: 'text-primary-200 font-black' },
+                { label: 'Taxa de infusão', value: result.rate.toFixed(1), unit: 'mL/h', color: 'text-primary-300 font-black' },
               ].map(item => (
-                <div key={item.label} className="rounded-xl border border-slate-700/60 bg-slate-800/80 p-3">
-                  <p className="mb-1 text-[10px] text-slate-500">{item.label}</p>
+                <div key={item.label} className="rounded-xl border border-neutral-700/60 bg-neutral-800/80 p-3">
+                  <p className="mb-1 text-[10px] text-neutral-500">{item.label}</p>
                   <p className={`text-xl font-bold ${item.color}`}>
                     {item.value}
-                    <span className="ml-1 text-xs text-slate-500">{item.unit}</span>
+                    <span className="ml-1 text-xs text-neutral-500">{item.unit}</span>
                   </p>
                 </div>
               ))}
@@ -319,8 +319,8 @@ function LabRef() {
             onClick={() => setSpecies(key)}
             className={`flex items-center gap-2 rounded-xl border px-4 py-2 text-sm font-semibold transition-all ${
               species === key
-                ? 'border-purple-500/30 bg-purple-500/20 text-purple-300'
-                : 'border-slate-700/60 bg-slate-800 text-slate-500 hover:text-slate-300'
+                ? 'border-primary-500/30 bg-primary-500/20 text-primary-300'
+                : 'border-neutral-700/60 bg-neutral-800 text-neutral-500 hover:text-neutral-300'
             }`}
           >
             <span>{value.emoji}</span>
@@ -329,13 +329,13 @@ function LabRef() {
         ))}
       </div>
 
-      <div className="w-fit max-w-full rounded-xl border border-slate-700/50 bg-slate-800/60 p-1">
+      <div className="w-fit max-w-full rounded-xl border border-neutral-700/50 bg-neutral-800/60 p-1">
         {(['hematology', 'biochemistry'] as const).map(currentTab => (
           <button
             key={currentTab}
             onClick={() => setTab(currentTab)}
             className={`rounded-lg px-4 py-1.5 text-xs font-bold transition-all ${
-              tab === currentTab ? 'bg-purple-500/20 text-purple-300' : 'text-slate-500 hover:text-slate-300'
+              tab === currentTab ? 'bg-primary-500/20 text-primary-300' : 'text-neutral-500 hover:text-neutral-300'
             }`}
           >
             {currentTab === 'hematology' ? '🩸 Hematologia' : '⚗️ Bioquímica'}
@@ -352,8 +352,8 @@ function LabRef() {
           transition={{ duration: 0.15 }}
           className="overflow-x-auto"
         >
-          <div className="min-w-[36rem] overflow-hidden rounded-2xl border border-slate-700/80 bg-slate-800/80 backdrop-blur-md">
-            <div className="grid grid-cols-4 border-b border-slate-700/60 bg-slate-700/50 px-5 py-2.5 text-[10px] font-black uppercase tracking-wider text-slate-500">
+          <div className="min-w-[36rem] overflow-hidden rounded-2xl border border-neutral-700/80 bg-neutral-800/80 backdrop-blur-md">
+            <div className="grid grid-cols-4 border-b border-neutral-700/60 bg-neutral-700/50 px-5 py-2.5 text-[10px] font-black uppercase tracking-wider text-neutral-500">
               <span>Parâmetro</span>
               <span className="text-center">Mín.</span>
               <span className="text-center">Máx.</span>
@@ -362,19 +362,19 @@ function LabRef() {
             {data[tab].map((row, index) => (
               <div
                 key={row.param}
-                className={`grid grid-cols-4 px-5 py-3 text-sm ${index % 2 === 0 ? 'bg-slate-800' : 'bg-slate-800/40'} hover:bg-teal-500/5`}
+                className={`grid grid-cols-4 px-5 py-3 text-sm ${index % 2 === 0 ? 'bg-neutral-800' : 'bg-neutral-800/40'} hover:bg-primary-500/5`}
               >
-                <span className="font-semibold text-slate-300">{row.param}</span>
-                <span className="text-center font-mono font-bold text-teal-400">{row.min}</span>
-                <span className="text-center font-mono font-bold text-teal-400">{row.max}</span>
-                <span className="text-center text-xs text-slate-500">{row.unit}</span>
+                <span className="font-semibold text-neutral-300">{row.param}</span>
+                <span className="text-center font-mono font-bold text-primary-400">{row.min}</span>
+                <span className="text-center font-mono font-bold text-primary-400">{row.max}</span>
+                <span className="text-center text-xs text-neutral-500">{row.unit}</span>
               </div>
             ))}
           </div>
         </motion.div>
       </AnimatePresence>
 
-      <p className="text-center text-xs text-slate-600">Fonte: Jain (2018) · Stockham & Scott (2019) · Thrall et al. (2022)</p>
+      <p className="text-center text-xs text-neutral-600">Fonte: Jain (2018) · Stockham & Scott (2019) · Thrall et al. (2022)</p>
     </div>
   )
 }
@@ -391,17 +391,17 @@ export default function FerramentasPage({
     <div className="mx-auto max-w-4xl p-4 sm:p-6 md:p-8">
       <div className="mb-6">
         <div className="mb-1 flex items-center gap-2">
-          <Wrench size={22} className="text-teal-400" />
+          <Wrench size={22} className="text-primary-400" />
           <h1 className="text-2xl font-bold text-white">Consulta Rápida</h1>
         </div>
-        <p className="text-sm text-slate-400">Pesquise por doença, fármaco, dose, sintoma ou protocolo.</p>
+        <p className="text-sm text-neutral-400">Pesquise por doença, fármaco, dose, sintoma ou protocolo.</p>
       </div>
 
       {profileId && (
         <div className="mb-8">
           <div className="mb-3 flex items-center gap-2">
-            <Search size={14} className="text-teal-400" />
-            <p className="text-xs font-bold uppercase tracking-wider text-slate-400">Busca Clínica</p>
+            <Search size={14} className="text-primary-400" />
+            <p className="text-xs font-bold uppercase tracking-wider text-neutral-400">Busca Clínica</p>
           </div>
           <GlobalClinicalSearch profileId={profileId} onNavigate={onNavigate} />
         </div>
@@ -415,7 +415,7 @@ export default function FerramentasPage({
             className={`flex items-center gap-2.5 rounded-2xl border px-5 py-3 text-sm font-semibold transition-all ${
               active === id
                 ? `${activeClass} text-white shadow-lg`
-                : 'border-slate-700/60 bg-slate-800/60 text-slate-500 hover:bg-slate-800 hover:text-slate-300'
+                : 'border-neutral-700/60 bg-neutral-800/60 text-neutral-500 hover:bg-neutral-800 hover:text-neutral-300'
             }`}
           >
             <Icon size={16} className={active === id ? color : ''} />
