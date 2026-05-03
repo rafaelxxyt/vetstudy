@@ -1,30 +1,37 @@
 import { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Menu } from 'lucide-react'
-import Sidebar, { type Page } from './components/Sidebar'
+import Sidebar, { type Page, type ThemeMode } from './components/Sidebar'
 
 import MedicamentosPage from './pages/MedicamentosPage'
-import DoencasPage      from './pages/DoencasPage'
-import ToolboxPage      from './pages/ToolboxPage'
-import VetNewsPage      from './pages/VetNewsPage'
-import HubPage          from './pages/HubPage'
-import CasosPage        from './pages/CasosPage'
-import RevisaoPage      from './pages/RevisaoPage'
-import MapasPage        from './pages/MapasPage'
+import DoencasPage from './pages/DoencasPage'
+import ToolboxPage from './pages/ToolboxPage'
+import VetNewsPage from './pages/VetNewsPage'
+import HubPage from './pages/HubPage'
+import CasosPage from './pages/CasosPage'
+import RevisaoPage from './pages/RevisaoPage'
+import MapasPage from './pages/MapasPage'
+
+const THEME_STORAGE_KEY = 'vetstudy_theme'
 
 const PAGE_LABELS: Record<Page, string> = {
-  hub:          'Início',
-  revisao:      'Flashcards',
-  casos:        'Casos',
-  mapas:        'Resumos',
+  hub: 'Início',
+  revisao: 'Flashcards',
+  casos: 'Casos',
+  mapas: 'Resumos',
   medicamentos: 'Medicamentos',
-  doencas:      'Doenças',
-  ferramentas:  'Consulta Rápida',
-  vetnews:      'Atualidades',
+  doencas: 'Doenças',
+  ferramentas: 'Consulta Rápida',
+  vetnews: 'Atualidades',
 }
 
 export default function App() {
   const [activePage, setActivePage] = useState<Page>('hub')
+  const [theme, setTheme] = useState<ThemeMode>(() => {
+    if (typeof window === 'undefined') return 'dark'
+    const saved = window.localStorage.getItem(THEME_STORAGE_KEY)
+    return saved === 'dark' || saved === 'light' ? saved : 'dark'
+  })
   const [mobileOpen, setMobileOpen] = useState(false)
   const [selectionToken, setSelectionToken] = useState(0)
   const [caseSelectionToken, setCaseSelectionToken] = useState(0)
@@ -32,21 +39,27 @@ export default function App() {
   const [selectedDrugId, setSelectedDrugId] = useState<string | undefined>(undefined)
   const [selectedDrugQuery, setSelectedDrugQuery] = useState<string | undefined>(undefined)
 
-  // â”€â”€ Body scroll lock â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
-  // Prevents the background page from scrolling while the
-  // drawer is open â€” critical for the "native app" feel.
+  useEffect(() => {
+    const root = document.documentElement
+    root.classList.remove('theme-dark', 'theme-light')
+    root.classList.add(theme === 'light' ? 'theme-light' : 'theme-dark')
+    root.style.colorScheme = theme === 'light' ? 'light' : 'dark'
+    window.localStorage.setItem(THEME_STORAGE_KEY, theme)
+  }, [theme])
+
   useEffect(() => {
     if (mobileOpen) {
       document.body.style.overflow = 'hidden'
     } else {
       document.body.style.overflow = ''
     }
-    // Always restore on unmount
-    return () => { document.body.style.overflow = '' }
+    return () => {
+      document.body.style.overflow = ''
+    }
   }, [mobileOpen])
 
-  const handleNavigate = (p: Page) => {
-    setActivePage(p)
+  const handleNavigate = (page: Page) => {
+    setActivePage(page)
     setMobileOpen(false)
   }
 
@@ -85,78 +98,60 @@ export default function App() {
     setMobileOpen(false)
   }
 
-  const pageNode = activePage === 'hub'
-    ? <HubPage onOpenCases={handleOpenCases} onOpenReview={handleOpenReview} />
-    : activePage === 'revisao'
-      ? <RevisaoPage onRequestCase={handleOpenCasesList} />
-    : activePage === 'casos'
-      ? <CasosPage
-          selectionToken={caseSelectionToken}
-          onOpenDisease={(diseaseId) => handleGlobalNavigate('doencas', diseaseId)}
-        />
-    : activePage === 'mapas'
-      ? <MapasPage />
-    : activePage === 'medicamentos'
-      ? <MedicamentosPage
-          initialSelectedId={selectedDrugId}
-          initialQuery={selectedDrugQuery}
-          selectionToken={selectionToken}
-        />
-      : activePage === 'doencas'
-        ? <DoencasPage
-            initialSelectedId={selectedDiseaseId}
-            selectionToken={selectionToken}
-            onOpenDrug={(drugId) => handleGlobalNavigate('medicamentos', drugId)}
-            onOpenRelatedDrugs={handleOpenDrugSearch}
-          />
-        : activePage === 'ferramentas'
-          ? <ToolboxPage onNavigate={handleGlobalNavigate} />
-          : <VetNewsPage />
+  const pageNode =
+    activePage === 'hub' ? (
+      <HubPage onOpenCases={handleOpenCases} onOpenReview={handleOpenReview} />
+    ) : activePage === 'revisao' ? (
+      <RevisaoPage onRequestCase={handleOpenCasesList} />
+    ) : activePage === 'casos' ? (
+      <CasosPage
+        selectionToken={caseSelectionToken}
+        onOpenDisease={(diseaseId) => handleGlobalNavigate('doencas', diseaseId)}
+      />
+    ) : activePage === 'mapas' ? (
+      <MapasPage />
+    ) : activePage === 'medicamentos' ? (
+      <MedicamentosPage
+        initialSelectedId={selectedDrugId}
+        initialQuery={selectedDrugQuery}
+        selectionToken={selectionToken}
+      />
+    ) : activePage === 'doencas' ? (
+      <DoencasPage
+        initialSelectedId={selectedDiseaseId}
+        selectionToken={selectionToken}
+        onOpenDrug={(drugId) => handleGlobalNavigate('medicamentos', drugId)}
+        onOpenRelatedDrugs={handleOpenDrugSearch}
+      />
+    ) : activePage === 'ferramentas' ? (
+      <ToolboxPage onNavigate={handleGlobalNavigate} />
+    ) : (
+      <VetNewsPage />
+    )
 
   return (
-    <div className="flex h-dvh md:h-screen bg-slate-950 overflow-hidden font-sans">
-
-      {/* â”€â”€ Mobile top bar â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
-          Fixed, always visible on mobile.
-          h-14 = 56 px â†’ main content offset by pt-14.
-          shadow-[0_1px_0] instead of border-b keeps it
-          visually lighter while still providing separation.
-      â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
-      <header className="md:hidden fixed inset-x-0 top-0 z-30 h-14
-                         flex items-center gap-3 px-4
-                         bg-slate-900/98 backdrop-blur-md
-                         shadow-[0_1px_0_0_rgba(51,65,85,0.6)]">
-
-        {/* Hamburger â€” 44Ã—44 tap target (Apple HIG minimum) */}
+    <div className="app-shell flex h-dvh overflow-hidden font-sans md:h-screen">
+      <header
+        className="app-header-surface fixed inset-x-0 top-0 z-30 flex h-14 items-center gap-3 px-4 md:hidden"
+      >
         <button
           onClick={() => setMobileOpen(true)}
           aria-label="Abrir menu"
-          className="w-11 h-11 flex items-center justify-center rounded-xl
-                     bg-slate-800 text-slate-400
-                     active:bg-slate-700 active:scale-95
-                     transition-all duration-150"
+          className="app-surface-button flex h-11 w-11 items-center justify-center rounded-xl transition-all duration-150 active:scale-95 active:bg-neutral-700"
         >
           <Menu size={19} />
         </button>
 
-        {/* Logo + active page name */}
-        <div className="flex items-center gap-2.5 min-w-0 flex-1">
-          <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-teal-400 to-teal-600
-                          flex items-center justify-center flex-shrink-0 shadow-md shadow-teal-900/50">
-            <span className="text-white font-black text-[10px] tracking-tight">V5</span>
+        <div className="flex min-w-0 flex-1 items-center gap-2.5">
+          <div className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-primary-400 to-primary-600 shadow-md shadow-primary-900/50">
+            <span className="text-[10px] font-black tracking-tight text-white">V5</span>
           </div>
-          <span className="text-[15px] font-semibold text-white truncate leading-tight">
+          <span className="app-text-primary truncate text-[15px] font-semibold leading-tight">
             {PAGE_LABELS[activePage]}
           </span>
         </div>
       </header>
 
-      {/* â”€â”€ Backdrop â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
-          Sits between the drawer (z-50) and the content (z-0).
-          bg-black/70 + backdrop-blur-md creates a strong visual
-          separation so the user focuses entirely on the drawer.
-          Tapping backdrop closes the drawer.
-      â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
@@ -165,27 +160,23 @@ export default function App() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.22, ease: 'easeOut' }}
-            className="md:hidden fixed inset-0 z-40 bg-black/70 backdrop-blur-md"
+            className="app-overlay fixed inset-0 z-40 backdrop-blur-md md:hidden"
             onClick={() => setMobileOpen(false)}
             aria-hidden="true"
           />
         )}
       </AnimatePresence>
 
-      {/* â”€â”€ Sidebar â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
       <Sidebar
         activePage={activePage}
         onNavigate={handleNavigate}
         mobileOpen={mobileOpen}
         onMobileClose={() => setMobileOpen(false)}
+        theme={theme}
+        onThemeChange={setTheme}
       />
 
-      {/* â”€â”€ Main content â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
-          pt-14 clears the fixed top bar on mobile.
-          overflow-x-hidden prevents any runaway child widths
-          from causing horizontal scroll.
-      â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
-      <main className="min-w-0 flex-1 overflow-y-auto overflow-x-hidden bg-slate-950 pt-14 md:pt-0">
+      <main className="app-shell min-w-0 flex-1 overflow-x-hidden overflow-y-auto pt-14 md:pt-0">
         <AnimatePresence mode="wait">
           <motion.div
             key={activePage}
@@ -199,8 +190,8 @@ export default function App() {
           </motion.div>
         </AnimatePresence>
       </main>
-
     </div>
   )
 }
+
 

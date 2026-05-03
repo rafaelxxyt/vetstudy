@@ -55,12 +55,12 @@ export default function Gatekeeper({ children, pageTitle = 'Início' }: Gatekeep
             <Lock size={24} className="text-white" />
           </div>
 
-          <h2 className="mb-1 text-lg font-bold text-neutral-100">{pageTitle}</h2>
+          <h2 className="app-text-primary mb-1 text-lg font-bold">{pageTitle}</h2>
           <div className="mb-6 space-y-1">
-            <p className="text-xs text-neutral-400">
+            <p className="app-text-secondary text-xs">
               Área exclusiva · <span className="text-primary-400 font-semibold">VetFoco</span>
             </p>
-            <p className="text-xs text-neutral-500">
+            <p className="app-text-muted text-xs">
               Estude com foco. Erre menos. Passe mais.
             </p>
           </div>
@@ -79,7 +79,7 @@ export default function Gatekeeper({ children, pageTitle = 'Início' }: Gatekeep
               }`}
             />
             <button type="button" onClick={() => setShow(s => !s)}
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-neutral-500 hover:text-neutral-300 transition-colors">
+              className="absolute right-3 top-1/2 -translate-y-1/2 app-text-secondary transition-colors hover:text-neutral-100">
               {show ? <EyeOff size={15} /> : <Eye size={15} />}
             </button>
           </div>

@@ -71,8 +71,8 @@ function CollapseBtn({
       title={collapsed ? 'Abrir menu' : 'Fechar menu'}
       className={`flex-shrink-0 rounded-xl transition-all ${
         collapsed
-          ? 'flex h-10 w-10 items-center justify-center bg-neutral-800 text-neutral-400 hover:bg-primary-500/20 hover:text-primary-400'
-          : 'ml-auto p-2 text-neutral-500 hover:bg-neutral-800 hover:text-primary-400'
+          ? 'app-surface-button flex h-10 w-10 items-center justify-center hover:bg-primary-500/20 hover:text-primary-400'
+          : 'ml-auto p-2 app-text-secondary hover:bg-neutral-700/70 hover:text-primary-400'
       }`}
     >
       <AnimatePresence mode="wait" initial={false}>
@@ -112,7 +112,7 @@ function SectionLabel({
   return (
     <div className="mb-1.5 flex items-center gap-1.5 px-3">
       {Icon && <Icon size={9} className="flex-shrink-0 text-primary-500" />}
-      <p className="select-none text-[9px] font-black uppercase tracking-widest text-neutral-600">{label}</p>
+      <p className="app-text-muted select-none text-[9px] font-black uppercase tracking-widest">{label}</p>
     </div>
   )
 }
@@ -142,7 +142,7 @@ function NavBtn({
       } ${
         active
           ? 'border border-primary-500/25 bg-primary-500/15 text-primary-300'
-          : 'border border-transparent text-neutral-500 hover:bg-neutral-800 hover:text-neutral-200'
+          : 'border border-transparent app-text-secondary hover:bg-neutral-700/70 hover:text-neutral-100'
       }`}
     >
       <Icon size={16} className="flex-shrink-0" />
@@ -175,7 +175,7 @@ function HubBtn({
       } ${
         active
           ? 'border border-primary-500/25 bg-primary-500/15 text-primary-300 shadow-sm shadow-primary-950'
-          : 'border border-transparent text-neutral-500 hover:bg-neutral-800 hover:text-neutral-200'
+          : 'border border-transparent app-text-secondary hover:bg-neutral-700/70 hover:text-neutral-100'
       }`}
     >
       <GraduationCap size={16} className="flex-shrink-0" />
@@ -197,7 +197,7 @@ function HubBtn({
         (hubUnlocked ? (
           <span className="flex-shrink-0 text-xs text-primary-500">✓</span>
         ) : (
-          <span className="flex-shrink-0 rounded-md border border-neutral-700 bg-neutral-800/80 px-1.5 py-0.5 text-[11px] text-neutral-500">
+          <span className="app-surface-tag flex-shrink-0 rounded-md px-1.5 py-0.5 text-[11px]">
             🔒
           </span>
         ))}
@@ -220,7 +220,7 @@ function ThemeSwitcher({
   ]
 
   return (
-    <section className="border-t border-neutral-800 px-2 py-3">
+    <section className="border-t border-neutral-700/60 px-2 py-3">
       {!compact && <SectionLabel label="Tema" />}
       <div className={`grid gap-1.5 ${compact ? 'grid-cols-1' : 'grid-cols-2'}`}>
         {options.map(option => {
@@ -234,7 +234,7 @@ function ThemeSwitcher({
               className={`min-h-[40px] rounded-xl border px-2 py-2 text-xs font-semibold transition ${
                 active
                   ? 'border-primary-500/35 bg-primary-500/15 text-primary-300'
-                  : 'border-neutral-800 bg-neutral-900 text-neutral-400 hover:border-neutral-700 hover:text-neutral-200'
+                  : 'app-surface-button hover:text-neutral-100'
               } ${compact ? 'flex items-center justify-center' : 'flex items-center justify-center gap-1.5'}`}
             >
               <Icon size={14} />
@@ -276,14 +276,14 @@ function renderNav({
 
   return (
     <>
-      <div className={`flex h-16 flex-shrink-0 items-center border-b border-neutral-800 ${!isDrawer && collapsed ? 'justify-center px-2' : 'gap-3 px-3'}`}>
+      <div className={`flex h-16 flex-shrink-0 items-center border-b border-neutral-700/60 ${!isDrawer && collapsed ? 'justify-center px-2' : 'gap-3 px-3'}`}>
         {showLabels && (
           <div className="flex min-w-0 flex-1 items-center gap-3">
             <div className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-primary-400 to-primary-600 shadow-lg shadow-primary-900/50">
               <span className="text-xs font-black tracking-tight text-white">VF</span>
             </div>
             <div className="min-w-0 leading-tight">
-              <p className="text-sm font-bold text-neutral-100">VetFoco</p>
+              <p className="app-text-primary text-sm font-bold">VetFoco</p>
               <p className="text-[10px] font-semibold text-primary-400">Estudo Vet</p>
             </div>
           </div>
@@ -295,7 +295,7 @@ function renderNav({
           <button
             onClick={onMobileClose}
             aria-label="Fechar menu"
-            className="ml-auto flex h-11 w-11 items-center justify-center rounded-xl text-neutral-500 transition-colors hover:bg-neutral-800 hover:text-primary-400"
+            className="ml-auto flex h-11 w-11 items-center justify-center rounded-xl app-text-secondary transition-colors hover:bg-neutral-700/70 hover:text-primary-400"
           >
             <X size={18} />
           </button>

@@ -241,7 +241,7 @@ function VFQ({ q, answer, onAnswer }: { q:VF; answer:boolean|null; onAnswer:(v:b
               right?'bg-success-500/15 border-success-500/40 text-success-300':
               wrong?'bg-danger-500/15 border-danger-500/40 text-danger-300':
               sel?'bg-primary-500/15 border-primary-500/40 text-primary-300':
-              'bg-neutral-800 border-neutral-700/60 text-neutral-400 hover:border-primary-500/40 hover:text-white'
+              'bg-neutral-800 border-neutral-700/60 text-neutral-400 hover:border-primary-500/40 hover:text-neutral-100'
             } ${answered&&!sel?'opacity-40':''}`}>
             {val?'✓  VERDADEIRO':'✗  FALSO'}
           </button>
@@ -585,7 +585,7 @@ function FilterPanel({ filters, setFilters, history, total }: {
     <div className="bg-neutral-800/60 backdrop-blur-md rounded-2xl border border-neutral-700/60 p-4 space-y-4">
       <div className="flex items-center gap-2">
         <Filter size={14} className="text-primary-400" />
-        <p className="text-sm font-bold text-white">Filtros Avançados</p>
+        <p className="app-text-primary text-sm font-bold">Filtros Avançados</p>
       </div>
 
       {/* ── Pontos Fracos (aparece quando há histórico suficiente) ── */}
@@ -714,7 +714,7 @@ function FilterPanel({ filters, setFilters, history, total }: {
           </button>
           <button onClick={()=>syncFilters({ refazer: 'normal' })}
             className={`px-3 py-2 rounded-xl text-xs font-bold border transition-all ${
-              filters.refazer==='normal'?'bg-neutral-600 text-white border-neutral-500':'bg-neutral-800 text-neutral-500 border-neutral-700/60 hover:text-neutral-300'
+              filters.refazer==='normal'?'bg-neutral-700 text-neutral-100 border-neutral-600':'bg-neutral-800 text-neutral-500 border-neutral-700/60 hover:text-neutral-300'
             }`}>Todas</button>
         </div>
         {filters.refazer==='reforco' && (
@@ -860,7 +860,7 @@ function SimuladorContent({ profile }: { profile: LocalProfile }) {
     <div className="p-5 max-w-2xl mx-auto space-y-5">
       <div className="flex items-center justify-between">
         <div>
-          <h2 className="text-xl font-bold text-white flex items-center gap-2">
+          <h2 className="app-text-primary flex items-center gap-2 text-xl font-bold">
             <ClipboardCheck size={20} className="text-primary-400"/> Simulador de Prova
           </h2>
           <p className="text-xs text-neutral-400 mt-1">Reprodução Animal A1 · UNISUL 2025/2</p>
@@ -891,7 +891,7 @@ function SimuladorContent({ profile }: { profile: LocalProfile }) {
   if (submitted) return (
     <div className="p-5 max-w-2xl mx-auto">
       <div className="text-center mb-6">
-        <h2 className="text-2xl font-bold text-white mb-3">Resultado Final</h2>
+        <h2 className="app-text-primary mb-3 text-2xl font-bold">Resultado Final</h2>
         <div className={`text-6xl font-black mb-2 ${score/questions.length>=0.6?'text-success-400':'text-danger-400'}`}>
           {score}/{questions.length}
         </div>
@@ -938,7 +938,7 @@ function SimuladorContent({ profile }: { profile: LocalProfile }) {
         <div className="flex items-center justify-between mb-2">
           <div className="flex items-center gap-2">
             <ClipboardCheck size={17} className="text-primary-400"/>
-            <span className="text-sm font-bold text-white">Simulador</span>
+            <span className="app-text-primary text-sm font-bold">Simulador</span>
             {q.banca&&<span className="text-[10px] text-neutral-600 bg-neutral-800 px-2 py-0.5 rounded-lg">{displayBrandLabel(q.banca)}</span>}
             {q.dificuldade&&<span className="text-[10px] text-neutral-600 bg-neutral-800 px-2 py-0.5 rounded-lg">{q.dificuldade}</span>}
           </div>
@@ -987,7 +987,7 @@ function SimuladorContent({ profile }: { profile: LocalProfile }) {
                 )}
               </p>
             )}
-            <p className="text-sm font-semibold text-white leading-relaxed">{q.type==='assoc'?q.instruction:q.question}</p>
+            <p className="app-text-primary text-sm font-semibold leading-relaxed">{q.type==='assoc'?q.instruction:q.question}</p>
           </div>
 
           {q.type==='mc'    && <MCQ    q={q} answer={answers[index] as number|null}
@@ -1019,7 +1019,7 @@ function SimuladorContent({ profile }: { profile: LocalProfile }) {
 
           <div className="flex justify-between pt-1 pb-4">
             <button onClick={()=>setIndex(i=>Math.max(0,i-1))} disabled={index===0}
-              className="flex items-center gap-1.5 px-4 py-2.5 bg-neutral-800 border border-neutral-700 text-neutral-400 rounded-xl text-sm font-semibold hover:text-white disabled:opacity-30 transition-all active:scale-95">
+              className="flex items-center gap-1.5 rounded-xl border border-neutral-700 bg-neutral-800 px-4 py-2.5 text-sm font-semibold text-neutral-400 transition-all hover:text-neutral-100 disabled:opacity-30 active:scale-95">
               <ChevronRight size={13} className="rotate-180"/> Anterior
             </button>
             {index<questions.length-1?(
