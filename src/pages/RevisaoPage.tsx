@@ -578,30 +578,28 @@ function RevisaoContent({
       </div>
 
       {showSecondaryFilters && (
-        <div className="mb-5 flex flex-wrap gap-2">
-          <button
-            onClick={() => applySecondaryFilter(ALL_SECONDARY_KEY)}
-            className={`rounded-xl border px-3 py-1 text-[11px] font-semibold transition-all ${
-              normalizedSecondaryFilter === ALL_SECONDARY_KEY
-                ? 'border-primary-500/30 bg-primary-500/16 text-primary-300'
-                : 'border-neutral-700/50 bg-neutral-900/70 text-neutral-500 hover:text-neutral-300'
-            }`}
-          >
-            Todos
-          </button>
-          {selectedPrimaryDeck.secondaryFilters.map(filterItem => (
-            <button
-              key={filterItem.key}
-              onClick={() => applySecondaryFilter(filterItem.key)}
-              className={`rounded-xl border px-3 py-1 text-[11px] font-semibold transition-all ${
-                normalizedSecondaryFilter === filterItem.key
-                  ? 'border-primary-500/30 bg-primary-500/16 text-primary-300'
-                  : 'border-neutral-700/50 bg-neutral-900/70 text-neutral-500 hover:text-neutral-300'
-              }`}
+        <div className="mb-5 rounded-2xl border border-neutral-700/60 bg-neutral-900/60 px-3.5 py-3">
+          <div className="flex items-center gap-3">
+            <label
+              htmlFor="flashcards-tema-filter"
+              className="text-[10px] font-bold uppercase tracking-wider text-neutral-500"
             >
-              {filterItem.label}
-            </button>
-          ))}
+              Tema
+            </label>
+            <select
+              id="flashcards-tema-filter"
+              value={normalizedSecondaryFilter}
+              onChange={event => applySecondaryFilter(event.target.value)}
+              className="min-h-[40px] flex-1 rounded-xl border border-neutral-700 bg-neutral-800 px-3 py-2 text-sm font-semibold text-neutral-200 outline-none transition-colors hover:border-neutral-600 focus:border-primary-500"
+            >
+              <option value={ALL_SECONDARY_KEY}>Todos</option>
+              {selectedPrimaryDeck.secondaryFilters.map(filterItem => (
+                <option key={filterItem.key} value={filterItem.key}>
+                  {filterItem.label}
+                </option>
+              ))}
+            </select>
+          </div>
         </div>
       )}
 
