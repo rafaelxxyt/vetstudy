@@ -1,0 +1,361 @@
+{
+  "disciplina": "Clínica Médica de Pequenos Animais",
+  "modulo": "Erliquiose e Anaplasmose | Hemoparasitoses",
+  "module": "Erliquiose e Anaplasmose | Hemoparasitoses",
+  "source": "faculdade",
+  "topics": [
+    {
+      "name": "Erliquiose e Anaplasmose | Hemoparasitoses",
+      "flashcards": [
+        {
+          "id": "fc_erliquiose_001",
+          "pergunta": "A qual família e ordem pertencem Ehrlichia canis e Anaplasma spp.? Cite uma característica estrutural relevante.",
+          "resposta": "Pertencem à família Anaplasmataceae, ordem Rickettsiales. São bactérias gram-negativas intracelulares obrigatórias que formam inclusões citoplasmáticas denominadas mórulas dentro de células hematopoéticas do hospedeiro.",
+          "tema": "Clínica Médica de Pequenos Animais",
+          "subtema": "Erliquiose e Anaplasmose | Hemoparasitoses",
+          "needsReview": false
+        },
+        {
+          "id": "fc_erliquiose_002",
+          "pergunta": "Qual a diferença entre Ehrlichia canis, Anaplasma platys e Anaplasma phagocytophilum quanto à classificação e às células que infectam?",
+          "resposta": "Todos pertencem à família Anaplasmataceae. E. canis infecta monócitos e macrófagos (erliquiose monocítica). A. platys infecta plaquetas, causando trombocitopenia cíclica (anaplasmose trombocítica). A. phagocytophilum infecta granulócitos neutrófilos (anaplasmose granulocítica, com potencial zoonótico).",
+          "tema": "Clínica Médica de Pequenos Animais",
+          "subtema": "Erliquiose e Anaplasmose | Hemoparasitoses",
+          "needsReview": false
+        },
+        {
+          "id": "fc_erliquiose_003",
+          "pergunta": "Qual é o principal vetor de Ehrlichia canis em cães? Como ocorre a transmissão e qual o mecanismo mais relevante de manutenção do agente na população de carrapatos?",
+          "resposta": "O principal vetor é Rhipicephalus sanguineus (carrapato marrom do cão). A transmissão ocorre durante o repasto sanguíneo do carrapato infectado. O mecanismo mais relevante de manutenção do agente na população de carrapatos é a transmissão transestadial (de larva para ninfa para adulto), não a transmissão transovariana.",
+          "tema": "Clínica Médica de Pequenos Animais",
+          "subtema": "Erliquiose e Anaplasmose | Hemoparasitoses",
+          "needsReview": false
+        },
+        {
+          "id": "fc_erliquiose_004",
+          "pergunta": "Qual a diferença entre Rhipicephalus sanguineus e Ixodes spp. como vetores nas hemoparasitoses por Anaplasmataceae?",
+          "resposta": "R. sanguineus é o vetor de E. canis e A. platys em cães, com ampla distribuição urbana e tropical. Ixodes spp. é o vetor de A. phagocytophilum, predominando em regiões temperadas. A distinção do vetor tem implicação epidemiológica: surtos de anaplasmose granulocítica em humanos estão associados a Ixodes, não a R. sanguineus.",
+          "tema": "Clínica Médica de Pequenos Animais",
+          "subtema": "Erliquiose e Anaplasmose | Hemoparasitoses",
+          "needsReview": false
+        },
+        {
+          "id": "fc_erliquiose_005",
+          "pergunta": "O que são mórulas e em qual célula elas são encontradas na erliquiose monocítica e na anaplasmose granulocítica?",
+          "resposta": "Mórulas são inclusões citoplasmáticas formadas por colônias de Ehrlichia ou Anaplasma replicando-se dentro da célula hospedeira. Na erliquiose monocítica (E. canis), as mórulas são encontradas em monócitos. Na anaplasmose granulocítica (A. phagocytophilum), as mórulas são encontradas em neutrófilos. Na anaplasmose trombocítica (A. platys), as inclusões são observadas em plaquetas.",
+          "tema": "Clínica Médica de Pequenos Animais",
+          "subtema": "Erliquiose e Anaplasmose | Hemoparasitoses",
+          "needsReview": false
+        },
+        {
+          "id": "fc_erliquiose_006",
+          "pergunta": "Por que E. canis causa trombocitopenia mesmo sem infectar diretamente as plaquetas?",
+          "resposta": "A trombocitopenia na erliquiose monocítica resulta de mecanismos indiretos: destruição imunomediada por imunocomplexos e anticorpos antiplaquetários, sequestro esplênico e, na fase crônica, hipoplasia medular com redução da trombopoese. E. canis infecta monócitos, não plaquetas — a célula-alvo plaquetária é A. platys.",
+          "tema": "Clínica Médica de Pequenos Animais",
+          "subtema": "Erliquiose e Anaplasmose | Hemoparasitoses",
+          "needsReview": false
+        },
+        {
+          "id": "fc_erliquiose_007",
+          "pergunta": "Quais são as três fases clínicas da erliquiose monocítica canina e quais são os achados mais relevantes de cada uma?",
+          "resposta": "1) Aguda: febre, trombocitopenia, petéquias, epistaxe, linfadenomegalia — dura semanas. 2) Subclínica: sem sinais clínicos, mas com trombocitopenia persistente no hemograma — fase epidemiologicamente importante por ser inaparente. 3) Crônica: pancitopenia por hipoplasia medular, hiperglobulinemia, hemorragias graves, uveíte, edema de membros — forma grave com alta mortalidade.",
+          "tema": "Clínica Médica de Pequenos Animais",
+          "subtema": "Erliquiose e Anaplasmose | Hemoparasitoses",
+          "needsReview": false
+        },
+        {
+          "id": "fc_erliquiose_008",
+          "pergunta": "Por que a fase subclínica da erliquiose monocítica é epidemiologicamente relevante mesmo sem causar sinais clínicos?",
+          "resposta": "Na fase subclínica, o animal permanece soropositivo e com trombocitopenia persistente detectável apenas em hemograma, sem sinais clínicos visíveis. O cão continua sendo reservatório do agente e pode progredir para a fase crônica grave sem que o proprietário perceba a doença. Essa fase pode durar meses a anos, favorecendo o subdiagnóstico.",
+          "tema": "Clínica Médica de Pequenos Animais",
+          "subtema": "Erliquiose e Anaplasmose | Hemoparasitoses",
+          "needsReview": false
+        },
+        {
+          "id": "fc_erliquiose_009",
+          "pergunta": "Qual é o achado hematológico mais consistente na erliquiose monocítica e o que o diferencia do perfil da babesiose aguda?",
+          "resposta": "Na erliquiose monocítica: trombocitopenia é o achado mais consistente em todas as fases; na fase crônica, há pancitopenia e hiperglobulinemia. Na babesiose aguda: o achado dominante é anemia hemolítica regenerativa com hematócrito muito reduzido, podendo haver icterícia e hemoglobinúria. A erliquiose não cursa com hemólise intravascular nem icterícia como achados primários.",
+          "tema": "Clínica Médica de Pequenos Animais",
+          "subtema": "Erliquiose e Anaplasmose | Hemoparasitoses",
+          "needsReview": false
+        },
+        {
+          "id": "fc_erliquiose_010",
+          "pergunta": "O que a hiperglobulinemia observada na erliquiose crônica representa e como ela pode confundir o clínico?",
+          "resposta": "A hiperglobulinemia reflete estimulação imune humoral crônica e persistente, com produção exacerbada de globulinas (principalmente IgG). Pode confundir o clínico com: (1) desidratação — que causa hiperproteinemia, mas com aumento proporcional de albumina; (2) linfoma — que também causa hiperglobulinemia; a distinção requer eletroforese de proteínas e correlação clínico-epidemiológica.",
+          "tema": "Clínica Médica de Pequenos Animais",
+          "subtema": "Erliquiose e Anaplasmose | Hemoparasitoses",
+          "needsReview": false
+        },
+        {
+          "id": "fc_erliquiose_011",
+          "pergunta": "Qual a limitação do esfregaço sanguíneo no diagnóstico da erliquiose e em qual situação a IFI e o PCR são mais indicados?",
+          "resposta": "O esfregaço tem baixa sensibilidade — mórulas em monócitos são raramente visualizadas, e sua ausência não descarta o diagnóstico. IFI: detecta anticorpos; indicada como triagem, mas com janela imunológica na fase aguda precoce. PCR: detecta DNA bacteriano; mais sensível na fase aguda quando anticorpos ainda não são detectáveis. Os dois métodos são complementares ao esfregaço.",
+          "tema": "Clínica Médica de Pequenos Animais",
+          "subtema": "Erliquiose e Anaplasmose | Hemoparasitoses",
+          "needsReview": false
+        },
+        {
+          "id": "fc_erliquiose_012",
+          "pergunta": "Como diferenciar morfologicamente as mórulas de E. canis das mórulas de A. phagocytophilum no esfregaço sanguíneo?",
+          "resposta": "A distinção pelo esfregaço baseia-se na célula hospedeira: mórulas de E. canis são encontradas no citoplasma de monócitos; mórulas de A. phagocytophilum são encontradas no citoplasma de neutrófilos (granulócitos). Morfologicamente, ambas são inclusões basofílicas de aspecto granular, tornando a distinção por esfregaço imprecisa — o PCR espécie-específico é necessário para confirmação.",
+          "tema": "Clínica Médica de Pequenos Animais",
+          "subtema": "Erliquiose e Anaplasmose | Hemoparasitoses",
+          "needsReview": false
+        },
+        {
+          "id": "fc_erliquiose_014",
+          "pergunta": "Quais são as principais espécies zoonóticas dentro de Anaplasmataceae e como a transmissão ao humano ocorre?",
+          "resposta": "As principais espécies zoonóticas são: Anaplasma phagocytophilum (anaplasmose granulocítica humana) e Ehrlichia chaffeensis (erliquiose monocítica humana). A transmissão ao humano ocorre exclusivamente pela picada de carrapatos infectados — não há transmissão por contato direto com cães, por mordedura ou por aerossol. Grupos de risco: pessoas com exposição a carrapatos em áreas endêmicas.",
+          "tema": "Clínica Médica de Pequenos Animais",
+          "subtema": "Erliquiose e Anaplasmose | Hemoparasitoses",
+          "needsReview": false
+        }
+      ],
+      "questions": [
+        {
+          "id": 16001,
+          "tipo": "multipla_escolha",
+          "type": "faculdade",
+          "banca": "Faculdade",
+          "source": "faculdade",
+          "discipline": "Clínica Médica de Pequenos Animais",
+          "topic": "Erliquiose e Anaplasmose | Hemoparasitoses",
+          "tema": "Clínica Médica de Pequenos Animais",
+          "subtema": "Erliquiose e Anaplasmose | Hemoparasitoses",
+          "dificuldade": "media",
+          "pergunta": "Ehrlichia canis e Anaplasma platys são agentes de hemoparasitoses caninas pertencentes à mesma família bacteriana. Assinale a alternativa que identifica corretamente essa classificação taxonômica e uma característica relevante desses agentes:",
+          "alternativas": {
+            "A": "Pertencem à família Flaviviridae, são vírus de RNA fita simples que infectam monócitos e plaquetas caninas, causando inclusões nucleares denominadas corpos de Negri, detectáveis por imunofluorescência direta.",
+            "B": "Pertencem à família Babesiidae, são protozoários apicomplexa intracelulares que parasitam eritrócitos caninos, formando pares de merozoítos piriformes característicos detectáveis no esfregaço de sangue periférico.",
+            "C": "Pertencem à família Rickettsiaceae, são protozoários intracelulares obrigatórios que infectam eritrócitos, formando inclusões citoplasmáticas denominadas esquizontes, visualizáveis em esfregaço corado por Giemsa.",
+            "D": "Pertencem à família Anaplasmataceae, são bactérias gram-negativas intracelulares obrigatórias que infectam células hematopoéticas, formando inclusões citoplasmáticas denominadas mórulas, visualizáveis em esfregaço sanguíneo."
+          },
+          "correta": "D",
+          "explicacao": "Ehrlichia spp. e Anaplasma spp. pertencem à família Anaplasmataceae, ordem Rickettsiales. São bactérias gram-negativas intracelulares obrigatórias que infectam células hematopoéticas (monócitos, plaquetas ou granulócitos, conforme a espécie) e formam inclusões citoplasmáticas denominadas mórulas. Não são protozoários nem vírus, e não formam esquizontes nem corpos de Negri.",
+          "needsReview": false
+        },
+        {
+          "id": 16002,
+          "tipo": "multipla_escolha",
+          "type": "faculdade",
+          "banca": "Faculdade",
+          "source": "faculdade",
+          "discipline": "Clínica Médica de Pequenos Animais",
+          "topic": "Erliquiose e Anaplasmose | Hemoparasitoses",
+          "tema": "Clínica Médica de Pequenos Animais",
+          "subtema": "Erliquiose e Anaplasmose | Hemoparasitoses",
+          "dificuldade": "media",
+          "pergunta": "A transmissão de Ehrlichia canis ao cão doméstico ocorre por meio de um vetor artrópode específico. Assinale a alternativa que descreve corretamente a relação vetor-agente-hospedeiro para essa hemoparasitose:",
+          "alternativas": {
+            "A": "A transmissão ocorre por Rhipicephalus sanguineus, que atua como vetor biológico; a bactéria é transmitida durante o repasto sanguíneo do carrapato infectado, sendo a transmissão transovariana descrita, porém a transmissão transestadial considerada o mecanismo mais relevante.",
+            "B": "A transmissão ocorre por Ixodes scapularis, que é o vetor exclusivo de E. canis nas Américas; o carrapato transmite a bactéria exclusivamente no estágio de ninfa, sendo os adultos e larvas incapazes de veicular o agente ao hospedeiro vertebrado.",
+            "C": "A transmissão ocorre por Amblyomma cajennense, que atua como vetor biológico durante o repasto sanguíneo; a transmissão transovariana é o principal mecanismo de manutenção do agente na população de carrapatos em áreas endêmicas.",
+            "D": "A transmissão ocorre por dípteros hematófagos da família Tabanidae, que transferem mecanicamente E. canis entre cães durante o repasto interrompido, de forma análoga à transmissão do vírus da AIE em equídeos."
+          },
+          "correta": "A",
+          "explicacao": "Rhipicephalus sanguineus (carrapato marrom do cão) é o principal vetor de Ehrlichia canis. A transmissão ocorre durante o repasto sanguíneo do carrapato infectado. A transmissão transestadial (de larva para ninfa para adulto) é o mecanismo mais relevante na manutenção do ciclo. Amblyomma cajennense é o vetor da Febre Maculosa Brasileira (Rickettsia rickettsii), não de E. canis. Dípteros Tabanidae não são vetores de Ehrlichia.",
+          "needsReview": false
+        },
+        {
+          "id": 16003,
+          "tipo": "multipla_escolha",
+          "type": "faculdade",
+          "banca": "Faculdade",
+          "source": "faculdade",
+          "discipline": "Clínica Médica de Pequenos Animais",
+          "topic": "Erliquiose e Anaplasmose | Hemoparasitoses",
+          "tema": "Clínica Médica de Pequenos Animais",
+          "subtema": "Erliquiose e Anaplasmose | Hemoparasitoses",
+          "dificuldade": "media",
+          "pergunta": "As diferentes espécies de Ehrlichia e Anaplasma que infectam cães apresentam tropismo por células-alvo distintas. Assinale a alternativa que associa corretamente cada espécie à sua célula-alvo primária:",
+          "alternativas": {
+            "A": "Ehrlichia canis infecta preferencialmente granulócitos neutrófilos; Anaplasma platys infecta eritrócitos; Anaplasma phagocytophilum infecta monócitos e macrófagos, sendo essa a base das diferentes apresentações hematológicas observadas em cada infecção.",
+            "B": "Ehrlichia canis infecta preferencialmente monócitos e macrófagos; Anaplasma platys infecta plaquetas, causando trombocitopenia cíclica; Anaplasma phagocytophilum infecta granulócitos neutrófilos, causando erliquiose granulocítica.",
+            "C": "Ehrlichia canis infecta preferencialmente eritrócitos, causando anemia hemolítica intravascular; Anaplasma platys infecta monócitos; Anaplasma phagocytophilum infecta plaquetas, sendo responsável pela trombocitopenia cíclica característica da anaplasmose canina.",
+            "D": "Ehrlichia canis infecta preferencialmente linfócitos T CD4+; Anaplasma platys infecta granulócitos eosinófilos; Anaplasma phagocytophilum infecta células dendríticas, sendo a linfopenia o achado hematológico mais consistente nas três infecções."
+          },
+          "correta": "B",
+          "explicacao": "A distinção das células-alvo é fundamental para o diagnóstico diferencial: Ehrlichia canis infecta monócitos e macrófagos (erliquiose monocítica); Anaplasma platys infecta plaquetas, causando trombocitopenia cíclica; Anaplasma phagocytophilum infecta granulócitos neutrófilos (anaplasmose granulocítica). Essa distinção explica os diferentes perfis hematológicos e as características das mórulas observadas em esfregaço sanguíneo.",
+          "needsReview": false
+        },
+        {
+          "id": 16004,
+          "tipo": "multipla_escolha",
+          "type": "faculdade",
+          "banca": "Faculdade",
+          "source": "faculdade",
+          "discipline": "Clínica Médica de Pequenos Animais",
+          "topic": "Erliquiose e Anaplasmose | Hemoparasitoses",
+          "tema": "Clínica Médica de Pequenos Animais",
+          "subtema": "Erliquiose e Anaplasmose | Hemoparasitoses",
+          "dificuldade": "dificil",
+          "pergunta": "A patogenia da trombocitopenia na erliquiose monocítica canina por Ehrlichia canis envolve mecanismos complexos que vão além da simples destruição direta de plaquetas. Assinale a alternativa que descreve corretamente esses mecanismos:",
+          "alternativas": {
+            "A": "A trombocitopenia resulta exclusivamente da infecção direta de plaquetas por E. canis, que replica dentro delas formando mórulas visíveis no esfregaço; a destruição das plaquetas infectadas pelo baço é o único mecanismo responsável pela contagem reduzida.",
+            "B": "A trombocitopenia resulta da hemólise intravascular mediada pelo complemento, que consome plaquetas durante a formação de coágulos de fibrina; a hiperglobulinemia observada é consequência direta da ativação plaquetária e liberação de fatores de crescimento.",
+            "C": "A trombocitopenia resulta de mecanismos combinados: destruição imunomediada de plaquetas por imunocomplexos e anticorpos antiplaquetários, redução da trombopoese por infiltração medular e sequestro esplênico; a infecção direta de plaquetas por E. canis não ocorre, pois sua célula-alvo são monócitos e macrófagos.",
+            "D": "A trombocitopenia resulta da ativação excessiva da coagulação intravascular disseminada (CID) induzida pelas endotoxinas de E. canis, que consomem plaquetas de forma irreversível; a medula óssea permanece funcional durante toda a infecção e a trombopoese não é afetada."
+          },
+          "correta": "C",
+          "explicacao": "Na erliquiose monocítica, E. canis não infecta plaquetas diretamente. A trombocitopenia resulta de mecanismos múltiplos: destruição periférica imunomediada por imunocomplexos e anticorpos antiplaquetários, sequestro esplênico e, especialmente na fase crônica, hipoplasia medular. A hiperglobulinemia reflete a resposta humoral exacerbada, não ativação plaquetária.",
+          "needsReview": false
+        },
+        {
+          "id": 16005,
+          "tipo": "multipla_escolha",
+          "type": "faculdade",
+          "banca": "Faculdade",
+          "source": "faculdade",
+          "discipline": "Clínica Médica de Pequenos Animais",
+          "topic": "Erliquiose e Anaplasmose | Hemoparasitoses",
+          "tema": "Clínica Médica de Pequenos Animais",
+          "subtema": "Erliquiose e Anaplasmose | Hemoparasitoses",
+          "dificuldade": "media",
+          "pergunta": "A erliquiose monocítica canina por Ehrlichia canis apresenta evolução clínica em três fases distintas. Assinale a alternativa que descreve corretamente as características de cada fase:",
+          "alternativas": {
+            "A": "Fase aguda: trombocitopenia, febre, linfadenomegalia, epistaxe e petéquias, com duração de semanas; fase subclínica: sem sinais clínicos evidentes, mas com trombocitopenia persistente detectável em hemograma; fase crônica: pancitopenia, hiperglobulinemia, hemorragias graves, uveíte e possível morte.",
+            "B": "Fase aguda: anemia hemolítica intravascular, icterícia e hemoglobinúria; fase subclínica: recuperação espontânea com normalização do hemograma; fase crônica: artrite séptica, linfadenomegalia generalizada e disfunção renal por deposição de imunocomplexos.",
+            "C": "Fase aguda: diarreia hemorrágica, vômito e desidratação grave; fase subclínica: portador assintomático com sorologia positiva e hemograma normal; fase crônica: insuficiência hepática progressiva com hiperbilirrubinemia e coagulopatia por deficiência de fatores de coagulação.",
+            "D": "Fase aguda: sinais neurológicos como ataxia e convulsões por vasculite cerebral; fase subclínica: trombocitopenia leve com remissão espontânea em animais imunocompetentes; fase crônica: lesões cutâneas ulcerativas, linfoma secundário e pancitopenia por transformação neoplásica de células infectadas."
+          },
+          "correta": "A",
+          "explicacao": "A erliquiose monocítica evolui em três fases: aguda (febre, trombocitopenia, petéquias, epistaxe, linfadenomegalia, duração de semanas), subclínica (ausência de sinais clínicos mas trombocitopenia persistente — fase epidemiologicamente relevante) e crônica (pancitopenia grave por hipoplasia medular, hiperglobulinemia, hemorragias, uveíte e edema de membros — forma grave com alta mortalidade). Anemia hemolítica e icterícia são características da Babesiose, não da Erliquiose.",
+          "needsReview": false
+        },
+        {
+          "id": 16006,
+          "tipo": "multipla_escolha",
+          "type": "faculdade",
+          "banca": "Faculdade",
+          "source": "faculdade",
+          "discipline": "Clínica Médica de Pequenos Animais",
+          "topic": "Erliquiose e Anaplasmose | Hemoparasitoses",
+          "tema": "Clínica Médica de Pequenos Animais",
+          "subtema": "Erliquiose e Anaplasmose | Hemoparasitoses",
+          "dificuldade": "dificil",
+          "pergunta": "Um cão com histórico de erliquiose não tratada há seis meses é atendido com prostração intensa, mucosas pálidas, epistaxe grave e edema de membros posteriores. O hemograma revela pancitopenia e a proteína sérica total está elevada com hiperglobulinemia marcante. Qual é a interpretação mais correta desse quadro?",
+          "alternativas": {
+            "A": "O quadro é compatível com anaplasmose por Anaplasma phagocytophilum na fase crônica, pois a infecção de granulócitos por esse agente é a principal causa de pancitopenia e hiperglobulinemia em cães não tratados no Brasil.",
+            "B": "O quadro é compatível com fase aguda de erliquiose por reinfecção, pois a pancitopenia e a hiperglobulinemia só ocorrem na primoinfecção; o edema de membros indica insuficiência cardíaca congestiva como complicação independente.",
+            "C": "O quadro é compatível com linfoma multicêntrico canino como diagnóstico principal, uma vez que a hiperglobulinemia grave e a pancitopenia em cão adulto com linfadenomegalia e histórico de infecção prévia sugerem transformação linfoproliferativa.",
+            "D": "O quadro é compatível com fase crônica grave de erliquiose monocítica por E. canis, com hipoplasia medular causando pancitopenia, hiperglobulinemia por estimulação imune crônica e edema por hipoalbuminemia relativa secundária à hiperglobulinemia."
+          },
+          "correta": "D",
+          "explicacao": "A fase crônica da erliquiose monocítica por E. canis é caracterizada por pancitopenia grave decorrente de hipoplasia medular, hiperglobulinemia por estimulação imune crônica e persistente, hemorragias, edema de membros (por hipoalbuminemia relativa) e uveíte. O linfoma é um diagnóstico diferencial importante, mas o histórico epidemiológico e a progressão temporal orientam para a erliquiose crônica. A. phagocytophilum causa quadro mais agudo e autolimitado.",
+          "needsReview": false
+        },
+        {
+          "id": 16007,
+          "tipo": "multipla_escolha",
+          "type": "faculdade",
+          "banca": "Faculdade",
+          "source": "faculdade",
+          "discipline": "Clínica Médica de Pequenos Animais",
+          "topic": "Erliquiose e Anaplasmose | Hemoparasitoses",
+          "tema": "Clínica Médica de Pequenos Animais",
+          "subtema": "Erliquiose e Anaplasmose | Hemoparasitoses",
+          "dificuldade": "dificil",
+          "pergunta": "Em relação aos achados hematológicos esperados nas diferentes hemoparasitoses caninas, assinale a alternativa que descreve corretamente o perfil laboratorial predominante na erliquiose monocítica crônica em comparação à babesiose aguda:",
+          "alternativas": {
+            "A": "Erliquiose crônica: anemia hemolítica regenerativa com hematócrito muito reduzido, hiperbilirrubinemia e hemoglobinúria; babesiose aguda: pancitopenia com hiperglobulinemia e ausência de anemia significativa no início da infecção.",
+            "B": "Erliquiose crônica: pancitopenia, hiperglobulinemia e trombocitopenia grave por hipoplasia medular; babesiose aguda: anemia hemolítica regenerativa com hematócrito muito reduzido, podendo cursar com icterícia e hemoglobinúria.",
+            "C": "Erliquiose crônica: neutrofilia com desvio à esquerda, trombocitose reativa e hipofibrinogenemia; babesiose aguda: linfopenia acentuada, eosinopenia e elevação de proteínas de fase aguda sem alteração significativa do hematócrito.",
+            "D": "Erliquiose crônica: policitemia relativa com aumento de hematócrito, hipoglobulinemia e trombocitose compensatória; babesiose aguda: pancitopenia grave com hiperglobulinemia e mórulas visíveis em eritrócitos no esfregaço sanguíneo."
+          },
+          "correta": "B",
+          "explicacao": "O perfil hematológico diferencia as duas doenças: na erliquiose crônica, o achado dominante é pancitopenia por hipoplasia medular, acompanhada de hiperglobulinemia e trombocitopenia grave. Na babesiose aguda, o achado dominante é anemia hemolítica intravascular com hematócrito muito reduzido, podendo haver icterícia e hemoglobinúria por destruição de eritrócitos. Essa distinção é crítica para o diagnóstico diferencial e a escolha terapêutica.",
+          "needsReview": false
+        },
+        {
+          "id": 16008,
+          "tipo": "multipla_escolha",
+          "type": "faculdade",
+          "banca": "Faculdade",
+          "source": "faculdade",
+          "discipline": "Clínica Médica de Pequenos Animais",
+          "topic": "Erliquiose e Anaplasmose | Hemoparasitoses",
+          "tema": "Clínica Médica de Pequenos Animais",
+          "subtema": "Erliquiose e Anaplasmose | Hemoparasitoses",
+          "dificuldade": "dificil",
+          "pergunta": "O esfregaço sanguíneo é frequentemente solicitado na suspeita de erliquiose canina. Sobre as limitações e o valor diagnóstico desse método, assinale a alternativa correta:",
+          "alternativas": {
+            "A": "O esfregaço sanguíneo tem alta especificidade para erliquiose pois as mórulas de E. canis são morfologicamente distintas de qualquer outro artefato celular; entretanto, sua sensibilidade é limitada exclusivamente na fase crônica, sendo suficiente para triagem nas fases aguda e subclínica.",
+            "B": "O esfregaço sanguíneo apresenta alta sensibilidade na erliquiose, pois mórulas são visualizadas em grande quantidade nos monócitos durante todas as fases da infecção; um resultado negativo descarta com segurança o diagnóstico de erliquiose monocítica.",
+            "C": "O esfregaço sanguíneo tem baixa sensibilidade para erliquiose, pois as mórulas são raramente visualizadas e sua ausência não descarta o diagnóstico; o método é mais útil na fase aguda, mas um resultado negativo deve sempre ser complementado com sorologia ou PCR.",
+            "D": "O esfregaço sanguíneo é o método confirmatório padrão-ouro para erliquiose, sendo obrigatório antes de qualquer decisão terapêutica; a visualização de mórulas em qualquer leucócito confirma especificamente infecção por E. canis e afasta Anaplasma spp."
+          },
+          "correta": "C",
+          "explicacao": "O esfregaço sanguíneo tem baixa sensibilidade na erliquiose monocítica — as mórulas em monócitos são raramente encontradas mesmo durante a fase aguda. Um resultado negativo nunca descarta o diagnóstico. Além disso, a morfologia das mórulas não permite diferenciar com segurança E. canis de Anaplasma spp. apenas pelo esfregaço. A sorologia (IFI) como triagem e o PCR como confirmatório são os métodos de maior confiabilidade diagnóstica.",
+          "needsReview": false
+        },
+        {
+          "id": 16009,
+          "tipo": "multipla_escolha",
+          "type": "faculdade",
+          "banca": "Faculdade",
+          "source": "faculdade",
+          "discipline": "Clínica Médica de Pequenos Animais",
+          "topic": "Erliquiose e Anaplasmose | Hemoparasitoses",
+          "tema": "Clínica Médica de Pequenos Animais",
+          "subtema": "Erliquiose e Anaplasmose | Hemoparasitoses",
+          "dificuldade": "dificil",
+          "pergunta": "Na sequência diagnóstica para erliquiose e anaplasmose caninas, a imunofluorescência indireta (IFI) e o PCR desempenham papéis complementares. Assinale a alternativa que descreve corretamente a indicação e as limitações de cada método:",
+          "alternativas": {
+            "A": "A IFI é o método confirmatório de escolha na fase aguda da infecção, pois detecta o agente diretamente no sangue antes da soroconversão; o PCR é utilizado como triagem sorológica em populações assintomáticas por ser mais barato e amplamente disponível.",
+            "B": "A IFI detecta anticorpos específicos e é utilizada como triagem sorológica; sua limitação principal é a janela imunológica na fase aguda precoce, quando anticorpos ainda não são detectáveis; o PCR detecta DNA do agente e é mais sensível na fase aguda, sendo empregado como confirmatório ou quando a IFI é negativa com alta suspeita clínica.",
+            "C": "A IFI e o PCR detectam o mesmo alvo (DNA bacteriano) e são intercambiáveis na prática clínica; a escolha entre eles depende exclusivamente do custo e da disponibilidade local, sem diferença clínica relevante na interpretação dos resultados.",
+            "D": "O PCR é utilizado exclusivamente em amostras de linfonodo por punção aspirativa, pois o DNA de E. canis não é detectável no sangue periférico; a IFI em amostras de sangue é o único método válido para triagem e confirmação na rotina clínica canina."
+          },
+          "correta": "B",
+          "explicacao": "A IFI detecta anticorpos (resposta humoral) e é utilizada como triagem, mas tem limitação na fase aguda precoce pela janela imunológica (período entre a infecção e a soroconversão). O PCR detecta diretamente o DNA bacteriano e é mais sensível na fase aguda, quando a carga bacteriana é maior e os anticorpos ainda não são detectáveis. Os dois métodos são complementares, não intercambiáveis.",
+          "needsReview": false
+        },
+        {
+          "id": 16011,
+          "tipo": "multipla_escolha",
+          "type": "faculdade",
+          "banca": "Faculdade",
+          "source": "faculdade",
+          "discipline": "Clínica Médica de Pequenos Animais",
+          "topic": "Erliquiose e Anaplasmose | Hemoparasitoses",
+          "tema": "Clínica Médica de Pequenos Animais",
+          "subtema": "Erliquiose e Anaplasmose | Hemoparasitoses",
+          "dificuldade": "dificil",
+          "pergunta": "Um cão adulto é atendido com febre, petéquias, esplenomegalia e histórico de infestação por Rhipicephalus sanguineus há três semanas. O hemograma revela trombocitopenia grave, anemia normocítica normocrômica leve e hiperglobulinemia. Não há icterícia nem hemoglobinúria. Assinale a alternativa que apresenta o diagnóstico diferencial mais provável e o argumento que o sustenta:",
+          "alternativas": {
+            "A": "Erliquiose monocítica por E. canis como diagnóstico mais provável: o vetor é R. sanguineus, a trombocitopenia é o achado mais consistente, a hiperglobulinemia é característica da resposta imune crônica e a ausência de icterícia e hemoglobinúria afasta babesiose como diagnóstico principal.",
+            "B": "Linfoma multicêntrico canino como diagnóstico mais provável, pois a hiperglobulinemia grave, a esplenomegalia e a trombocitopenia em cão adulto com histórico de exposição a carrapatos sugerem síndrome paraneoplásica associada a linfoproliferação.",
+            "C": "Anaplasmose por Anaplasma phagocytophilum como diagnóstico mais provável, pois a hiperglobulinemia marcante e a trombocitopenia grave são os achados laboratoriais clássicos da infecção granulocítica crônica, sendo o R. sanguineus o vetor exclusivo dessa espécie no Brasil.",
+            "D": "Babesiose por Babesia canis como diagnóstico mais provável, pois o vetor R. sanguineus transmite exclusivamente Babesia spp. em cães; a trombocitopenia grave e a hiperglobulinemia são os achados patognomônicos dessa protozoose."
+          },
+          "correta": "A",
+          "explicacao": "O conjunto vetor (R. sanguineus) + trombocitopenia + hiperglobulinemia + ausência de icterícia e hemoglobinúria é altamente compatível com erliquiose monocítica por E. canis. A babesiose causa anemia hemolítica dominante com icterícia e hemoglobinúria. A. phagocytophilum causa quadro mais agudo e autolimitado, e não é transmitida por R. sanguineus. O linfoma é diagnóstico diferencial importante, mas o contexto epidemiológico (carrapato + fase temporal) orienta para erliquiose.",
+          "needsReview": false
+        },
+        {
+          "id": 16012,
+          "tipo": "multipla_escolha",
+          "type": "faculdade",
+          "banca": "Faculdade",
+          "source": "faculdade",
+          "discipline": "Clínica Médica de Pequenos Animais",
+          "topic": "Erliquiose e Anaplasmose | Hemoparasitoses",
+          "tema": "Clínica Médica de Pequenos Animais",
+          "subtema": "Erliquiose e Anaplasmose | Hemoparasitoses",
+          "dificuldade": "media",
+          "pergunta": "Sobre o potencial zoonótico das hemoparasitoses transmitidas por carrapatos em cães, assinale a alternativa que descreve corretamente as espécies de maior relevância para a saúde humana e a via de transmissão ao homem:",
+          "alternativas": {
+            "A": "Ehrlichia canis é a espécie de maior relevância zoonótica, sendo transmitida ao homem principalmente pelo contato direto com sangue ou secreções de cães infectados; trabalhadores de clínicas veterinárias representam o grupo de maior risco por exposição ocupacional.",
+            "B": "Anaplasma platys é a principal espécie zoonótica, transmitida ao homem por mordedura de cães infectados ou por inalação de aerossóis formados durante a limpeza de instalações com matéria orgânica contaminada por carrapatos.",
+            "C": "Anaplasma phagocytophilum e Ehrlichia chaffeensis são as espécies de maior relevância zoonótica; a transmissão ao homem ocorre exclusivamente pela picada de carrapatos infectados, não havendo transmissão direta de cão para humano por contato, mordedura ou aerossol.",
+            "D": "Babesia canis é a espécie de maior relevância zoonótica entre as hemoparasitoses caninas, sendo transmitida ao homem por contato com urina de cães infectados; Ehrlichia spp. e Anaplasma spp. não apresentam potencial zoonótico documentado em humanos imunocompetentes."
+          },
+          "correta": "C",
+          "explicacao": "As espécies de maior relevância zoonótica são Anaplasma phagocytophilum (agente da anaplasmose granulocítica humana) e Ehrlichia chaffeensis (agente da erliquiose monocítica humana). Em ambos os casos, a transmissão ao homem ocorre exclusivamente pela picada de carrapatos infectados — não há transmissão por contato direto com cães, por mordedura ou por aerossol. E. canis tem potencial zoonótico muito menor e A. platys não é considerada espécie zoonótica relevante.",
+          "needsReview": false
+        }
+      ]
+    }
+  ]
+}
