@@ -5,6 +5,7 @@ import {
   ChevronRight, ArrowRight, Filter, Award,
 } from 'lucide-react'
 import Gatekeeper from '../components/Gatekeeper'
+import VetHeroPattern from '../components/VetHeroPattern'
 import { activeProfileStorageKey, getActiveProfile, PROFILE_DATA_KEYS, profileStorageKey, type LocalProfile } from '../utils/profiles'
 import {
   loadTodaySession,
@@ -892,7 +893,9 @@ function SimuladorContent({ profile }: { profile: LocalProfile }) {
   /* ── Tela de filtros / entrada ─────────────────────── */
   if (!started||showFilters) return (
     <div className="p-5 max-w-2xl mx-auto space-y-5">
-      <div className="flex items-center justify-between">
+      <div className="app-panel relative overflow-hidden rounded-3xl px-4 py-4">
+        <VetHeroPattern variant="corner" className="absolute inset-y-0 right-0 w-40 opacity-85" />
+        <div className="relative z-10 flex items-center justify-between gap-3">
         <div>
           <h2 className="app-text-primary flex items-center gap-2 text-xl font-bold">
             <ClipboardCheck size={20} className="text-primary-400"/> Simulador de Prova
@@ -900,6 +903,7 @@ function SimuladorContent({ profile }: { profile: LocalProfile }) {
           <p className="text-xs text-neutral-400 mt-1">Reprodução Animal A1 · UNISUL 2025/2</p>
         </div>
         {started&&<button onClick={()=>setShowFilters(false)} className="text-xs text-neutral-500 hover:text-neutral-300 transition-colors">← Voltar</button>}
+      </div>
       </div>
       <FilterPanel filters={filters} setFilters={setFilters} history={history} total={getFiltered().length}/>
       {savedSession&&!started&&(

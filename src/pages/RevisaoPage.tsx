@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { GraduationCap, ChevronLeft, ChevronRight, RotateCcw, BookOpen } from 'lucide-react'
 import Gatekeeper from '../components/Gatekeeper'
+import VetHeroPattern from '../components/VetHeroPattern'
 import db from '../data/central_db.json'
 import { getMergedFlashcardBank } from '../utils/mergeStudyContent'
 import type { ParsedFlashcard } from '../utils/parseStudyContent'
@@ -552,14 +553,16 @@ function RevisaoContent({
 
   return (
     <div className="mx-auto max-w-2xl p-4 md:p-8">
-      <div className="mb-6">
-        <div className="mb-1 flex items-center gap-2">
-          <GraduationCap size={22} className="text-primary-400" />
-          <h1 className="text-2xl font-bold text-neutral-100">Flashcards</h1>
+      <div className="app-panel relative mb-6 overflow-hidden rounded-3xl px-5 py-4">
+        <VetHeroPattern variant="corner" className="absolute inset-y-0 right-0 w-40 opacity-85" />
+        <div className="relative z-10">
+          <div className="mb-1 flex items-center gap-2">
+            <GraduationCap size={22} className="text-primary-400" />
+            <h1 className="text-2xl font-bold text-neutral-100">Flashcards</h1>
         </div>
         <p className="text-sm text-neutral-400">Memorização por repetição espaçada</p>
+        </div>
       </div>
-
       <div className="mb-3 flex flex-wrap gap-2">
         {primaryDecks.map(deckItem => (
           <button

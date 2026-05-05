@@ -8,6 +8,7 @@ import {
 } from 'lucide-react'
 import Gatekeeper, { lockHub } from '../components/Gatekeeper'
 import ProfileSelector from '../components/ProfileSelector'
+import VetHeroPattern from '../components/VetHeroPattern'
 import SimuladorPage from './SimuladorPage'
 import centralDb from '../data/central_db.json'
 import clinicalCases from '../data/clinical_cases.json'
@@ -917,8 +918,10 @@ function DailyReviewCard({
 }) {
   const allClear = dueToday === 0 && pendingCases === 0
   return (
-    <div className="bg-gradient-to-br from-warning-500/10 to-neutral-900/70 border border-warning-500/20 rounded-2xl p-4">
-      <div className="flex items-start justify-between gap-3">
+    <div className="relative overflow-hidden rounded-2xl border border-warning-500/20 bg-gradient-to-br from-warning-500/10 to-neutral-900/70 p-4">
+      <VetHeroPattern variant="hero" className="absolute inset-0 opacity-85" />
+      <div className="relative z-10">
+        <div className="flex items-start justify-between gap-3">
         <div>
           <p className="text-xs font-bold text-warning-300 uppercase tracking-wider">📅 Revisão de Hoje</p>
           {allClear ? (
@@ -958,6 +961,7 @@ function DailyReviewCard({
           Abrir flashcards
         </button>
       )}
+      </div>
     </div>
   )
 }
@@ -1011,13 +1015,16 @@ function HubDashboard({ profile, topics, setTopics, stats, dailyHistory, topicsS
         onStartCase={onStartCase}
       />
 
-      <div className="flex items-start gap-3 rounded-2xl border border-primary-500/20 bg-gradient-to-br from-primary-500/15 to-neutral-800/80 p-4 backdrop-blur-sm">
-        <div className="w-8 h-8 rounded-xl bg-primary-500/20 flex items-center justify-center flex-shrink-0">
-          <Lightbulb size={15} className="text-primary-400" />
-        </div>
-        <div>
-          <p className="text-[10px] font-bold text-primary-400 uppercase tracking-wider">Conceito do Dia</p>
-          <p className="text-sm text-neutral-300 leading-relaxed mt-0.5">{dica}</p>
+      <div className="relative overflow-hidden rounded-2xl border border-primary-500/20 bg-gradient-to-br from-primary-500/15 to-neutral-800/80 p-4 backdrop-blur-sm">
+        <VetHeroPattern variant="corner" className="absolute inset-y-0 right-0 w-44 opacity-85" />
+        <div className="relative z-10 flex items-start gap-3">
+          <div className="w-8 h-8 rounded-xl bg-primary-500/20 flex items-center justify-center flex-shrink-0">
+            <Lightbulb size={15} className="text-primary-400" />
+          </div>
+          <div>
+            <p className="text-[10px] font-bold text-primary-400 uppercase tracking-wider">Conceito do Dia</p>
+            <p className="text-sm text-neutral-300 leading-relaxed mt-0.5">{dica}</p>
+          </div>
         </div>
       </div>
 
