@@ -1,0 +1,623 @@
+{
+  "disciplina": "Saúde de Animais de Produção",
+  "modulo": "Mormo — Conceitos Clínicos e Sanitários Seguros",
+  "module": "Mormo — Conceitos Clínicos e Sanitários Seguros",
+  "source": "faculdade",
+  "topics": [
+    {
+      "name": "Mormo | PNSE",
+      "flashcards": [
+        {
+          "id": "fc_mormo_001",
+          "pergunta": "O que é o mormo e quais são seus hospedeiros naturais?",
+          "resposta": "Doença infecciosa bacteriana causada por Burkholderia mallei. Hospedeiros naturais: equídeos (cavalos, mulas e asininos). É também uma zoonose grave, com risco real para humanos (médicos veterinários, tratadores) em contato com animais infectados ou seu material biológico.",
+          "tema": "Saúde de Animais de Produção",
+          "subtema": "Mormo | PNSE",
+          "needsReview": false
+        },
+        {
+          "id": "fc_mormo_003",
+          "pergunta": "Classifique Burkholderia mallei em relação às suas características microbiológicas essenciais.",
+          "resposta": "Bactéria Gram-negativa | Aeróbia | Intracelular facultativa | NÃO formadora de esporos | Imóvel. Pertence ao gênero Burkholderia, relacionada a B. pseudomallei (agente da melioidose), mas com epidemiologia completamente distinta por depender de hospedeiro animal.",
+          "tema": "Saúde de Animais de Produção",
+          "subtema": "Mormo | PNSE",
+          "needsReview": false
+        },
+        {
+          "id": "fc_mormo_004",
+          "pergunta": "Qual a diferença fundamental entre Burkholderia mallei e Burkholderia pseudomallei?",
+          "resposta": "B. mallei: imóvel, sem reservatório ambiental, dependente de hospedeiro animal → MORMO em equídeos. B. pseudomallei: móvel, reservatório no solo e água (sobrevive sem hospedeiro) → MELIOIDOSE, com epidemiologia ambiental. Esta distinção explica os padrões de ocorrência geográfica e transmissão das duas doenças.",
+          "tema": "Saúde de Animais de Produção",
+          "subtema": "Mormo | PNSE",
+          "needsReview": false
+        },
+        {
+          "id": "fc_mormo_005",
+          "pergunta": "B. mallei forma esporos? Qual a implicação para a desinfecção?",
+          "resposta": "NÃO forma esporos. Implicação: a bactéria é relativamente sensível a desinfetantes convencionais (fenólicos, hipoclorito de sódio). A desinfecção ambiental adequada é eficaz no controle da contaminação de instalações. Diferente de bactérias esporuladas (ex: B. anthracis), que exigem métodos de desinfecção mais agressivos.",
+          "tema": "Saúde de Animais de Produção",
+          "subtema": "Mormo | PNSE",
+          "needsReview": false
+        },
+        {
+          "id": "fc_mormo_006",
+          "pergunta": "Por que a intracelularidade facultativa de B. mallei é relevante para a patogenia e para o tratamento?",
+          "resposta": "Por sobreviver dentro de macrófagos e outras células fagocíticas, B. mallei: (1) Escapa parcialmente da imunidade humoral; (2) Exige resposta imune celular eficiente para controle; (3) Dificulta a ação de antibióticos com baixa penetração intracelular. Isso contribui para a cronicidade e gravidade da doença, especialmente em humanos.",
+          "tema": "Saúde de Animais de Produção",
+          "subtema": "Mormo | PNSE",
+          "needsReview": false
+        },
+        {
+          "id": "fc_mormo_007",
+          "pergunta": "Quais espécies são suscetíveis ao mormo? Cite primárias e secundárias.",
+          "resposta": "Primárias (hospedeiros naturais): cavalos, mulas e asininos. Secundárias: carnívoros domésticos (felinos e caninos) — por ingestão de carne de equídeos infectados. Humanos — zoonose grave por contato com secreções. Bovinos, suínos e aves NÃO são suscetíveis relevantes na epidemiologia do mormo.",
+          "tema": "Saúde de Animais de Produção",
+          "subtema": "Mormo | PNSE",
+          "needsReview": false
+        },
+        {
+          "id": "fc_mormo_008",
+          "pergunta": "Como difere a evolução clínica do mormo entre cavalos, mulas e asininos?",
+          "resposta": "Cavalos: formas mais agudas e letais — mortalidade mais elevada. Mulas e asininos: curso frequentemente crônico ou inaparente — podem ser reservatórios silenciosos sem sinais evidentes. Ponto de prova: asininos com infecção inaparente são fontes de infecção difíceis de identificar clinicamente, dificultando o controle.",
+          "tema": "Saúde de Animais de Produção",
+          "subtema": "Mormo | PNSE",
+          "needsReview": false
+        },
+        {
+          "id": "fc_mormo_009",
+          "pergunta": "Quais são as principais vias de transmissão do mormo entre equídeos?",
+          "resposta": "Principal: ingestão de alimentos e água contaminados com secreções de animais infectados. Outras vias: contato direto com secreções (nasais, cutâneas); inalação de aerossóis; fômites (cochos, bebedouros, instrumentos compartilhados); transmissão transplacentária (possível, menos frequente). O compartilhamento de bebedouros e comedouros é fator de risco relevante no manejo coletivo.",
+          "tema": "Saúde de Animais de Produção",
+          "subtema": "Mormo | PNSE",
+          "needsReview": false
+        },
+        {
+          "id": "fc_mormo_010",
+          "pergunta": "Como ocorre a transmissão do mormo para humanos e quais são os grupos de maior risco?",
+          "resposta": "Transmissão: contato direto de mucosas ou pele (com microlesões) com secreções nasais, cutâneas ou respiratórias de animais infectados. Grupos de risco: médicos veterinários, tratadores, militares de cavalaria, funcionários de abatedouro. Não há transmissão interpessoal eficiente. Uso de EPI completo (luvas, máscara, proteção ocular) é essencial diante de qualquer suspeita.",
+          "tema": "Saúde de Animais de Produção",
+          "subtema": "Mormo | PNSE",
+          "needsReview": false
+        },
+        {
+          "id": "fc_mormo_011",
+          "pergunta": "Descreva a sequência da patogenia geral do mormo após a entrada de B. mallei no organismo.",
+          "resposta": "1) Entrada: mucosa oral/nasal, pele ou inalação; 2) Multiplicação local no sítio de entrada; 3) Disseminação linfática → linfonodos regionais (linfadenomegalia); 4) Disseminação hematógena → colonização de tecidos distantes; 5) Formação de piogranulomas nos tecidos-alvo: mucosa nasal, parênquima pulmonar, pele e vasos linfáticos → lesões características de cada forma clínica.",
+          "tema": "Saúde de Animais de Produção",
+          "subtema": "Mormo | PNSE",
+          "needsReview": false
+        },
+        {
+          "id": "fc_mormo_012",
+          "pergunta": "Qual é o tipo de lesão histopatológica do mormo e por que importa para o diagnóstico diferencial?",
+          "resposta": "Piogranuloma: granuloma com centro necrótico e supurativo. Evolui para ulceração e fistulação. Relevância para o diferencial: ≠ febre aftosa (vesículas epiteliais); ≠ piroplasmose (síndrome hemolítica sem granulomas); ≠ AIE (anemia e edema sem piogranulomas). A presença de granulomas supurativos no exame anatomo-patológico é indicativa de mormo.",
+          "tema": "Saúde de Animais de Produção",
+          "subtema": "Mormo | PNSE",
+          "needsReview": false
+        },
+        {
+          "id": "fc_mormo_013",
+          "pergunta": "Quais são as três formas clínicas do mormo? Descreva brevemente cada uma.",
+          "resposta": "1) Nasal (mais comum): secreção nasal mucopurulenta + úlceras na mucosa nasal + linfadenomegalia regional. 2) Pulmonar: nódulos intrapulmonares + tosse + dispneia. 3) Cutânea/Farcinosa (farcino): nódulos em rosário ao longo dos vasos linfáticos dos membros e abdômen, com ulceração e drenagem purulenta. Importante: as formas podem coexistir no mesmo animal.",
+          "tema": "Saúde de Animais de Produção",
+          "subtema": "Mormo | PNSE",
+          "needsReview": false
+        },
+        {
+          "id": "fc_mormo_014",
+          "pergunta": "O que é o 'farcino' e por que é clinicamente importante reconhecê-lo?",
+          "resposta": "Farcino = forma cutânea/linfática do mormo. Lesões: nódulos endurecidos distribuídos ao longo dos vasos linfáticos (membros, abdômen) em padrão de 'rosário' (linfangite nodular), que ulceram e drenam pus. Importância clínica: (1) É o principal diagnóstico diferencial com linfangite epizoótica (Histoplasma farciminosum — fungal); (2) Indica disseminação sistêmica do agente; (3) Sua identificação deve gerar suspeita imediata de mormo.",
+          "tema": "Saúde de Animais de Produção",
+          "subtema": "Mormo | PNSE",
+          "needsReview": false
+        },
+        {
+          "id": "fc_mormo_015",
+          "pergunta": "As formas clínicas do mormo são mutuamente exclusivas? Justifique.",
+          "resposta": "NÃO. As formas nasal, pulmonar e cutânea/farcinosa podem coexistir no mesmo animal, especialmente em infecções de curso crônico ou avançado. Justificativa: B. mallei se dissemina por via linfática e hematógena, colonizando múltiplos tecidos simultaneamente. Realizar exame clínico sistemático completo é essencial — não basta identificar apenas uma forma.",
+          "tema": "Saúde de Animais de Produção",
+          "subtema": "Mormo | PNSE",
+          "needsReview": false
+        },
+        {
+          "id": "fc_mormo_016",
+          "pergunta": "Quais são os principais sinais clínicos do mormo na forma nasal?",
+          "resposta": "Secreção nasal mucopurulenta (uni ou bilateral) | Úlceras na mucosa nasal com bordas irregulares e elevadas | Linfadenomegalia dos linfonodos regionais (submandibulares, retrofaríngeos) | Febre | Apatia | Emagrecimento progressivo. Podem surgir nódulos cutâneos concomitantes se houver forma mista (nasal + farcinosa).",
+          "tema": "Saúde de Animais de Produção",
+          "subtema": "Mormo | PNSE",
+          "needsReview": false
+        },
+        {
+          "id": "fc_mormo_017",
+          "pergunta": "Qual combinação de achados clínicos deve levantar suspeita forte de mormo em um equídeo?",
+          "resposta": "Tríade de alerta: Secreção nasal purulenta + Úlceras nasais com bordas irregulares + Linfangite nodular nos membros (nódulos em rosário). Especialmente suspeito quando: histórico de contato com outros equídeos doentes; animal recentemente adquirido de propriedade sem rastreamento sanitário; falha de resposta a antibioticoterapia empírica. Esta combinação exige avaliação veterinária imediata e investigação sanitária cuidadosa.",
+          "tema": "Saúde de Animais de Produção",
+          "subtema": "Mormo | PNSE",
+          "needsReview": false
+        },
+        {
+          "id": "fc_mormo_018",
+          "pergunta": "Por que asininos e mulas com mormo inaparente representam um risco sanitário particular?",
+          "resposta": "Animais com infecção inaparente não apresentam sinais clínicos evidentes, passam despercebidos no exame de rotina, mas podem ser infectantes para outros equídeos e para humanos. Este 'reservatório silencioso' é especialmente relevante quando há circulação frequente de animais entre propriedades, feiras, leilões e eventos, aumentando o risco de disseminação silenciosa.",
+          "tema": "Saúde de Animais de Produção",
+          "subtema": "Mormo | PNSE",
+          "needsReview": false
+        },
+        {
+          "id": "fc_mormo_019",
+          "pergunta": "Compare mormo e AIE: agente, sinais típicos e método confirmatório.",
+          "resposta": "| | Mormo | AIE | |Agente|Burkholderia mallei (bactéria)|Lentivirus (vírus RNA)| |Sinais típicos|Úlceras nasais + linfangite nodular (farcino)|Anemia + edema declive + febre intermitente recorrente| |Confirmatório|Testes bacteriológicos/sorológicos específicos|IDGA (teste de Coggins)| Chave: mormo = lesões localizadas (úlceras + nódulos); AIE = síndrome sistêmica hemolítica recorrente.",
+          "tema": "Saúde de Animais de Produção",
+          "subtema": "Mormo | PNSE",
+          "needsReview": false
+        },
+        {
+          "id": "fc_mormo_020",
+          "pergunta": "Compare mormo e piroplasmose equina: sinais-chave e diagnóstico.",
+          "resposta": "| | Mormo | Piroplasmose equina | |Agente|Burkholderia mallei|Babesia equi / Theileria equi| |Sinais-chave|Úlceras nasais + linfangite nodular|Anemia hemolítica + icterícia + hemoglobinúria + esplenomegalia| |Diagnóstico|Bacteriológico/sorológico|Esfregaço sanguíneo + PCR| Chave: piroplasmose = síndrome hemolítica (icterícia + urina escura); mormo = lesões localizadas supurativas.",
+          "tema": "Saúde de Animais de Produção",
+          "subtema": "Mormo | PNSE",
+          "needsReview": false
+        },
+        {
+          "id": "fc_mormo_021",
+          "pergunta": "Por que a linfangite epizoótica é o principal diagnóstico diferencial do farcino?",
+          "resposta": "Porque linfangite epizoótica (agente: Histoplasma farciminosum — fungo) produz quadro clínico praticamente idêntico ao farcino: nódulos subcutâneos ao longo dos vasos linfáticos dos membros, com ulceração e drenagem purulenta em padrão de rosário. Diferenciação: exige diagnóstico laboratorial — cultivo micológico + microscopia (H. farciminosum) versus cultivo bacteriológico (B. mallei). Clinicamente, é impossível distinguir com segurança.",
+          "tema": "Saúde de Animais de Produção",
+          "subtema": "Mormo | PNSE",
+          "needsReview": false
+        },
+        {
+          "id": "fc_mormo_022",
+          "pergunta": "Monte uma tabela comparativa rápida: mormo × AIE × piroplasmose equina — 3 colunas.",
+          "resposta": "Agente — Mormo: B. mallei (bact.) | AIE: Lentivirus | Piroplasmose: Babesia/Theileria (prot.). Lesão típica — Mormo: úlceras nasais + farcino | AIE: edema declive sem úlceras | Piroplasmose: anemia + icterícia + hemoglobinúria. Confirmação — Mormo: bacteriológico/sorológico | AIE: IDGA (Coggins) | Piroplasmose: esfregaço + PCR. Mnemônico de prova: farcino = mormo; Coggins = AIE; urina escura = piroplasmose.",
+          "tema": "Saúde de Animais de Produção",
+          "subtema": "Mormo | PNSE",
+          "needsReview": false
+        }
+      ],
+      "questions": [
+        {
+          "id": 18001,
+          "tipo": "multipla_escolha",
+          "type": "faculdade",
+          "banca": "Faculdade",
+          "source": "faculdade",
+          "discipline": "Saúde de Animais de Produção",
+          "topic": "Mormo | PNSE",
+          "tema": "Saúde de Animais de Produção",
+          "subtema": "Mormo | PNSE",
+          "dificuldade": "media",
+          "pergunta": "O mormo é uma doença infecciosa que acomete primariamente:",
+          "alternativas": {
+            "A": "Equídeos (cavalos, mulas e asininos)",
+            "B": "Bovinos e bubalinos",
+            "C": "Suídeos e aves de produção",
+            "D": "Cães e gatos domésticos"
+          },
+          "correta": "A",
+          "explicacao": "O mormo é causado por Burkholderia mallei e acomete primariamente os equídeos — cavalos, mulas e asininos. Embora possa acometer humanos (zoonose) e, ocasionalmente, carnívoros por ingestão de carne infectada, os equídeos são os hospedeiros naturais da doença.",
+          "needsReview": false
+        },
+        {
+          "id": 18002,
+          "tipo": "multipla_escolha",
+          "type": "faculdade",
+          "banca": "Faculdade",
+          "source": "faculdade",
+          "discipline": "Saúde de Animais de Produção",
+          "topic": "Mormo | PNSE",
+          "tema": "Saúde de Animais de Produção",
+          "subtema": "Mormo | PNSE",
+          "dificuldade": "media",
+          "pergunta": "Em relação à importância do mormo para a saúde pública, é correto afirmar que:",
+          "alternativas": {
+            "A": "Trata-se de uma doença de baixo risco para humanos, sem relevância para a saúde pública",
+            "B": "O mormo afeta exclusivamente equídeos selvagens, sem risco para trabalhadores rurais",
+            "C": "É uma zoonose grave, com risco real para médicos veterinários, tratadores e profissionais que mantêm contato direto com animais infectados ou seu material biológico",
+            "D": "O risco humano é restrito à ingestão de carne de equídeos infectados, não havendo transmissão por contato direto"
+          },
+          "correta": "C",
+          "explicacao": "O mormo é uma zoonose de elevada gravidade. Médicos veterinários, tratadores, militares de cavalaria e demais profissionais que manipulam animais suspeitos sem equipamento de proteção individual (EPI) adequado apresentam risco real de infecção. A transmissão para humanos ocorre principalmente por contato direto com secreções do animal infectado — não se limitando à via oral.",
+          "needsReview": false
+        },
+        {
+          "id": 18003,
+          "tipo": "multipla_escolha",
+          "type": "faculdade",
+          "banca": "Faculdade",
+          "source": "faculdade",
+          "discipline": "Saúde de Animais de Produção",
+          "topic": "Mormo | PNSE",
+          "tema": "Saúde de Animais de Produção",
+          "subtema": "Mormo | PNSE",
+          "dificuldade": "media",
+          "pergunta": "Burkholderia mallei, agente etiológico do mormo, pode ser corretamente classificada como:",
+          "alternativas": {
+            "A": "Bactéria Gram-positiva, aeróbia, formadora de esporos",
+            "B": "Bactéria Gram-negativa, aeróbia, não formadora de esporos e intracelular facultativa",
+            "C": "Vírus RNA de fita simples, família Togaviridae",
+            "D": "Protozoário intracelular obrigatório, semelhante a Leishmania"
+          },
+          "correta": "B",
+          "explicacao": "Burkholderia mallei é uma bactéria Gram-negativa, aeróbia, intracelular facultativa e não formadora de esporos. Estas características têm implicações diretas para o diagnóstico laboratorial, o nível de biossegurança necessário e a sensibilidade a desinfetantes convencionais.",
+          "needsReview": false
+        },
+        {
+          "id": 18004,
+          "tipo": "multipla_escolha",
+          "type": "faculdade",
+          "banca": "Faculdade",
+          "source": "faculdade",
+          "discipline": "Saúde de Animais de Produção",
+          "topic": "Mormo | PNSE",
+          "tema": "Saúde de Animais de Produção",
+          "subtema": "Mormo | PNSE",
+          "dificuldade": "dificil",
+          "pergunta": "Qual afirmativa descreve corretamente a principal diferença entre Burkholderia mallei e Burkholderia pseudomallei?",
+          "alternativas": {
+            "A": "B. mallei é Gram-positiva e B. pseudomallei é Gram-negativa",
+            "B": "B. mallei causa melioidose, enquanto B. pseudomallei causa mormo",
+            "C": "B. mallei possui reservatório ambiental no solo, enquanto B. pseudomallei não sobrevive fora do hospedeiro",
+            "D": "B. mallei é imóvel e dependente de hospedeiro animal, enquanto B. pseudomallei é móvel e possui reservatório ambiental (solo e água)"
+          },
+          "correta": "D",
+          "explicacao": "B. mallei é imóvel e dependente de hospedeiro animal (sem reservatório ambiental significativo), causando mormo. B. pseudomallei é móvel e sobrevive no solo e em corpos d'água, causando melioidose. Esta distinção é relevante tanto para o diagnóstico diferencial microbiológico quanto para compreender a epidemiologia das duas doenças.",
+          "needsReview": false
+        },
+        {
+          "id": 18005,
+          "tipo": "multipla_escolha",
+          "type": "faculdade",
+          "banca": "Faculdade",
+          "source": "faculdade",
+          "discipline": "Saúde de Animais de Produção",
+          "topic": "Mormo | PNSE",
+          "tema": "Saúde de Animais de Produção",
+          "subtema": "Mormo | PNSE",
+          "dificuldade": "media",
+          "pergunta": "Sobre as características microbiológicas de Burkholderia mallei, é INCORRETO afirmar que:",
+          "alternativas": {
+            "A": "Forma esporos de alta resistência, o que dificulta a desinfecção do ambiente",
+            "B": "É uma bactéria Gram-negativa",
+            "C": "É aeróbia",
+            "D": "É intracelular facultativa"
+          },
+          "correta": "A",
+          "explicacao": "B. mallei NÃO forma esporos. A ausência de esporulação significa que a bactéria é relativamente sensível à desinfecção ambiental convencional, ao contrário de bactérias esporuladas como Bacillus anthracis. As demais afirmativas estão corretas: é Gram-negativa, aeróbia e intracelular facultativa.",
+          "needsReview": false
+        },
+        {
+          "id": 18006,
+          "tipo": "multipla_escolha",
+          "type": "faculdade",
+          "banca": "Faculdade",
+          "source": "faculdade",
+          "discipline": "Saúde de Animais de Produção",
+          "topic": "Mormo | PNSE",
+          "tema": "Saúde de Animais de Produção",
+          "subtema": "Mormo | PNSE",
+          "dificuldade": "dificil",
+          "pergunta": "A característica de intracelularidade facultativa de Burkholderia mallei é relevante clinicamente porque:",
+          "alternativas": {
+            "A": "Permite que a bactéria forme esporos dentro de macrófagos, aumentando sua resistência ambiental",
+            "B": "Facilita a transmissão por artrópodes vetores hematófagos, como ocorre na AIE",
+            "C": "Permite que a bactéria sobreviva dentro de células do hospedeiro, dificultando a ação de antibióticos com baixa penetração intracelular e a resposta imune humoral isolada",
+            "D": "Torna o isolamento laboratorial inviável, pois a bactéria não cresce em meios de cultura convencionais"
+          },
+          "correta": "C",
+          "explicacao": "Por ser intracelular facultativa, B. mallei pode residir dentro de células fagocíticas do hospedeiro (macrófagos), dificultando a ação de antibióticos com baixa penetração celular e exigindo resposta imune celular eficiente para o controle da infecção. O isolamento laboratorial é possível, mas requer laboratório com nível de biossegurança adequado.",
+          "needsReview": false
+        },
+        {
+          "id": 18007,
+          "tipo": "multipla_escolha",
+          "type": "faculdade",
+          "banca": "Faculdade",
+          "source": "faculdade",
+          "discipline": "Saúde de Animais de Produção",
+          "topic": "Mormo | PNSE",
+          "tema": "Saúde de Animais de Produção",
+          "subtema": "Mormo | PNSE",
+          "dificuldade": "media",
+          "pergunta": "Dentre os equídeos, a espécie que tende a desenvolver as formas clínicas mais agudas e letais do mormo é:",
+          "alternativas": {
+            "A": "Asininos (jumentos), por apresentarem a maior suscetibilidade genética conhecida",
+            "B": "Cavalos, nos quais a doença frequentemente evolui de forma aguda e com maior mortalidade",
+            "C": "Mulas, por serem híbridas e não possuírem mecanismos imunes adaptativos eficientes",
+            "D": "Todas as espécies de equídeos apresentam a mesma suscetibilidade e evolução clínica"
+          },
+          "correta": "B",
+          "explicacao": "Cavalos tendem a desenvolver formas mais agudas e letais do mormo. Asininos e mulas frequentemente apresentam curso mais crônico ou até inaparente, podendo atuar como reservatórios silenciosos. Esta diferença de suscetibilidade entre as espécies tem implicação direta no controle sanitário da doença.",
+          "needsReview": false
+        },
+        {
+          "id": 18008,
+          "tipo": "multipla_escolha",
+          "type": "faculdade",
+          "banca": "Faculdade",
+          "source": "faculdade",
+          "discipline": "Saúde de Animais de Produção",
+          "topic": "Mormo | PNSE",
+          "tema": "Saúde de Animais de Produção",
+          "subtema": "Mormo | PNSE",
+          "dificuldade": "media",
+          "pergunta": "Além dos equídeos e humanos, qual grupo animal é reconhecidamente suscetível ao mormo, especialmente pela via oral?",
+          "alternativas": {
+            "A": "Bovinos e ovinos, como principais ruminantes domésticos em contato com equídeos",
+            "B": "Suídeos, por sua dieta onívora e contato frequente com fezes de equídeos",
+            "C": "Aves de produção, especialmente frangos de corte em criações integradas",
+            "D": "Carnívoros domésticos (felinos e caninos), que podem adoecer ao ingerir carne ou restos de equídeos infectados"
+          },
+          "correta": "D",
+          "explicacao": "Carnívoros domésticos, como felinos e caninos, podem adquirir mormo ao ingerir carne ou vísceras de equídeos infectados. Este ponto é relevante para a gestão sanitária de propriedades com equídeos, onde animais de companhia podem estar expostos. Bovinos, suínos e aves não são suscetíveis relevantes na epidemiologia do mormo.",
+          "needsReview": false
+        },
+        {
+          "id": 18009,
+          "tipo": "multipla_escolha",
+          "type": "faculdade",
+          "banca": "Faculdade",
+          "source": "faculdade",
+          "discipline": "Saúde de Animais de Produção",
+          "topic": "Mormo | PNSE",
+          "tema": "Saúde de Animais de Produção",
+          "subtema": "Mormo | PNSE",
+          "dificuldade": "media",
+          "pergunta": "A principal via de transmissão do mormo entre equídeos é:",
+          "alternativas": {
+            "A": "Ingestão de alimentos e água contaminados com secreções de animais infectados",
+            "B": "Picada de insetos hematófagos vetores, como tabanídeos",
+            "C": "Inalação obrigatória de aerossóis em ambientes fechados e com ventilação deficiente",
+            "D": "Transmissão vertical (transplacentária) da égua para o potro como via exclusiva"
+          },
+          "correta": "A",
+          "explicacao": "A ingestão de alimentos (pastagem, feno, ração) e água contaminados com secreções de animais infectados é considerada a principal via de transmissão do mormo entre equídeos. Outras vias reconhecidas incluem o contato direto com secreções, a inalação de aerossóis e os fômites (cochos, bebedouros, instrumentos compartilhados). A transmissão transplacentária é possível, mas não é a via principal.",
+          "needsReview": false
+        },
+        {
+          "id": 18010,
+          "tipo": "multipla_escolha",
+          "type": "faculdade",
+          "banca": "Faculdade",
+          "source": "faculdade",
+          "discipline": "Saúde de Animais de Produção",
+          "topic": "Mormo | PNSE",
+          "tema": "Saúde de Animais de Produção",
+          "subtema": "Mormo | PNSE",
+          "dificuldade": "dificil",
+          "pergunta": "Um veterinário que vai examinar um equídeo com suspeita de mormo deve priorizar qual medida de biossegurança, considerando o principal risco ocupacional?",
+          "alternativas": {
+            "A": "Usar apenas botas impermeáveis, pois a contaminação ocorre principalmente pelo contato com fezes do animal",
+            "B": "Utilizar máscara cirúrgica simples, pois a transmissão é exclusivamente aérea",
+            "C": "Proteger mucosas e pele contra exposição às secreções do animal, utilizando luvas, máscara e proteção ocular adequados",
+            "D": "Vacinar-se previamente com toxóide de B. mallei antes de atender qualquer equídeo suspeito"
+          },
+          "correta": "C",
+          "explicacao": "O principal risco ocupacional é o contato de mucosas e pele com secreções do animal infectado (nasais, cutâneas, respiratórias). O uso de luvas, proteção ocular e máscara é fundamental. Não existe vacina disponível para humanos. A via fecal-oral não é a principal rota de risco ocupacional para o veterinário.",
+          "needsReview": false
+        },
+        {
+          "id": 18011,
+          "tipo": "multipla_escolha",
+          "type": "faculdade",
+          "banca": "Faculdade",
+          "source": "faculdade",
+          "discipline": "Saúde de Animais de Produção",
+          "topic": "Mormo | PNSE",
+          "tema": "Saúde de Animais de Produção",
+          "subtema": "Mormo | PNSE",
+          "dificuldade": "dificil",
+          "pergunta": "Após a entrada de Burkholderia mallei no organismo do equídeo, a progressão patogênica característica envolve:",
+          "alternativas": {
+            "A": "Colonização restrita ao trato intestinal, sem disseminação sistêmica, resultando em gastroenterite aguda",
+            "B": "Multiplicação local, seguida de disseminação linfática e hematógena, com formação de nódulos granulomatosos nos tecidos-alvo (mucosa nasal, pulmão, pele e vasos linfáticos)",
+            "C": "Infecção neurogênica primária, com tropismo pelo sistema nervoso central e encefalite granulomatosa como principal manifestação",
+            "D": "Destruição eritrocitária mediada por toxinas bacterianas, resultando em anemia hemolítica aguda como manifestação predominante"
+          },
+          "correta": "B",
+          "explicacao": "A patogenia do mormo envolve multiplicação local do agente após a porta de entrada, seguida de disseminação via sistema linfático e corrente sanguínea. Esta disseminação resulta na formação de nódulos e granulomas supurativos (piogranulomas) nos tecidos-alvo, explicando as três formas clínicas (nasal, pulmonar, cutânea) que podem ocorrer isoladas ou simultaneamente no mesmo animal.",
+          "needsReview": false
+        },
+        {
+          "id": 18012,
+          "tipo": "multipla_escolha",
+          "type": "faculdade",
+          "banca": "Faculdade",
+          "source": "faculdade",
+          "discipline": "Saúde de Animais de Produção",
+          "topic": "Mormo | PNSE",
+          "tema": "Saúde de Animais de Produção",
+          "subtema": "Mormo | PNSE",
+          "dificuldade": "dificil",
+          "pergunta": "As lesões anatomopatológicas características do mormo são classificadas como:",
+          "alternativas": {
+            "A": "Lesões vesiculares epiteliais distribuídas nas mucosas, semelhantes às da febre aftosa",
+            "B": "Necrose coagulativa hepática difusa com degeneração de hepatócitos",
+            "C": "Infiltrado eosinofílico perissarcolemático, típico de miosite parasitária",
+            "D": "Nódulos granulomatosos com centro de supuração (piogranulomas), evolução para ulceração e tendência à fistulação nos tecidos afetados"
+          },
+          "correta": "D",
+          "explicacao": "O mormo é caracterizado pela formação de piogranulomas — granulomas com centro necrótico e supurativo. Estas lesões evoluem para ulceração e podem fistular, explicando clinicamente as úlceras nasais, os nódulos cutâneos drenantes e as lesões pulmonares nodulares. Este padrão de lesão distingue o mormo de doenças vesiculares (febre aftosa), hemolíticas (piroplasmose) e virais como a AIE.",
+          "needsReview": false
+        },
+        {
+          "id": 18013,
+          "tipo": "multipla_escolha",
+          "type": "faculdade",
+          "banca": "Faculdade",
+          "source": "faculdade",
+          "discipline": "Saúde de Animais de Produção",
+          "topic": "Mormo | PNSE",
+          "tema": "Saúde de Animais de Produção",
+          "subtema": "Mormo | PNSE",
+          "dificuldade": "media",
+          "pergunta": "A forma clínica do mormo denominada 'farcino' corresponde à apresentação predominantemente:",
+          "alternativas": {
+            "A": "Pulmonar, com nodulação intrapulmonar difusa e dispneia progressiva como sinais principais",
+            "B": "Nasal aguda, com secreção purulenta bilateral e ulceração extensa e rápida da mucosa",
+            "C": "Cutânea e linfática, caracterizada por nódulos ao longo dos vasos linfáticos dos membros e abdômen em padrão de 'rosário', com ulceração e drenagem de conteúdo purulento",
+            "D": "Sistêmica aguda, com septicemia fulminante, febre alta e morte sem lesões localizadas identificáveis"
+          },
+          "correta": "C",
+          "explicacao": "O farcino é a designação específica para a forma cutânea/linfática do mormo. A lesão característica é a formação de nódulos ao longo dos vasos linfáticos — o chamado padrão em 'rosário' ou linfangite nodular — principalmente nos membros e abdômen. Os nódulos ulceram e drenam conteúdo purulento. O farcino é o principal diagnóstico diferencial com a linfangite epizoótica (Histoplasma farciminosum).",
+          "needsReview": false
+        },
+        {
+          "id": 18014,
+          "tipo": "multipla_escolha",
+          "type": "faculdade",
+          "banca": "Faculdade",
+          "source": "faculdade",
+          "discipline": "Saúde de Animais de Produção",
+          "topic": "Mormo | PNSE",
+          "tema": "Saúde de Animais de Produção",
+          "subtema": "Mormo | PNSE",
+          "dificuldade": "media",
+          "pergunta": "Qual das formas clínicas do mormo é considerada a mais frequentemente observada e, em geral, a primeira a ser identificada pelo proprietário?",
+          "alternativas": {
+            "A": "Forma nasal, com secreção mucopurulenta e úlceras na mucosa do trato respiratório superior",
+            "B": "Forma farcinosa, com surgimento de nódulos nos membros anteriores como primeiro sinal",
+            "C": "Forma pulmonar, identificada por tosse produtiva e dispneia como achados iniciais",
+            "D": "Forma inaparente, detectada exclusivamente por exames sorológicos em animais assintomáticos"
+          },
+          "correta": "A",
+          "explicacao": "A forma nasal é considerada a apresentação mais comum do mormo. A secreção nasal mucopurulenta, frequentemente unilateral ou bilateral, e as úlceras na mucosa nasal são sinais visíveis ao proprietário e frequentemente o motivo da consulta veterinária. Esta informação é importante para a triagem clínica inicial e para o reconhecimento precoce de casos suspeitos.",
+          "needsReview": false
+        },
+        {
+          "id": 18015,
+          "tipo": "multipla_escolha",
+          "type": "faculdade",
+          "banca": "Faculdade",
+          "source": "faculdade",
+          "discipline": "Saúde de Animais de Produção",
+          "topic": "Mormo | PNSE",
+          "tema": "Saúde de Animais de Produção",
+          "subtema": "Mormo | PNSE",
+          "dificuldade": "dificil",
+          "pergunta": "Em relação à coexistência das formas clínicas do mormo no mesmo animal, é correto afirmar que:",
+          "alternativas": {
+            "A": "As formas nasal, pulmonar e farcinosa são mutuamente exclusivas, nunca ocorrendo simultaneamente no mesmo animal",
+            "B": "As três formas podem coexistir no mesmo animal, especialmente em infecções de curso crônico ou avançado, refletindo a disseminação sistêmica do agente",
+            "C": "A forma pulmonar nunca coexiste com a forma farcinosa, pois ambas possuem mecanismos patogênicos incompatíveis",
+            "D": "A coexistência de formas clínicas é exclusiva de asininos, não ocorrendo em cavalos"
+          },
+          "correta": "B",
+          "explicacao": "As formas clínicas do mormo não são mutuamente exclusivas. Como B. mallei se dissemina por via linfática e hematógena, um mesmo animal pode apresentar simultaneamente lesões nasais, pulmonares e cutâneas/farcinosas, especialmente em infecções mais prolongadas. Reconhecer esta possibilidade é fundamental para a avaliação clínica completa e evita subestimar a extensão da doença.",
+          "needsReview": false
+        },
+        {
+          "id": 18016,
+          "tipo": "multipla_escolha",
+          "type": "faculdade",
+          "banca": "Faculdade",
+          "source": "faculdade",
+          "discipline": "Saúde de Animais de Produção",
+          "topic": "Mormo | PNSE",
+          "tema": "Saúde de Animais de Produção",
+          "subtema": "Mormo | PNSE",
+          "dificuldade": "media",
+          "pergunta": "Um equídeo com mormo na forma nasal apresentaria, tipicamente, o seguinte conjunto de achados clínicos:",
+          "alternativas": {
+            "A": "Diarreia hemorrágica, icterícia intensa, hemoglobinúria e anemia hemolítica aguda",
+            "B": "Ataxia progressiva, nistagmo, hipermetria e déficits neurológicos de progressão rápida",
+            "C": "Edema de glote, estridor inspiratório grave e ausência de secreção nasal visível",
+            "D": "Secreção nasal mucopurulenta (uni ou bilateral), úlceras na mucosa nasal com bordas irregulares, linfadenomegalia regional, febre e apatia"
+          },
+          "correta": "D",
+          "explicacao": "A forma nasal do mormo apresenta classicamente: secreção nasal mucopurulenta (uni ou bilateral), úlceras na mucosa nasal de bordas irregulares (aspecto cratériforme), linfadenomegalia dos linfonodos regionais (submandibulares, retrofaríngeos), acompanhadas de sinais gerais como febre e apatia. Sinais neurológicos, icterícia e hemoglobinúria não são compatíveis com o quadro do mormo.",
+          "needsReview": false
+        },
+        {
+          "id": 18017,
+          "tipo": "multipla_escolha",
+          "type": "faculdade",
+          "banca": "Faculdade",
+          "source": "faculdade",
+          "discipline": "Saúde de Animais de Produção",
+          "topic": "Mormo | PNSE",
+          "tema": "Saúde de Animais de Produção",
+          "subtema": "Mormo | PNSE",
+          "dificuldade": "media",
+          "pergunta": "Qual sinal clínico, quando observado em conjunto com secreção nasal purulenta em equídeo, levanta forte suspeita de mormo e o diferencia de rinopatias mais comuns?",
+          "alternativas": {
+            "A": "Presença de nódulos subcutâneos ao longo dos vasos linfáticos dos membros, com ou sem ulceração (linfangite nodular)",
+            "B": "Febre elevada e taquicardia como sinais exclusivos, sem lesões localizadas identificáveis",
+            "C": "Tosse úmida produtiva isolada, sem comprometimento simultâneo da mucosa nasal",
+            "D": "Edema bilateral simétrico de membros posteriores sem nodulação subcutânea palpável"
+          },
+          "correta": "A",
+          "explicacao": "A combinação de secreção nasal purulenta com nódulos subcutâneos distribuídos ao longo dos vasos linfáticos dos membros (linfangite nodular / farcino) é altamente sugestiva de mormo. Este padrão de linfangite nodular não é comum em outras rinopatias equinas frequentes (influenza, garrotilho/adenite equina), tornando-se um achado-chave para a suspeita clínica e a investigação sanitária imediata.",
+          "needsReview": false
+        },
+        {
+          "id": 18018,
+          "tipo": "multipla_escolha",
+          "type": "faculdade",
+          "banca": "Faculdade",
+          "source": "faculdade",
+          "discipline": "Saúde de Animais de Produção",
+          "topic": "Mormo | PNSE",
+          "tema": "Saúde de Animais de Produção",
+          "subtema": "Mormo | PNSE",
+          "dificuldade": "dificil",
+          "pergunta": "Na diferenciação clínica entre mormo e Anemia Infecciosa Equina (AIE), qual elemento é determinante para orientar a investigação diagnóstica?",
+          "alternativas": {
+            "A": "Apenas a espécie acometida, pois a AIE ocorre somente em cavalos e o mormo somente em asininos",
+            "B": "A presença de secreção nasal elimina a hipótese de AIE, pois esta doença não cursa com sinais respiratórios",
+            "C": "O perfil de sinais: mormo cursa com úlceras nasais e linfangite nodular, enquanto AIE apresenta anemia, edema declive e febre intermitente recorrente sem lesões ulcerativas; a confirmação exige testes específicos distintos para cada doença",
+            "D": "A AIE pode ser diagnosticada pelo mesmo teste do mormo, portanto a diferenciação é apenas clínica e não laboratorial"
+          },
+          "correta": "C",
+          "explicacao": "Mormo e AIE compartilham sinais gerais (febre, emagrecimento, edema), mas diferem no perfil específico: mormo cursa com ulcerações nasais e linfangite nodular (farcino), enquanto AIE manifesta-se com anemia hemolítica, edema declive e febre intermitente recorrente, sem lesões ulcerativas localizadas. Os testes confirmatórios são completamente distintos: IDGA (teste de Coggins) para AIE e testes bacteriológicos/sorológicos específicos para B. mallei no mormo. Ambas as doenças acometem as mesmas espécies de equídeos.",
+          "needsReview": false
+        },
+        {
+          "id": 18019,
+          "tipo": "multipla_escolha",
+          "type": "faculdade",
+          "banca": "Faculdade",
+          "source": "faculdade",
+          "discipline": "Saúde de Animais de Produção",
+          "topic": "Mormo | PNSE",
+          "tema": "Saúde de Animais de Produção",
+          "subtema": "Mormo | PNSE",
+          "dificuldade": "dificil",
+          "pergunta": "Para diferenciar mormo de piroplasmose equina (Babesia/Theileria equi), qual achado clínico é mais relevante?",
+          "alternativas": {
+            "A": "A piroplasmose não cursa com febre, enquanto o mormo sempre apresenta febre como primeiro sinal clínico",
+            "B": "A piroplasmose equina é caracterizada por anemia hemolítica, icterícia, hemoglobinúria e esplenomegalia, sem lesões ulcerativas nasais ou linfangite nodular, que são típicas do mormo",
+            "C": "O mormo causa anemia hemolítica intensa semelhante à da piroplasmose, diferenciando-se apenas pela espécie acometida",
+            "D": "A diferenciação clínica entre as duas doenças é impossível, dependendo exclusivamente de sorologia para B. mallei"
+          },
+          "correta": "B",
+          "explicacao": "A piroplasmose equina (babesiose) apresenta síndrome hemolítica aguda: anemia intensa, icterícia, hemoglobinúria ('urina escura') e esplenomegalia, sem as lesões ulcerativas nasais e a linfangite nodular características do mormo. A investigação laboratorial confirma: esfregaço sanguíneo e PCR para hemoparasitas na piroplasmose versus testes bacteriológicos/sorológicos específicos para B. mallei no mormo.",
+          "needsReview": false
+        },
+        {
+          "id": 18020,
+          "tipo": "multipla_escolha",
+          "type": "faculdade",
+          "banca": "Faculdade",
+          "source": "faculdade",
+          "discipline": "Saúde de Animais de Produção",
+          "topic": "Mormo | PNSE",
+          "tema": "Saúde de Animais de Produção",
+          "subtema": "Mormo | PNSE",
+          "dificuldade": "dificil",
+          "pergunta": "A linfangite epizoótica é considerada o principal diagnóstico diferencial da forma cutânea/farcinosa do mormo porque:",
+          "alternativas": {
+            "A": "É causada pelo mesmo agente etiológico (Burkholderia mallei), com apresentação regional distinta entre as formas",
+            "B": "Cursa com pneumonia nodular idêntica à do mormo, dificultando a diferenciação pela apresentação pulmonar",
+            "C": "Apresenta lesões vesiculares nas mucosas, enquanto o mormo causa exclusivamente lesões nodulares na pele e membros",
+            "D": "Também causa linfangite nodular com nódulos em rosário nos membros de equídeos, porém é causada pelo fungo Histoplasma farciminosum, exigindo diagnóstico micológico para diferenciação definitiva"
+          },
+          "correta": "D",
+          "explicacao": "A linfangite epizoótica, causada pelo fungo Histoplasma farciminosum, produz quadro clínico de linfangite nodular em equídeos muito semelhante ao farcino do mormo — nódulos que ulceram e drenam ao longo dos vasos linfáticos, formando o padrão em rosário. A diferenciação clínica pode ser extremamente difícil, sendo necessário diagnóstico laboratorial (cultivo micológico e exame microscópico para H. farciminosum versus bacteriológico para B. mallei) para determinar a etiologia.",
+          "needsReview": false
+        }
+      ]
+    }
+  ]
+}
