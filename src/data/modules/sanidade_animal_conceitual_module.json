@@ -1,0 +1,611 @@
+{
+  "disciplina": "Medicina Veterinária Preventiva / Saúde Animal",
+  "modulo": "Sanidade Animal Conceitual",
+  "module": "Sanidade Animal Conceitual",
+  "source": "faculdade",
+  "topics": [
+    {
+      "name": "Sanidade Animal Conceitual",
+      "flashcards": [
+        {
+          "id": "fc_sanidade_001",
+          "pergunta": "O que é sanidade animal e quais são suas três dimensões fundamentais?",
+          "resposta": "Sanidade animal é o conjunto de medidas e conhecimentos voltados à prevenção, controle e erradicação de doenças em populações animais. Suas três dimensões são: (1) Saúde animal coletiva — proteger o rebanho; (2) Saúde pública — prevenir zoonoses e garantir segurança alimentar; (3) Economia — preservar produtividade, comércio e acesso a mercados.",
+          "tema": "Medicina Veterinária Preventiva / Saúde Animal",
+          "subtema": "Sanidade Animal Conceitual",
+          "needsReview": false
+        },
+        {
+          "id": "fc_sanidade_002",
+          "pergunta": "Quais são os três princípios hierárquicos da sanidade animal e o que cada um significa?",
+          "resposta": "1) Prevenção: impedir a ocorrência ou a introdução da doença — nível prioritário, mais eficiente e custo-efetivo. 2) Controle: reduzir a incidência, a prevalência e o impacto onde a doença já ocorre. 3) Erradicação: eliminar definitivamente o agente de uma área geográfica definida — nível mais ambicioso, exige esforço coordenado e sustentado.",
+          "tema": "Medicina Veterinária Preventiva / Saúde Animal",
+          "subtema": "Sanidade Animal Conceitual",
+          "needsReview": false
+        },
+        {
+          "id": "fc_sanidade_003",
+          "pergunta": "Por que a prevenção é hierarquicamente superior ao controle e à erradicação na sanidade animal?",
+          "resposta": "Porque prevenir é mais eficiente e custo-efetivo do que controlar ou erradicar. Uma doença que nunca se instala não gera perdas de produção, não demanda tratamento e não ameaça o comércio. Controle e erradicação são necessários quando a prevenção falhou, demandando investimentos maiores com resultados mais incertos e demorados.",
+          "tema": "Medicina Veterinária Preventiva / Saúde Animal",
+          "subtema": "Sanidade Animal Conceitual",
+          "needsReview": false
+        },
+        {
+          "id": "fc_sanidade_004",
+          "pergunta": "Qual a diferença entre biossegurança e biosseguridade?",
+          "resposta": "Biossegurança (biosafety): medidas para prevenir riscos biológicos em laboratórios e instalações que manipulam agentes patogênicos ou OGMs — foco na proteção do operador, da comunidade e do ambiente. Biosseguridade (biosecurity): práticas adotadas em propriedades rurais e sistemas de produção para prevenir a introdução e disseminação de agentes infecciosos no rebanho. São conceitos distintos, não sinônimos.",
+          "tema": "Medicina Veterinária Preventiva / Saúde Animal",
+          "subtema": "Sanidade Animal Conceitual",
+          "needsReview": false
+        },
+        {
+          "id": "fc_sanidade_005",
+          "pergunta": "O que é vazio sanitário e por que não pode ser substituído apenas pela desinfecção química?",
+          "resposta": "Vazio sanitário: período em que as instalações permanecem sem animais entre dois lotes, permitindo limpeza mecânica, desinfecção e secagem total. Não substitui a desinfecção isolada porque: (1) com animais presentes, a limpeza mecânica prévia é incompleta; (2) matéria orgânica residual inativa muitos desinfetantes; (3) a secagem completa — essencial para eliminar patógenos — só ocorre sem animais nas instalações.",
+          "tema": "Medicina Veterinária Preventiva / Saúde Animal",
+          "subtema": "Sanidade Animal Conceitual",
+          "needsReview": false
+        },
+        {
+          "id": "fc_sanidade_006",
+          "pergunta": "Qual a diferença entre desinfecção, antissepsia e esterilização?",
+          "resposta": "Desinfecção: eliminação de microrganismos patogênicos em superfícies e objetos inanimados — não elimina necessariamente todos os esporos. Antissepsia: eliminação ou inibição de microrganismos em tecidos vivos (pele, mucosas) — usa agentes mais suaves. Esterilização: eliminação de todas as formas de vida, incluindo esporos — usada em material cirúrgico e laboratorial.",
+          "tema": "Medicina Veterinária Preventiva / Saúde Animal",
+          "subtema": "Sanidade Animal Conceitual",
+          "needsReview": false
+        },
+        {
+          "id": "fc_sanidade_007",
+          "pergunta": "Como as medidas profiláticas são classificadas em sanidade animal? Dê exemplos de cada categoria.",
+          "resposta": "1) Profilaxia sanitária: medidas de barreira e higiene — quarentena, isolamento, desinfecção, descarte seletivo, controle de trânsito de animais. 2) Profilaxia médica: intervenções biológicas ou químicas que fortalecem a resistência — vacinação, soros hiperimunes, quimioprofilaxia. 3) Profilaxia de manejo: ajustes nas condições de criação — nutrição adequada, densidade correta, ambiência, ventilação, higiene das instalações.",
+          "tema": "Medicina Veterinária Preventiva / Saúde Animal",
+          "subtema": "Sanidade Animal Conceitual",
+          "needsReview": false
+        },
+        {
+          "id": "fc_sanidade_008",
+          "pergunta": "Por que a vacinação é classificada como profilaxia médica e não sanitária?",
+          "resposta": "Porque a vacinação atua diretamente sobre a resistência biológica do animal, estimulando seu sistema imune a produzir defesas específicas — é uma intervenção de natureza médica/biológica. A profilaxia sanitária envolve medidas de barreira ambiental e organizacional (isolamento, higiene, quarentena, descarte) que não atuam diretamente sobre o organismo do animal.",
+          "tema": "Medicina Veterinária Preventiva / Saúde Animal",
+          "subtema": "Sanidade Animal Conceitual",
+          "needsReview": false
+        },
+        {
+          "id": "fc_sanidade_009",
+          "pergunta": "Qual a diferença entre imunidade ativa e imunidade passiva?",
+          "resposta": "Imunidade ativa: o próprio organismo produz anticorpos e células de memória após contato com antígeno — por infecção natural ou vacinação. Proteção duradoura. Imunidade passiva: o organismo recebe anticorpos já formados de fonte externa (colostro materno, soros hiperimunes) — proteção imediata, mas temporária, sem formação de memória imunológica.",
+          "tema": "Medicina Veterinária Preventiva / Saúde Animal",
+          "subtema": "Sanidade Animal Conceitual",
+          "needsReview": false
+        },
+        {
+          "id": "fc_sanidade_010",
+          "pergunta": "Quais são as principais vantagens e limitações das vacinas vivas atenuadas em comparação com as inativadas?",
+          "resposta": "Atenuadas — vantagens: maior imunogenicidade, estimulam imunidade celular e humoral, resposta mais duradoura, mimetizam infecção natural. Limitações: risco de reversão à virulência em algumas situações; exigem cadeia de frio rigorosa; podem ser contraindicadas em imunocomprometidos e em algumas categorias de gestantes, dependendo do agente. Inativadas: mais seguras, sem risco de reversão, mas geralmente exigem adjuvantes e doses de reforço para manter proteção.",
+          "tema": "Medicina Veterinária Preventiva / Saúde Animal",
+          "subtema": "Sanidade Animal Conceitual",
+          "needsReview": false
+        },
+        {
+          "id": "fc_sanidade_011",
+          "pergunta": "O que é imunidade de rebanho e por que ela não exige 100% de cobertura vacinal?",
+          "resposta": "Imunidade de rebanho: quando proporção suficiente de indivíduos está imune, a cadeia de transmissão é interrompida, protegendo indiretamente os susceptíveis. Não exige 100% porque os imunes atuam como barreira epidemiológica que reduz a probabilidade de contato entre o agente infeccioso e os susceptíveis — desde que a proporção de imunes seja alta o suficiente para o padrão de transmissão daquele agente.",
+          "tema": "Medicina Veterinária Preventiva / Saúde Animal",
+          "subtema": "Sanidade Animal Conceitual",
+          "needsReview": false
+        },
+        {
+          "id": "fc_sanidade_012",
+          "pergunta": "Qual é a sequência lógica do diagnóstico das doenças animais?",
+          "resposta": "1) Anamnese: histórico do animal e do rebanho, manejo, alimentação, vacinações, contatos, cronologia. 2) Exame físico: sinais clínicos individuais e avaliação coletiva do rebanho. 3) Diagnóstico clínico presuntivo: hipóteses baseadas nos achados clínicos e epidemiológicos. 4) Exames complementares: laboratoriais, de imagem, anatomopatológicos. 5) Diagnóstico definitivo: confirmação da hipótese. O diagnóstico diferencial é construído durante todo o processo.",
+          "tema": "Medicina Veterinária Preventiva / Saúde Animal",
+          "subtema": "Sanidade Animal Conceitual",
+          "needsReview": false
+        },
+        {
+          "id": "fc_sanidade_013",
+          "pergunta": "Qual a diferença entre diagnóstico presuntivo e diagnóstico definitivo?",
+          "resposta": "Diagnóstico presuntivo: hipótese diagnóstica formulada com base nos sinais clínicos e na epidemiologia, sem confirmação laboratorial — orienta a conduta inicial. Diagnóstico definitivo: confirmado por métodos laboratoriais (cultura, PCR, histopatologia, sorologia com critérios estabelecidos) ou por resposta inequívoca ao tratamento específico. O presuntivo pode ser suficiente para condutas de controle imediatas; o definitivo é necessário para situações que exigem confirmação formal.",
+          "tema": "Medicina Veterinária Preventiva / Saúde Animal",
+          "subtema": "Sanidade Animal Conceitual",
+          "needsReview": false
+        },
+        {
+          "id": "fc_sanidade_014",
+          "pergunta": "O que são métodos diagnósticos diretos e indiretos? Quando cada um é mais indicado?",
+          "resposta": "Métodos diretos: detectam o próprio agente ou seus componentes — cultura, PCR, esfregaço, histopatologia, imunofluorescência direta. Mais úteis na fase aguda, quando o agente está presente em maior quantidade. Métodos indiretos: detectam a resposta imune do hospedeiro — sorologia (ELISA, IFI, IDGA, soroaglutinação). Mais úteis após soroconversão. Os dois são complementares; a escolha depende da fase clínica e do objetivo diagnóstico.",
+          "tema": "Medicina Veterinária Preventiva / Saúde Animal",
+          "subtema": "Sanidade Animal Conceitual",
+          "needsReview": false
+        },
+        {
+          "id": "fc_sanidade_015",
+          "pergunta": "Quais são os componentes essenciais de um programa eficiente de manejo sanitário do rebanho?",
+          "resposta": "1) Monitoramento periódico: exames clínicos sistemáticos e indicadores de saúde do rebanho. 2) Registros sanitários e produtivos: entradas, saídas, vacinações, tratamentos, mortalidade. 3) Rastreabilidade: identificação individual e histórico de cada animal. 4) Controle de entrada de animais: exigência de origem, quarentena de novos animais. 5) Biosseguridade: barreiras de entrada, vazio sanitário, higiene. 6) Médico veterinário responsável: supervisão técnica contínua.",
+          "tema": "Medicina Veterinária Preventiva / Saúde Animal",
+          "subtema": "Sanidade Animal Conceitual",
+          "needsReview": false
+        },
+        {
+          "id": "fc_sanidade_016",
+          "pergunta": "Por que os registros sanitários são indispensáveis no manejo do rebanho, mesmo em propriedades de pequeno porte?",
+          "resposta": "Registros permitem: identificar padrões de adoecimento ao longo do tempo; avaliar eficácia de vacinas e medidas de controle; rastrear a origem de surtos; demonstrar a condição sanitária para fins de comercialização; cumprir exigências de certificações; subsidiar decisões técnicas do médico veterinário. Sem registros, o manejo sanitário é reativo e baseado em memória, aumentando o risco de decisões equivocadas.",
+          "tema": "Medicina Veterinária Preventiva / Saúde Animal",
+          "subtema": "Sanidade Animal Conceitual",
+          "needsReview": false
+        },
+        {
+          "id": "fc_sanidade_017",
+          "pergunta": "O que é zoonose e quais são as principais vias de transmissão ao ser humano?",
+          "resposta": "Zoonose: qualquer doença ou infecção naturalmente transmissível entre animais vertebrados e seres humanos. Principais vias: (1) Direta — contato com animal infectado, mordedura, arranhão, secreções; (2) Indireta — fômites, solo, água ou ambiente contaminado; (3) Vetorial — artrópodes hematófagos (carrapatos, mosquitos); (4) Alimentar — ingestão de alimentos de origem animal contaminados e não processados adequadamente.",
+          "tema": "Medicina Veterinária Preventiva / Saúde Animal",
+          "subtema": "Sanidade Animal Conceitual",
+          "needsReview": false
+        },
+        {
+          "id": "fc_sanidade_018",
+          "pergunta": "Quais medidas preventivas atuam em diferentes pontos da cadeia de transmissão das zoonoses?",
+          "resposta": "Na fonte animal: controle sanitário do rebanho, vacinação quando disponível, descarte de positivos. No veículo: pasteurização do leite, abate higiênico com inspeção sanitária, tratamento da água, controle de vetores e roedores. No hospedeiro humano: uso de EPI por trabalhadores de risco (ordenhadores, veterinários, frigoríficos), higiene pessoal, educação sanitária e não consumo de produtos crus não inspecionados.",
+          "tema": "Medicina Veterinária Preventiva / Saúde Animal",
+          "subtema": "Sanidade Animal Conceitual",
+          "needsReview": false
+        },
+        {
+          "id": "fc_sanidade_019",
+          "pergunta": "Qual a diferença entre vigilância epidemiológica ativa e passiva em saúde animal?",
+          "resposta": "Vigilância ativa: o serviço de saúde animal busca proativamente os casos — inquéritos sorológicos, visitas sistemáticas, amostragem. Mais sensível, detecta casos assintomáticos e subnotificados; mais onerosa. Vigilância passiva: aguarda notificações espontâneas de veterinários, proprietários ou laboratórios — maior cobertura geográfica potencial, menor custo, menor sensibilidade. Os dois sistemas são complementares.",
+          "tema": "Medicina Veterinária Preventiva / Saúde Animal",
+          "subtema": "Sanidade Animal Conceitual",
+          "needsReview": false
+        },
+        {
+          "id": "fc_sanidade_020",
+          "pergunta": "Defina endemia, epidemia, surto e pandemia no contexto da sanidade animal.",
+          "resposta": "Endemia: ocorrência constante e esperada de doença em área geográfica definida, em frequência habitual. Epidemia: aumento acima do esperado na ocorrência de casos em população ou área. Surto: epidemia circunscrita a local específico (propriedade, rebanho, bairro) — na sanidade animal, frequentemente o primeiro sinal de alerta de um problema emergente. Pandemia: disseminação epidêmica em escala global, múltiplos países ou continentes.",
+          "tema": "Medicina Veterinária Preventiva / Saúde Animal",
+          "subtema": "Sanidade Animal Conceitual",
+          "needsReview": false
+        },
+        {
+          "id": "fc_sanidade_021",
+          "pergunta": "Quais são os cinco domínios do bem-estar animal e como eles diferem das cinco liberdades originais?",
+          "resposta": "Cinco domínios: (1) Nutrição, (2) Ambiente, (3) Saúde, (4) Comportamento, (5) Estado mental. Diferem das cinco liberdades originais (Brambell, 1965) por: (a) incluírem o estado mental como domínio explícito e integrador dos demais; (b) reconhecerem experiências positivas além da simples ausência de sofrimento; (c) permitirem avaliação mais dinâmica e gradual do bem-estar, não apenas binária.",
+          "tema": "Medicina Veterinária Preventiva / Saúde Animal",
+          "subtema": "Sanidade Animal Conceitual",
+          "needsReview": false
+        },
+        {
+          "id": "fc_sanidade_022",
+          "pergunta": "Como o comprometimento do bem-estar animal afeta a saúde e a susceptibilidade a doenças do rebanho?",
+          "resposta": "Bem-estar inadequado → estresse crônico → ativação sustentada do eixo hipotálamo-hipófise-adrenal → elevação de cortisol → imunossupressão (redução de linfócitos, menor produção de anticorpos, redução da atividade de células NK) → maior susceptibilidade a infecções oportunistas e menor resposta vacinal. Além disso, estresse crônico reduz produtividade e fertilidade, gerando perdas econômicas diretas mensuráveis.",
+          "tema": "Medicina Veterinária Preventiva / Saúde Animal",
+          "subtema": "Sanidade Animal Conceitual",
+          "needsReview": false
+        },
+        {
+          "id": "fc_sanidade_023",
+          "pergunta": "O que é One Health (Saúde Única) e quais são seus três pilares?",
+          "resposta": "One Health: conceito e abordagem que reconhece a interdependência entre saúde humana, saúde animal e saúde dos ecossistemas. Três pilares: (1) Saúde humana; (2) Saúde animal (doméstica e silvestre); (3) Saúde ambiental e ecossistêmica. Parte do princípio de que problemas complexos — zoonoses emergentes, resistência antimicrobiana, mudanças climáticas — só podem ser efetivamente enfrentados com abordagem integrada entre as três esferas.",
+          "tema": "Medicina Veterinária Preventiva / Saúde Animal",
+          "subtema": "Sanidade Animal Conceitual",
+          "needsReview": false
+        },
+        {
+          "id": "fc_sanidade_024",
+          "pergunta": "Dê exemplos práticos de como One Health se aplica a problemas reais na interface saúde animal, humana e ambiental.",
+          "resposta": "1) Resistência antimicrobiana: uso de antibióticos em animais de produção seleciona bactérias resistentes que chegam ao ambiente e ao humano via cadeia alimentar e resíduos. 2) Zoonoses emergentes: desmatamento reduz habitats silvestres, aproximando animais selvagens de domésticos e humanos, favorecendo o spillover de novos agentes. 3) Qualidade da água: contaminação por dejetos animais afeta a saúde humana e ecossistemas aquáticos simultaneamente.",
+          "tema": "Medicina Veterinária Preventiva / Saúde Animal",
+          "subtema": "Sanidade Animal Conceitual",
+          "needsReview": false
+        },
+        {
+          "id": "fc_sanidade_025",
+          "pergunta": "Qual a diferença entre perdas econômicas diretas e indiretas por doenças animais? Por que doenças subclínicas também geram perdas relevantes?",
+          "resposta": "Perdas diretas: mortalidade, morbidade com queda de produção (leite, carne, ovos), redução reprodutiva, condenação de carcaças ao abate, custos com tratamento e controle. Perdas indiretas: restrições ao comércio nacional e internacional (embargos, barreiras sanitárias), desvalorização do plantel, custos de programas de controle e erradicação. Doenças subclínicas geram perdas diretas reais — redução silenciosa de produtividade sem mortalidade visível — frequentemente subestimadas pelo produtor.",
+          "tema": "Medicina Veterinária Preventiva / Saúde Animal",
+          "subtema": "Sanidade Animal Conceitual",
+          "needsReview": false
+        }
+      ],
+      "questions": [
+        {
+          "id": 17001,
+          "tipo": "multipla_escolha",
+          "type": "faculdade",
+          "banca": "Faculdade",
+          "source": "faculdade",
+          "discipline": "Medicina Veterinária Preventiva / Saúde Animal",
+          "topic": "Sanidade Animal Conceitual",
+          "tema": "Medicina Veterinária Preventiva / Saúde Animal",
+          "subtema": "Sanidade Animal Conceitual",
+          "dificuldade": "media",
+          "pergunta": "A sanidade animal é uma área que ultrapassa os limites da clínica médica individual e engloba múltiplas dimensões interdependentes. Assinale a alternativa que descreve corretamente o conceito e a abrangência da sanidade animal:",
+          "alternativas": {
+            "A": "A sanidade animal restringe-se ao diagnóstico e tratamento de doenças em animais individualmente considerados, sendo equivalente à clínica médica veterinária; sua importância econômica é secundária e decorre exclusivamente da produtividade individual de cada animal tratado.",
+            "B": "A sanidade animal abrange o conjunto de medidas e conhecimentos voltados à prevenção, ao controle e à erradicação de doenças animais, com impacto simultâneo sobre a saúde animal coletiva, a saúde pública e a economia da produção animal e do comércio.",
+            "C": "A sanidade animal corresponde exclusivamente ao controle de zoonoses transmissíveis ao ser humano, sendo sua principal finalidade proteger a saúde humana; doenças que afetam apenas animais não integram o escopo da sanidade animal por não representarem risco à saúde pública.",
+            "D": "A sanidade animal é definida como o conjunto de ações realizadas exclusivamente pelo serviço veterinário oficial do Estado, sem participação de médicos veterinários privados; seu escopo limita-se ao trânsito e à inspeção de produtos de origem animal destinados ao consumo humano."
+          },
+          "correta": "B",
+          "explicacao": "A sanidade animal é uma área de atuação coletiva que inclui prevenção, controle e erradicação de doenças, com impacto triplo: saúde animal coletiva, saúde pública (zoonoses, segurança alimentar) e economia (produção, comércio, acesso a mercados). Não se restringe à clínica individual, às zoonoses, nem à atuação exclusiva do serviço oficial.",
+          "needsReview": false
+        },
+        {
+          "id": 17002,
+          "tipo": "multipla_escolha",
+          "type": "faculdade",
+          "banca": "Faculdade",
+          "source": "faculdade",
+          "discipline": "Medicina Veterinária Preventiva / Saúde Animal",
+          "topic": "Sanidade Animal Conceitual",
+          "tema": "Medicina Veterinária Preventiva / Saúde Animal",
+          "subtema": "Sanidade Animal Conceitual",
+          "dificuldade": "media",
+          "pergunta": "Os princípios da sanidade animal organizam-se em uma hierarquia lógica que orienta a prioridade das ações em saúde coletiva animal. Assinale a alternativa que descreve corretamente essa hierarquia e o significado de cada nível:",
+          "alternativas": {
+            "A": "A hierarquia correta é: erradicação → controle → prevenção, pois a eliminação definitiva do agente deve ser sempre o objetivo inicial, sendo o controle e a prevenção adotados apenas quando a erradicação falha ou não é tecnicamente viável a curto prazo.",
+            "B": "A hierarquia correta é: controle → erradicação → prevenção, pois primeiro reduz-se a prevalência da doença por controle, depois se erradica o agente e, por último, a prevenção é estabelecida para impedir a reintrodução após o sucesso do programa.",
+            "C": "Os princípios são equivalentes em importância e não apresentam hierarquia definida; a escolha entre prevenção, controle e erradicação depende exclusivamente do custo das medidas disponíveis, sem relação com a fase epidemiológica da doença na região.",
+            "D": "A hierarquia correta é: prevenção → controle → erradicação; prevenir significa impedir a introdução ou ocorrência da doença; controlar significa reduzir a incidência e o impacto onde a doença já ocorre; erradicar significa eliminar definitivamente o agente de uma área geográfica definida."
+          },
+          "correta": "D",
+          "explicacao": "A hierarquia é: prevenção (impedir a ocorrência) → controle (reduzir onde já ocorre) → erradicação (eliminar definitivamente de uma área). Prevenção é sempre prioritária por ser mais eficiente e custo-efetiva; erradicação é o nível mais ambicioso e exige esforço coordenado e sustentado ao longo do tempo.",
+          "needsReview": false
+        },
+        {
+          "id": 17003,
+          "tipo": "multipla_escolha",
+          "type": "faculdade",
+          "banca": "Faculdade",
+          "source": "faculdade",
+          "discipline": "Medicina Veterinária Preventiva / Saúde Animal",
+          "topic": "Sanidade Animal Conceitual",
+          "tema": "Medicina Veterinária Preventiva / Saúde Animal",
+          "subtema": "Sanidade Animal Conceitual",
+          "dificuldade": "media",
+          "pergunta": "Os termos biossegurança e biosseguridade são frequentemente utilizados na literatura veterinária, mas possuem significados distintos. Assinale a alternativa que os diferencia corretamente:",
+          "alternativas": {
+            "A": "Biossegurança refere-se ao conjunto de medidas para prevenir riscos biológicos em laboratórios e instalações que manipulam agentes patogênicos ou organismos geneticamente modificados; biosseguridade refere-se ao conjunto de práticas adotadas em propriedades rurais e sistemas de produção animal para prevenir a introdução e disseminação de agentes infecciosos no rebanho.",
+            "B": "Biossegurança e biosseguridade são termos sinônimos utilizados de forma intercambiável na medicina veterinária preventiva; ambos descrevem o conjunto de medidas físicas e químicas adotadas para eliminar agentes patogênicos em propriedades rurais e em laboratórios de diagnóstico veterinário.",
+            "C": "Biossegurança refere-se à proteção legal de organismos vivos contra apropriação indevida de recursos genéticos; biosseguridade refere-se às normas de segurança do trabalho aplicadas a médicos veterinários que manipulam animais potencialmente agressivos em ambientes clínicos e hospitalares.",
+            "D": "Biosseguridade é o nível mais elevado de biossegurança, aplicado exclusivamente a laboratórios de alta contenção que manipulam agentes de alta letalidade; biossegurança é o termo utilizado para instalações de menor risco, como clínicas veterinárias e granjas comerciais de produção intensiva."
+          },
+          "correta": "A",
+          "explicacao": "Biossegurança (biosafety): medidas de proteção em laboratórios e instalações que manipulam agentes biológicos ou OGMs, focadas na proteção do operador, da comunidade e do ambiente. Biosseguridade (biosecurity): medidas adotadas em propriedades rurais e sistemas de produção para prevenir a entrada e disseminação de agentes infecciosos no rebanho. São conceitos distintos e não sinônimos.",
+          "needsReview": false
+        },
+        {
+          "id": 17004,
+          "tipo": "multipla_escolha",
+          "type": "faculdade",
+          "banca": "Faculdade",
+          "source": "faculdade",
+          "discipline": "Medicina Veterinária Preventiva / Saúde Animal",
+          "topic": "Sanidade Animal Conceitual",
+          "tema": "Medicina Veterinária Preventiva / Saúde Animal",
+          "subtema": "Sanidade Animal Conceitual",
+          "dificuldade": "dificil",
+          "pergunta": "O vazio sanitário é uma medida de biosseguridade amplamente utilizada em sistemas intensivos de produção animal. Assinale a alternativa que descreve corretamente seu conceito e finalidade:",
+          "alternativas": {
+            "A": "O vazio sanitário consiste na aplicação intensiva de desinfetantes em instalações ocupadas antes da saída dos animais, com o objetivo de reduzir a carga microbiana do ambiente enquanto o lote ainda está presente, sendo equivalente à desinfecção terminal convencional realizada após o esvaziamento.",
+            "B": "O vazio sanitário é sinônimo de quarentena e consiste no isolamento de animais recém-adquiridos em área separada da propriedade por período determinado, impedindo o contato direto com o rebanho residente até que sua condição sanitária seja avaliada pelo médico veterinário responsável.",
+            "C": "O vazio sanitário é o período em que as instalações permanecem sem animais após a saída de um lote, permitindo a realização de limpeza mecânica, desinfecção e secagem completa do ambiente; sua função é interromper o ciclo de transmissão de agentes infecciosos entre lotes consecutivos, reduzindo a pressão de infecção para os animais subsequentes.",
+            "D": "O vazio sanitário consiste na suspensão temporária da entrada de qualquer pessoa nas instalações de produção após a ocorrência de surto, sendo uma medida voltada exclusivamente ao controle do fluxo humano e sem relação com o manejo dos animais ou das instalações produtivas."
+          },
+          "correta": "C",
+          "explicacao": "O vazio sanitário é o intervalo sem animais nas instalações entre dois lotes consecutivos. Permite limpeza mecânica, desinfecção química e secagem completa, interrompendo o ciclo de transmissão de agentes que persistem no ambiente. É diferente de quarentena (isolamento de animais novos) e não pode ser substituído pela desinfecção isolada, pois a presença dos animais impede o processo completo.",
+          "needsReview": false
+        },
+        {
+          "id": 17005,
+          "tipo": "multipla_escolha",
+          "type": "faculdade",
+          "banca": "Faculdade",
+          "source": "faculdade",
+          "discipline": "Medicina Veterinária Preventiva / Saúde Animal",
+          "topic": "Sanidade Animal Conceitual",
+          "tema": "Medicina Veterinária Preventiva / Saúde Animal",
+          "subtema": "Sanidade Animal Conceitual",
+          "dificuldade": "media",
+          "pergunta": "As medidas profiláticas em sanidade animal são classificadas em sanitárias, médicas e de manejo. Assinale a alternativa que apresenta a classificação e os exemplos corretos para cada categoria:",
+          "alternativas": {
+            "A": "Profilaxia sanitária inclui vacinação e quimioprofilaxia; profilaxia médica inclui quarentena, isolamento e desinfecção de instalações; profilaxia de manejo inclui controle nutricional, densidade animal e adequação ambiental — sendo a vacinação a medida de maior custo-benefício dentro da profilaxia sanitária.",
+            "B": "Profilaxia sanitária inclui quarentena, isolamento de animais, desinfecção, descarte seletivo e controle de trânsito; profilaxia médica inclui vacinação, soros hiperimunes e quimioprofilaxia; profilaxia de manejo inclui controle nutricional, densidade animal, adequação ambiental e higiene das instalações.",
+            "C": "Profilaxia sanitária e médica são subdivisões da profilaxia de manejo, que representa a categoria mais abrangente; a vacinação pertence à profilaxia sanitária quando aplicada em programas coletivos e à profilaxia médica quando aplicada individualmente por prescrição do médico veterinário responsável.",
+            "D": "As três categorias são intercambiáveis e não apresentam distinção prática relevante na rotina das propriedades rurais; a classificação em sanitária, médica e de manejo é uma convenção acadêmica sem impacto direto na tomada de decisão técnica do médico veterinário responsável pelo rebanho."
+          },
+          "correta": "B",
+          "explicacao": "Profilaxia sanitária: medidas de barreira e higiene (quarentena, isolamento, desinfecção, descarte seletivo). Profilaxia médica: uso de agentes biológicos ou químicos que fortalecem a resistência do animal (vacinas, soros, quimioprofiláticos). Profilaxia de manejo: ajustes nas condições de criação que reduzem o estresse e a susceptibilidade (nutrição, densidade, ventilação, ambiência). Vacinação é sempre médica, não sanitária.",
+          "needsReview": false
+        },
+        {
+          "id": 17006,
+          "tipo": "multipla_escolha",
+          "type": "faculdade",
+          "banca": "Faculdade",
+          "source": "faculdade",
+          "discipline": "Medicina Veterinária Preventiva / Saúde Animal",
+          "topic": "Sanidade Animal Conceitual",
+          "tema": "Medicina Veterinária Preventiva / Saúde Animal",
+          "subtema": "Sanidade Animal Conceitual",
+          "dificuldade": "media",
+          "pergunta": "Sobre a profilaxia de manejo em sistemas de produção animal, assinale a alternativa que descreve corretamente suas características e exemplos práticos:",
+          "alternativas": {
+            "A": "A profilaxia de manejo inclui a administração preventiva de antibióticos no período perigestacional de fêmeas reprodutoras, a aplicação de anti-helmínticos em bezerros ao desmame e o uso profilático de anti-inflamatórios em lotes com histórico de doenças respiratórias recorrentes.",
+            "B": "A profilaxia de manejo restringe-se ao controle de insetos e ectoparasitas por meio de inseticidas e acaricidas, sendo aplicada exclusivamente em sistemas intensivos confinados onde a exposição a vetores é maior do que em sistemas extensivos a pasto.",
+            "C": "A profilaxia de manejo é sinônimo de profilaxia sanitária e inclui as mesmas medidas de quarentena, isolamento e desinfecção, diferindo apenas no nível de aplicação: sanitária para a propriedade como um todo e de manejo para lotes ou baias individuais dentro da mesma instalação.",
+            "D": "A profilaxia de manejo compreende medidas voltadas a otimizar as condições de criação para reduzir o estresse e a susceptibilidade dos animais a doenças, incluindo adequação nutricional, controle de densidade animal, ambiência, ventilação e higiene das instalações, sem envolver o uso de medicamentos."
+          },
+          "correta": "D",
+          "explicacao": "Profilaxia de manejo envolve ajustes nas condições de criação que reduzem a susceptibilidade dos animais: nutrição adequada, densidade compatível, ambiência (temperatura, umidade, ventilação), higiene e limpeza rotineira. Não inclui medicamentos — esses pertencem à profilaxia médica. Não é sinônimo de profilaxia sanitária, que envolve barreiras e isolamento.",
+          "needsReview": false
+        },
+        {
+          "id": 17007,
+          "tipo": "multipla_escolha",
+          "type": "faculdade",
+          "banca": "Faculdade",
+          "source": "faculdade",
+          "discipline": "Medicina Veterinária Preventiva / Saúde Animal",
+          "topic": "Sanidade Animal Conceitual",
+          "tema": "Medicina Veterinária Preventiva / Saúde Animal",
+          "subtema": "Sanidade Animal Conceitual",
+          "dificuldade": "media",
+          "pergunta": "A imunidade pode ser classificada quanto à origem e ao mecanismo de aquisição. Assinale a alternativa que diferencia corretamente imunidade ativa de imunidade passiva:",
+          "alternativas": {
+            "A": "Imunidade ativa é aquela em que o próprio organismo produz anticorpos e células de memória em resposta a um antígeno, seja por infecção natural ou por vacinação; imunidade passiva é aquela em que o organismo recebe anticorpos já formados por outra fonte, como colostro materno ou soros hiperimunes, sem produzir memória imunológica duradoura.",
+            "B": "Imunidade ativa é aquela adquirida exclusivamente por meio de vacinação com antígenos mortos ou inativados; imunidade passiva é aquela conferida por vacinas com antígenos vivos atenuados, que produzem resposta imune mais duradoura por mimetizarem a infecção natural no organismo do hospedeiro.",
+            "C": "Imunidade ativa e passiva são subtipos de imunidade inata; a ativa é inata porque não depende de estímulo antigênico prévio, enquanto a passiva é adquirida porque depende da transferência de componentes imunes produzidos ativamente por outro indivíduo da mesma espécie.",
+            "D": "Imunidade passiva é superior à imunidade ativa em duração e especificidade, pois os anticorpos transferidos já foram testados e selecionados pelo sistema imune do doador; a imunidade ativa produzida por vacinas é temporária e nunca alcança o nível de proteção conferido pela transferência passiva de anticorpos hiperimunes."
+          },
+          "correta": "A",
+          "explicacao": "Imunidade ativa: o próprio organismo produz a resposta imune (anticorpos e memória) após contato com antígeno — por infecção natural ou vacinação. É duradoura. Imunidade passiva: o organismo recebe anticorpos prontos de fonte externa (colostro, soros) — proteção imediata, mas temporária, sem memória imunológica. As demais opções invertem conceitos ou atribuem características incorretas a cada tipo.",
+          "needsReview": false
+        },
+        {
+          "id": 17008,
+          "tipo": "multipla_escolha",
+          "type": "faculdade",
+          "banca": "Faculdade",
+          "source": "faculdade",
+          "discipline": "Medicina Veterinária Preventiva / Saúde Animal",
+          "topic": "Sanidade Animal Conceitual",
+          "tema": "Medicina Veterinária Preventiva / Saúde Animal",
+          "subtema": "Sanidade Animal Conceitual",
+          "dificuldade": "dificil",
+          "pergunta": "O conceito de imunidade de rebanho e as limitações das vacinas vivas atenuadas são temas fundamentais em sanidade coletiva. Assinale a alternativa que os descreve corretamente:",
+          "alternativas": {
+            "A": "A imunidade de rebanho só é atingida quando 100% dos animais do plantel estão vacinados e soropositivos; qualquer animal não vacinado, independentemente de sua condição imune natural, representa uma falha no sistema de proteção coletiva que inviabiliza a proteção do rebanho como um todo.",
+            "B": "As vacinas vivas atenuadas são sempre superiores às inativadas em todos os aspectos; não apresentam risco de reversão à virulência, podem ser administradas em fêmeas gestantes sem restrições e produzem imunidade duradoura sem necessidade de doses de reforço em nenhuma espécie animal.",
+            "C": "A imunidade de rebanho ocorre quando uma proporção suficiente de indivíduos imunes interrompe a cadeia de transmissão, protegendo indiretamente os susceptíveis; vacinas vivas atenuadas podem, em algumas situações, reverter à virulência, e por isso seu uso exige cautela em animais imunocomprometidos.",
+            "D": "A imunidade de rebanho é um fenômeno exclusivo de doenças com transmissão respiratória direta e não se aplica a doenças transmitidas por vetores ou por via fecal-oral; vacinas inativadas são sempre preferíveis às atenuadas por não apresentarem qualquer risco associado à vacinação em nenhuma circunstância."
+          },
+          "correta": "C",
+          "explicacao": "Imunidade de rebanho: quando proporção suficiente do rebanho está imune, a transmissão é interrompida, protegendo indiretamente os susceptíveis — não requer 100% de cobertura. Vacinas atenuadas: vantagens (resposta intensa e duradoura) e limitações (risco de reversão à virulência em algumas situações, cautela em imunocomprometidos e gestantes dependendo do agente). Nenhuma das afirmações absolutas nas demais opções está correta.",
+          "needsReview": false
+        },
+        {
+          "id": 17009,
+          "tipo": "multipla_escolha",
+          "type": "faculdade",
+          "banca": "Faculdade",
+          "source": "faculdade",
+          "discipline": "Medicina Veterinária Preventiva / Saúde Animal",
+          "topic": "Sanidade Animal Conceitual",
+          "tema": "Medicina Veterinária Preventiva / Saúde Animal",
+          "subtema": "Sanidade Animal Conceitual",
+          "dificuldade": "media",
+          "pergunta": "O diagnóstico das doenças animais segue uma sequência lógica que vai do reconhecimento inicial à confirmação definitiva. Assinale a alternativa que descreve corretamente essa sequência e as características de cada etapa:",
+          "alternativas": {
+            "A": "A sequência diagnóstica correta começa pelo diagnóstico laboratorial (cultura, PCR ou sorologia), pois os métodos objetivos eliminam o viés do examinador; o exame físico e a anamnese são etapas complementares realizadas apenas quando o diagnóstico laboratorial é inconclusivo ou quando o custo dos exames inviabiliza a abordagem laboratorial inicial.",
+            "B": "A sequência diagnóstica parte da anamnese e do exame físico, que geram o diagnóstico clínico presuntivo; em seguida, os exames complementares (laboratoriais, de imagem) apoiam ou confirmam a hipótese, chegando ao diagnóstico definitivo; o diagnóstico diferencial é construído durante todo o processo para orientar a investigação.",
+            "C": "A sequência diagnóstica em medicina veterinária coletiva dispensa a anamnese e o exame físico individual, pois trabalha com dados populacionais; o diagnóstico é feito diretamente por inquéritos sorológicos que identificam a prevalência do agente no rebanho, sendo o exame clínico reservado para casos individuais de alto valor zootécnico.",
+            "D": "A sequência diagnóstica inclui obrigatoriamente a necropsia como primeira etapa, pois os achados anatomopatológicos são mais confiáveis do que os sinais clínicos em animais vivos; apenas após a confirmação post mortem o diagnóstico clínico presuntivo pode ser formulado e comunicado ao proprietário."
+          },
+          "correta": "B",
+          "explicacao": "A sequência diagnóstica lógica é: anamnese (histórico, rebanho, ambiente) → exame físico (sinais clínicos individuais e coletivos) → diagnóstico clínico presuntivo (hipóteses) → exames complementares (laboratoriais, imagem) → diagnóstico definitivo. O diagnóstico diferencial é elaborado ao longo de todo o processo. Iniciar pelo laboratório sem base clínica é ineficiente e frequentemente inconclusivo.",
+          "needsReview": false
+        },
+        {
+          "id": 17010,
+          "tipo": "multipla_escolha",
+          "type": "faculdade",
+          "banca": "Faculdade",
+          "source": "faculdade",
+          "discipline": "Medicina Veterinária Preventiva / Saúde Animal",
+          "topic": "Sanidade Animal Conceitual",
+          "tema": "Medicina Veterinária Preventiva / Saúde Animal",
+          "subtema": "Sanidade Animal Conceitual",
+          "dificuldade": "dificil",
+          "pergunta": "Os métodos diagnósticos podem ser classificados em diretos e indiretos, com aplicações e limitações distintas. Assinale a alternativa que os diferencia corretamente:",
+          "alternativas": {
+            "A": "Métodos diretos detectam a resposta imune do hospedeiro ao agente, incluindo sorologia (ELISA, IFI, IDGA) e testes de hipersensibilidade; métodos indiretos detectam o próprio agente ou seus componentes, incluindo cultura bacteriana, PCR e esfregaço sanguíneo — sendo os indiretos sempre mais sensíveis que os diretos.",
+            "B": "Métodos diretos e indiretos são classificações aplicáveis apenas ao diagnóstico bacteriológico; para doenças parasitárias e virais, os métodos são classificados exclusivamente em moleculares e convencionais, sem relação com a detecção direta ou indireta do agente ou de sua resposta imune.",
+            "C": "O PCR é sempre superior a todos os outros métodos diagnósticos em sensibilidade e especificidade para qualquer agente infeccioso em qualquer fase da doença; por isso, deve ser o método de escolha em todas as situações clínicas e de vigilância, independentemente do custo, da disponibilidade ou da fase da infecção.",
+            "D": "Métodos diretos detectam o próprio agente ou seus componentes (isolamento em cultura, PCR, esfregaço, histopatologia, imunofluorescência direta); métodos indiretos detectam a resposta imune do hospedeiro ao agente (sorologia: ELISA, IFI, IDGA, soroaglutinação); cada abordagem tem indicações conforme a fase da doença e a disponibilidade técnica."
+          },
+          "correta": "D",
+          "explicacao": "Métodos diretos: detectam o agente ou seus componentes — cultura, PCR, esfregaço, histopatologia. Mais úteis na fase aguda. Métodos indiretos: detectam a resposta imune do hospedeiro — sorologia. Mais úteis após soroconversão. Nenhum método é universalmente superior; a escolha depende da fase da doença, do agente e da finalidade diagnóstica.",
+          "needsReview": false
+        },
+        {
+          "id": 17011,
+          "tipo": "multipla_escolha",
+          "type": "faculdade",
+          "banca": "Faculdade",
+          "source": "faculdade",
+          "discipline": "Medicina Veterinária Preventiva / Saúde Animal",
+          "topic": "Sanidade Animal Conceitual",
+          "tema": "Medicina Veterinária Preventiva / Saúde Animal",
+          "subtema": "Sanidade Animal Conceitual",
+          "dificuldade": "media",
+          "pergunta": "Um programa eficiente de manejo sanitário do rebanho envolve componentes interdependentes que vão além da vacinação periódica. Assinale a alternativa que descreve corretamente os elementos essenciais desse programa:",
+          "alternativas": {
+            "A": "O manejo sanitário eficiente resume-se à aplicação correta das vacinas indicadas para cada espécie e faixa etária, pois a imunização adequada é suficiente para prevenir a maioria das doenças infecciosas relevantes em sistemas intensivos de produção animal.",
+            "B": "Os elementos essenciais do manejo sanitário são exclusivamente os relacionados à higiene e à desinfecção das instalações; monitoramento clínico, registros e rastreabilidade são atribuições administrativas sem impacto direto sobre a saúde coletiva do rebanho.",
+            "C": "O manejo sanitário eficiente depende exclusivamente da presença diária do médico veterinário na propriedade, sendo os protocolos de vacinação, monitoramento e registros ferramentas secundárias de menor importância para a saúde coletiva do rebanho em sistemas de produção intensiva.",
+            "D": "O manejo sanitário eficiente inclui monitoramento periódico da saúde do rebanho, manutenção de registros sanitários e produtivos, controle rigoroso da entrada de novos animais, rastreabilidade do plantel, adoção de medidas de biosseguridade e participação de médico veterinário responsável."
+          },
+          "correta": "D",
+          "explicacao": "Um programa de manejo sanitário eficiente é multidimensional: envolve monitoramento sistemático, registros detalhados (entradas, saídas, vacinações, mortalidade), rastreabilidade, controle de entrada de animais (quarentena, exigência de origem), medidas de biosseguridade e presença de médico veterinário responsável. Reduzir o manejo sanitário à vacinação é um erro conceitual grave.",
+          "needsReview": false
+        },
+        {
+          "id": 17012,
+          "tipo": "multipla_escolha",
+          "type": "faculdade",
+          "banca": "Faculdade",
+          "source": "faculdade",
+          "discipline": "Medicina Veterinária Preventiva / Saúde Animal",
+          "topic": "Sanidade Animal Conceitual",
+          "tema": "Medicina Veterinária Preventiva / Saúde Animal",
+          "subtema": "Sanidade Animal Conceitual",
+          "dificuldade": "media",
+          "pergunta": "O conceito de zoonose é fundamental para compreender a interface entre saúde animal e saúde humana. Assinale a alternativa que define corretamente zoonose e classifica suas vias de transmissão:",
+          "alternativas": {
+            "A": "Zoonose é definida como qualquer doença que afeta animais silvestres e pode ser transmitida a animais domésticos em situações de contato direto; doenças que afetam exclusivamente animais domésticos e humanos não se enquadram no conceito clássico de zoonose conforme a definição internacional.",
+            "B": "Zoonose é definida como doença transmitida exclusivamente pela via alimentar, por ingestão de alimentos de origem animal contaminados; doenças transmitidas por vetores artrópodes ou por contato direto com animais infectados não são consideradas zoonoses, mas sim arboviroses ou doenças de contato.",
+            "C": "Zoonose é qualquer doença ou infecção naturalmente transmissível entre animais vertebrados e seres humanos; as principais vias de transmissão incluem a direta (contato com animais infectados, mordedura), a indireta (fômites, solo, água contaminada), a vetorial (artrópodes hematófagos) e a alimentar (ingestão de alimentos contaminados).",
+            "D": "Zoonose é sinônimo de antroponose; ambos os termos descrevem doenças que circulam bidirecionalmente entre animais e humanos com igual frequência e gravidade, sendo o ser humano sempre o reservatório principal do agente zoonótico em todas as situações epidemiológicas descritas."
+          },
+          "correta": "C",
+          "explicacao": "Zoonose: doença ou infecção naturalmente transmissível entre animais vertebrados e humanos. As vias de transmissão incluem: direta (contato, mordedura, arranhão), indireta (fômites, ambiente contaminado), vetorial (artrópodes) e alimentar (ingestão de alimentos contaminados). Antroponose é o oposto — doença transmitida do homem para o animal. São conceitos distintos.",
+          "needsReview": false
+        },
+        {
+          "id": 17013,
+          "tipo": "multipla_escolha",
+          "type": "faculdade",
+          "banca": "Faculdade",
+          "source": "faculdade",
+          "discipline": "Medicina Veterinária Preventiva / Saúde Animal",
+          "topic": "Sanidade Animal Conceitual",
+          "tema": "Medicina Veterinária Preventiva / Saúde Animal",
+          "subtema": "Sanidade Animal Conceitual",
+          "dificuldade": "dificil",
+          "pergunta": "A prevenção de zoonoses envolve medidas aplicadas em diferentes pontos da cadeia de transmissão. Assinale a alternativa que descreve corretamente um conjunto de medidas preventivas eficazes:",
+          "alternativas": {
+            "A": "A vacinação dos animais reservatórios elimina completamente o risco de transmissão de qualquer zoonose ao ser humano, tornando desnecessárias outras medidas como pasteurização do leite, uso de equipamento de proteção individual ou controle de vetores em propriedades com rebanhos vacinados.",
+            "B": "As medidas preventivas incluem pasteurização do leite e derivados, abate higiênico com inspeção sanitária, controle de vetores (carrapatos, mosquitos, roedores), uso de equipamentos de proteção individual por trabalhadores de risco e orientação sobre higiene ao manipular animais ou seus produtos.",
+            "C": "A pasteurização do leite é ineficaz contra a maioria das zoonoses bacterianas, pois as toxinas produzidas por agentes como Brucella e Mycobacterium bovis são termoestáveis e resistem ao tratamento térmico convencional; a única medida eficaz é a erradicação do agente no rebanho antes do início da produção leiteira.",
+            "D": "As medidas preventivas de zoonoses são responsabilidade exclusiva do serviço de saúde pública humana, sem envolvimento do médico veterinário; a prevenção na interface animal-humano é atribuição de epidemiologistas e agentes de vigilância sanitária, não de profissionais de sanidade animal."
+          },
+          "correta": "B",
+          "explicacao": "A prevenção de zoonoses atua em múltiplos pontos da cadeia: na fonte animal (controle sanitário, vacinação quando disponível), no veículo (pasteurização, abate higiênico, controle de vetores e roedores) e no hospedeiro humano (EPI, educação, higiene). A pasteurização é eficaz contra a maioria dos agentes bacterianos. Nenhuma medida isolada elimina todo o risco.",
+          "needsReview": false
+        },
+        {
+          "id": 17014,
+          "tipo": "multipla_escolha",
+          "type": "faculdade",
+          "banca": "Faculdade",
+          "source": "faculdade",
+          "discipline": "Medicina Veterinária Preventiva / Saúde Animal",
+          "topic": "Sanidade Animal Conceitual",
+          "tema": "Medicina Veterinária Preventiva / Saúde Animal",
+          "subtema": "Sanidade Animal Conceitual",
+          "dificuldade": "media",
+          "pergunta": "A vigilância epidemiológica em saúde animal pode ser classificada em ativa e passiva, com diferenças relevantes em sensibilidade e aplicabilidade. Assinale a alternativa que as diferencia corretamente:",
+          "alternativas": {
+            "A": "A vigilância passiva é mais sensível que a ativa porque depende de notificações espontâneas de um número ilimitado de fontes (produtores, veterinários, laboratórios), enquanto a ativa está restrita às propriedades selecionadas para inspeção, perdendo casos que ocorrem fora do sistema de amostragem programado.",
+            "B": "A vigilância ativa e a passiva têm igual sensibilidade quando o sistema de notificação é eficiente; a diferença entre elas é apenas operacional — a ativa usa formulários eletrônicos e a passiva usa notificação em papel — sem impacto na capacidade de detecção precoce de surtos ou doenças emergentes.",
+            "C": "A vigilância ativa é aplicada exclusivamente em situações de emergência sanitária declarada, sendo a vigilância passiva o método padrão utilizado em todos os períodos entre epidemias; a ativação da vigilância ativa requer autorização prévia e não pode ser implementada por iniciativa do serviço privado.",
+            "D": "A vigilância ativa é conduzida pelo próprio serviço de saúde animal, que busca proativamente os casos por meio de inquéritos, visitas a propriedades e amostragem sistemática; a vigilância passiva aguarda notificações espontâneas de veterinários, proprietários ou laboratórios; a ativa é mais sensível e detecta casos que não seriam notificados espontaneamente."
+          },
+          "correta": "D",
+          "explicacao": "Vigilância ativa: o serviço de saúde busca proativamente os casos — inquéritos sorológicos, visitas, amostragem. Mais sensível, detecta casos assintomáticos e subnotificados, porém mais onerosa. Vigilância passiva: aguarda notificações espontâneas — maior cobertura geográfica potencial, menos onerosa, mas menos sensível. Os dois sistemas são complementares e não excludentes.",
+          "needsReview": false
+        },
+        {
+          "id": 17015,
+          "tipo": "multipla_escolha",
+          "type": "faculdade",
+          "banca": "Faculdade",
+          "source": "faculdade",
+          "discipline": "Medicina Veterinária Preventiva / Saúde Animal",
+          "topic": "Sanidade Animal Conceitual",
+          "tema": "Medicina Veterinária Preventiva / Saúde Animal",
+          "subtema": "Sanidade Animal Conceitual",
+          "dificuldade": "dificil",
+          "pergunta": "Os conceitos de endemia, epidemia, surto e pandemia são frequentemente confundidos no contexto da sanidade animal. Assinale a alternativa que os define corretamente:",
+          "alternativas": {
+            "A": "Endemia é a ocorrência constante e esperada de uma doença em uma área geográfica definida, em frequência habitual para aquela população; epidemia é o aumento acima do esperado na ocorrência de casos em uma população ou área; surto é uma epidemia de menor escala, geralmente restrita a uma propriedade, rebanho ou localidade específica; pandemia é a disseminação epidêmica em escala global, afetando múltiplos países ou continentes.",
+            "B": "Surto e epidemia são sinônimos e descrevem qualquer aumento no número de casos acima do esperado, independentemente da escala geográfica; endemia é um tipo específico de epidemia de longa duração, diferindo da epidemia comum apenas pelo critério temporal; pandemia é definida pelo número absoluto de casos, não pela extensão geográfica.",
+            "C": "Endemia refere-se exclusivamente a doenças com vetor artrópode, pois esses agentes ficam restritos às áreas de distribuição geográfica do vetor; epidemia aplica-se a doenças sem vetor, de distribuição potencialmente ilimitada; surto refere-se a qualquer ocorrência de doença em espécie silvestre, independentemente do número de casos.",
+            "D": "Pandemia é sinônimo de epidemia grave com alta mortalidade, independentemente da distribuição geográfica; surto é o início obrigatório de toda ocorrência epidêmica; endemia é uma forma crônica de surto que se estabiliza em baixa frequência sem impacto econômico relevante para a produção animal ou para a saúde pública."
+          },
+          "correta": "A",
+          "explicacao": "Endemia: ocorrência esperada e constante em área definida. Epidemia: ocorrência acima do esperado em população ou área. Surto: epidemia circunscrita (propriedade, bairro, lote) — na sanidade animal é frequentemente o primeiro sinal de alerta. Pandemia: epidemia de escala global. Os conceitos são definidos por frequência relativa e escala geográfica, não por gravidade ou via de transmissão.",
+          "needsReview": false
+        },
+        {
+          "id": 17016,
+          "tipo": "multipla_escolha",
+          "type": "faculdade",
+          "banca": "Faculdade",
+          "source": "faculdade",
+          "discipline": "Medicina Veterinária Preventiva / Saúde Animal",
+          "topic": "Sanidade Animal Conceitual",
+          "tema": "Medicina Veterinária Preventiva / Saúde Animal",
+          "subtema": "Sanidade Animal Conceitual",
+          "dificuldade": "media",
+          "pergunta": "Os cinco domínios do bem-estar animal representam uma atualização conceitual em relação às cinco liberdades originais. Assinale a alternativa que descreve corretamente os cinco domínios e sua relação com a saúde animal:",
+          "alternativas": {
+            "A": "Os cinco domínios do bem-estar animal são idênticos às cinco liberdades originais de Brambell — liberdade de fome e sede, liberdade de desconforto, liberdade de dor e doença, liberdade de expressar comportamento natural e liberdade de medo e angústia — sendo aplicáveis apenas a animais de companhia em ambiente doméstico.",
+            "B": "Os cinco domínios do bem-estar animal referem-se exclusivamente ao ambiente físico da criação (temperatura, umidade, espaço, iluminação e qualidade do ar) e não incluem aspectos comportamentais ou psicológicos, considerados subjetivos demais para avaliação técnica objetiva em sistemas de produção animal.",
+            "C": "Os cinco domínios do bem-estar animal são: nutrição, ambiente, saúde, comportamento e estado mental; o bem-estar inadequado em qualquer domínio gera estresse crônico que compromete a resposta imune e aumenta a susceptibilidade a doenças, estabelecendo relação direta entre bem-estar e saúde coletiva do rebanho.",
+            "D": "Os cinco domínios do bem-estar animal são: reprodução, produção, saúde, genética e manejo sanitário; o conceito foi criado para proteger exclusivamente animais de alto valor zootécnico, sendo a legislação de bem-estar aplicável apenas a raças de alta produção em sistemas intensivos certificados."
+          },
+          "correta": "C",
+          "explicacao": "Os cinco domínios (Five Domains Model): nutrição, ambiente, saúde, comportamento e estado mental (domínio integrador). Diferem das cinco liberdades por incluírem o estado mental explicitamente e por reconhecerem experiências positivas além da ausência de sofrimento. Bem-estar inadequado → estresse crônico → imunossupressão → maior susceptibilidade a doenças.",
+          "needsReview": false
+        },
+        {
+          "id": 17017,
+          "tipo": "multipla_escolha",
+          "type": "faculdade",
+          "banca": "Faculdade",
+          "source": "faculdade",
+          "discipline": "Medicina Veterinária Preventiva / Saúde Animal",
+          "topic": "Sanidade Animal Conceitual",
+          "tema": "Medicina Veterinária Preventiva / Saúde Animal",
+          "subtema": "Sanidade Animal Conceitual",
+          "dificuldade": "media",
+          "pergunta": "O conceito de One Health (Saúde Única) propõe uma abordagem integrada para problemas de saúde que transcendem as fronteiras entre espécies e ecossistemas. Assinale a alternativa que descreve corretamente seus fundamentos:",
+          "alternativas": {
+            "A": "One Health reconhece que a saúde dos seres humanos, dos animais e dos ecossistemas é interdependente e indivisível; exemplos de sua aplicação incluem o monitoramento de resistência antimicrobiana na cadeia animal-humana, a vigilância de zoonoses emergentes em interfaces silvestre-doméstico-humano e a avaliação de impacto ambiental sobre reservatórios de agentes infecciosos.",
+            "B": "One Health é um programa governamental regulamentado por tratados internacionais com procedimentos e cronogramas definidos; sua implementação exige a criação de órgãos de fiscalização conjunta entre os ministérios da saúde, da agricultura e do meio ambiente de cada país signatário.",
+            "C": "One Health é um conceito aplicável exclusivamente ao controle de zoonoses transmitidas de animais domésticos a humanos; doenças de fauna silvestre, alterações climáticas e resistência antimicrobiana não fazem parte de seu escopo, que se concentra na interface doméstico-humano.",
+            "D": "One Health é sinônimo de medicina comparada e foi proposto para facilitar a transferência de conhecimentos entre médicos veterinários e médicos humanos; seu principal instrumento é a comparação de tratamentos aprovados para animais que possam ser adaptados para uso em humanos imunocomprometidos."
+          },
+          "correta": "A",
+          "explicacao": "One Health não é um programa regulamentado, mas um conceito e abordagem que reconhece a interdependência entre saúde animal, humana e ambiental. Seus pilares práticos incluem: resistência antimicrobiana (uso em animais → resistência em humanos), vigilância de zoonoses emergentes (silvestre → doméstico → humano) e saúde dos ecossistemas como determinante da ocorrência de doenças.",
+          "needsReview": false
+        },
+        {
+          "id": 17018,
+          "tipo": "multipla_escolha",
+          "type": "faculdade",
+          "banca": "Faculdade",
+          "source": "faculdade",
+          "discipline": "Medicina Veterinária Preventiva / Saúde Animal",
+          "topic": "Sanidade Animal Conceitual",
+          "tema": "Medicina Veterinária Preventiva / Saúde Animal",
+          "subtema": "Sanidade Animal Conceitual",
+          "dificuldade": "media",
+          "pergunta": "As perdas econômicas causadas por doenças em rebanhos podem ser classificadas em diretas e indiretas. Assinale a alternativa que descreve corretamente essa classificação e sua relevância para a sanidade animal:",
+          "alternativas": {
+            "A": "As perdas econômicas por doenças animais restringem-se às perdas diretas por mortalidade, pois só há impacto financeiro quando os animais morrem; doenças subclínicas não geram perdas econômicas mensuráveis, uma vez que os animais afetados continuam produzindo, ainda que em menor escala.",
+            "B": "Perdas diretas incluem mortalidade, queda na produção de leite ou carne, redução na eficiência reprodutiva, condenação de carcaças ao abate e custos com tratamento; perdas indiretas incluem restrições ao comércio nacional e internacional, desvalorização do plantel, custos com programas de controle e erradicação e impacto sobre mercados certificados.",
+            "C": "As perdas econômicas diretas correspondem às restrições ao comércio internacional e à desvalorização do plantel; as perdas indiretas correspondem à mortalidade e à queda de produção, pois afetam indiretamente a cadeia produtiva por reduzir a oferta de produtos de origem animal disponíveis no mercado.",
+            "D": "As perdas econômicas por doenças animais são mensuráveis apenas em sistemas intensivos de produção; em sistemas extensivos e de subsistência, as doenças não geram perdas relevantes porque a reposição dos animais mortos ocorre naturalmente pela reprodução do próprio rebanho sem custo adicional para o produtor."
+          },
+          "correta": "B",
+          "explicacao": "Perdas diretas: mortalidade, morbidade com queda de produção, redução reprodutiva, condenação ao abate, custos de tratamento e controle. Perdas indiretas: restrições ao comércio (embargos), desvalorização do plantel, custos de programas de erradicação. Doenças subclínicas geram perdas diretas reais mesmo sem mortalidade — reduzem produtividade silenciosamente e são frequentemente subestimadas.",
+          "needsReview": false
+        }
+      ]
+    }
+  ]
+}

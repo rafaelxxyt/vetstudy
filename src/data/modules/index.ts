@@ -2,6 +2,7 @@ import aieModule from './aie_module.json'
 import bruceloseModule from './brucelose_module.json'
 import bovineReproductiveDiseasesModule from './clinica-ruminantes/bovine_reproductive_diseases_module.json'
 import erliquioseAnaplasmoseModule from './erliquiose_anaplasmose_module.json'
+import sanidadeAnimalConceitualModule from './sanidade_animal_conceitual_module.json'
 import estralCycleModule from './reproducao-animal/estral_cycle_module.json'
 import tuberculoseModule from './tuberculose_module.json'
 import type { StructuredStudyModule } from './types'
@@ -17,6 +18,7 @@ export const staticStudyModules: StructuredStudyModule[] = [
   aieModule as StructuredStudyModule,
   estralCycleModule as StructuredStudyModule,
   erliquioseAnaplasmoseModule as StructuredStudyModule,
+  sanidadeAnimalConceitualModule as StructuredStudyModule,
 ]
 
 export {
@@ -24,6 +26,7 @@ export {
   bruceloseModule,
   bovineReproductiveDiseasesModule,
   erliquioseAnaplasmoseModule,
+  sanidadeAnimalConceitualModule,
   estralCycleModule,
   tuberculoseModule,
 }
