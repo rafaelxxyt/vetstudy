@@ -11,6 +11,7 @@ import HubPage from './pages/HubPage'
 import CasosPage from './pages/CasosPage'
 import RevisaoPage from './pages/RevisaoPage'
 import MapasPage from './pages/MapasPage'
+import DicionarioPage from './pages/DicionarioPage'
 
 const THEME_STORAGE_KEY = 'vetstudy_theme'
 
@@ -19,6 +20,7 @@ const PAGE_LABELS: Record<Page, string> = {
   revisao: 'Flashcards',
   casos: 'Casos',
   mapas: 'Resumos',
+  dicionario: 'Dicionário Vet',
   medicamentos: 'Medicamentos',
   doencas: 'Doenças',
   ferramentas: 'Consulta Rápida',
@@ -110,6 +112,8 @@ export default function App() {
       />
     ) : activePage === 'mapas' ? (
       <MapasPage />
+    ) : activePage === 'dicionario' ? (
+      <DicionarioPage />
     ) : activePage === 'medicamentos' ? (
       <MedicamentosPage
         initialSelectedId={selectedDrugId}

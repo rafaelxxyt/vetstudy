@@ -7,6 +7,7 @@ import {
   Brain,
   Newspaper,
   GraduationCap,
+  Search,
   Menu,
   X,
   Shield,
@@ -20,6 +21,7 @@ export type Page =
   | 'revisao'
   | 'casos'
   | 'mapas'
+  | 'dicionario'
   | 'medicamentos'
   | 'doencas'
   | 'ferramentas'
@@ -37,6 +39,7 @@ const ESTUDO: NavItem[] = [
   { id: 'revisao', label: 'Flashcards', icon: GraduationCap },
   { id: 'casos', label: 'Casos', icon: Brain },
   { id: 'mapas', label: 'Resumos', icon: BookOpen },
+  { id: 'dicionario', label: 'Dicionário Vet', icon: Search },
 ]
 
 const CLINICA: NavItem[] = [
