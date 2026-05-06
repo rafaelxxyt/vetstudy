@@ -898,9 +898,9 @@ function SimuladorContent({ profile }: { profile: LocalProfile }) {
         <div className="relative z-10 flex items-center justify-between gap-3">
         <div>
           <h2 className="app-text-primary flex items-center gap-2 text-xl font-bold">
-            <ClipboardCheck size={20} className="text-primary-400"/> Simulador de Prova
+            <ClipboardCheck size={20} className="text-primary-400"/> Simulados VetFoco
           </h2>
-          <p className="text-xs text-neutral-400 mt-1">Reprodução Animal A1 · UNISUL 2025/2</p>
+          <p className="text-xs text-neutral-400 mt-1">Banco adaptativo de questões veterinárias</p>
         </div>
         {started&&<button onClick={()=>setShowFilters(false)} className="text-xs text-neutral-500 hover:text-neutral-300 transition-colors">← Voltar</button>}
       </div>
@@ -976,7 +976,7 @@ function SimuladorContent({ profile }: { profile: LocalProfile }) {
         <div className="flex items-center justify-between mb-2">
           <div className="flex items-center gap-2">
             <ClipboardCheck size={17} className="text-primary-400"/>
-            <span className="app-text-primary text-sm font-bold">Simulador</span>
+            <span className="app-text-primary text-sm font-bold">Simulados</span>
             {q.banca&&<span className="text-[10px] text-neutral-600 bg-neutral-800 px-2 py-0.5 rounded-lg">{displayBrandLabel(q.banca)}</span>}
             {q.dificuldade&&<span className="text-[10px] text-neutral-600 bg-neutral-800 px-2 py-0.5 rounded-lg">{q.dificuldade}</span>}
           </div>
@@ -1082,12 +1082,12 @@ export default function SimuladorPage() {
   const profile = getActiveProfile()
 
   return (
-    <Gatekeeper pageTitle="Simulador de Prova">
+    <Gatekeeper pageTitle="Simulados VetFoco">
       {profile ? (
         <SimuladorContent key={profile.id} profile={profile} />
       ) : (
         <div className="p-5 max-w-xl mx-auto text-center text-sm text-neutral-500">
-          Selecione um perfil local para usar o simulador.
+          Selecione um perfil local para usar os simulados.
         </div>
       )}
     </Gatekeeper>

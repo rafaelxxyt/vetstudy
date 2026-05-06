@@ -278,7 +278,7 @@ function buildStudyResults(query: string, profileId?: string): GlobalSearchResul
       subtitle: `${group.questionCount} questões · ${group.flashcardCount} flashcards`,
       summary: group.flashcardSnippets[0] ?? group.questionSnippets[0] ?? 'Conteúdo disponível no banco de estudo.',
       actionText: group.questionCount > 0
-        ? `${group.questionCount} questões já entram no simulador e no Estudo de Hoje`
+        ? `${group.questionCount} questões já entram nos simulados e no Estudo de Hoje`
         : `${group.flashcardCount} flashcards disponíveis para revisão`,
       details: [
         `Tema: ${group.tema}`,

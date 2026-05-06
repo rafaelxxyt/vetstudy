@@ -841,7 +841,7 @@ function DevStudyContentImport({ profile }: { profile: LocalProfile }) {
       </div>
       <div className="grid grid-cols-3 gap-2 mt-3">
         <div className="rounded-xl bg-neutral-800/70 border border-neutral-700/60 px-3 py-2">
-          <p className="text-[10px] text-neutral-500 font-bold uppercase">Simulador</p>
+          <p className="text-[10px] text-neutral-500 font-bold uppercase">Simulados</p>
           <p className={`text-xs font-bold ${status.inMergedBank ? 'text-success-300' : 'text-neutral-500'}`}>
             {status.inMergedBank ? 'Banco combinado OK' : 'Ainda não importado'}
           </p>
@@ -1074,7 +1074,7 @@ type HubTab = 'home' | 'simulador'
 
 const TABS: { id: HubTab; label: string; icon: React.ElementType }[] = [
   { id: 'home',      label: 'Início',    icon: LayoutDashboard },
-  { id: 'simulador', label: 'Simulador',  icon: ClipboardCheck  },
+  { id: 'simulador', label: 'Simulados',  icon: ClipboardCheck  },
 ]
 
 function HubContent({

@@ -185,9 +185,9 @@ function HubBtn({
           <p className="text-sm font-semibold leading-tight">Início</p>
           <p className="mt-0.5 text-[10px] font-medium leading-none">
             {hubUnlocked ? (
-              <span className="text-primary-500">Início · Flashcards · Simulador · Resumos</span>
+              <span className="text-primary-500">Início · Flashcards · Simulados · Resumos</span>
             ) : (
-              <span className="text-neutral-600">Início · Flashcards · Simulador</span>
+              <span className="text-neutral-600">Início · Flashcards · Simulados</span>
             )}
           </p>
         </div>
