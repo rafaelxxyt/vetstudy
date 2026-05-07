@@ -1,0 +1,121 @@
+# Dicionário Vet — Controle de Lotes
+
+## Batch 01 — MVP inicial
+- Total: 50 termos
+- Status: integrado
+- Fonte: curadoria inicial + dicionário técnico veterinário como referência
+- Observação: conteúdo seguro, sem protocolos oficiais detalhados
+
+## Batch 02 — Clínica, Diagnóstico, Reprodução e Sanidade
+- Total planejado: 50 novos termos
+- Status: integrado após esta tarefa
+- Terms added:
+- `abdome-agudo`
+- `abdominocentese`
+- `abscesso`
+- `acidose`
+- `alcalose`
+- `anamnese`
+- `anisocitose`
+- `anuria`
+- `aplasia`
+- `artrite`
+- `ascite`
+- `azotemia`
+- `bacilo`
+- `bastonete`
+- `biopsia`
+- `bradicardia`
+- `bradipneia`
+- `broncoespasmo`
+- `bronquite`
+- `caquexia`
+- `carcinoma`
+- `choque`
+- `claudicacao`
+- `colestase`
+- `constipacao`
+- `convulsao`
+- `coprofagia`
+- `dermatite`
+- `desmame`
+- `diarreia`
+- `diastole`
+- `dierese`
+- `disfagia`
+- `disuria`
+- `doenca-congenita`
+- `eclampsia`
+- `ectoparasita`
+- `endometrio`
+- `endometrite`
+- `enfisema`
+- `epistaxe`
+- `eritrocito`
+- `esterilizacao`
+- `estomatite`
+- `estresse`
+- `exsudato`
+- `fagocito`
+- `febre`
+- `fistula`
+- `hipoxia`
+- Terms skipped: nenhum
+- Final total after batch: 100 termos
+
+## Batch 03 — Reprodução + Sanidade Animal
+- Total planejado: 50 novos termos
+- Status: integrado após esta tarefa
+- Terms added:
+- `acrossoma`
+- `agente-etiologico`
+- `anestro`
+- `biosseguranca`
+- `biosseguridade`
+- `ciclo-estral`
+- `controle-sanitario`
+- `criopreservacao`
+- `diestro`
+- `doenca-emergente`
+- `doenca-endemica`
+- `erradicacao`
+- `espermatozoide`
+- `estro`
+- `fomite`
+- `foliculo-ovariano`
+- `gestacao`
+- `gnrh`
+- `hormonio-foliculo-estimulante`
+- `hormonio-luteinizante`
+- `hospedeiro`
+- `iatf`
+- `imunoprofilaxia`
+- `incidencia`
+- `inseminacao-artificial`
+- `letalidade`
+- `metaestro`
+- `morbidade`
+- `mortalidade`
+- `motilidade-espermatica`
+- `parto`
+- `periodo-de-carencia`
+- `periodo-de-incubacao`
+- `portador-assintomatico`
+- `prevalencia`
+- `prenhez`
+- `proestro`
+- `prostaglandina-f2-alfa`
+- `puerperio`
+- `rebanho-sentinela`
+- `reservatorio`
+- `retencao-de-placenta`
+- `saude-unica`
+- `semen`
+- `surto-epidemico`
+- `transferencia-de-embrioes`
+- `vacinacao`
+- `vetor`
+- `vigilancia-epidemiologica`
+- `ovulacao`
+- Terms skipped: nenhum
+- Final total after batch: 150 termos
