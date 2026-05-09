@@ -2,7 +2,7 @@ import { Fragment, useEffect, useMemo, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import {
   Search, BookOpen, Stethoscope, Microscope, Pill,
-  ShieldAlert, TrendingUp, ChevronRight, Star, Tag,
+  ShieldAlert, TrendingUp, ChevronRight, ChevronDown, ChevronUp, Star, Tag,
 } from 'lucide-react'
 import db from '../data/central_db.json'
 import {
@@ -123,6 +123,11 @@ function getDifferentialSuggestions(disease: Disease) {
     .map(item => item.candidate.name)
 }
 
+function getDefaultClinicalReasoningExpanded() {
+  if (typeof window === 'undefined') return true
+  return !window.matchMedia('(max-width: 767px)').matches
+}
+
 interface DoencasPageProps {
   initialSelectedId?: string
   selectionToken?: number
@@ -137,6 +142,8 @@ export default function DoencasPage({ initialSelectedId, selectionToken, onOpenD
   ))
   const [section,  setSection]  = useState<string | null>('Sintomas')
   const [showProtocol, setShowProtocol] = useState(false)
+  const [isSmallScreen, setIsSmallScreen] = useState(() => !getDefaultClinicalReasoningExpanded())
+  const [clinicalReasoningExpanded, setClinicalReasoningExpanded] = useState(() => getDefaultClinicalReasoningExpanded())
   const [, setFavoriteRefreshKey] = useState(0)
 
   useEffect(() => {
@@ -153,6 +160,25 @@ export default function DoencasPage({ initialSelectedId, selectionToken, onOpenD
     const handleRefresh = () => setFavoriteRefreshKey(value => value + 1)
     window.addEventListener(clinicalActivityEventName(), handleRefresh)
     return () => window.removeEventListener(clinicalActivityEventName(), handleRefresh)
+  }, [])
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return undefined
+
+    const mediaQuery = window.matchMedia('(max-width: 767px)')
+    const syncScreenSize = (event?: MediaQueryListEvent) => {
+      setIsSmallScreen(event ? event.matches : mediaQuery.matches)
+    }
+
+    syncScreenSize()
+
+    if (typeof mediaQuery.addEventListener === 'function') {
+      mediaQuery.addEventListener('change', syncScreenSize)
+      return () => mediaQuery.removeEventListener('change', syncScreenSize)
+    }
+
+    mediaQuery.addListener(syncScreenSize)
+    return () => mediaQuery.removeListener(syncScreenSize)
   }, [])
 
   const filtered = query.trim()
@@ -175,6 +201,10 @@ export default function DoencasPage({ initialSelectedId, selectionToken, onOpenD
       targetPage: 'doencas',
       targetId: selected.id,
     })
+  }, [selected.id])
+
+  useEffect(() => {
+    setClinicalReasoningExpanded(getDefaultClinicalReasoningExpanded())
   }, [selected.id])
 
   const toggleFavorite = (disease: Disease) => {
@@ -210,6 +240,7 @@ export default function DoencasPage({ initialSelectedId, selectionToken, onOpenD
       : getDifferentialSuggestions(selected)
   ), [selected])
   const clinicalTip = selected.clinicalTip ?? selected.pathophysiology ?? ''
+  const clinicalReasoningBlockCount = 5
   const hasProtocol = useMemo(() => {
     const text = normalizeText(treatmentLines.join(' '))
     return treatmentLines.length > 1 || text.includes('protocolo') || text.includes('primeira escolha')
@@ -447,80 +478,118 @@ export default function DoencasPage({ initialSelectedId, selectionToken, onOpenD
 
               {!anatomyReference && (
                 <div className="bg-neutral-800 rounded-2xl p-4 border border-neutral-700/80">
-                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-3">
-                    <h3 className="text-sm font-bold text-white">🧠 Raciocínio Clínico</h3>
-                    <button
-                      type="button"
-                      onClick={() => onOpenRelatedDrugs?.(
-                        selected.mainDrugs?.[0] ?? quickActionDrugs[0]?.name ?? referencedDrugs[0]?.name ?? selected.name,
-                        quickActionDrugs[0]?.id ?? referencedDrugs[0]?.id,
-                      )}
-                      className="min-h-[44px] w-full sm:w-auto px-3 py-2 rounded-xl text-xs font-bold border bg-primary-500/10 border-primary-500/20 text-primary-300 hover:bg-primary-500/15 transition-all"
-                    >
-                      Ver fármacos relacionados
-                    </button>
-                  </div>
-
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                    <div className="rounded-xl bg-neutral-900/60 border border-neutral-700/70 p-3">
-                      <p className="text-[10px] font-bold text-neutral-500 uppercase tracking-wider mb-2">Sinais-chave</p>
-                      <ul className="space-y-1.5">
-                        {keySigns.map(item => (
-                          <li key={item} className="flex items-start gap-2 text-sm text-neutral-300">
-                            <span className="mt-2 w-1.5 h-1.5 rounded-full bg-warning-400/70 flex-shrink-0" />
-                            {item}
-                          </li>
-                        ))}
-                      </ul>
+                  <button
+                    type="button"
+                    onClick={() => setClinicalReasoningExpanded(expanded => !expanded)}
+                    className="flex w-full items-start justify-between gap-3 text-left"
+                  >
+                    <div className="min-w-0">
+                      <div className="flex flex-wrap items-center gap-2">
+                        <h3 className="text-sm font-bold text-white">🧠 Raciocínio Clínico</h3>
+                        <span className="rounded-full border border-neutral-700/70 bg-neutral-900/60 px-2 py-0.5 text-[10px] font-bold text-neutral-500">
+                          {clinicalReasoningBlockCount} blocos
+                        </span>
+                      </div>
+                      <p className="mt-1 text-xs text-neutral-500">
+                        Sinais-chave, diagnóstico sugerido, conduta e diferenciais
+                      </p>
                     </div>
+                    <span className="mt-0.5 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-xl border border-neutral-700/70 bg-neutral-900/60 text-neutral-400">
+                      {clinicalReasoningExpanded ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
+                    </span>
+                  </button>
 
-                    <div className="rounded-xl bg-neutral-900/60 border border-neutral-700/70 p-3">
-                      <p className="text-[10px] font-bold text-neutral-500 uppercase tracking-wider mb-2">Diagnóstico sugerido</p>
-                      <ul className="space-y-1.5">
-                        {(diagnosticSuggestions.length > 0 ? diagnosticSuggestions : [selected.diagnosis]).map(item => (
-                          <li key={item} className="flex items-start gap-2 text-sm text-neutral-300">
-                            <span className="mt-2 w-1.5 h-1.5 rounded-full bg-primary-400/70 flex-shrink-0" />
-                            {item}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
+                  <AnimatePresence initial={false}>
+                    {clinicalReasoningExpanded && (
+                      <motion.div
+                        initial={{ opacity: 0, height: 0, marginTop: 0 }}
+                        animate={{ opacity: 1, height: 'auto', marginTop: 12 }}
+                        exit={{ opacity: 0, height: 0, marginTop: 0 }}
+                        transition={{ duration: 0.18 }}
+                        className="overflow-hidden"
+                      >
+                        <div className="mb-3 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+                          <div className="text-[11px] font-bold uppercase tracking-wider text-neutral-500">
+                            {isSmallScreen ? 'Expandido para leitura' : 'Visão clínica detalhada'}
+                          </div>
+                          <button
+                            type="button"
+                            onClick={(event) => {
+                              event.stopPropagation()
+                              onOpenRelatedDrugs?.(
+                                selected.mainDrugs?.[0] ?? quickActionDrugs[0]?.name ?? referencedDrugs[0]?.name ?? selected.name,
+                                quickActionDrugs[0]?.id ?? referencedDrugs[0]?.id,
+                              )
+                            }}
+                            className="min-h-[44px] w-full sm:w-auto px-3 py-2 rounded-xl text-xs font-bold border bg-primary-500/10 border-primary-500/20 text-primary-300 hover:bg-primary-500/15 transition-all"
+                          >
+                            Ver fármacos relacionados
+                          </button>
+                        </div>
 
-                    <div className="rounded-xl bg-neutral-900/60 border border-neutral-700/70 p-3">
-                      <p className="text-[10px] font-bold text-neutral-500 uppercase tracking-wider mb-2">Tratamento resumido</p>
-                      <ul className="space-y-1.5">
-                        {treatmentSummary.map(item => (
-                          <li key={item} className="flex items-start gap-2 text-sm text-neutral-300">
-                            <span className="mt-2 w-1.5 h-1.5 rounded-full bg-primary-400/70 flex-shrink-0" />
-                            {renderWithDrugLinks(item)}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                          <div className="rounded-xl bg-neutral-900/60 border border-neutral-700/70 p-3">
+                            <p className="text-[10px] font-bold text-neutral-500 uppercase tracking-wider mb-2">Sinais-chave</p>
+                            <ul className="space-y-1.5">
+                              {keySigns.map(item => (
+                                <li key={item} className="flex items-start gap-2 text-sm text-neutral-300">
+                                  <span className="mt-2 w-1.5 h-1.5 rounded-full bg-warning-400/70 flex-shrink-0" />
+                                  {item}
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
 
-                    <div className="rounded-xl bg-neutral-900/60 border border-neutral-700/70 p-3">
-                      <p className="text-[10px] font-bold text-neutral-500 uppercase tracking-wider mb-2">Diferenciais</p>
-                      {differentials.length > 0 ? (
-                        <ul className="space-y-1.5">
-                          {differentials.map(item => (
-                            <li key={item} className="flex items-start gap-2 text-sm text-neutral-300">
-                              <span className="mt-2 w-1.5 h-1.5 rounded-full bg-neutral-400/70 flex-shrink-0" />
-                              {item}
-                            </li>
-                          ))}
-                        </ul>
-                      ) : (
-                        <p className="text-sm text-neutral-500">Sem diferenciais derivados para esta ficha.</p>
-                      )}
-                    </div>
-                  </div>
+                          <div className="rounded-xl bg-neutral-900/60 border border-neutral-700/70 p-3">
+                            <p className="text-[10px] font-bold text-neutral-500 uppercase tracking-wider mb-2">Diagnóstico sugerido</p>
+                            <ul className="space-y-1.5">
+                              {(diagnosticSuggestions.length > 0 ? diagnosticSuggestions : [selected.diagnosis]).map(item => (
+                                <li key={item} className="flex items-start gap-2 text-sm text-neutral-300">
+                                  <span className="mt-2 w-1.5 h-1.5 rounded-full bg-primary-400/70 flex-shrink-0" />
+                                  {item}
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
 
-                  <div className="rounded-xl bg-neutral-900/60 border border-neutral-700/70 p-3 mt-3">
-                    <p className="text-[10px] font-bold text-neutral-500 uppercase tracking-wider mb-2">Dica clínica</p>
-                    <p className="text-sm text-neutral-300 leading-relaxed">
-                      {clinicalTip || 'Sem dica clínica estruturada para esta ficha.'}
-                    </p>
-                  </div>
+                          <div className="rounded-xl bg-neutral-900/60 border border-neutral-700/70 p-3">
+                            <p className="text-[10px] font-bold text-neutral-500 uppercase tracking-wider mb-2">Tratamento resumido</p>
+                            <ul className="space-y-1.5">
+                              {treatmentSummary.map(item => (
+                                <li key={item} className="flex items-start gap-2 text-sm text-neutral-300">
+                                  <span className="mt-2 w-1.5 h-1.5 rounded-full bg-primary-400/70 flex-shrink-0" />
+                                  {renderWithDrugLinks(item)}
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+
+                          <div className="rounded-xl bg-neutral-900/60 border border-neutral-700/70 p-3">
+                            <p className="text-[10px] font-bold text-neutral-500 uppercase tracking-wider mb-2">Diferenciais</p>
+                            {differentials.length > 0 ? (
+                              <ul className="space-y-1.5">
+                                {differentials.map(item => (
+                                  <li key={item} className="flex items-start gap-2 text-sm text-neutral-300">
+                                    <span className="mt-2 w-1.5 h-1.5 rounded-full bg-neutral-400/70 flex-shrink-0" />
+                                    {item}
+                                  </li>
+                                ))}
+                              </ul>
+                            ) : (
+                              <p className="text-sm text-neutral-500">Sem diferenciais derivados para esta ficha.</p>
+                            )}
+                          </div>
+                        </div>
+
+                        <div className="rounded-xl bg-neutral-900/60 border border-neutral-700/70 p-3 mt-3">
+                          <p className="text-[10px] font-bold text-neutral-500 uppercase tracking-wider mb-2">Dica clínica</p>
+                          <p className="text-sm text-neutral-300 leading-relaxed">
+                            {clinicalTip || 'Sem dica clínica estruturada para esta ficha.'}
+                          </p>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                 </div>
               )}
 
