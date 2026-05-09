@@ -9,51 +9,51 @@
       "flashcards": [
         {
           "id": "fc_aie_0001",
-          "pergunta": "Qual doença é o foco deste módulo?",
-          "resposta": "O material trabalha Anemia Infecciosa Equina (AIE). O restante do roteiro gira em torno desse tema.",
+          "pergunta": "O que é a Anemia Infecciosa Equina (AIE)?",
+          "resposta": "É uma doença infecciosa viral de equídeos, lembrada pelo potencial de causar alterações hematológicas e impacto sanitário no manejo desses animais.",
           "tema": "Clínica de Equídeos",
           "subtema": "Anemia Infecciosa Equina (AIE)",
-          "needsReview": true
+          "needsReview": false
         },
         {
           "id": "fc_aie_0002",
-          "pergunta": "Qual programa oficial aparece no roteiro sobre AIE?",
-          "resposta": "O roteiro cita o PNSS. O material pede revisar seu objetivo e as estratégias usadas pelo programa.",
+          "pergunta": "Por que programas sanitários são relevantes no manejo conceitual da AIE?",
+          "resposta": "Porque doenças infecciosas de equídeos exigem vigilância, rastreabilidade e medidas para reduzir a disseminação entre animais e propriedades.",
           "tema": "Clínica de Equídeos",
           "subtema": "Anemia Infecciosa Equina (AIE)",
-          "needsReview": true
+          "needsReview": false
         },
         {
           "id": "fc_aie_0003",
-          "pergunta": "Qual família viral é mencionada no estudo da AIE?",
-          "resposta": "O texto cita a família Retroviridae. O material pede explicar a patogenia dos vírus desse grupo.",
+          "pergunta": "A qual família viral pertence o agente da AIE?",
+          "resposta": "O agente da AIE pertence à família Retroviridae. Em prova, isso ajuda a lembrar o comportamento persistente típico dos lentivírus.",
           "tema": "Clínica de Equídeos",
           "subtema": "Anemia Infecciosa Equina (AIE)",
-          "needsReview": true
+          "needsReview": false
         },
         {
           "id": "fc_aie_0004",
-          "pergunta": "Qual método diagnóstico é citado de forma explícita?",
-          "resposta": "O roteiro menciona a imunodifusão em gel de agar (IDGA). O aluno deve revisar como esse diagnóstico funciona.",
+          "pergunta": "Qual exame sorológico é classicamente associado à investigação da AIE?",
+          "resposta": "A imunodifusão em gel de ágar (IDGA) é um exame sorológico classicamente associado à AIE. Em prova, ela costuma aparecer como método de referência para essa doença.",
           "tema": "Clínica de Equídeos",
           "subtema": "Anemia Infecciosa Equina (AIE)",
-          "needsReview": true
+          "needsReview": false
         },
         {
           "id": "fc_aie_0005",
-          "pergunta": "Quais procedimentos de confirmação aparecem no material?",
-          "resposta": "O roteiro cita contraprova e reteste. Esses termos aparecem juntos no bloco de diagnóstico da AIE.",
+          "pergunta": "Quais abordagens gerais podem reforçar a confirmação diagnóstica em doenças infecciosas de equídeos?",
+          "resposta": "A confirmação pode envolver repetição de exames, contraprova e integração entre achados clínicos, epidemiológicos e laboratoriais.",
           "tema": "Clínica de Equídeos",
           "subtema": "Anemia Infecciosa Equina (AIE)",
-          "needsReview": true
+          "needsReview": false
         },
         {
           "id": "fc_aie_0006",
-          "pergunta": "Qual documento de trânsito é apontado como importante?",
-          "resposta": "O material destaca a GTA e o controle de trânsito. O foco é entender sua importância no contexto da AIE.",
+          "pergunta": "Por que o controle da movimentação de equídeos é relevante em doenças infecciosas como a AIE?",
+          "resposta": "Porque a circulação de animais pode favorecer disseminação silenciosa entre propriedades e eventos, especialmente quando há portadores sem sinais evidentes.",
           "tema": "Clínica de Equídeos",
           "subtema": "Anemia Infecciosa Equina (AIE)",
-          "needsReview": true
+          "needsReview": false
         }
       ],
       "questions": [

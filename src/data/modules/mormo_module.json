@@ -18,7 +18,7 @@
         {
           "id": "fc_mormo_003",
           "pergunta": "Classifique Burkholderia mallei em relação às suas características microbiológicas essenciais.",
-          "resposta": "Bactéria Gram-negativa | Aeróbia | Intracelular facultativa | NÃO formadora de esporos | Imóvel. Pertence ao gênero Burkholderia, relacionada a B. pseudomallei (agente da melioidose), mas com epidemiologia completamente distinta por depender de hospedeiro animal.",
+          "resposta": "Características essenciais:\n- bactéria Gram-negativa\n- aeróbia\n- intracelular facultativa\n- não formadora de esporos\n- imóvel\nEsses pontos ajudam no diferencial microbiológico do mormo.",
           "tema": "Saúde de Animais de Produção",
           "subtema": "Mormo | PNSE",
           "needsReview": false
@@ -122,7 +122,7 @@
         {
           "id": "fc_mormo_016",
           "pergunta": "Quais são os principais sinais clínicos do mormo na forma nasal?",
-          "resposta": "Secreção nasal mucopurulenta (uni ou bilateral) | Úlceras na mucosa nasal com bordas irregulares e elevadas | Linfadenomegalia dos linfonodos regionais (submandibulares, retrofaríngeos) | Febre | Apatia | Emagrecimento progressivo. Podem surgir nódulos cutâneos concomitantes se houver forma mista (nasal + farcinosa).",
+          "resposta": "Sinais mais lembrados:\n- secreção nasal mucopurulenta, unilateral ou bilateral\n- úlceras na mucosa nasal com bordas irregulares\n- linfadenomegalia regional\n- febre e apatia\n- emagrecimento progressivo\nPodem surgir nódulos cutâneos se houver forma mista com farcino.",
           "tema": "Saúde de Animais de Produção",
           "subtema": "Mormo | PNSE",
           "needsReview": false
@@ -146,7 +146,7 @@
         {
           "id": "fc_mormo_019",
           "pergunta": "Compare mormo e AIE: agente, sinais típicos e método confirmatório.",
-          "resposta": "| | Mormo | AIE | |Agente|Burkholderia mallei (bactéria)|Lentivirus (vírus RNA)| |Sinais típicos|Úlceras nasais + linfangite nodular (farcino)|Anemia + edema declive + febre intermitente recorrente| |Confirmatório|Testes bacteriológicos/sorológicos específicos|IDGA (teste de Coggins)| Chave: mormo = lesões localizadas (úlceras + nódulos); AIE = síndrome sistêmica hemolítica recorrente.",
+          "resposta": "Mormo:\n- agente: Burkholderia mallei\n- sinais marcantes: úlceras nasais e linfangite nodular\n- confirmação: investigação específica para o agente\n\nAIE:\n- agente: lentivírus\n- sinais marcantes: anemia, edema declive e febre recorrente\n- confirmação: sorologia clássica da AIE\n\nChave de prova: mormo causa lesões localizadas; AIE costuma produzir síndrome sistêmica recorrente.",
           "tema": "Saúde de Animais de Produção",
           "subtema": "Mormo | PNSE",
           "needsReview": false
@@ -154,7 +154,7 @@
         {
           "id": "fc_mormo_020",
           "pergunta": "Compare mormo e piroplasmose equina: sinais-chave e diagnóstico.",
-          "resposta": "| | Mormo | Piroplasmose equina | |Agente|Burkholderia mallei|Babesia equi / Theileria equi| |Sinais-chave|Úlceras nasais + linfangite nodular|Anemia hemolítica + icterícia + hemoglobinúria + esplenomegalia| |Diagnóstico|Bacteriológico/sorológico|Esfregaço sanguíneo + PCR| Chave: piroplasmose = síndrome hemolítica (icterícia + urina escura); mormo = lesões localizadas supurativas.",
+          "resposta": "Mormo:\n- agente: Burkholderia mallei\n- sinais marcantes: úlceras nasais e linfangite nodular\n- investigação: testes específicos para o agente\n\nPiroplasmose equina:\n- agente: Babesia/Theileria\n- sinais marcantes: anemia hemolítica, icterícia, hemoglobinúria e esplenomegalia\n- investigação: exame de sangue e métodos moleculares\n\nChave de prova: a piroplasmose tem síndrome hemolítica; o mormo tem lesões supurativas localizadas.",
           "tema": "Saúde de Animais de Produção",
           "subtema": "Mormo | PNSE",
           "needsReview": false
@@ -169,8 +169,8 @@
         },
         {
           "id": "fc_mormo_022",
-          "pergunta": "Monte uma tabela comparativa rápida: mormo × AIE × piroplasmose equina — 3 colunas.",
-          "resposta": "Agente — Mormo: B. mallei (bact.) | AIE: Lentivirus | Piroplasmose: Babesia/Theileria (prot.). Lesão típica — Mormo: úlceras nasais + farcino | AIE: edema declive sem úlceras | Piroplasmose: anemia + icterícia + hemoglobinúria. Confirmação — Mormo: bacteriológico/sorológico | AIE: IDGA (Coggins) | Piroplasmose: esfregaço + PCR. Mnemônico de prova: farcino = mormo; Coggins = AIE; urina escura = piroplasmose.",
+          "pergunta": "Resumo comparativo: mormo, AIE e piroplasmose equina.",
+          "resposta": "Mormo: Burkholderia mallei; úlceras nasais e farcino; investigação específica para o agente.\nAIE: lentivírus; anemia, edema declive e febre recorrente; sorologia clássica.\nPiroplasmose equina: Babesia/Theileria; anemia, icterícia e hemoglobinúria; exame de sangue e PCR.\n\nMnemônico de prova:\n- farcino = mormo\n- síndrome sistêmica recorrente = AIE\n- urina escura = piroplasmose",
           "tema": "Saúde de Animais de Produção",
           "subtema": "Mormo | PNSE",
           "needsReview": false

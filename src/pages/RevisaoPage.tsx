@@ -368,28 +368,34 @@ function FlashCard({
         animate={{ rotateY: flipped ? 180 : 0 }}
         transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
         style={{ transformStyle: 'preserve-3d' }}
-        className="relative h-64 w-full"
+        className="relative h-[24rem] w-full md:h-[22rem]"
       >
         <div
-          className="absolute inset-0 flex flex-col justify-between rounded-3xl border border-neutral-700 bg-neutral-800 p-7"
+          className="absolute inset-0 flex flex-col rounded-3xl border border-neutral-700 bg-neutral-800 p-5 md:p-7"
           style={{ backfaceVisibility: 'hidden' }}
         >
           <span className="self-start rounded-full border border-primary-500/20 bg-primary-500/10 px-3 py-1 text-xs font-bold uppercase tracking-wider text-primary-400">
             {card.tag}
           </span>
-          <p className="flex flex-1 items-center justify-center whitespace-pre-line px-2 text-center text-[15px] font-semibold leading-relaxed text-neutral-200">
-            {card.front}
-          </p>
-          <p className="text-center text-xs text-neutral-600">Toque no card para revelar</p>
+          <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain py-2">
+            <div className="flex min-h-full items-center justify-center px-2">
+              <p className="whitespace-pre-line text-center text-[15px] font-semibold leading-relaxed text-neutral-200">
+                {card.front}
+              </p>
+            </div>
+          </div>
+          <p className="pt-2 text-center text-xs text-neutral-600">Toque no card para revelar</p>
         </div>
 
         <div
-          className="absolute inset-0 flex flex-col justify-center overflow-y-auto rounded-3xl border border-primary-500/30 bg-gradient-to-br from-primary-900/30 to-neutral-800 p-7"
+          className="absolute inset-0 flex flex-col rounded-3xl border border-primary-500/30 bg-gradient-to-br from-primary-900/30 to-neutral-800 p-5 md:p-7"
           style={{ backfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }}
         >
-          <p className="whitespace-pre-line text-center text-sm leading-relaxed text-neutral-300">
-            {card.back}
-          </p>
+          <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain pr-1">
+            <p className="whitespace-pre-line text-left text-sm leading-relaxed text-neutral-300">
+              {card.back}
+            </p>
+          </div>
         </div>
       </motion.div>
     </div>
