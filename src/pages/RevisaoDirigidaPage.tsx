@@ -50,7 +50,7 @@ const SECTION_ITEMS: Array<{ id: SectionId; label: string }> = [
   { id: 'questao-28', label: 'Questão 28' },
 ]
 
-const TAG_STYLES: Record<ReviewTag, string> = {
+const TAG_STYLES: Record<string, string> = {
   'Anatomia': 'border-primary-500/25 bg-primary-500/10 text-primary-300',
   'Ciclo Estral': 'border-success-500/25 bg-success-500/10 text-success-300',
   'Biotecnologias': 'border-accent-500/25 bg-accent-500/10 text-accent-300',

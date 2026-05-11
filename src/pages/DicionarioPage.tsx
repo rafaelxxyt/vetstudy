@@ -76,19 +76,50 @@ const CATEGORY_COUNTS = ALL_TERMS.reduce<Record<DictionaryCategory, number>>((ac
 function normalizeText(value: string) {
   return value
     .trim()
+    .replace(/\s+/g, ' ')
     .toLocaleLowerCase('pt-BR')
     .normalize('NFD')
     .replace(/[\u0300-\u036f]/g, '')
 }
 
-function getSearchRank(term: DictionaryTerm, normalizedQuery: string) {
-  if (!normalizedQuery) return 99
+const SEARCH_STOPWORDS = new Set(['e', 'de', 'da', 'do', 'das', 'dos', 'a', 'o', 'as', 'os'])
+
+function normalizeQuery(value: string) {
+  const normalized = normalizeText(value)
+
+  if (!normalized) {
+    return {
+      normalized,
+      tokens: [] as string[],
+    }
+  }
+
+  const tokens = normalized
+    .split(' ')
+    .filter(token => token.length > 0 && !SEARCH_STOPWORDS.has(token))
+
+  return {
+    normalized,
+    tokens,
+  }
+}
+
+function matchesAllQueryTokens(value: string, queryTokens: string[]) {
+  if (queryTokens.length === 0) return true
+
+  const normalizedValue = normalizeText(value)
+  return queryTokens.every(token => normalizedValue.includes(token))
+}
+
+function getSearchRank(term: DictionaryTerm, normalizedQuery: string, queryTokens: string[]) {
+  if (!normalizedQuery && queryTokens.length === 0) return 99
 
   const normalizedTerm = normalizeText(term.term)
   const relatedLabels = term.relatedTerms.map(relatedId => TERM_BY_ID.get(relatedId)?.term ?? relatedId)
+  const effectiveQuery = queryTokens.length > 0 ? queryTokens.join(' ') : normalizedQuery
 
-  if (normalizedTerm === normalizedQuery) return 0
-  if (normalizedTerm.startsWith(normalizedQuery)) return 1
+  if (effectiveQuery && normalizedTerm === effectiveQuery) return 0
+  if (effectiveQuery && normalizedTerm.startsWith(effectiveQuery)) return 1
 
   const startsWithPool = [
     ...term.tags,
@@ -96,8 +127,8 @@ function getSearchRank(term: DictionaryTerm, normalizedQuery: string) {
     ...relatedLabels,
   ]
 
-  if (startsWithPool.some(value => normalizeText(value).startsWith(normalizedQuery))) return 2
-  if (normalizedTerm.includes(normalizedQuery)) return 3
+  if (effectiveQuery && startsWithPool.some(value => normalizeText(value).startsWith(effectiveQuery))) return 2
+  if (matchesAllQueryTokens(term.term, queryTokens)) return 3
 
   const containsPool = [
     term.shortDefinition,
@@ -107,7 +138,7 @@ function getSearchRank(term: DictionaryTerm, normalizedQuery: string) {
     ...relatedLabels,
   ]
 
-  if (containsPool.some(value => normalizeText(value).includes(normalizedQuery))) return 4
+  if (containsPool.some(value => matchesAllQueryTokens(value, queryTokens))) return 4
 
   return null
 }
@@ -300,19 +331,19 @@ function DicionarioContent() {
   const [category, setCategory] = useState<CategoryFilter>('all')
   const [selectedId, setSelectedId] = useState<string | null>(ALL_TERMS[0]?.id ?? null)
 
-  const normalizedQuery = normalizeText(query)
+  const { normalized: normalizedQuery, tokens: queryTokens } = useMemo(() => normalizeQuery(query), [query])
 
   const filteredTerms = useMemo(() => {
-  const categoryFilteredTerms = category === 'all'
+    const categoryFilteredTerms = category === 'all'
       ? ALL_TERMS
       : ALL_TERMS.filter(term => term.category === category)
 
-    if (!normalizedQuery) return categoryFilteredTerms
+    if (!normalizedQuery && queryTokens.length === 0) return categoryFilteredTerms
 
     return categoryFilteredTerms
-      .filter(term => getSearchRank(term, normalizedQuery) !== null)
+      .filter(term => getSearchRank(term, normalizedQuery, queryTokens) !== null)
       .sort((termA, termB) => termA.term.localeCompare(termB.term, 'pt-BR'))
-  }, [category, normalizedQuery])
+  }, [category, normalizedQuery, queryTokens])
 
   useEffect(() => {
     setSelectedId(currentSelectedId => (
