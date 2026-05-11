@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+﻿import { useMemo, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import {
   BookOpen,
@@ -811,3 +811,4 @@ export default function RevisaoDirigidaPage() {
     </Gatekeeper>
   )
 }
+
