@@ -33,6 +33,15 @@ export interface AnatomyLegendRow {
   recognition: string
 }
 
+export interface PriorityReviewCard {
+  id: string
+  title: string
+  status: string
+  answer: string
+  mustRemember: string[]
+  risk: string
+}
+
 export const reviewPageMeta = {
   sidebarLabel: 'Revisão Dirigida',
   title: 'Reprodução Animal - Revisão Dirigida',
@@ -485,3 +494,108 @@ export const q28Bovinos = {
     'Cio curto e nem sempre evidente tornam o manejo reprodutivo um ponto crítico.',
   ],
 }
+
+export const priorityReviewMeta = {
+  triggerLabel: 'Revisão prioritária',
+  title: 'Revisão Prioritária — Reprodução e Biotecnologias',
+  subtitle: 'Questões com maior chance de cair, em versão mínima para prova',
+  info: 'Use esta seção para decorar respostas curtas. Ela não substitui a revisão completa.',
+  finalReminder: 'Antes da prova, decore nesta ordem: Q5 → Q3 → Q4 → Q11 → Q9.',
+}
+
+export const priorityReviewCards: PriorityReviewCard[] = [
+  {
+    id: 'q3-espermatogenese',
+    title: 'Q3 — Espermatogênese',
+    status: 'Curta',
+    answer:
+      'A espermatogênese ocorre nos túbulos seminíferos dos testículos. A sequência germinativa é: espermatogônias → espermatócitos I → espermatócitos II → espermátides → espermatozoides. As células de Sertoli nutrem e sustentam as células germinativas, enquanto as células de Leydig produzem testosterona. O processo envolve mitose, meiose e espermiogênese.',
+    mustRemember: [
+      'Túbulos seminíferos',
+      'Espermatogônia → espermatócito I → espermatócito II → espermátide → espermatozoide',
+      'Sertoli = suporte/nutrição',
+      'Leydig = testosterona',
+    ],
+    risk:
+      'Não confundir espermatogênese com espermiogênese: espermiogênese é só a transformação da espermátide em espermatozoide.',
+  },
+  {
+    id: 'q4-oogenese',
+    title: 'Q4 — Oogênese',
+    status: 'Curta',
+    answer:
+      'A oogênese ocorre nos ovários e começa ainda na vida embrionária. O oócito primário fica bloqueado em prófase I até a puberdade. Após a retomada da meiose, forma-se o oócito secundário, que fica bloqueado em metáfase II e só completa a meiose se houver fecundação.',
+    mustRemember: [
+      'Ovário',
+      'Começa na vida embrionária',
+      'Bloqueio em prófase I',
+      'Bloqueio em metáfase II',
+      'Só termina se fecundar',
+    ],
+    risk: 'Na espermatogênese o processo é contínuo; na oogênese há bloqueios.',
+  },
+  {
+    id: 'q5-hhg',
+    title: 'Q5 — Eixo Hipotálamo-Hipófise-Gônadas',
+    status: 'Parcialmente correta — reforçar',
+    answer:
+      'O hipotálamo libera GnRH, que estimula a hipófise anterior a liberar FSH e LH. O FSH estimula crescimento folicular nas fêmeas e espermatogênese nos machos. O LH induz ovulação e formação/manutenção do corpo lúteo nas fêmeas e estimula as células de Leydig a produzirem testosterona nos machos. Estrogênio, progesterona e testosterona fazem feedback negativo; no final do estro, o pico de estrogênio faz feedback positivo, gerando pico de LH e ovulação.',
+    mustRemember: [
+      'GnRH → FSH e LH',
+      'FSH = folículo / espermatogênese',
+      'LH = ovulação / CL / Leydig',
+      'Feedback negativo',
+      'Feedback positivo: pico de estrógeno → pico de LH → ovulação',
+    ],
+    risk: 'Não esquecer o feedback positivo. É o ponto mais cobrado.',
+  },
+  {
+    id: 'q9-espermograma',
+    title: 'Q9 — Espermograma e dose inseminante',
+    status: 'Parcialmente correta — explicar',
+    answer:
+      'O número de doses de sêmen pode ser calculado a partir de três parâmetros do espermograma: volume do ejaculado, concentração espermática e motilidade progressiva. A lógica é multiplicar volume × concentração × motilidade para estimar espermatozoides viáveis/móveis e dividir pelo mínimo necessário por dose.',
+    mustRemember: [
+      'Volume',
+      'Concentração',
+      'Motilidade',
+      'Dose inseminante',
+      'Espermatozoides viáveis/móveis',
+    ],
+    risk:
+      'Dizer apenas os três nomes não basta; explique que eles servem para calcular quantos espermatozoides úteis existem para dividir em doses.',
+  },
+  {
+    id: 'q11-crioprotetores',
+    title: 'Q11 — Crioprotetores',
+    status: 'Correta — leve ajuste',
+    answer:
+      'Crioprotetores protegem os espermatozoides durante congelamento e descongelamento, reduzindo danos por cristais de gelo, desidratação e choque osmótico. Intracelulares, como glicerol, penetram na célula e protegem o interior. Extracelulares, como gema de ovo, leite desnatado e açúcares, não penetram na célula e protegem a membrana e o meio externo.',
+    mustRemember: [
+      'Crioprotetor',
+      'Cristais de gelo',
+      'Intracelular = entra na célula',
+      'Extracelular = não entra',
+      'Glicerol = intracelular',
+      'Gema de ovo = extracelular',
+    ],
+    risk:
+      'A diferença que pontua é a permeabilidade da membrana: glicerol entra; gema de ovo não entra.',
+  },
+]
+
+export const priorityStudyOrder = [
+  '#1 Q5 — HHG: FSH/LH, feedback negativo e feedback positivo para pico de LH.',
+  '#2 Q3 — Espermatogênese: túbulos seminíferos, sequência celular, Sertoli e Leydig.',
+  '#3 Q4 — Oogênese: dois bloqueios, prófase I e metáfase II.',
+  '#4 Q11 — Crioprotetores: intracelular vs extracelular.',
+  '#5 Q9 — Espermograma: volume × concentração × motilidade.',
+]
+
+export const priorityUltraSummary = [
+  'Q3: "Espermatogônia → espermatócito I → espermatócito II → espermátide → espermatozoide nos túbulos seminíferos, com Sertoli e Leydig."',
+  'Q4: "Oócito primário trava em prófase I; oócito secundário trava em metáfase II e só termina se fecundar."',
+  'Q5: "GnRH estimula FSH/LH; FSH faz folículo/espermatogênese; LH faz ovulação/CL/testosterona; estrógeno alto faz pico de LH."',
+  'Q9: "Doses = volume × concentração × motilidade, dividindo pelo mínimo necessário por dose."',
+  'Q11: "Glicerol entra na célula; gema/leite/açúcares não entram e protegem por fora."',
+]
