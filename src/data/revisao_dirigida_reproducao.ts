@@ -601,4 +601,47 @@ export const priorityUltraSummary = [
   'Q11: "Glicerol entra na célula; gema/leite/açúcares não entram e protegem por fora."',
 ]
 
+export const priorityQ28ReadyAnswer = {
+  title: 'Q28 — Bovinos: resposta pronta',
+  points: [
+    'Importância: bovinos são importantes para produção de leite e carne; a eficiência reprodutiva aumenta produtividade e reduz perdas.',
+    'Biotecnologias: IATF e sincronização de cio são muito usadas para organizar o manejo reprodutivo e permitir inseminação em lote.',
+    'Sinal de cio: aceita ser montada e pode apresentar muco claro e filante.',
+    'Particularidade: o cio da vaca é curto, em torno de 12-18h, o que dificulta a detecção; por isso a IATF ajuda bastante.',
+  ],
+  memorize: 'Bovino = leite/carne + IATF/sincronização + aceita monta + cio curto.',
+}
+
+export const priorityBusReviewList = [
+  'Q1: Genitália externa = vestíbulo, lábios vulvares e clitóris.',
+  'Q2: Vagina recebe pênis/sêmen; cérvix protege o útero.',
+  'Q3: Vaca = anéis; porca = espiral; égua = cérvix mais simples.',
+  'Q4: Endométrio implanta; miométrio contrai; perimétrio protege.',
+  'Q5: Trompa/oviduto = fecundação e transporte do embrião.',
+  'Q6: Folículo = estrogênio/cio; CL = progesterona/gestação.',
+  'Q7: Estrogênio dá cio e muco claro; progesterona inibe cio e fecha cérvix.',
+  'Q8: Muco claro + inquietação = estro; conduta: confirmar e inseminar.',
+  'Q9: Proestro → estro → metaestro → diestro; E2 primeiro, P4 depois.',
+  'Q10: Vaca e porca = ciclo médio de 21 dias.',
+  'Q11: Poliestral anual cicla o ano todo; estacional cicla em época específica.',
+  'Q12: Luz altera melatonina e mexe no eixo H-H-G.',
+  'Q13: Cabras com pouco cio no verão = anestro estacional; usar efeito macho/manejo.',
+  'Q14: Cio bovino = aceita monta + muco claro.',
+  'Q15: ECC baixo/BEN atrasa retorno ao ciclo.',
+  'Q16: Estro = muco facilita espermatozoide; diestro = tampão protetor.',
+  'Q17: IA: evitar choque térmico e contaminação.',
+  'Q18: IATF = inseminar em tempo fixo sem detectar cio.',
+  'Q19: TE multiplica genética da fêmea; é cara e complexa.',
+  'Q20: Porcas voltando ao cio em 21 dias = falha de concepção; checar IA/sêmen/técnica.',
+  'Q21: Anestro pós-parto = sem ciclo após parir; BEN agrava.',
+  'Q22: PGF2α causa luteólise, cai progesterona e volta cio.',
+  'Q23: Sincronização organiza lote e concentra inseminações/partos.',
+  'Q24: IATF dispensa detecção individual do cio.',
+  'Q25: Progestágeno simula fase lútea; retirada libera eixo e sincroniza ovulação.',
+  'Q26: Cadela: citologia vaginal; estro com células superficiais cornificadas/queratinizadas.',
+  'Q28: Bovino = leite/carne + IATF/sincronização + aceita monta + cio curto.',
+]
+
+export const priorityBusReviewFinalLine = 'Leia isso no ônibus. Não tente aprender conteúdo novo.'
+
 

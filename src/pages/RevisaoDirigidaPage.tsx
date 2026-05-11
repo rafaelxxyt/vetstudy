@@ -17,6 +17,9 @@ import {
   hormoneTable,
   oralQuestions,
   pitfalls,
+  priorityBusReviewFinalLine,
+  priorityBusReviewList,
+  priorityQ28ReadyAnswer,
   priorityReviewCards,
   priorityReviewMeta,
   priorityStudyOrder,
@@ -323,6 +326,7 @@ function RevisaoDirigidaContent() {
     plan: false,
   })
   const [openQuestions, setOpenQuestions] = useState<Record<number, boolean>>({})
+  const [priorityBusOpen, setPriorityBusOpen] = useState(false)
   const [priorityPanelOpen, setPriorityPanelOpen] = useState(false)
   const [priorityUnlocked, setPriorityUnlocked] = useState(() => {
     if (typeof window === 'undefined') return false
@@ -560,6 +564,39 @@ function RevisaoDirigidaContent() {
                             ))}
                           </div>
                         </div>
+
+                        <CollapsibleCard
+                          title="Resumo para revisar no ônibus"
+                          subtitle="Bloco compacto de última hora, focado em leitura rápida."
+                          open={priorityBusOpen}
+                          onToggle={() => setPriorityBusOpen(current => !current)}
+                        >
+                          <div className="space-y-4">
+                            <div className="rounded-2xl border border-primary-500/18 bg-primary-500/8 px-4 py-3">
+                              <p className="text-sm font-bold text-white">{priorityQ28ReadyAnswer.title}</p>
+                              <div className="mt-2 space-y-2">
+                                {priorityQ28ReadyAnswer.points.map(item => (
+                                  <p key={item} className="text-sm leading-relaxed text-primary-100/95">{item}</p>
+                                ))}
+                              </div>
+                              <p className="mt-3 text-xs font-semibold text-primary-200">
+                                {priorityQ28ReadyAnswer.memorize}
+                              </p>
+                            </div>
+
+                            <div className="rounded-2xl border border-neutral-700/60 bg-neutral-900/55 px-4 py-3">
+                              <p className="text-sm font-bold text-white">Resumo para revisar no ônibus</p>
+                              <div className="mt-2 grid gap-2">
+                                {priorityBusReviewList.map(item => (
+                                  <p key={item} className="text-sm leading-relaxed text-neutral-200">{item}</p>
+                                ))}
+                              </div>
+                              <p className="mt-3 text-xs font-semibold text-warning-200">
+                                {priorityBusReviewFinalLine}
+                              </p>
+                            </div>
+                          </div>
+                        </CollapsibleCard>
 
                         <div className="rounded-[1.5rem] border border-warning-500/18 bg-warning-500/8 px-4 py-3">
                           <p className="text-sm font-semibold text-warning-50">{priorityReviewMeta.finalReminder}</p>
