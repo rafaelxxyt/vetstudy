@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import {
+  ClipboardCheck,
   FlaskConical,
   BookOpen,
   Wrench,
@@ -21,6 +22,7 @@ export type Page =
   | 'revisao'
   | 'casos'
   | 'mapas'
+  | 'dirigida'
   | 'dicionario'
   | 'medicamentos'
   | 'doencas'
@@ -39,6 +41,7 @@ const ESTUDO: NavItem[] = [
   { id: 'revisao', label: 'Flashcards', icon: GraduationCap },
   { id: 'casos', label: 'Casos', icon: Brain },
   { id: 'mapas', label: 'Resumos', icon: BookOpen },
+  { id: 'dirigida', label: 'Revisão Dirigida', icon: ClipboardCheck },
   { id: 'dicionario', label: 'Dicionário Vet', icon: Search },
 ]
 

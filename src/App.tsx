@@ -12,6 +12,7 @@ import CasosPage from './pages/CasosPage'
 import RevisaoPage from './pages/RevisaoPage'
 import MapasPage from './pages/MapasPage'
 import DicionarioPage from './pages/DicionarioPage'
+import RevisaoDirigidaPage from './pages/RevisaoDirigidaPage'
 
 const THEME_STORAGE_KEY = 'vetstudy_theme'
 
@@ -20,6 +21,7 @@ const PAGE_LABELS: Record<Page, string> = {
   revisao: 'Flashcards',
   casos: 'Casos',
   mapas: 'Resumos',
+  dirigida: 'Revisão Dirigida',
   dicionario: 'Dicionário Vet',
   medicamentos: 'Medicamentos',
   doencas: 'Doenças',
@@ -112,6 +114,8 @@ export default function App() {
       />
     ) : activePage === 'mapas' ? (
       <MapasPage />
+    ) : activePage === 'dirigida' ? (
+      <RevisaoDirigidaPage />
     ) : activePage === 'dicionario' ? (
       <DicionarioPage />
     ) : activePage === 'medicamentos' ? (
